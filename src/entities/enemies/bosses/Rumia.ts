@@ -17,7 +17,12 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 6 },
 			{ type: 'life', count: 1 },
 		],
-		patterns: [Patterns.RUMIA_STARWHEEL, Patterns.RUMIA_HELIXBALL_SPIRAL],
+		patterns: [
+			Patterns.RUMIA_STARWHEEL,
+			Patterns.RUMIA_STARWHEEL_CCW,
+			Patterns.RUMIA_JELLYBEAN_SPIRAL,
+			Patterns.RUMIA_ORB_RINGS,
+		],
 	},
 	{
 		name: 'Dark Sign 「Demarcation」',
@@ -33,6 +38,8 @@ const PHASES: BossPhase[] = [
 		patterns: [
 			Patterns.RUMIA_WHEEL_CW,
 			Patterns.RUMIA_WHEEL_CCW,
+			Patterns.RUMIA_WHEEL_CW_2,
+			Patterns.RUMIA_WHEEL_CCW_2,
 			Patterns.RUMIA_SHADOW_AIMED,
 		],
 	},

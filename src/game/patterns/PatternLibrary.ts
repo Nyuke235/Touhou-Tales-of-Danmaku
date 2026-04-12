@@ -334,19 +334,32 @@ export const Patterns = {
 		type: 'helix', bullet: 'star', color: 'yellow',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 6.0,
 		speed: 32, initSpeed: 112, accelTime: 2.0,
-		cooldown: 0.03, delay: 0.1, maxShots: 100,
+		cooldown: 0.03, delay: 0.1, maxShots: 80,
 	} as PatternConfig,
 
-	RUMIA_HELIXBALL_SPIRAL: {
-		type: 'helix', bullet: 'helixball', color: 'purple',
-		count: 1, startAngle: 0, sweepAngle: Math.PI * 4,
-		speed: 40, cooldown: 0.2, delay: 0.5, maxShots: 12,
+	RUMIA_STARWHEEL_CCW: {
+		type: 'helix', bullet: 'star', color: 'yellow',
+		count: 1, startAngle: 0, sweepAngle: -Math.PI * 6.0,
+		speed: 32, initSpeed: 112, accelTime: 2.0,
+		cooldown: 0.03, delay: 3.0, maxShots: 80,
+	} as PatternConfig,
+
+	RUMIA_JELLYBEAN_SPIRAL: {
+		type: 'helix', bullet: 'ball', color: 'purple',
+		count: 1, startAngle: 0, sweepAngle: Math.PI * 2.0,
+		speed: 50, cooldown: 0.09, delay: 0.2, maxShots: 8,
+		morphDelay: 1.5, morphDeactivate: true,
+		morphConfig: {
+			type: 'helix', bullet: 'jellybean',
+			count: 1, speed: 70, shots: 8, interval: 0.08,
+			startAngle: Math.PI / 4, sweepAngle: Math.PI * 0.75,
+		},
 	} as PatternConfig,
 
 	RUMIA_ORB_RINGS: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
-		count: 12, speed: 55, startAngle: 0, rotStep: Math.PI / 12,
-		cooldown: 0.65, delay: 1.3, maxShots: 9,
+		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0, rotStep: Math.PI / 2,
+		cooldown: 0.3, delay: 6.0, maxShots: 9, ringAngleStep: Math.PI / 7
 	} as PatternConfig,
 
 	RUMIA_SPIRAL_P3: {
@@ -374,6 +387,20 @@ export const Patterns = {
 		startAngle: Math.PI / 14, delay: 0.2, cooldown: 1.8,
 	} as PatternConfig,
 
+	RUMIA_WHEEL_CW_2: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: Math.PI * 0.15, radialVel: 64,
+		startAngle: 0, delay: 0.6, cooldown: 1.8,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CCW_2: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: -(Math.PI * 0.15), radialVel: 64,
+		startAngle: Math.PI, delay: 0.6, cooldown: 1.8,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
 	RUMIA_SHADOW_AIMED: {
 		type: 'aimed', bullet: 'shadow',
 		speed: 40, delay: 1.5, cooldown: 3.0, maxShots: 3,
@@ -384,6 +411,15 @@ export const Patterns = {
 		type: 'circle', bullet: 'burstshadow',
 		count: 8, speed: 40, startAngle: 0, rotStep: Math.PI / 8,
 		delay: 1.0, cooldown: 2.2,
+		morphDelay: 1.8,
+		morphDeactivate: true,
+		morphConfig: {
+			type: 'circle',
+			bullet: 'rice',
+			color: 'purple',
+			count: 18,
+			speed: 75,
+		},
 	} as PatternConfig,
 
 	RUMIA_P4_AIMED: {
@@ -391,25 +427,12 @@ export const Patterns = {
 		count: 5, spread: 0.6, speed: 120, delay: 2.0, cooldown: 3.0, maxShots: 4,
 	} as PatternConfig,
 
-	// Helix of helixball
 	HELIXBALL_SPIRAL_1: {
-		type: 'helix', bullet: 'helixball', color: 'blue',
+		type: 'helix', bullet: 'ball', color: 'blue',
 		count: 2, startAngle: 0, sweepAngle: Math.PI * 4,
 		speed: 60, cooldown: 0.2, delay: 0.5, maxShots: 12,
+		morphDelay: 1.5, morphDeactivate: false,
+		morphConfig: { type: 'helix', bullet: 'ball', color: 'blue', count: 2, speed: 85, shots: 12, interval: 0.07 },
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
-	} as PatternConfig,
-
-	HELIXBALL_SPIRAL_2: {
-		type: 'helix', bullet: 'helixball', color: 'red',
-		count: 3, startAngle: 0, sweepAngle: Math.PI * 4,
-		speed: 65, cooldown: 0.18, delay: 0.5, maxShots: 14,
-		difficulties: [Difficulty.HARD]
-	} as PatternConfig,
-
-	HELIXBALL_SPIRAL_3: {
-		type: 'helix', bullet: 'helixball', color: 'purple',
-		count: 4, startAngle: 0, sweepAngle: Math.PI * 4,
-		speed: 70, cooldown: 0.15, delay: 0.5, maxShots: 16,
-		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 };

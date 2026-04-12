@@ -3,7 +3,7 @@ import { Patterns as P } from '../game/patterns/PatternLibrary';
 
 const RAW_STAGE_1: SpawnEventData[] = [
 
-	// { time: 2.0, type: 'rumia', x: 128, y: -16 },
+	//{ time: 2.0, type: 'rumia', x: 128, y: -16 },
 
 	// Wave 1 – diagonal fairies left/rightok
 	{ time:  3.0, type: 'fairy', x:  -16, y:  20, color: 'blue', path: 'diagonal-left', patterns: [P.S1_FAIRY_NORMAL, P.S1_FAIRY_HARD, P.S1_FAIRY_LUNA]},

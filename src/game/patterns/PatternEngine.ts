@@ -7,7 +7,7 @@ import { ShadowBullet } from '../../entities/projectiles/ShadowBullet';
 import { OrbitingBullet } from '../../entities/projectiles/OrbitingBullet';
 import { BurstShadowBullet } from '../../entities/projectiles/BurstShadowBullet';
 import { StarBullet } from '../../entities/projectiles/StarBullet';
-import { HelixBallBullet } from '../../entities/projectiles/HelixBallBullet';
+import { JellybeanBullet } from '../../entities/projectiles/JellybeanBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -19,7 +19,7 @@ export type BulletType =
 	| 'shadow'
 	| 'burstshadow'
 	| 'star'
-	| 'helixball';
+	| 'jellybean';
 
 export interface PatternConfig {
 	type:
@@ -58,9 +58,13 @@ export interface PatternConfig {
 	startAngle?: number;
 
 	// ------------  CIRCLE - ROTATING RINGS ------------
-	// startAngle = base rotation of the ring
-	// rotStep    = additional rotation applied per successive shot
+	// startAngle    = base rotation of the ring
+	// rotStep       = additional rotation applied per successive shot
+	// ringAngleStep = angle added to the base angle for each successive shot,
+	//                 independently of rotStep. Use a value that is NOT a
+	//                 multiple of (2π / count) to ensure rings don't overlap.
 	rotStep?: number;
+	ringAngleStep?: number;
 
 	// ------------ ROSE ------------
 	// roseN        = number of arms
@@ -96,9 +100,31 @@ export interface PatternConfig {
 	initSpeed?: number;
 	accelTime?: number;
 
+	// ------------ MORPH ------------
+	// morphDelay      = seconds before the bullet transforms
+	// morphConfig     = what to spawn at morph time (non-aimed types only)
+	// morphDeactivate = whether the parent bullet disappears after morphing (default true)
+	morphDelay?: number;
+	morphConfig?: MorphConfig;
+	morphDeactivate?: boolean;
+
 	// Optional difficulty filter. If omitted, the pattern fires on all difficulties.
 	// If specified, the pattern only fires when the current difficulty is in the list.
 	difficulties?: Difficulty[];
+}
+
+export interface MorphConfig {
+	type: 'circle' | 'fixed' | 'helix';
+	bullet?: BulletType;
+	color?: BulletColor;
+	count?: number;
+	speed?: number;
+	startAngle?: number;
+	spread?: number;
+	// helix only
+	shots?: number;
+	interval?: number;
+	sweepAngle?: number;
 }
 
 export class PatternEngine {
@@ -184,7 +210,7 @@ export class PatternEngine {
 		if (bullet === 'shadow') return new ShadowBullet(x, y, vx, vy);
 		if (bullet === 'burstshadow') return new BurstShadowBullet(x, y, vx, vy);
 		if (bullet === 'star') return new StarBullet(x, y, vx, vy);
-		if (bullet === 'helixball') return new HelixBallBullet(x, y, vx, vy, color);
+		if (bullet === 'jellybean') return new JellybeanBullet(x, y, vx, vy);
 		return new BallBullet(x, y, vx, vy, color);
 	}
 
@@ -209,7 +235,84 @@ export class PatternEngine {
 		if (pattern.initSpeed !== undefined && pattern.accelTime !== undefined) {
 			b.setupAccel(angle, pattern.initSpeed, speed, pattern.accelTime);
 		}
+		if (pattern.morphDelay !== undefined && pattern.morphConfig !== undefined) {
+			const mc = pattern.morphConfig;
+			const isHelix = mc.type === 'helix';
+			b.setupMorph(
+				pattern.morphDelay,
+				this.buildMorphFn(mc),
+				pattern.morphDeactivate ?? true,
+				isHelix ? (mc.interval ?? 0.07) : undefined,
+				isHelix ? (mc.shots ?? 12) : undefined
+			);
+		}
 		out.push(b);
+	}
+
+	private buildMorphFn(
+		mc: MorphConfig
+	): (x: number, y: number, shotIndex: number) => IProjectile[] {
+		return (x, y, shotIndex) => {
+			const out: IProjectile[] = [];
+			const bullet = mc.bullet ?? 'ball';
+			const color = mc.color ?? 'blue';
+			const speed = mc.speed ?? 80;
+			const count = Math.max(1, mc.count ?? 8);
+
+			if (mc.type === 'circle') {
+				const baseAngle = mc.startAngle ?? 0;
+				for (let i = 0; i < count; i++) {
+					const angle = baseAngle + (i / count) * Math.PI * 2;
+					out.push(
+						this.spawn(
+							bullet,
+							x,
+							y,
+							Math.cos(angle) * speed,
+							Math.sin(angle) * speed,
+							color
+						)
+					);
+				}
+			} else if (mc.type === 'fixed') {
+				const baseAngle = mc.startAngle ?? 0;
+				const spread = mc.spread ?? 0;
+				for (let i = 0; i < count; i++) {
+					const angle =
+						count > 1
+							? baseAngle - spread / 2 + (spread / (count - 1)) * i
+							: baseAngle;
+					out.push(
+						this.spawn(
+							bullet,
+							x,
+							y,
+							Math.cos(angle) * speed,
+							Math.sin(angle) * speed,
+							color
+						)
+					);
+				}
+			} else if (mc.type === 'helix') {
+				const shots = mc.shots ?? 12;
+				const step = (mc.sweepAngle ?? Math.PI * 2) / shots;
+				const baseAngle = (mc.startAngle ?? 0) + shotIndex * step;
+				for (let i = 0; i < count; i++) {
+					const angle = baseAngle + (i / count) * Math.PI * 2;
+					out.push(
+						this.spawn(
+							bullet,
+							x,
+							y,
+							Math.cos(angle) * speed,
+							Math.sin(angle) * speed,
+							color
+						)
+					);
+				}
+			}
+			return out;
+		};
 	}
 
 	private fire(
@@ -229,7 +332,9 @@ export class PatternEngine {
 			case 'circle': {
 				const count = Math.max(1, pattern.count ?? 8);
 				const baseAngle =
-					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
+					(pattern.startAngle ?? 0) +
+					shotCount * (pattern.rotStep ?? 0) +
+					shotCount * (pattern.ringAngleStep ?? 0);
 				this.spawnRing(
 					pattern,
 					out,
