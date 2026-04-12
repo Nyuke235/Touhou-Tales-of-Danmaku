@@ -22,17 +22,20 @@ export const Patterns = {
 	} as PatternConfig,
 
 	S1_ACCEL_NORMAL: {
-		type: 'accel', color: 'yellow', speed: 5, delay: 1.5, cooldown: 0.6, maxShots: 1,
+		type: 'aimed', color: 'yellow', speed: 50, initSpeed: 5, accelTime: 1.125,
+		delay: 1.5, cooldown: 0.6, maxShots: 1,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
 	S1_ACCEL_HARD: {
-		type: 'accel', color: 'yellow', speed: 10, delay: 1, cooldown: 0.6, maxShots: 2,
+		type: 'aimed', color: 'yellow', speed: 50, initSpeed: 10, accelTime: 1.0,
+		delay: 1, cooldown: 0.6, maxShots: 2,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S1_ACCEL_LUNA: {
-		type: 'accel', color: 'yellow', speed: 15, delay: 1, cooldown: 0.5, maxShots: 4,
+		type: 'aimed', color: 'yellow', speed: 50, initSpeed: 15, accelTime: 0.875,
+		delay: 1, cooldown: 0.5, maxShots: 4,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -330,7 +333,8 @@ export const Patterns = {
 	RUMIA_STARWHEEL: {
 		type: 'helix', bullet: 'star', color: 'yellow',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 6.0,
-		speed: 32, cooldown: 0.03, delay: 0.1, maxShots: 100,
+		speed: 32, initSpeed: 112, accelTime: 2.0,
+		cooldown: 0.03, delay: 0.1, maxShots: 100,
 	} as PatternConfig,
 
 	RUMIA_HELIXBALL_SPIRAL: {
