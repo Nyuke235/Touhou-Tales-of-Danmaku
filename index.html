@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tales Of Danmaku</title>
+		<!-- CSS -->
+		<link rel="stylesheet" href="assets/styles/fonts.css" />
+		<link rel="stylesheet" href="assets/styles/home.css" />
+		<link rel="stylesheet" href="assets/styles/difficulty.css" />
+		<link rel="stylesheet" href="assets/styles/characters.css" />
+		<link rel="stylesheet" href="assets/styles/options.css" />
+			<link rel="stylesheet" href="assets/styles/game.css" />
+		<link rel="stylesheet" href="assets/styles/keyconfig.css" />
+		<link rel="stylesheet" href="assets/styles/leaderboard.css">
+		<link rel="stylesheet" href="assets/styles/styles.css" />
+		<!-- JS -->
+		<script type="module" src="src/main.ts" defer></script>
+	</head>
+	<body>
+		<main>
+			<div id="game-window">
+				<div id="splash">
+					<div id="splash-disclaimer">
+						<p>This fangame is based on Touhou Project.<br>Touhou Project and its characters are property of Team Shanghai Alice (ZUN)</p>
+					</div>
+					<div id="splash-credit">
+						<img src="assets/sprites/ui/nyuke.png" alt="nyuke logo" />
+						<p>Made by nyuke235</p>
+					</div>
+				</div>
+				<p class="announcement"><span class="value"></span></p>
+				<!---------------------- HOME ---------------------->
+				<section id="home" class="intro">
+					<img src="assets/sprites/ui/maintitle.png" alt="main-title" />
+					<p id="press-key">press any key to continue</p>
+
+					<nav class="menu">
+						<button class="single-btn selected">Single</button>
+						<button class="practice-btn">Practice</button>
+						<button class="lb-btn">Ranking</button>
+						<button class="special-btn">Special</button>
+						<button class="music-btn">Music Room</button>
+						<button class="option-btn">Options</button>
+					</nav>
+
+					<div id="user-info">
+						<div id="user-login">
+							<input type="text" id="username-input" placeholder="USERNAME" />
+							<input type="password" id="password-input" placeholder="PASSWORD" />
+							<button class="login-btn">LOGIN / REGISTER</button>
+						</div>
+						<div id="user-logged" style="display: none;">
+							<p class="rank"></p>
+							<p class="username"></p>
+							<p class="highscore"></p>
+							<button class="logout-btn">Logout</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="difficulty">
+					<div id="difficulty-selector">
+						<img
+							class="arrow arrow-left"
+							src="assets/sprites/ui/arrow.png"
+							alt="left"
+						/>
+						<div id="difficulty-display">
+							<span id="diff-name">NORMAL</span>
+						</div>
+						<img
+							class="arrow arrow-right"
+							src="assets/sprites/ui/arrow.png"
+							alt="right"
+						/>
+					</div>
+					<p id="diff-counter"></p>
+					<p id="diff-description"></p>
+				</section>
+
+			<!---------------------- CHARACTERS ---------------------->
+				<section id="characters">
+					<div id="char-layout">
+						<div id="char-info">
+							<p id="char-counter">1 / 2</p>
+							<div id="char-stats">
+								<p class="stat-line">
+									<span class="stat-label">SPEED</span>
+									<span class="stat-value" id="char-speed"></span>
+								</p>
+								<p class="stat-line">
+									<span class="stat-label">SHOT</span>
+									<span class="stat-value" id="char-shot"></span>
+								</p>
+								<p class="stat-line">
+									<span class="stat-label">SPELLCARD</span>
+									<span class="stat-value" id="char-spellcard"></span>
+								</p>
+							</div>
+						</div>
+
+						<div id="char-display">
+							<img
+								class="arrow arrow-left"
+								src="assets/sprites/ui/arrow.png"
+								alt="left"
+							/>
+							<div id="char-portrait">
+								<canvas id="char-sprite" width="104" height="104"></canvas>
+								<p id="char-name"></p>
+								<p id="char-title"></p>
+								<div id="char-colors"></div>
+							</div>
+							<img
+								class="arrow arrow-right"
+								src="assets/sprites/ui/arrow.png"
+								alt="right"
+							/>
+						</div>
+					</div>
+				</section>
+
+
+				<!---------------------- OPTIONS ---------------------->
+				<section id="options">
+					<div class="menu">
+						<div class="option-line">
+							<button class="single-btn">Background music</button>
+								<div class="pixel-bar" id="bgm-bar">
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+							</div>
+						</div>
+
+						<div class="option-line">
+							<button class="single-btn">Sounds effect</button>
+								<div class="pixel-bar" id="se-bar">
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+								<div class="segment filled"></div>
+							</div>
+						</div>
+
+						<button class="single-btn">Keyconfig</button>
+						<button class="single-btn">Default settings</button>
+						<button class="single-btn">Save & Exit</button>
+					</div>
+				</section>
+
+				<!----------------------  leaderboard  ---------------------->
+				<section id="leaderboard">
+					<h1>RANKING</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>RANK</th>
+								<th>USERNAME</th>
+								<th>SCORE</th>
+								<th>DATE</th>
+							</tr>
+							<tbody id="board"></tbody>
+						</thead>
+					</table>
+				</section>
+
+				<!----------------------  keyconfig  ---------------------->
+				<section id="keyconfig">
+					<div class="keyconfig-keys">
+						<div class="key-row">
+							<span class="key-label">Move Up</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Move Down</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Move Left</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Move Right</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Shoot</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Bomb</span>
+							<span class="key-value"></span>
+						</div>
+						<div class="key-row">
+							<span class="key-label">Focus</span>
+							<span class="key-value"></span>
+						</div>
+					</div>
+					<div class="keyconfig-sidebar">
+						<button class="preset-btn" id="preset-arrows">Arrows</button>
+						<button class="preset-btn" id="preset-wasd">WASD</button>
+						<button class="exit-btn" id="keyconfig-exit">Save & Exit</button>
+					</div>
+					
+				</section>
+
+				<!---------------------- GAME ---------------------->
+				<section id="game">
+					<div class="playfieldcontainer">
+						<div class="game-overlay-wrapper">
+							<canvas id="game-canvas" width="256" height="280"></canvas>
+							<div id="stageclear-overlay">
+								<p class="sc-title">STAGE CLEAR</p>
+								<div class="sc-card">
+									<div class="sc-separator"></div>
+									<div class="sc-row">
+										<span class="sc-label">OBTAINED SCORE</span>
+										<span class="sc-value" id="sc-score"></span>
+									</div>
+									<div class="sc-row">
+										<span class="sc-label">DIFFICULTY</span>
+										<span class="sc-value" id="sc-difficulty"></span>
+									</div>
+									<div class="sc-row">
+										<span class="sc-label">PLAYING TIME</span>
+										<span class="sc-value" id="sc-time"></span>
+									</div>
+									<div class="sc-row">
+										<span class="sc-label">NO OF MISSES</span>
+										<span class="sc-value" id="sc-misses"></span>
+									</div>
+									<div class="sc-row">
+										<span class="sc-label">NO OF BOMBS USED</span>
+										<span class="sc-value" id="sc-bombs"></span>
+									</div>
+									<div class="sc-row">
+										<span class="sc-label">ENEMIES DEFEATED</span>
+										<span class="sc-value" id="sc-enemies"></span>
+									</div>
+								</div>
+							</div>
+							<div id="stage-blackout"></div>
+						<div id="gameover-menu">
+							<p class="go-title">GAME OVER</p>
+							<div class="go-results">
+								<div class="go-row">
+									<span class="go-label">OBTAINED SCORE</span>
+									<span class="go-value" id="go-score"></span>
+								</div>
+								<div class="go-row">
+									<span class="go-label">DIFFICULTY</span>
+									<span class="go-value" id="go-difficulty"></span>
+								</div>
+								<div class="go-row">
+									<span class="go-label">PLAYING TIME</span>
+									<span class="go-value" id="go-time"></span>
+								</div>
+								<div class="go-row">
+									<span class="go-label">NO OF MISSES</span>
+									<span class="go-value" id="go-misses"></span>
+								</div>
+								<div class="go-row">
+									<span class="go-label">NO OF BOMBS USED</span>
+									<span class="go-value" id="go-bombs"></span>
+								</div>
+								<div class="go-row">
+									<span class="go-label">ENEMIES DEFEATED</span>
+									<span class="go-value" id="go-enemies"></span>
+								</div>
+							</div>
+							<div class="go-separator"></div>
+							<div class="go-buttons">
+								<button class="go-btn">BACK TO TITLE</button>
+								<button class="go-btn">RESTART</button>
+							</div>
+						</div>
+						<div id="pause-menu">
+							<span class="pause-title">PAUSED</span>
+							<button class="pause-btn">RESUME</button>
+							<button class="pause-btn">BACK TO TITLE</button>
+							<button class="pause-btn">RESTART</button>
+						</div>
+						<div class="game-overlay">
+								<div id="boss-health-bar"></div>
+								<div id="spell-card-name">Spell Card</div>
+								<div id="stage-card">
+									<p id="stage-number">STAGE 1</p>
+									<div class="stage-separator"></div>
+									<p id="stage-name">Black Ink Staining the Sky</p>
+									<p id="stage-description">
+										~ A Silent Welcome to the World of Night ~
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<aside class="side-hud">
+							<div class="hud-item difficulty-display">
+								<span id="hud-difficulty" class="normal">NORMAL</span>
+							</div>
+
+							<div class="hud-item score-box">
+								<div class="stat-line">
+									<span class="label label-hi-score">Hi-Score</span>
+									<span class="value" id="hi-score">00000000000</span>
+								</div>
+								<div class="stat-line">
+									<span class="label label-score">Score</span>
+									<span class="value" id="current-score">00000000000</span>
+								</div>
+							</div>
+
+							<div class="hud-item resources">
+								<div class="resource-row">
+									<span class="label label-life">Life</span>
+									<span id="life-res" class="res gems-container"></span>
+								</div>
+								<div class="resource-row">
+									<span class="label label-bomb">Bomb</span>
+									<span id="bomb-res" class="res gems-container"></span>
+								</div>
+							</div>
+
+							<div class="hud-item player-stats">
+								<div class="stat-line">
+									<span class="label label-power">Power</span>
+									<span class="value" id="power">1.00 / 4.00</span>
+								</div>
+								<div class="stat-line">
+									<span class="label label-point">Point</span>
+									<span class="value" id="point-items">0</span>
+								</div>
+								<div class="stat-line label-graze">
+									<span class="label">Graze</span>
+									<span class="value" id="graze">0</span>
+								</div>
+							</div>
+						</aside>
+					</div>
+				</section>
+			</div>
+		</main>
+	</body>
+</html>

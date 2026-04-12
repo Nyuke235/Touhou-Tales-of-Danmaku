@@ -1,0 +1,29 @@
+{
+	"name": "tales-of-danmaku",
+	"version": "1.0.0",
+	"main": "index.js",
+	"private": true,
+	"type": "module",
+	"description": "A pixel-art Touhou danmaku experience in the browser",
+	"author": "Nyuke235",
+	"homepage": "https://github.com/Nyuke235/Touhou-Tales-of-Danmaku",
+	"license": "MIT License",
+	"scripts": {
+		"start": "vite --port=8000",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"express": "node server/express.ts",
+		"test": "node --test",
+		"test:watch": "node --test --watch"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.5.0",
+		"prettier": "^3.8.1",
+		"typescript": "~5.9.3",
+		"vite": "^7.3.1"
+	},
+	"dependencies": {
+		"express": "^5.2.1"
+	}
+}

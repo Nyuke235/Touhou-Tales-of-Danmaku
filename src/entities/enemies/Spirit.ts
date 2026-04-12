@@ -1,0 +1,124 @@
+import { Enemy } from '../Enemy';
+import { Spritesheet, createExplosionSheet } from '../../utils/Spritesheet';
+import { PatternConfig } from '../../game/patterns/PatternEngine';
+import { Patterns } from '../../game/patterns/PatternLibrary';
+import { ItemType } from '../Item';
+import { ENEMY_MOVEMENT } from '../../game/Constants';
+
+export type SpiritVariant = 'normal' | 'red';
+export type SpiritPath = 'passing-left' | 'passing-right';
+
+type Phase = 'entering' | 'waiting' | 'leaving';
+
+const STOP_X: { 'passing-left': number; 'passing-right': number } = {
+	'passing-left': 166,
+	'passing-right': 90,
+};
+const WAIT_DURATION = 2.5;
+
+interface SpiritConfig {
+	sprite: string;
+	hp: number;
+	defaultPattern: PatternConfig;
+	drops: { type: ItemType; count: number }[];
+}
+
+const VARIANTS: { normal: SpiritConfig; red: SpiritConfig } = {
+	normal: {
+		sprite: 'assets/sprites/entities/enemies/spirits/spirit_spritesheet.png',
+		hp: 20,
+		defaultPattern: Patterns.S1_SPIRIT_CIRCLE_NORMAL,
+		drops: [
+			{ type: 'power', count: 2 },
+			{ type: 'point', count: 3 },
+		],
+	},
+	red: {
+		sprite: 'assets/sprites/entities/enemies/spirits/redspirit_spritesheet.png',
+		hp: 35,
+		defaultPattern: Patterns.S1_CIRCLE_BALL_RED_1,
+		drops: [
+			{ type: 'power', count: 3 },
+			{ type: 'point', count: 3 },
+			{ type: 'bomb', count: 1 },
+		],
+	},
+};
+
+export class Spirit extends Enemy {
+	private path: SpiritPath;
+	private timer: number = 0;
+	private readonly speed: number = ENEMY_MOVEMENT.SPIRIT_SPEED;
+	private phase: Phase = 'entering';
+	private waitTimer: number = 0;
+	private leavingSpeed: number = 0;
+
+	constructor(
+		x: number,
+		y: number,
+		variant: SpiritVariant,
+		path: SpiritPath,
+		patterns?: PatternConfig[]
+	) {
+		const config = VARIANTS[variant];
+
+		const sheet = new Spritesheet({
+			src: config.sprite,
+			frameX: 32,
+			frameY: 32,
+			frameCount: 7,
+			frameSpeed: 0.12,
+			looping: true,
+		});
+
+		const explSheet = createExplosionSheet();
+
+		super(x, y, 32, 32, config.hp, sheet, explSheet);
+		this.scoreValue = 5000;
+		this.path = path;
+
+		this.setPatterns(patterns ?? [config.defaultPattern]);
+		this.drops = config.drops;
+	}
+
+	updateMovement(dt: number): void {
+		this.timer += dt;
+
+		const targetX = STOP_X[this.path];
+		const dir = this.path === 'passing-left' ? 1 : -1;
+
+		switch (this.phase) {
+			case 'entering': {
+				const dist = Math.abs(targetX - this.x);
+				const currentSpeed = Math.min(this.speed, dist * 3);
+				this.x += dir * currentSpeed * dt;
+				this.y +=
+					Math.sin(this.timer * ENEMY_MOVEMENT.SINE_SPEED) *
+					ENEMY_MOVEMENT.SPIRIT_SINE_AMPLITUDE *
+					dt;
+				if (dist < 1) {
+					this.x = targetX;
+					this.phase = 'waiting';
+				}
+				break;
+			}
+			case 'waiting': {
+				this.waitTimer += dt;
+				if (this.waitTimer >= WAIT_DURATION) this.phase = 'leaving';
+				break;
+			}
+			case 'leaving': {
+				this.leavingSpeed = Math.min(
+					this.speed,
+					this.leavingSpeed + this.speed * 3 * dt
+				);
+				this.x += dir * this.leavingSpeed * dt;
+				this.y +=
+					Math.sin(this.timer * ENEMY_MOVEMENT.SINE_SPEED) *
+					ENEMY_MOVEMENT.SPIRIT_SINE_AMPLITUDE *
+					dt;
+				break;
+			}
+		}
+	}
+}

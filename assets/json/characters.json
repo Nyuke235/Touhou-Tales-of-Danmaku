@@ -1,0 +1,28 @@
+[
+	{
+		"id": "reimu",
+		"name": "Reimu Hakurei",
+		"title": "Shrine Maiden of Paradise",
+		"speed": "MEDIUM",
+		"shot": "EXORCISM AMULET",
+		"spellcard": "FANTASY SEAL",
+		"spellcardFull": "Divine Spirit 'Fantasy Seal'",
+		"sprite": [
+			"",
+			"../../assets/sprites/entities/player/reimu/reimustanding_spritesheet.png"
+		]
+	},
+	{
+		"id": "marisa",
+		"name": "Marisa Kirisame",
+		"title": "Ordinary Magician",
+		"speed": "FAST",
+		"shot": "STARDUST",
+		"spellcard": "MASTER SPARK",
+		"spellcardFull": "Love Sign 'Master Spark'",
+		"sprite": [
+			"",
+			"../../assets/sprites/entities/player/marisa/marisastanding_spritesheet.png"
+		]
+	}
+]

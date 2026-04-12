@@ -1,0 +1,686 @@
+#game {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+
+	.playfieldcontainer {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		width: 100%;
+		align-items: center;
+	}
+
+	.game-overlay-wrapper {
+		position: relative;
+		flex-shrink: 0;
+	}
+
+	#game-canvas {
+		display: block;
+		image-rendering: pixelated;
+		border: 1px solid #333;
+	}
+
+	.game-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+
+		#boss-health-bar {
+			display: none;
+			position: absolute;
+			top: 3px;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background: rgba(20, 0, 0, 0.85);
+
+			.boss-bar-fill {
+				height: 100%;
+				background: #ff4444;
+				box-shadow: 0 0 4px #ff0000;
+			}
+
+			.boss-bar-fill.spellcard {
+				background: #8844ff;
+				box-shadow: 0 0 4px #6600cc;
+			}
+
+			.boss-bar-sep {
+				position: absolute;
+				top: 0;
+				width: 1px;
+				height: 100%;
+				background: rgba(255, 255, 255, 0.7);
+			}
+		}
+
+		#boss-timer {
+			display: none;
+			position: absolute;
+			top: 10px;
+			left: 4px;
+			font-size: 0.3em;
+			color: #ffd700;
+			text-align: left;
+			font-family: 'Press Start 2P', monospace;
+		}
+
+		#spell-bonus {
+			display: none;
+			position: absolute;
+			top: 20px;
+			right: 8px;
+			font-size: 0.5em;
+			color: #ffe066;
+			text-align: right;
+			white-space: nowrap;
+
+			&.capture-failed {
+				color: #888;
+			}
+		}
+
+		#spell-card-name {
+			display: none;
+			position: absolute;
+			top: 7px;
+			right: 4px;
+			font-size: 0.5em;
+			color: #ffd700;
+			text-align: right;
+			white-space: nowrap;
+
+			&.spellcard-entering {
+				animation: spellcard-title-enter 3s linear forwards;
+				text-align: center;
+			}
+		}
+
+		#stage-card {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			-webkit-font-smoothing: none;
+			font-smooth: never;
+
+			&.active {
+				display: flex;
+				animation: stage-card-anim 3s steps(24, end) forwards;
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translateY(-50%);
+				width: 100%;
+				height: 30%;
+			}
+
+			#stage-number {
+				font-family: 'Press Start 2P', monospace;
+				font-size: 0.5em;
+				color: #c8a060;
+				margin: 0 0 4px;
+				position: relative;
+				letter-spacing: 2px;
+			}
+
+			.stage-separator {
+				width: 55%;
+				height: 1px;
+				background: rgba(200, 160, 96, 0.55);
+				margin-bottom: 5px;
+				position: relative;
+			}
+
+			#stage-name {
+				font-family: 'sburbits', monospace;
+				font-size: 1em;
+				color: #ffffff;
+				margin: 0 0 4px;
+				position: relative;
+				letter-spacing: 1px;
+			}
+
+			#stage-description {
+				font-family: 'sburbits', monospace;
+				font-size: 0.6em;
+				color: rgba(200, 200, 220, 0.8);
+				margin: 0;
+				position: relative;
+			}
+		}
+	}
+
+	#stageclear-overlay {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 20;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		padding: 16px 14px;
+		pointer-events: none;
+
+		&.visible {
+			display: flex;
+			pointer-events: auto;
+		}
+
+		&.leaving {
+			animation: sc-leave 0.5s ease forwards;
+		}
+
+		.sc-title {
+			font-size: 1em;
+			color: #60c880;
+			letter-spacing: 4px;
+			margin: 0;
+			text-shadow:
+				-1px -1px 0 black,
+				1px -1px 0 black,
+				-1px 1px 0 black,
+				1px 1px 0 black;
+			animation: sc-title-enter 0.6s ease forwards;
+		}
+
+		.sc-card {
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			padding: 10px 12px;
+			background: rgba(0, 0, 0, 0.82);
+			border: 1px solid rgba(96, 200, 128, 0.25);
+			opacity: 0;
+			animation: sc-stats-enter 0.4s ease 1.4s forwards;
+		}
+
+		.sc-separator {
+			width: 100%;
+			height: 1px;
+			background: rgba(96, 200, 128, 0.3);
+			margin-bottom: 4px;
+		}
+
+		.sc-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.sc-label {
+			font-size: 0.5em;
+			color: rgba(200, 200, 200, 0.65);
+			flex-shrink: 0;
+		}
+
+		.sc-value {
+			font-size: 0.5em;
+			color: #a0f0b8;
+			text-align: right;
+		}
+	}
+
+	#stage-blackout {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: black;
+		z-index: 30;
+		pointer-events: none;
+
+		&.fading-in {
+			display: block;
+			animation: blackout-in 0.5s ease forwards;
+		}
+
+		&.fading-out {
+			display: block;
+			animation: blackout-out 0.6s ease forwards;
+		}
+	}
+
+	#gameover-menu {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 20;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		padding: 16px 14px;
+		background: rgba(0, 0, 0, 0.88);
+		pointer-events: none;
+
+		&.visible {
+			display: flex;
+			pointer-events: auto;
+		}
+
+		&.entering {
+			animation: gameover-enter 0.4s steps(12, end) forwards;
+		}
+		&.leaving {
+			animation: gameover-leave 0.25s steps(8, end) forwards;
+		}
+
+		.go-title {
+			font-size: 1em;
+			color: #c8a060;
+			letter-spacing: 3px;
+			margin-bottom: 6px;
+		}
+
+		.go-results {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.go-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.go-label {
+			font-size: 0.5em;
+			color: rgba(200, 200, 200, 0.65);
+			flex-shrink: 0;
+		}
+
+		.go-value {
+			font-size: 0.5em;
+			color: white;
+			text-align: right;
+		}
+
+		.go-separator {
+			width: 80%;
+			height: 1px;
+			background: rgba(200, 160, 96, 0.3);
+			margin: 4px 0;
+		}
+
+		.go-buttons {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.go-btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 0.7em;
+			color: white;
+			padding: 3px 0;
+			text-align: center;
+
+			&.selected {
+				color: #ffd700;
+			}
+		}
+	}
+
+	#pause-menu {
+		display: none;
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		z-index: 10;
+		flex-direction: column;
+		gap: 9px;
+		padding: 10px 14px 10px 10px;
+		background: rgba(0, 0, 0, 0.78);
+		border: 1px solid rgba(200, 160, 96, 0.3);
+		pointer-events: none;
+
+		&.visible {
+			display: flex;
+			pointer-events: auto;
+		}
+
+		&.entering {
+			animation: pause-enter 0.2s steps(6, end) forwards;
+		}
+
+		&.leaving {
+			animation: pause-leave 0.15s steps(4, end) forwards;
+		}
+
+		.pause-title {
+			color: #c8a060;
+			font-size: 1em;
+			letter-spacing: 2px;
+			margin-bottom: 2px;
+		}
+
+		.pause-btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 0.8em;
+			color: white;
+			padding: 3px 0;
+			text-align: left;
+
+			&.selected {
+				color: #ffd700;
+			}
+		}
+	}
+
+	.side-hud {
+		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding: 8px 4px;
+		gap: 10px;
+		border-left: 1px solid #333;
+
+		.hud-item {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			padding-bottom: 8px;
+		}
+
+		.hud-item:last-child {
+			border-bottom: none;
+		}
+
+		.label {
+			font-size: 0.7em;
+			letter-spacing: 1px;
+			font-family: 'sburbits';
+		}
+
+		.label-hi-score {
+			color: #fff200;
+		}
+		.label-score {
+			color: #b8b8b8;
+		}
+		.label-life {
+			color: #d561ff;
+		}
+		.label-bomb {
+			color: #82ff58;
+		}
+		.label-power {
+			color: #ff3838;
+		}
+		.label-point {
+			color: #4854ff;
+		}
+		.label-graze {
+			color: #b8b8b8;
+		}
+
+		.value {
+			font-family: 'Press Start 2P';
+			font-size: 0.2em;
+			letter-spacing: 1px;
+			color: white;
+		}
+
+		.difficulty-display {
+			align-items: center;
+
+			#hud-difficulty {
+				font-size: 1em;
+				text-shadow:
+					-1px -1px 0 black,
+					1px -1px 0 black,
+					-1px 1px 0 black,
+					1px 1px 0 black;
+
+				&.easy {
+					color: #5b9bd5;
+				}
+				&.normal {
+					color: #6abf69;
+				}
+				&.hard {
+					color: #ffd700;
+				}
+				&.lunatic {
+					color: #ff4444;
+				}
+			}
+		}
+
+		.score-box {
+			gap: 4px;
+
+			.stat-line {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+
+		.resources {
+			gap: 4px;
+
+			.resource-row {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+
+				.label {
+					min-width: 2.5em;
+				}
+
+				.gems-container {
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					gap: 1px;
+
+					.gem-icon {
+						width: 13px;
+						height: 13px;
+						image-rendering: pixelated;
+					}
+				}
+			}
+		}
+
+		.player-stats {
+			gap: 4px;
+
+			.stat-line {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+	}
+}
+
+@keyframes spellcard-title-enter {
+	0% {
+		opacity: 0;
+		left: 50%;
+		right: auto;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 0.55em;
+		white-space: nowrap;
+	}
+	16.7% {
+		opacity: 1;
+		left: 50%;
+		right: auto;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 0.55em;
+		white-space: nowrap;
+	}
+	66.7% {
+		opacity: 1;
+		left: 50%;
+		right: auto;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 0.55em;
+		white-space: nowrap;
+	}
+	100% {
+		opacity: 1;
+		left: calc(100% - 4px);
+		right: auto;
+		top: 10px;
+		transform: translateX(-100%);
+		font-size: 0.3em;
+		white-space: nowrap;
+	}
+}
+
+@keyframes gameover-enter {
+	from {
+		opacity: 0;
+		transform: scale(0.97);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes gameover-leave {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.97);
+	}
+}
+
+@keyframes pause-enter {
+	from {
+		opacity: 0;
+		transform: translateX(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes pause-leave {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(-10px);
+	}
+}
+
+@keyframes stage-card-anim {
+	0% {
+		opacity: 0;
+	}
+	16.67% {
+		opacity: 1;
+	}
+	83.33% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes sc-title-enter {
+	0% {
+		opacity: 0;
+		transform: scale(1.3);
+	}
+	60% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes sc-stats-enter {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes sc-leave {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes blackout-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes blackout-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}

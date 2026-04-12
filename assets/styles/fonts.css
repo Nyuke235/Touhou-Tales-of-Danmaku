@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'JFDot-normal';
+    src: url('../fonts/JF-Dot-K14-2004.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JFDot bold';
+    src: url('../fonts/JF-Dot-K14B-2004.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'sburbits';
+    src: url('../fonts/sburbits.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+    text-rendering: optimizeSpeed;
+}

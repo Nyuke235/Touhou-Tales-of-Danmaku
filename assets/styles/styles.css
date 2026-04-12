@@ -1,0 +1,131 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'sburbits', system-ui;
+}
+
+button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+	color: white;
+}
+
+button.selected {
+	color: #FFD700;
+	text-shadow:
+		-1px -1px 0 #7a3e00,
+		1px -1px 0 #7a3e00,
+		-1px 1px 0 #7a3e00,
+		1px 1px 0 #7a3e00;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	background: black;
+	overflow: hidden;
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: url('../sprites/ui/mainbg.png');
+	background-size: cover;
+	image-rendering: pixelated;
+}
+
+#game-window {
+	width: 400px;
+	height: 300px;
+	position: relative;
+	overflow: hidden;
+	background: black;
+	image-rendering: pixelated;
+	background-image: url('../sprites/ui/menubg.png');
+	background-size: cover;
+	background-position: 58% center;
+	transition: background-position 0.7s steps(12, end);
+}
+
+section {
+	width: 400px;
+	height: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-left: 2px ridge #c92a2a;
+	border-right: 2px ridge #c92a2a;
+}
+
+.announcement {
+	display: none;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.9);
+	width: calc(100% - 4px);
+	color: white;
+	font-size: 10px;
+	left: 2px;
+	top: 50px;
+	z-index: 1;
+	padding: 5px;
+
+	.value {
+		display: inline-block;
+		white-space: nowrap;
+		font-family: 'sburbits';
+	}
+}
+
+#splash {
+	position: absolute;
+	inset: 0;
+	z-index: 100;
+	background: black;
+	opacity: 1;
+	transition: opacity 0.5s steps(12, end);
+
+	#splash-disclaimer,
+	#splash-credit {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		transition: opacity 0.3s steps(12, end);
+	}
+
+	#splash-credit {
+		opacity: 0;
+	}
+
+	img {
+		width: 32px;
+		height: 32px;
+		image-rendering: pixelated;
+	}
+
+	p {
+		color: white;
+		font-size: 0.5em;
+		letter-spacing: 1px;
+		text-align: center;
+		line-height: 2;
+	}
+}
+
+@keyframes slide {
+	from {
+		transform: translateX(130%);
+	} to {
+		transform: translateX(-115%);
+	}
+}
