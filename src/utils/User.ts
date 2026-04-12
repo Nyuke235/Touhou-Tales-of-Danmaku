@@ -60,34 +60,48 @@ export class User {
 	}
 
 	static async getUser(username: string | null): Promise<User | null> {
-		const response = await fetch(`${NETWORK.ASSET_BASE}/server/data/data.json`);
-		const json = await response.json();
-		const userData = json.find((user: any) => user.username === username);
+		try {
+			const response = await fetch(`${NETWORK.SAVE_API}/api/users`);
+			if (!response.ok) return null;
+			const json = await response.json();
+			const userData = json.find((user: any) => user.username === username);
 
-		if (userData) {
-			return new User(
-				userData.username,
-				userData.password,
-				userData.saveData,
-				null
-			);
+			if (userData) {
+				return new User(
+					userData.username,
+					userData.password,
+					userData.saveData,
+					null
+				);
+			}
+		} catch {
+			console.error('Failed to fetch user data from server.');
 		}
 
 		return null;
 	}
 
 	static async getAllUser(): Promise<User[] | null> {
-		const users: User[] = [];
-		const response = await fetch(`${NETWORK.ASSET_BASE}/server/data/data.json`);
-		const json = await response.json();
+		try {
+			const response = await fetch(`${NETWORK.SAVE_API}/api/users`);
+			if (!response.ok) return null;
+			const json = await response.json();
 
-		for (let userData of json) {
-			users.push(
-				new User(userData.username, userData.password, userData.saveData, null)
+			const users: User[] = json.map(
+				(userData: any) =>
+					new User(
+						userData.username,
+						userData.password,
+						userData.saveData,
+						null
+					)
 			);
-		}
 
-		return users.length > 0 ? users : null;
+			return users.length > 0 ? users : null;
+		} catch {
+			console.error('Failed to fetch users from server.');
+			return null;
+		}
 	}
 
 	static showUserInfo = async (): Promise<void> => {

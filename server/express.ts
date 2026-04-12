@@ -37,6 +37,12 @@ const readData = (callback: (users: any[]) => void) => {
 	});
 };
 
+app.get('/api/users', (_req, res) => {
+	readData(users => {
+		return res.status(200).json(users);
+	});
+});
+
 app.post('/api/auth', (req, res) => {
 	const { username, password } = req.body;
 
