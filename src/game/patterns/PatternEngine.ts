@@ -8,6 +8,7 @@ import { OrbitingBullet } from '../../entities/projectiles/OrbitingBullet';
 import { BurstShadowBullet } from '../../entities/projectiles/BurstShadowBullet';
 import { StarBullet } from '../../entities/projectiles/StarBullet';
 import { JellybeanBullet } from '../../entities/projectiles/JellybeanBullet';
+import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -19,7 +20,8 @@ export type BulletType =
 	| 'shadow'
 	| 'burstshadow'
 	| 'star'
-	| 'jellybean';
+	| 'jellybean'
+	| 'lasertrail';
 
 export interface PatternConfig {
 	type:
@@ -54,14 +56,18 @@ export interface PatternConfig {
 	// count      = number of arms
 	// sweepAngle = total arc swept across all shots
 	// startAngle = initial angle of arm 0
+	// angleStep  = rotation per shot (overrides sweepAngle / maxShots).
+	//              Usable when maxShots is omitted (infinite loop) to keep
+	//              the spiral rotating at a fixed rate per shot.
 	sweepAngle?: number;
 	startAngle?: number;
+	angleStep?: number;
 
 	// ------------  CIRCLE - ROTATING RINGS ------------
 	// startAngle    = base rotation of the ring
 	// rotStep       = additional rotation applied per successive shot
 	// ringAngleStep = angle added to the base angle for each successive shot,
-	//                 independently of rotStep. Use a value that is NOT a
+	//                 independently of rotStep. Need a value that is NOT a
 	//                 multiple of (2π / count) to ensure rings don't overlap.
 	rotStep?: number;
 	ringAngleStep?: number;
@@ -398,7 +404,8 @@ export class PatternEngine {
 			case 'helix': {
 				const arms = Math.max(1, pattern.count ?? 2);
 				const totalShots = Math.max(1, pattern.maxShots ?? 1);
-				const step = (pattern.sweepAngle ?? Math.PI * 2) / totalShots;
+				const step =
+					pattern.angleStep ?? (pattern.sweepAngle ?? Math.PI * 2) / totalShots;
 				const baseAngle = (pattern.startAngle ?? 0) + shotCount * step;
 				this.spawnRing(
 					pattern,
@@ -423,9 +430,29 @@ export class PatternEngine {
 				const orbitColor = pattern.color ?? 'purple';
 				for (let i = 0; i < count; i++) {
 					const angle = baseAngle + (i / count) * Math.PI * 2;
-					out.push(
-						new OrbitingBullet(ex, ey, angle, angularVel, radialVel, orbitColor)
-					);
+					if (bullet === 'lasertrail') {
+						out.push(
+							new LaserTrailBullet(
+								ex,
+								ey,
+								angle,
+								angularVel,
+								radialVel,
+								orbitColor
+							)
+						);
+					} else {
+						out.push(
+							new OrbitingBullet(
+								ex,
+								ey,
+								angle,
+								angularVel,
+								radialVel,
+								orbitColor
+							)
+						);
+					}
 				}
 				break;
 			}

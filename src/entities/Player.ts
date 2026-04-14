@@ -120,6 +120,10 @@ export class Player {
 			if (dx * dx + dy * dy <= (this.hitboxRadius + p.hitRadius) ** 2) {
 				return true;
 			}
+
+			if (p.checkTrailHit?.(this.x, this.y, this.hitboxRadius)) {
+				return true;
+			}
 		}
 		return false;
 	}

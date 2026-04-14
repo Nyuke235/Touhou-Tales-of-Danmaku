@@ -46,6 +46,7 @@ export const ORB_SPRITES: {
 } = {
 	yellow: 'assets/sprites/projectiles/hostile/orbyellow.png',
 	orange: 'assets/sprites/projectiles/hostile/orborange.png',
+	purple: 'assets/sprites/projectiles/hostile/orbpurple.png',
 };
 
 export const STAR_SPRITES: {

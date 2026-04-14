@@ -9,7 +9,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 300,
+		hp: 250,
 		timer: 30,
 		barWeight: 0.3,
 		drops: [
@@ -20,14 +20,18 @@ const PHASES: BossPhase[] = [
 		patterns: [
 			Patterns.RUMIA_STARWHEEL,
 			Patterns.RUMIA_STARWHEEL_CCW,
-			Patterns.RUMIA_JELLYBEAN_SPIRAL,
+			Patterns.RUMIA_JELLYBEAN_SPIRAL_1,
+			Patterns.RUMIA_JELLYBEAN_SPIRAL_2,
+			Patterns.RUMIA_JELLYBEAN_SPIRAL_3,
+			Patterns.RUMIA_JELLYBEAN_SPIRAL_4,
 			Patterns.RUMIA_ORB_RINGS,
+			Patterns.RUMIA_ORB_RINGS_MORE,
 		],
 	},
 	{
 		name: 'Dark Sign 「Demarcation」',
 		isSpellCard: true,
-		hp: 300,
+		hp: 250,
 		timer: 35,
 		barWeight: 0.2,
 		drops: [
@@ -36,17 +40,20 @@ const PHASES: BossPhase[] = [
 			{ type: 'bomb', count: 1 },
 		],
 		patterns: [
+			Patterns.RUMIA_WHEEL_CW_EASY,
+			Patterns.RUMIA_WHEEL_CCW_EASY,
 			Patterns.RUMIA_WHEEL_CW,
 			Patterns.RUMIA_WHEEL_CCW,
 			Patterns.RUMIA_WHEEL_CW_2,
 			Patterns.RUMIA_WHEEL_CCW_2,
 			Patterns.RUMIA_SHADOW_AIMED,
+			Patterns.RUMIA_ORB_RINGS_PURPLE,
 		],
 	},
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 300,
+		hp: 250,
 		timer: 30,
 		barWeight: 0.25,
 		drops: [
@@ -55,15 +62,18 @@ const PHASES: BossPhase[] = [
 			{ type: 'life', count: 1 },
 		],
 		patterns: [
-			Patterns.RUMIA_SPIRAL_P3,
-			Patterns.RUMIA_VOLLEY_SPREAD_P3,
-			Patterns.RUMIA_ORB_RINGS,
+			Patterns.RUMIA_STARWHEEL_LOOP,
+			Patterns.RUMIA_VOLLEY_HARD,
+			Patterns.RUMIA_VOLLEY_LUNATIC,
+			Patterns.RUMIA_SPECTRAL_COMET,
+			Patterns.RUMIA_SPECTRAL_COMET_CCW,
+			Patterns.RUMIA_SPECTRAL_COMET_EASY,
 		],
 	},
 	{
 		name: 'Night Sign 「Abyss Mandala」',
 		isSpellCard: true,
-		hp: 300,
+		hp: 250,
 		timer: 35,
 		barWeight: 0.25,
 		drops: [
@@ -71,7 +81,14 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 10 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [Patterns.RUMIA_BURST_SHADOW, Patterns.RUMIA_P4_AIMED],
+		patterns: [
+			Patterns.RUMIA_BURST_SHADOW_1,
+			Patterns.RUMIA_BURST_SHADOW_2,
+			Patterns.RUMIA_BURST_SHADOW_3,
+			Patterns.RUMIA_BURST_SHADOW_4,
+			Patterns.RUMIA_BURST_SHADOW_5,
+			Patterns.RUMIA_BURST_SHADOW_6,
+		],
 	},
 ];
 
@@ -92,6 +109,8 @@ export class Rumia extends Boss {
 
 	private p2FireTimer: number = 0;
 	private static readonly P2_MOVE_INTERVAL = 9.0;
+	private p3FireTimer: number = 0;
+	private static readonly P3_MOVE_INTERVAL = 7.0;
 
 	constructor(x: number, y: number) {
 		const idleSheet = new Spritesheet({
@@ -171,6 +190,7 @@ export class Rumia extends Boss {
 				this.isMoving = false;
 				this.ftmMoving = false;
 				this.p2FireTimer = 0;
+				this.p3FireTimer = 0;
 				this.resetPatternEngines();
 			}
 		} else {
@@ -182,9 +202,12 @@ export class Rumia extends Boss {
 
 			const isSpellCard =
 				this.phases[this.currentPhaseIndex]?.isSpellCard ?? false;
+			const isP3 = this.currentPhaseIndex === 2;
 			const readyToMove = isSpellCard
 				? (this.p2FireTimer += dt) >= Rumia.P2_MOVE_INTERVAL
-				: this.allPatternsDone();
+				: isP3
+					? (this.p3FireTimer += dt) >= Rumia.P3_MOVE_INTERVAL
+					: this.allPatternsDone();
 
 			if (this.state === BossState.ACTIVE && readyToMove) {
 				this.ftmMoving = true;
