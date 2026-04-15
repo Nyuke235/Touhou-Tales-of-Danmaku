@@ -4,6 +4,11 @@ import { SpawnEvent } from '../game/StageScript';
 import { IProjectile } from '../entities/Projectile';
 import { ItemType } from '../entities/Item';
 import { ScoreManager } from './ScoreManager';
+import { FIELD } from '../game/Constants';
+
+const WARNING_DURATION = 1.5;
+const WARNING_SIZE = 32;
+const BLINK_INTERVAL = 0.15;
 
 type ItemDrop = { type: ItemType; count: number };
 
@@ -19,11 +24,23 @@ export class EnemyManager {
 	private stageCompleted: boolean = false;
 	private spawnCounter: number = 0;
 
+	private warnings: { x: number; timer: number }[] = [];
+	private warnIndex: number = 0;
+	private warningImage: HTMLImageElement = new Image();
+	private warningImageReady: boolean = false;
+
 	onBossSpawn?: (boss: Boss) => void;
 	onStageComplete?: () => void;
 	onDrop: (x: number, y: number, drops: ItemDrop[]) => void = () => {};
 	onScore: (value: number) => void = () => {};
 	onEnemyDamage?: (spawnId: number, damage: number) => void;
+
+	constructor() {
+		this.warningImage.src = 'assets/sprites/effects/warning.png';
+		this.warningImage.onload = () => {
+			this.warningImageReady = true;
+		};
+	}
 
 	loadScript(script: SpawnEvent[]): void {
 		this.script = [...script].sort((a, b) => a.time - b.time);
@@ -34,6 +51,8 @@ export class EnemyManager {
 		this.activeBoss = null;
 		this.stageCompleted = false;
 		this.spawnCounter = 0;
+		this.warnings = [];
+		this.warnIndex = 0;
 	}
 
 	update(
@@ -49,6 +68,20 @@ export class EnemyManager {
 		if (!this.activeBoss) {
 			this.stageTimer += dt;
 		}
+
+		while (
+			this.warnIndex < this.script.length &&
+			this.script[this.warnIndex].time - this.stageTimer <= WARNING_DURATION
+		) {
+			const evt = this.script[this.warnIndex];
+			if (evt.spawnY !== undefined && evt.spawnY > FIELD.HEIGHT) {
+				this.warnings.push({ x: evt.spawnX ?? FIELD.WIDTH / 2, timer: 0 });
+			}
+			this.warnIndex++;
+		}
+
+		for (const w of this.warnings) w.timer += dt;
+		this.warnings = this.warnings.filter(w => w.timer < WARNING_DURATION);
 
 		while (
 			this.eventIndex < this.script.length &&
@@ -130,6 +163,19 @@ export class EnemyManager {
 	}
 
 	render(ctx: CanvasRenderingContext2D): void {
+		if (this.warningImageReady) {
+			for (const w of this.warnings) {
+				if (Math.floor(w.timer / BLINK_INTERVAL) % 2 === 0) {
+					ctx.drawImage(
+						this.warningImage,
+						w.x - WARNING_SIZE / 2,
+						FIELD.HEIGHT - WARNING_SIZE,
+						WARNING_SIZE,
+						WARNING_SIZE
+					);
+				}
+			}
+		}
 		for (const e of this.enemies) e.render(ctx);
 	}
 
@@ -173,6 +219,8 @@ export class EnemyManager {
 		this.activeBoss = null;
 		this.stageCompleted = false;
 		this.spawnCounter = 0;
+		this.warnings = [];
+		this.warnIndex = 0;
 	}
 
 	getNetSnapshot(): {

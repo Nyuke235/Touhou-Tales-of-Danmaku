@@ -14,6 +14,8 @@ import type { PatternConfig } from './patterns/PatternEngine';
 export interface SpawnEvent {
 	time: number;
 	factory: () => Enemy;
+	spawnX?: number;
+	spawnY?: number;
 }
 
 export type SpawnEventData =
@@ -57,6 +59,8 @@ export type SpawnEventData =
 export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 	return data.map(d => ({
 		time: d.time,
+		spawnX: d.x,
+		spawnY: d.y,
 		factory: (): Enemy => {
 			switch (d.type) {
 				case 'fairy':
