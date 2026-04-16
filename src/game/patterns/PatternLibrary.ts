@@ -613,4 +613,52 @@ export const Patterns = {
 		},
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
+
+
+
+	// STAGE 2 PATTERNS
+
+	S2_FAIRY_AIMED_CYAN_NORMAL: {
+		type: 'spread', bullet: 'arrowhead', color: 'cyan',
+		count: 2, spread: 0.25, speed: 90, delay: 1, cooldown: 1.0, maxShots: 1,
+		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_FAIRY_AIMED_CYAN_HARD: {
+		type: 'spread', bullet: 'arrowhead', color: 'cyan',
+		count: 3, spread: 0.45, speed: 100, delay: 1, cooldown: 1.0, maxShots: 1,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_FAIRY_AIMED_CYAN_LUNA: {
+		type: 'spread', bullet: 'arrowhead', color: 'cyan',
+		count: 3, spread: 0.4, speed: 110, delay: 1.0, cooldown: 1.0, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_BLUESPIRIT_ORB_CIRCLE_EASY: {
+		type: 'circle', bullet: 'orb', color: 'blue',
+		count: 8, speed: 100, delay: 2, cooldown: 0.2, maxShots: 3,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_BLUESPIRIT_ORB_CIRCLE_NORMAL: {
+		type: 'circle', bullet: 'orb', color: 'blue',
+		count: 12, speed: 100, delay: 2, cooldown: 0.2, maxShots: 5,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD: {
+		type: 'volley-circle', bullet: 'orb', color: 'blue',
+		count: 8, streams: 6, speed: 70, deltaSpeed: 20,
+		delay: 2, cooldown: 3.5, maxShots: 1,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA: {
+		type: 'volley-circle', bullet: 'orb', color: 'blue',
+		count: 12, streams: 6, speed: 70, deltaSpeed: 20,
+		delay: 2, cooldown: 3.0, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
 };

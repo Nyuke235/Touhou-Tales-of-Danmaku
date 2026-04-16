@@ -28,4 +28,6 @@ export const GameState = {
 	pointItems: 0,
 	highScore: 0,
 	date: Date.now(),
+	practiceMode: false,
+	startingStage: 0,
 };

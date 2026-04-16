@@ -98,9 +98,18 @@ export class Fairy extends Enemy {
 			case 'turn-left':
 			case 'turn-right': {
 				const dir = this.path === 'turn-right' ? 1 : -1;
-				this.arcAngle += dir * ARC_ANGULAR_VEL * dt;
-				this.x += Math.cos(this.arcAngle) * this.speed * dt;
-				this.y += Math.sin(this.arcAngle) * this.speed * dt;
+				const targetAngle = this.path === 'turn-right' ? Math.PI : 0;
+				if (this.timer < 2.0) {
+					this.y += this.speed * dt;
+				} else {
+					if (dir > 0 && this.arcAngle < targetAngle) {
+						this.arcAngle = Math.min(this.arcAngle + ARC_ANGULAR_VEL * dt, targetAngle);
+					} else if (dir < 0 && this.arcAngle > targetAngle) {
+						this.arcAngle = Math.max(this.arcAngle - ARC_ANGULAR_VEL * dt, targetAngle);
+					}
+					this.x += Math.cos(this.arcAngle) * this.speed * dt;
+					this.y += Math.sin(this.arcAngle) * this.speed * dt;
+				}
 				break;
 			}
 		}

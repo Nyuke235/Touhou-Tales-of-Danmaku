@@ -5,8 +5,8 @@ import { Patterns } from '../../game/patterns/PatternLibrary';
 import { ItemType } from '../Item';
 import { ENEMY_MOVEMENT } from '../../game/Constants';
 
-export type SpiritVariant = 'normal' | 'red';
-export type SpiritPath = 'passing-left' | 'passing-right';
+export type SpiritVariant = 'normal' | 'red' | 'blue';
+export type SpiritPath = 'passing-left' | 'passing-right' | 'descend';
 
 type Phase = 'entering' | 'waiting' | 'leaving';
 
@@ -14,6 +14,7 @@ const STOP_X: { 'passing-left': number; 'passing-right': number } = {
 	'passing-left': 166,
 	'passing-right': 90,
 };
+const STOP_Y_DESCEND = 120;
 const WAIT_DURATION = 2.5;
 
 interface SpiritConfig {
@@ -23,7 +24,7 @@ interface SpiritConfig {
 	drops: { type: ItemType; count: number }[];
 }
 
-const VARIANTS: { normal: SpiritConfig; red: SpiritConfig } = {
+const VARIANTS: { normal: SpiritConfig; red: SpiritConfig; blue: SpiritConfig } = {
 	normal: {
 		sprite: 'assets/sprites/entities/enemies/spirits/spirit_spritesheet.png',
 		hp: 20,
@@ -41,6 +42,15 @@ const VARIANTS: { normal: SpiritConfig; red: SpiritConfig } = {
 			{ type: 'power', count: 3 },
 			{ type: 'point', count: 3 },
 			{ type: 'bomb', count: 1 },
+		],
+	},
+	blue: {
+		sprite: 'assets/sprites/entities/enemies/spirits/bluespirit_spritesheet.png',
+		hp: 25,
+		defaultPattern: Patterns.S2_FAIRY_AIMED_CYAN_NORMAL,
+		drops: [
+			{ type: 'power', count: 2 },
+			{ type: 'point', count: 4 },
 		],
 	},
 };
@@ -83,6 +93,43 @@ export class Spirit extends Enemy {
 
 	updateMovement(dt: number): void {
 		this.timer += dt;
+
+		if (this.path === 'descend') {
+			switch (this.phase) {
+				case 'entering': {
+					const dist = STOP_Y_DESCEND - this.y;
+					const currentSpeed = Math.min(this.speed, dist * 3);
+					this.y += currentSpeed * dt;
+					this.x +=
+						Math.sin(this.timer * ENEMY_MOVEMENT.SINE_SPEED) *
+						ENEMY_MOVEMENT.SPIRIT_SINE_AMPLITUDE *
+						dt;
+					if (dist < 1) {
+						this.y = STOP_Y_DESCEND;
+						this.phase = 'waiting';
+					}
+					break;
+				}
+				case 'waiting': {
+					this.waitTimer += dt;
+					if (this.waitTimer >= WAIT_DURATION) this.phase = 'leaving';
+					break;
+				}
+				case 'leaving': {
+					this.leavingSpeed = Math.min(
+						this.speed,
+						this.leavingSpeed + this.speed * 3 * dt
+					);
+					this.y += this.leavingSpeed * dt;
+					this.x +=
+						Math.sin(this.timer * ENEMY_MOVEMENT.SINE_SPEED) *
+						ENEMY_MOVEMENT.SPIRIT_SINE_AMPLITUDE *
+						dt;
+					break;
+				}
+			}
+			return;
+		}
 
 		const targetX = STOP_X[this.path];
 		const dir = this.path === 'passing-left' ? 1 : -1;

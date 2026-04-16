@@ -107,7 +107,7 @@ export class GameScene {
 				);
 				this.saveCurrentUser();
 				MusicManager.stop();
-				this.init();
+				this.init(GameState.startingStage);
 			},
 		});
 
@@ -122,7 +122,7 @@ export class GameScene {
 			},
 			onRestart: () => {
 				MusicManager.stop();
-				this.init();
+				this.init(GameState.startingStage);
 			},
 		});
 

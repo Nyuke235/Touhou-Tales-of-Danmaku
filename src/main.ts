@@ -12,8 +12,10 @@ import { MusicManager, Music } from './systems/MusicManager';
 import { initAuth } from './utils/Auth';
 import { KeyConfig } from './scenes/KeyConfigScene';
 import { LeaderboardScene } from './scenes/LeaderboardScene';
+import { PracticeStageScene } from './scenes/PracticeStageScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { User } from './utils/User';
+import { GameState } from './game/GameState';
 
 scaleGameWindow();
 initAuth();
@@ -35,6 +37,7 @@ new CharacterScene(sceneManager, inputManager);
 new OptionsScene(sceneManager, inputManager);
 new KeyConfig(sceneManager, inputManager);
 new LeaderboardScene(sceneManager, inputManager);
+new PracticeStageScene(sceneManager, inputManager);
 
 await showSplash();
 
@@ -54,7 +57,7 @@ sceneManager.switchTo = (scene: Scene) => {
 	originalSwitchTo(scene);
 	if (scene === Scene.GAME) {
 		gameScene.setActive(true);
-		gameScene.init();
+		gameScene.init(GameState.startingStage);
 	} else {
 		gameScene.setActive(false);
 		gameScene.stop();
@@ -107,6 +110,16 @@ sceneManager.switchTo = (scene: Scene) => {
 		requestAnimationFrame(() =>
 			requestAnimationFrame(() => {
 				difficulty.classList.remove('entering');
+			})
+		);
+	}
+	if (scene === Scene.PRACTICE_STAGE) {
+		const practiceStage = document.getElementById('practice-stage')!;
+		practiceStage.classList.remove('outro');
+		practiceStage.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				practiceStage.classList.remove('entering');
 			})
 		);
 	}

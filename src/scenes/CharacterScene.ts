@@ -234,6 +234,8 @@ export class CharacterScene extends MenuScene {
 		this.resetContext();
 		if (callback) {
 			callback();
+		} else if (GameState.practiceMode) {
+			this.switchWithOutro(Scene.PRACTICE_STAGE);
 		} else {
 			this.switchWithOutro(Scene.GAME);
 		}

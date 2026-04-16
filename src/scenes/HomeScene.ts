@@ -1,6 +1,7 @@
 import { SceneManager, Scene } from '../systems/SceneManager';
 import { InputManager } from '../systems/InputManager';
 import { Controls } from '../systems/Controls';
+import { GameState } from '../game/GameState';
 import { SoundManager, SFX } from '../systems/SoundManager';
 import { MenuScene } from './MenuScene';
 
@@ -10,7 +11,7 @@ export class HomeScene extends MenuScene {
 
 	private buttonSceneMap: (Scene | undefined)[] = [
 		Scene.DIFFICULTY,
-		undefined,
+		Scene.DIFFICULTY,
 		Scene.LEADERBOARD,
 		undefined,
 		undefined,
@@ -70,6 +71,8 @@ export class HomeScene extends MenuScene {
 		const home = document.getElementById('home')!;
 		if (home.classList.contains('outro')) return;
 		SoundManager.play(SFX.UI_SELECT);
+		GameState.practiceMode = this.selectedIndex === 1;
+		if (!GameState.practiceMode) GameState.startingStage = 0;
 		home.classList.add('outro');
 		setTimeout(() => this.sceneManager.switchTo(target), 620);
 	}
