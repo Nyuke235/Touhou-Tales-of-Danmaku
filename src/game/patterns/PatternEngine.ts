@@ -8,6 +8,7 @@ import { OrbitingBullet } from '../../entities/projectiles/OrbitingBullet';
 import { BurstShadowBullet } from '../../entities/projectiles/BurstShadowBullet';
 import { StarBullet } from '../../entities/projectiles/StarBullet';
 import { JellybeanBullet } from '../../entities/projectiles/JellybeanBullet';
+import { GravityBullet } from '../../entities/projectiles/GravityBullet';
 import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
@@ -35,7 +36,8 @@ export interface PatternConfig {
 		| 'orbit'
 		| 'volley'
 		| 'volley-spread'
-		| 'volley-circle';
+		| 'volley-circle'
+		| 'gravity';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -113,6 +115,13 @@ export interface PatternConfig {
 	morphDelay?: number;
 	morphConfig?: MorphConfig;
 	morphDeactivate?: boolean;
+
+	// ------------ GRAVITY ------------
+	// count   = number of bullets per shot
+	// speed   = initial launch speed
+	// spread  = angular spread around straight-up
+	// gravity = downward acceleration in px/s² (default 150)
+	gravity?: number;
 
 	// Optional difficulty filter. If omitted, the pattern fires on all difficulties.
 	// If specified, the pattern only fires when the current difficulty is in the list.
@@ -535,6 +544,26 @@ export class PatternEngine {
 						const s = speed + i * deltaSpeed;
 						this.spawnWithAccel(pattern, bullet, ex, ey, angle, s, color, out);
 					}
+				}
+				break;
+			}
+
+			case 'gravity': {
+				const count = Math.max(1, pattern.count ?? 5);
+				const spread = pattern.spread ?? Math.PI;
+				const gravity = pattern.gravity ?? 150;
+				const orbitColor = pattern.color ?? 'blue';
+				for (let i = 0; i < count; i++) {
+					const angle = -Math.PI / 2 + (Math.random() - 0.5) * spread;
+					const b = new GravityBullet(
+						ex,
+						ey,
+						Math.cos(angle) * speed,
+						Math.sin(angle) * speed,
+						gravity,
+						orbitColor
+					);
+					out.push(b);
 				}
 				break;
 			}

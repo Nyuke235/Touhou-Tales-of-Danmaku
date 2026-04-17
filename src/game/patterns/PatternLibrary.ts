@@ -638,27 +638,135 @@ export const Patterns = {
 
 	S2_BLUESPIRIT_ORB_CIRCLE_EASY: {
 		type: 'circle', bullet: 'orb', color: 'blue',
-		count: 8, speed: 100, delay: 2, cooldown: 0.2, maxShots: 3,
+		count: 8, speed: 80, delay: 2, cooldown: 0.2, maxShots: 2,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	S2_BLUESPIRIT_ORB_CIRCLE_NORMAL: {
 		type: 'circle', bullet: 'orb', color: 'blue',
-		count: 12, speed: 100, delay: 2, cooldown: 0.2, maxShots: 5,
+		count: 10, speed: 80, delay: 2, cooldown: 0.2, maxShots: 4,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
 	S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD: {
 		type: 'volley-circle', bullet: 'orb', color: 'blue',
-		count: 8, streams: 6, speed: 70, deltaSpeed: 20,
+		count: 10, streams: 6, speed: 70, deltaSpeed: 15,
 		delay: 2, cooldown: 3.5, maxShots: 1,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA: {
 		type: 'volley-circle', bullet: 'orb', color: 'blue',
-		count: 12, streams: 6, speed: 70, deltaSpeed: 20,
+		count: 12, streams: 6, speed: 70, deltaSpeed: 15,
 		delay: 2, cooldown: 3.0, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_SPINNING_JELLY_CIRCLE_E: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 12, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_SPINNING_JELLY_CIRCLE_NH: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 22, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_SPINNING_JELLY_CIRCLE_L: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 28, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_SSPINNING_JELLY_CIRCLE_E: {
+		type: 'circle', bullet: 'jellybean', color: 'cyan',
+		count: 12, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_SSPINNING_JELLY_CIRCLE_NH: {
+		type: 'circle', bullet: 'jellybean', color: 'cyan',
+		count: 22, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_SSPINNING_JELLY_CIRCLE_L: {
+		type: 'circle', bullet: 'jellybean', color: 'cyan',
+		count: 28, speed: 80, delay: 1.1, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_SPINNING_SPREAD: {
+		type: 'spread', color: 'blue', speed: 100, delay: 1.0, maxShots: 1,
+		count: 2, spread: 0.12,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_SSPINNING_SPREAD: {
+		type: 'spread', color: 'cyan', speed: 100, delay: 1.0, maxShots: 1,
+		count: 2, spread: 0.12,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_SPINNING_VOLLEY_1: {
+		type: 'volley-spread', color: 'cyan', speed: 100, deltaSpeed: 10, delay: 1.0, maxShots: 1,
+		count: 2, streams: 5, spread: 0.12,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_SPINNING_VOLLEY_2: {
+		type: 'volley-spread', color: 'cyan', speed: 120, deltaSpeed: 10, delay: 1.0, maxShots: 1,
+		count: 4, streams: 5, spread: 0.3,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_SSPINNING_VOLLEY_1: {
+		type: 'volley-spread', color: 'blue', speed: 100, deltaSpeed: 10, delay: 1.0, maxShots: 1,
+		count: 2, streams: 5, spread: 0.12,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_SSPINNING_VOLLEY_2: {
+		type: 'volley-spread', color: 'blue', speed: 120, deltaSpeed: 10, delay: 1.0, maxShots: 1,
+		count: 4, streams: 5, spread: 0.3,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_GRAVITY_E: {
+		type: 'gravity', color: 'cyan', speed: 30, spread: Math.PI,
+		count: 2, gravity: 90, delay: 1.0, cooldown: 1.5, maxShots: 1,
+		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_GRAVITY_NH: {
+		type: 'gravity', color: 'cyan', speed: 30, spread: Math.PI,
+		count: 2, gravity: 90, delay: 1.0, cooldown: 2.0, maxshots: 2,
+		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_GRAVITY_L: {
+		type: 'gravity', color: 'cyan', speed: 30, spread: Math.PI,
+		count: 3, gravity: 90, delay: 1.0, cooldown: 2.0, maxShots: 3,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_SGRAVITY_E: {
+		type: 'gravity', color: 'blue', speed: 30, spread: Math.PI,
+		count: 2, gravity: 110, delay: 0.5, cooldown: 1.5, maxShots: 2,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_SGRAVITY_NH: {
+		type: 'gravity', color: 'blue', speed: 30, spread: Math.PI,
+		count: 2, gravity: 110, delay: 0.5, cooldown: 1.5, maxshots: 3,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_SGRAVITY_L: {
+		type: 'gravity', color: 'blue', speed: 30, spread: Math.PI,
+		count: 3, gravity: 110, delay: 0.5, cooldown: 1.5, maxShots: 4,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 };

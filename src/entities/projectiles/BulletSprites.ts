@@ -64,8 +64,12 @@ export const STAR_SPRITES: {
 
 export const JELLYBEAN_SPRITES: {
 	purple: string;
+	blue: string;
+	cyan: string;
 } = {
 	purple: 'assets/sprites/projectiles/hostile/jellybeanpurple.png',
+	blue: 'assets/sprites/projectiles/hostile/jellybeanblue.png',
+	cyan: 'assets/sprites/projectiles/hostile/jellybeancyan.png',
 };
 
 export function makeSheet(src: string, w: number, h: number): Spritesheet {

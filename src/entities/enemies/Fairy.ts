@@ -5,7 +5,7 @@ import { Patterns } from '../../game/patterns/PatternLibrary';
 import { ItemType } from '../Item';
 import { ENEMY_MOVEMENT } from '../../game/Constants';
 
-export type FairyColor = 'blue' | 'red';
+export type FairyColor = 'blue' | 'red' | 'green';
 export type FairyPath =
 	| 'straight-down'
 	| 'curve-left'
@@ -15,20 +15,22 @@ export type FairyPath =
 	| 'turn-left'
 	| 'turn-right';
 
-const SPRITE: { blue: string; red: string } = {
+const SPRITE: Record<FairyColor, string> = {
 	blue: 'assets/sprites/entities/enemies/fairies/bluefairy_spritesheet.png',
 	red: 'assets/sprites/entities/enemies/fairies/redfairy_spritesheet.png',
+	green: 'assets/sprites/entities/enemies/fairies/greenfairy_spritesheet.png',
 };
 
-const DROPS: {
-	blue: { type: ItemType; count: number }[];
-	red: { type: ItemType; count: number }[];
-} = {
+const DROPS: Record<FairyColor, { type: ItemType; count: number }[]> = {
 	blue: [
 		{ type: 'power', count: 1 },
 		{ type: 'point', count: 1 },
 	],
 	red: [{ type: 'power', count: 2 }],
+	green: [
+		{ type: 'bomb', count: 1 },
+		{ type: 'point', count: 1 },
+	],
 };
 
 const ARC_ANGULAR_VEL = 1.8;
@@ -103,9 +105,15 @@ export class Fairy extends Enemy {
 					this.y += this.speed * dt;
 				} else {
 					if (dir > 0 && this.arcAngle < targetAngle) {
-						this.arcAngle = Math.min(this.arcAngle + ARC_ANGULAR_VEL * dt, targetAngle);
+						this.arcAngle = Math.min(
+							this.arcAngle + ARC_ANGULAR_VEL * dt,
+							targetAngle
+						);
 					} else if (dir < 0 && this.arcAngle > targetAngle) {
-						this.arcAngle = Math.max(this.arcAngle - ARC_ANGULAR_VEL * dt, targetAngle);
+						this.arcAngle = Math.max(
+							this.arcAngle - ARC_ANGULAR_VEL * dt,
+							targetAngle
+						);
 					}
 					this.x += Math.cos(this.arcAngle) * this.speed * dt;
 					this.y += Math.sin(this.arcAngle) * this.speed * dt;
