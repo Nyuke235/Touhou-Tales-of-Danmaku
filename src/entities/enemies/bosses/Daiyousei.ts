@@ -1,6 +1,7 @@
 import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { SoundManager, SFX } from '../../../systems/SoundManager';
+import { Music } from '../../../systems/MusicManager';
 import { Patterns } from '../../../game/patterns/PatternLibrary';
 import { BOSS, BOSS_ENTRY } from '../../../game/Constants';
 
@@ -8,51 +9,46 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 250,
-		timer: 35,
-		barWeight: 0.7,
+		hp: 300,
+		timer: 40,
+		barWeight: 0.45,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
 			{ type: 'life', count: 1 },
 		],
 		patterns: [
-			Patterns.RUMIA_PINWHEEL_1,
-			Patterns.RUMIA_PINWHEEL_2,
-			Patterns.RUMIA_PINWHEEL_SUPER,
-			Patterns.RUMIA_PINWHEEL_SUPER_2,
-			Patterns.RUMIA_ORB_RINGS_1,
-			Patterns.RUMIA_ORB_RINGS_2,
+			Patterns.DAIYOUSEI_GREEN_HELIX_1,
+			Patterns.DAIYOUSEI_GREEN_HELIX_2,
+			Patterns.DAIYOUSEI_GREEN_HELIX_3,
+			Patterns.DAIYOUSEI_GREEN_HELIX_4,
+			Patterns.DAIYOUSEI_YELLOW_HELIX_1,
+			Patterns.DAIYOUSEI_YELLOW_HELIX_2,
+			Patterns.DAIYOUSEI_YELLOW_HELIX_3,
+			Patterns.DAIYOUSEI_YELLOW_HELIX_4,
 		],
 	},
 	{
-		name: 'Dark Sign 「Night Fog Miasma」',
+		name: "Fairy Sign 「Daiyousei's Vernal Storm」",
 		isSpellCard: true,
-		hp: 250,
-		timer: 30,
-		barWeight: 0.3,
+		hp: 300,
+		timer: 45,
+		barWeight: 0.55,
 		drops: [
-			{ type: 'bigpoint', count: 2 },
-			{ type: 'power', count: 6 },
+			{ type: 'bigpoint', count: 4 },
+			{ type: 'power', count: 10 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [
-			Patterns.RUMIA_ROSE_1,
-			Patterns.RUMIA_ROSE_2,
-			Patterns.RUMIA_ROSE_3,
-			Patterns.RUMIA_SHADOW_CIRCLE_1,
-			Patterns.RUMIA_SHADOW_CIRCLE_2,
-			Patterns.RUMIA_VOLLEY_1,
-			Patterns.RUMIA_VOLLEY_2,
-		],
+		patterns: [Patterns.DAIYOUSEI_SPELL_HELIX_1],
 	},
 ];
 
-const DRIFT_OFFSET_P1 = 45;
-const DRIFT_OFFSET_P2 = 75;
+const DRIFT_OFFSET = 95;
 const DRIFT_LERP = 2.5;
+const MOVE_INTERVAL_P1 = 8.0;
+const MOVE_INTERVAL_P2 = 6.5;
 
-export class RumiaDark extends Boss {
+export class Daiyousei extends Boss {
 	private entered: boolean = false;
 	private charging: boolean = false;
 	private chargeSheet!: Spritesheet;
@@ -60,20 +56,19 @@ export class RumiaDark extends Boss {
 	private ftmMoving: boolean = false;
 	private ftmMoveDir: number = 1;
 	private ftmMoveTarget: number = BOSS.CENTER_X;
-	private p2FireTimer: number = 0;
-	private static readonly P2_MOVE_INTERVAL = 6.0;
+	private moveTimer: number = 0;
 
 	constructor(x: number, y: number) {
 		const idleSheet = new Spritesheet({
-			src: 'assets/sprites/entities/enemies/bosses/rumia/rumiadark.png',
+			src: 'assets/sprites/entities/enemies/bosses/daiyousei/daiyousei_spritesheet.png',
 			frameX: 32,
 			frameY: 32,
-			frameCount: 1,
-			frameSpeed: 1,
+			frameCount: 7,
+			frameSpeed: 0.12,
 			looping: true,
 		});
 		const movingSheet = new Spritesheet({
-			src: 'assets/sprites/entities/enemies/bosses/rumia/rumiadarkmoving.png',
+			src: 'assets/sprites/entities/enemies/bosses/daiyousei/daiyouseimoving.png',
 			frameX: 32,
 			frameY: 32,
 			frameCount: 1,
@@ -93,7 +88,8 @@ export class RumiaDark extends Boss {
 			looping: false,
 		});
 
-		this.scoreValue = 50000;
+		this.scoreValue = 100000;
+		this.music = Music.BOSS;
 	}
 
 	updateMovement(dt: number): void {
@@ -118,12 +114,9 @@ export class RumiaDark extends Boss {
 			return;
 		}
 
-		const driftOffset =
-			this.currentPhaseIndex === 0 ? DRIFT_OFFSET_P1 : DRIFT_OFFSET_P2;
-		this.updateFireThenMove(dt, driftOffset);
-	}
+		const moveInterval =
+			this.currentPhaseIndex === 1 ? MOVE_INTERVAL_P2 : MOVE_INTERVAL_P1;
 
-	private updateFireThenMove(dt: number, driftOffset: number): void {
 		if (this.ftmMoving) {
 			const dx = this.ftmMoveTarget - this.x;
 			const dy = BOSS.CENTER_Y - this.y;
@@ -136,8 +129,6 @@ export class RumiaDark extends Boss {
 				this.y = BOSS.CENTER_Y;
 				this.isMoving = false;
 				this.ftmMoving = false;
-				this.resetPatternEngines();
-				this.p2FireTimer = 0;
 			}
 		} else {
 			const dx = BOSS.CENTER_X - this.x;
@@ -146,15 +137,15 @@ export class RumiaDark extends Boss {
 			this.y += dy * BOSS_ENTRY.RETURN_LERP * dt;
 			this.isMoving = false;
 
-			const shouldMove =
-				this.currentPhaseIndex === 1
-					? (this.p2FireTimer += dt) >= RumiaDark.P2_MOVE_INTERVAL
-					: this.allPatternsDone();
-
-			if (this.state === BossState.ACTIVE && shouldMove) {
-				this.ftmMoving = true;
-				this.ftmMoveDir = -this.ftmMoveDir;
-				this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * driftOffset;
+			if (this.state === BossState.ACTIVE) {
+				this.moveTimer += dt;
+				if (this.moveTimer >= moveInterval) {
+					this.ftmMoving = true;
+					this.ftmMoveDir = -this.ftmMoveDir;
+					this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * DRIFT_OFFSET;
+					this.moveTimer = 0;
+					this.resetPatternEngines();
+				}
 			}
 		}
 	}

@@ -63,6 +63,7 @@ export abstract class Boss extends Enemy {
 	music?: string;
 
 	requestClearWithEffect: boolean = false;
+	onReady?: () => void;
 	onPhaseChange?: () => void;
 	onPhaseDrops?: (drops: { type: ItemType; count: number }[]) => void;
 	onSpellCapture?: (bonus: number) => void;
@@ -74,6 +75,26 @@ export abstract class Boss extends Enemy {
 
 	protected completeEntry(): void {
 		this.state = BossState.ACTIVE;
+		this.onReady?.();
+	}
+
+	skipToPhase(index: number): void {
+		if (index <= 0 || index >= this.phases.length) return;
+		this.currentPhaseIndex = index;
+		const phase = this.phases[index];
+		this.phaseHP = phase.hp;
+		this.phaseTimer = phase.timer;
+		this.setPatterns(phase.patterns);
+		if (phase.isSpellCard) {
+			this.spellBonus = Boss.SPELL_BONUS_INITIAL;
+			this.spellCaptureFailed = false;
+		} else {
+			this.spellBonus = 0;
+		}
+	}
+
+	forceKill(): void {
+		this.explode();
 	}
 
 	failSpellCapture(): void {

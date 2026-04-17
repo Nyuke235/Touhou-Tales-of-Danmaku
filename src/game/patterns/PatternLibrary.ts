@@ -60,28 +60,28 @@ export const Patterns = {
 	S1_FALLING_RICE1_LEFT: {
 		type: 'fixed', bullet: 'rice', color: 'purple',
 		count: 1, startAngle: Math.PI / 2 - 0.25,
-		speed: 90, delay: 0.1, cooldown: 0.2, maxShots: 15,
+		speed: 90, delay: 0.1, cooldown: 0.22, maxShots: 15,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S1_FALLING_RICE2_LEFT: {
 		type: 'fixed', bullet: 'rice', color: 'purple',
 		count: 1, startAngle: Math.PI / 2 - 0.25,
-		speed: 80, delay: 0.1, cooldown: 0.1, maxShots: 30,
+		speed: 80, delay: 0.1, cooldown: 0.15, maxShots: 30,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	S1_FALLING_RICE1_RIGHT: {
 		type: 'fixed', bullet: 'rice', color: 'purple',
 		count: 1, startAngle: Math.PI / 2 + 0.25,
-		speed: 90, delay: 0.1, cooldown: 0.2, maxShots: 15,
+		speed: 90, delay: 0.1, cooldown: 0.22, maxShots: 15,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S1_FALLING_RICE2_RIGHT: {
 		type: 'fixed', bullet: 'rice', color: 'purple',
 		count: 1, startAngle: Math.PI / 2 + 0.25,
-		speed: 80, delay: 0.1, cooldown: 0.1, maxShots: 30,
+		speed: 80, delay: 0.1, cooldown: 0.15, maxShots: 30,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -332,20 +332,20 @@ export const Patterns = {
 		type: 'helix', bullet: 'star', color: 'yellow',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 6.0,
 		speed: 32, initSpeed: 112, accelTime: 2.0,
-		cooldown: 0.03, delay: 0.1, maxShots: 80,
+		cooldown: 0.03, delay: 1.0, maxShots: 80,
 	} as PatternConfig,
 
 	RUMIA_STARWHEEL_CCW: {
 		type: 'helix', bullet: 'star', color: 'yellow',
 		count: 1, startAngle: 0, sweepAngle: -Math.PI * 6.0,
 		speed: 32, initSpeed: 112, accelTime: 2.0,
-		cooldown: 0.03, delay: 3.0, maxShots: 80,
+		cooldown: 0.03, delay: 4.0, maxShots: 80,
 	} as PatternConfig,
 
 	RUMIA_JELLYBEAN_SPIRAL_1: {
 		type: 'helix', bullet: 'ball', color: 'purple',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 2.0,
-		speed: 50, cooldown: 0.09, delay: 0.2, maxShots: 8,
+		speed: 50, cooldown: 0.09, delay: 1.2, maxShots: 8,
 		morphDelay: 1.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'helix', bullet: 'jellybean',
@@ -358,7 +358,7 @@ export const Patterns = {
 	RUMIA_JELLYBEAN_SPIRAL_2: {
 		type: 'helix', bullet: 'ball', color: 'purple',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 2.0,
-		speed: 50, cooldown: 0.09, delay: 0.2, maxShots: 8,
+		speed: 50, cooldown: 0.09, delay: 1.2, maxShots: 8,
 		morphDelay: 1.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'helix', bullet: 'jellybean',
@@ -371,7 +371,7 @@ export const Patterns = {
 	RUMIA_JELLYBEAN_SPIRAL_3: {
 		type: 'helix', bullet: 'ball', color: 'purple',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 2.0,
-		speed: 50, cooldown: 0.09, delay: 0.2, maxShots: 8,
+		speed: 50, cooldown: 0.09, delay: 1.2, maxShots: 8,
 		morphDelay: 1.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'helix', bullet: 'jellybean',
@@ -384,7 +384,7 @@ export const Patterns = {
 	RUMIA_JELLYBEAN_SPIRAL_4: {
 		type: 'helix', bullet: 'ball', color: 'purple',
 		count: 2, startAngle: 0, sweepAngle: Math.PI * 2.0,
-		speed: 50, cooldown: 0.09, delay: 0.2, maxShots: 8,
+		speed: 50, cooldown: 0.09, delay: 1.2, maxShots: 8,
 		morphDelay: 1.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'helix', bullet: 'jellybean',
@@ -397,14 +397,14 @@ export const Patterns = {
 	RUMIA_ORB_RINGS: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
 		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0, rotStep: Math.PI / 2,
-		cooldown: 0.3, delay: 6.0, maxShots: 9, ringAngleStep: Math.PI / 7,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 7,
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
 	} as PatternConfig,
 
 	RUMIA_ORB_RINGS_MORE: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
 		count: 18, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0, rotStep: Math.PI / 2,
-		cooldown: 0.3, delay: 6.0, maxShots: 9, ringAngleStep: Math.PI / 8,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 8,
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -592,10 +592,10 @@ export const Patterns = {
 			type: 'circle',
 			bullet: 'rice',
 			color: 'purple',
-			count: 24,
+			count: 28,
 			speed: 35,
 		},
-		difficulties: [Difficulty.HARD]
+		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	RUMIA_BURST_SHADOW_6: {
@@ -608,10 +608,10 @@ export const Patterns = {
 			type: 'circle',
 			bullet: 'rice',
 			color: 'purple',
-			count: 24,
+			count: 28,
 			speed: 35,
 		},
-		difficulties: [Difficulty.HARD]
+		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 
@@ -700,13 +700,13 @@ export const Patterns = {
 
 	S2_SPINNING_SPREAD: {
 		type: 'spread', color: 'cyan', speed: 100, delay: 1.0, maxShots: 1,
-		count: 3, spread: 0.12,
+		count: 3, spread: 0.22,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
 	S2_SSPINNING_SPREAD: {
 		type: 'spread', color: 'blue', speed: 100, delay: 1.0, maxShots: 1,
-		count: 3, spread: 0.12,
+		count: 3, spread: 0.22,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
@@ -737,13 +737,13 @@ export const Patterns = {
 	S2_GRAVITY_E: {
 		type: 'gravity', color: 'cyan', speed: 20, spread: Math.PI,
 		count: 1, gravity: 70, delay: 1.0, cooldown: 1.5, maxShots: 2,
-		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	S2_GRAVITY_NH: {
 		type: 'gravity', color: 'cyan', speed: 20, spread: Math.PI,
 		count: 2, gravity: 70, delay: 1.0, cooldown: 2.0, maxshots: 2,
-		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
 	} as PatternConfig,
 
 	S2_GRAVITY_L: {
@@ -768,5 +768,68 @@ export const Patterns = {
 		type: 'gravity', color: 'blue', speed: 20, spread: Math.PI,
 		count: 3, gravity: 100, delay: 0.5, cooldown: 1.5, maxShots: 3,
 		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	// DAIYOUSEI PHASE 1
+	DAIYOUSEI_GREEN_HELIX_1: {
+		type: 'helix', bullet: 'arrowhead', color: 'green',
+		count: 1, speed: 100, sweepAngle: Math.PI * 6, startAngle: 0,
+		delay: 1.0, cooldown: 0.015, maxShots: 90,
+	} as PatternConfig,
+
+	DAIYOUSEI_GREEN_HELIX_2: {
+		type: 'helix', bullet: 'arrowhead', color: 'green',
+		count: 1, speed: 110, sweepAngle: Math.PI * 6, startAngle: 0,
+		delay: 1.2, cooldown: 0.013, maxShots: 90,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_GREEN_HELIX_3: {
+		type: 'helix', bullet: 'arrowhead', color: 'green',
+		count: 1, speed: 100, sweepAngle: Math.PI * 6, startAngle: 0,
+		delay: 1.3, cooldown: 0.011, maxShots: 90,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_GREEN_HELIX_4: {
+		type: 'helix', bullet: 'arrowhead', color: 'green',
+		count: 1, speed: 130, sweepAngle: Math.PI * 6, startAngle: 0,
+		delay: 1.4, cooldown: 0.009, maxShots: 90,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_YELLOW_HELIX_1: {
+		type: 'helix', bullet: 'arrowhead', color: 'yellow',
+		count: 1, speed: 100, sweepAngle: -Math.PI * 6, startAngle: 0,
+		delay: 2.0, cooldown: 0.015, maxShots: 90,
+	} as PatternConfig,
+
+	DAIYOUSEI_YELLOW_HELIX_2: {
+		type: 'helix', bullet: 'arrowhead', color: 'yellow',
+		count: 1, speed: 110, sweepAngle: -Math.PI * 6, startAngle: 0,
+		delay: 2.2, cooldown: 0.013, maxShots: 90,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_YELLOW_HELIX_3: {
+		type: 'helix', bullet: 'arrowhead', color: 'yellow',
+		count: 1, speed: 100, sweepAngle: -Math.PI * 6, startAngle: 0,
+		delay: 2.3, cooldown: 0.011, maxShots: 90,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_YELLOW_HELIX_4: {
+		type: 'helix', bullet: 'arrowhead', color: 'yellow',
+		count: 1, speed: 130, sweepAngle: -Math.PI * 6, startAngle: 0,
+		delay: 2.4, cooldown: 0.009, maxShots: 90,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	// DAIYOUSEI PHASE 2 (spellcard)
+	DAIYOUSEI_SPELL_HELIX_1: {
+		type: 'helix', bullet: 'rice', color: 'blue',
+		count: 3, speed: 100, sweepAngle: Math.PI * 6,
+		delay: 1.0, cooldown: 0.15, maxShots: 40,
+		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
 	} as PatternConfig,
 };

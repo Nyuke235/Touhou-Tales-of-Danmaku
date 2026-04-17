@@ -29,5 +29,8 @@ export const GameState = {
 	highScore: 0,
 	date: Date.now(),
 	practiceMode: false,
+	spellcardMode: false,
+	spellcardGroupIndex: 0,
+	spellcardEntryIndex: 0,
 	startingStage: 0,
 };

@@ -1,0 +1,122 @@
+#spellcard-stage,
+#spellcard-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10px;
+
+    .sc-section-title {
+        font-size: 0.8em;
+        color: white;
+        opacity: 0.5;
+        letter-spacing: 3px;
+    }
+
+    #sc-list-stage-title {
+        font-size: 0.6em;
+        color: #ffe8a0;
+        letter-spacing: 1px;
+    }
+
+    #sc-stage-list,
+    #sc-spellcard-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-width: 240px;
+    }
+
+    .sc-list-item {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        padding: 2px 10px;
+        cursor: pointer;
+        color: white;
+        font-size: 0.55em;
+
+        &.selected {
+            color: #ffd700;
+        }
+
+        .sc-spell-name {
+            font-size: 0.9em;
+        }
+
+        .sc-spell-boss {
+            font-size: 0.6em;
+            opacity: 0.5;
+        }
+    }
+}
+
+#spellcard-clear-menu {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    flex-direction: column;
+    gap: 9px;
+    padding: 10px 14px 10px 10px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(120, 200, 120, 0.4);
+    pointer-events: none;
+
+    &.visible {
+        display: flex;
+        pointer-events: auto;
+        animation: sc-clear-enter 0.2s steps(6, end) forwards;
+    }
+
+    &.leaving {
+        animation: sc-clear-leave 0.15s steps(4, end) forwards;
+    }
+
+    .sc-clear-title {
+        color: #80ff80;
+        font-size: 1em;
+        letter-spacing: 2px;
+        margin-bottom: 2px;
+    }
+
+    .sc-clear-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.8em;
+        color: white;
+        padding: 3px 0;
+        text-align: left;
+
+        &.selected {
+            color: #ffd700;
+        }
+    }
+}
+
+@keyframes sc-clear-enter {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes sc-clear-leave {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}

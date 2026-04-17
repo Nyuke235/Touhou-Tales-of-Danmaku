@@ -120,7 +120,7 @@ const RAW_STAGE_2: SpawnEventData[] = [
 	{ time: 51.5, type: 'fairy',  x:  -16, y: 35, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
 	{ time: 51.5, type: 'fairy',  x:  272, y: 35, color: 'red', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_GRAVITY_NH, P.S2_SGRAVITY_L] },
 
-	{ time: 60.0, type: 'spirit', x: -32, y: 60, variant: 'normal', path: 'passing-left' },
+	{ time: 56.0, type: 'daiyousei', x: 128, y: -16 },
 ];
 
 export const STAGE_2 = buildScript(RAW_STAGE_2);

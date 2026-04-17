@@ -12,6 +12,7 @@ export class HomeScene extends MenuScene {
 	private buttonSceneMap: (Scene | undefined)[] = [
 		Scene.DIFFICULTY,
 		Scene.DIFFICULTY,
+		Scene.DIFFICULTY,
 		Scene.LEADERBOARD,
 		undefined,
 		undefined,
@@ -72,7 +73,9 @@ export class HomeScene extends MenuScene {
 		if (home.classList.contains('outro')) return;
 		SoundManager.play(SFX.UI_SELECT);
 		GameState.practiceMode = this.selectedIndex === 1;
-		if (!GameState.practiceMode) GameState.startingStage = 0;
+		GameState.spellcardMode = this.selectedIndex === 2;
+		if (!GameState.practiceMode && !GameState.spellcardMode)
+			GameState.startingStage = 0;
 		home.classList.add('outro');
 		setTimeout(() => this.sceneManager.switchTo(target), 620);
 	}

@@ -13,6 +13,8 @@ import { initAuth } from './utils/Auth';
 import { KeyConfig } from './scenes/KeyConfigScene';
 import { LeaderboardScene } from './scenes/LeaderboardScene';
 import { PracticeStageScene } from './scenes/PracticeStageScene';
+import { SpellcardStageScene } from './scenes/SpellcardStageScene';
+import { SpellcardListScene } from './scenes/SpellcardListScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { User } from './utils/User';
 import { GameState } from './game/GameState';
@@ -38,6 +40,8 @@ new OptionsScene(sceneManager, inputManager);
 new KeyConfig(sceneManager, inputManager);
 new LeaderboardScene(sceneManager, inputManager);
 new PracticeStageScene(sceneManager, inputManager);
+const spellcardListScene = new SpellcardListScene(sceneManager, inputManager);
+new SpellcardStageScene(sceneManager, inputManager);
 
 await showSplash();
 
@@ -120,6 +124,27 @@ sceneManager.switchTo = (scene: Scene) => {
 		requestAnimationFrame(() =>
 			requestAnimationFrame(() => {
 				practiceStage.classList.remove('entering');
+			})
+		);
+	}
+	if (scene === Scene.SPELLCARD_STAGE) {
+		const el = document.getElementById('spellcard-stage')!;
+		el.classList.remove('outro');
+		el.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				el.classList.remove('entering');
+			})
+		);
+	}
+	if (scene === Scene.SPELLCARD_LIST) {
+		spellcardListScene.onEnter();
+		const el = document.getElementById('spellcard-list')!;
+		el.classList.remove('outro');
+		el.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				el.classList.remove('entering');
 			})
 		);
 	}

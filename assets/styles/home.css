@@ -31,12 +31,14 @@
         button:nth-child(4) { transition-delay: 0.32s; }
         button:nth-child(5) { transition-delay: 0.40s; }
         button:nth-child(6) { transition-delay: 0.48s; }
+        button:nth-child(7) { transition-delay: 0.56s; }
 
         button:nth-child(2) { margin-left: 8px; }
         button:nth-child(3) { margin-left: 16px; }
         button:nth-child(4) { margin-left: 24px; }
         button:nth-child(5) { margin-left: 32px; }
         button:nth-child(6) { margin-left: 40px; }
+        button:nth-child(7) { margin-left: 48px; }
     }
 
     #press-key {

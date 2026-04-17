@@ -1,7 +1,7 @@
 import { BaseProjectile } from '../Projectile';
 
 const LASER_SPEED = 500;
-const LASER_DAMAGE = 0.4;
+const LASER_DAMAGE = 0.25;
 
 export class HakkeroLaser extends BaseProjectile {
 	constructor(x: number, y: number) {

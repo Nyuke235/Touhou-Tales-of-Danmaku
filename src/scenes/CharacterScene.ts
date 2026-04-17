@@ -234,6 +234,8 @@ export class CharacterScene extends MenuScene {
 		this.resetContext();
 		if (callback) {
 			callback();
+		} else if (GameState.spellcardMode) {
+			this.switchWithOutro(Scene.SPELLCARD_STAGE);
 		} else if (GameState.practiceMode) {
 			this.switchWithOutro(Scene.PRACTICE_STAGE);
 		} else {

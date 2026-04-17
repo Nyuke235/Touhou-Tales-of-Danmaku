@@ -20,13 +20,16 @@ import { StageClearMenu } from './StageClearMenu';
 
 import { Boss } from '../entities/Boss';
 import { Player } from '../entities/Player';
-import { FIELD, GAME } from '../game/Constants';
+import { BOSS, FIELD, GAME } from '../game/Constants';
 import { GrazeEffect } from '../utils/GrazeEffect';
 import { BlizzardManager } from '../systems/BlizzardManager';
 import { ScrollingBackground } from '../utils/ScrollingBackground';
 import { SpellcardBackground } from '../utils/SpellcardBackground';
 import { STAGES } from '../stages/stages';
 import { buildPlayer } from '../game/PlayerBuilder';
+import { SpellcardClearMenu } from './SpellcardClearMenu';
+import { SPELLCARD_REGISTRY, SpellcardEntry } from '../game/SpellcardRegistry';
+import { SpawnEvent } from '../game/StageScript';
 
 export class GameScene {
 	protected sceneManager: SceneManager;
@@ -46,6 +49,7 @@ export class GameScene {
 	protected pauseMenu!: PauseMenu;
 	protected gameOverMenu!: GameOverMenu;
 	protected stageClearMenu!: StageClearMenu;
+	protected spellcardClearMenu!: SpellcardClearMenu;
 
 	protected isActive: boolean = false;
 	protected currentStageIndex: number = 0;
@@ -132,6 +136,25 @@ export class GameScene {
 			onContinue: () => this.advanceToNextStage(),
 		});
 
+		this.spellcardClearMenu = new SpellcardClearMenu(
+			inputManager,
+			sceneManager,
+			{
+				onBackToTitle: () => {
+					GameState.highScore = Math.max(
+						this.scoreManager.value,
+						GameState.highScore
+					);
+					this.saveCurrentUser();
+					this.sceneManager.switchTo(Scene.HOME);
+				},
+				onRestart: () => {
+					MusicManager.stop();
+					this.init();
+				},
+			}
+		);
+
 		this.bindKeyboard();
 	}
 
@@ -143,13 +166,18 @@ export class GameScene {
 		this.inputManager.onKeyDown(code => {
 			if (this.sceneManager.getCurrentScene() !== Scene.GAME) return;
 			if (!this.isActive) return;
-			if (code === Controls.BACK && !this.pauseMenu.isActive()) {
+			if (
+				code === Controls.BACK &&
+				!this.pauseMenu.isActive() &&
+				!this.spellcardClearMenu.isActive()
+			) {
 				this.pause();
 			}
 			if (
 				code === Controls.BOMB &&
 				!this.pauseMenu.isActive() &&
 				!this.gameOverMenu.isActive() &&
+				!this.spellcardClearMenu.isActive() &&
 				!this.player.isDead()
 			) {
 				this.useBomb();
@@ -165,24 +193,35 @@ export class GameScene {
 	}
 
 	init(stageIndex = 0): void {
+		const spellcardEntry: SpellcardEntry | null = GameState.spellcardMode
+			? (SPELLCARD_REGISTRY[GameState.spellcardGroupIndex]?.spellcards[
+					GameState.spellcardEntryIndex
+				] ?? null)
+			: null;
+
+		if (spellcardEntry) stageIndex = spellcardEntry.stageIndex;
+
 		this.loop.stop();
 
 		this.currentStageIndex = stageIndex;
 		this.scoreManager = new ScoreManager(GameState.difficulty);
-		this.lives = GAME.INITIAL_LIVES;
-		this.bombs = GAME.INITIAL_BOMBS;
+		this.lives = spellcardEntry ? GAME.THIRDS_PER_GEM : GAME.INITIAL_LIVES;
+		this.bombs = spellcardEntry ? 0 : GAME.INITIAL_BOMBS;
 		this.misses = 0;
 		this.bombsUsed = 0;
 		this.bombEffect = null;
 		this.startTime = Date.now();
-		GameState.power = 0.0;
+		GameState.power = spellcardEntry ? GameState.maxPower : 0.0;
 		GameState.pointItems = 0;
 		GameState.graze = 0;
 		this.hud.init(GameState.difficulty, this.lives, this.bombs);
+		if (spellcardEntry) this.hud.setPower(GameState.power, GameState.maxPower);
 
 		this.spellcardBg.reset();
 		this.projectileManager.clear();
 		this.itemManager.clear();
+
+		if (this.spellcardClearMenu?.isActive()) this.spellcardClearMenu.hide();
 
 		this.player = buildPlayer(
 			this.inputManager,
@@ -199,19 +238,41 @@ export class GameScene {
 		this.enemyManager.onDrop = (x, y, drops) =>
 			this.itemManager.dropFromEnemy(x, y, drops);
 		this.enemyManager.onScore = value => this.scoreManager.add(value);
-		this.enemyManager.onStageComplete = () => this.nextStage();
+		this.enemyManager.onStageComplete = spellcardEntry
+			? undefined
+			: () => this.nextStage();
 
 		this.enemyManager.onBossSpawn = boss => {
 			this.activeBoss = boss;
 			this.bossHUD.show(boss);
-			boss.onPhaseChange = () => {
-				this.bossHUD.onPhaseChange(boss);
-				if (boss.isCurrentSpellCard()) {
-					this.spellcardBg.show();
-				} else {
-					this.spellcardBg.hide();
-				}
-			};
+
+			if (spellcardEntry) {
+				boss.skipToPhase(spellcardEntry.phaseIndex);
+				boss.onReady = () => {
+					if (boss.isCurrentSpellCard()) this.spellcardBg.show();
+					this.bossHUD.onPhaseChange(boss);
+				};
+				boss.onPhaseChange = () => {
+					this.bossHUD.onPhaseChange(boss);
+					if (boss.getNetPhase() > spellcardEntry.phaseIndex) {
+						boss.forceKill();
+					} else if (boss.isCurrentSpellCard()) {
+						this.spellcardBg.show();
+					} else {
+						this.spellcardBg.hide();
+					}
+				};
+			} else {
+				boss.onPhaseChange = () => {
+					this.bossHUD.onPhaseChange(boss);
+					if (boss.isCurrentSpellCard()) {
+						this.spellcardBg.show();
+					} else {
+						this.spellcardBg.hide();
+					}
+				};
+			}
+
 			boss.onSpellCapture = bonus => {
 				this.scoreManager.add(bonus);
 				this.hud.setScore(this.scoreManager.value);
@@ -221,9 +282,32 @@ export class GameScene {
 			}
 		};
 
-		this.loadStage(stageIndex);
-		this.showStageCard();
+		if (spellcardEntry) {
+			this.loadSpellcardStage(stageIndex, spellcardEntry);
+		} else {
+			this.loadStage(stageIndex);
+			this.showStageCard();
+		}
 		this.loop.start();
+	}
+
+	private loadSpellcardStage(stageIndex: number, entry: SpellcardEntry): void {
+		const stage = STAGES[stageIndex];
+		this.background = new ScrollingBackground(
+			stage.backgroundSrc,
+			stage.backgroundSpeed
+		);
+		MusicManager.play(stage.music);
+		const script: SpawnEvent[] = [
+			{
+				time: 0,
+				factory: () => entry.bossFactory(),
+				spawnX: BOSS.CENTER_X,
+				spawnY: -30,
+			},
+		];
+		this.enemyManager.loadScript(script);
+		this.blizzardManager.loadScript([]);
 	}
 
 	protected loadStage(index: number): void {
@@ -298,10 +382,17 @@ export class GameScene {
 		);
 	}
 
+	protected triggerSpellcardClear(): void {
+		this.loop.stop();
+		MusicManager.pause();
+		this.spellcardClearMenu.show();
+	}
+
 	stop(): void {
 		this.loop.stop();
 		if (this.pauseMenu?.isActive()) this.pauseMenu.hide();
 		if (this.gameOverMenu?.isActive()) this.gameOverMenu.hide();
+		if (this.spellcardClearMenu?.isActive()) this.spellcardClearMenu.hide();
 	}
 
 	protected update(dt: number): void {
@@ -350,6 +441,9 @@ export class GameScene {
 			this.bossHUD.hide();
 			this.spellcardBg.hide();
 			this.activeBoss = null;
+			if (GameState.spellcardMode) {
+				this.triggerSpellcardClear();
+			}
 			return;
 		}
 

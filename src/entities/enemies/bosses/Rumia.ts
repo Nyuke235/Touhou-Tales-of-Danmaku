@@ -9,7 +9,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 250,
+		hp: 280,
 		timer: 30,
 		barWeight: 0.3,
 		drops: [
@@ -31,7 +31,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: 'Dark Sign 「Demarcation」',
 		isSpellCard: true,
-		hp: 250,
+		hp: 280,
 		timer: 35,
 		barWeight: 0.2,
 		drops: [
@@ -53,7 +53,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 250,
+		hp: 280,
 		timer: 30,
 		barWeight: 0.25,
 		drops: [
@@ -73,7 +73,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: 'Night Sign 「Abyss Mandala」',
 		isSpellCard: true,
-		hp: 250,
+		hp: 280,
 		timer: 35,
 		barWeight: 0.25,
 		drops: [
@@ -189,9 +189,6 @@ export class Rumia extends Boss {
 				this.y = BOSS.CENTER_Y;
 				this.isMoving = false;
 				this.ftmMoving = false;
-				this.p2FireTimer = 0;
-				this.p3FireTimer = 0;
-				this.resetPatternEngines();
 			}
 		} else {
 			const dx = BOSS.CENTER_X - this.x;
@@ -213,6 +210,9 @@ export class Rumia extends Boss {
 				this.ftmMoving = true;
 				this.ftmMoveDir = -this.ftmMoveDir;
 				this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * driftOffset;
+				this.p2FireTimer = 0;
+				this.p3FireTimer = 0;
+				this.resetPatternEngines();
 			}
 		}
 	}

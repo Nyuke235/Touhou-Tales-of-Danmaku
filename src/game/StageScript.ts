@@ -6,6 +6,7 @@ import { Moth } from '../entities/enemies/Moth';
 import { Spinning } from '../entities/enemies/Spinning';
 import { Rumia } from '../entities/enemies/bosses/Rumia';
 import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
+import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import type { FairyColor, FairyPath } from '../entities/enemies/Fairy';
 import type { SpiritVariant, SpiritPath } from '../entities/enemies/Spirit';
 import type { MiniSpiritPath } from '../entities/enemies/MiniSpirit';
@@ -65,7 +66,8 @@ export type SpawnEventData =
 			patterns?: PatternConfig[];
 	  }
 	| { time: number; type: 'rumia'; x: number; y: number }
-	| { time: number; type: 'rumiadark'; x: number; y: number };
+	| { time: number; type: 'rumiadark'; x: number; y: number }
+	| { time: number; type: 'daiyousei'; x: number; y: number };
 
 export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 	return data.map(d => ({
@@ -88,6 +90,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 					return new Rumia(d.x, d.y);
 				case 'rumiadark':
 					return new RumiaDark(d.x, d.y);
+				case 'daiyousei':
+					return new Daiyousei(d.x, d.y);
 			}
 		},
 	}));
