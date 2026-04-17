@@ -22,6 +22,7 @@ import { Boss } from '../entities/Boss';
 import { Player } from '../entities/Player';
 import { FIELD, GAME } from '../game/Constants';
 import { GrazeEffect } from '../utils/GrazeEffect';
+import { BlizzardManager } from '../systems/BlizzardManager';
 import { ScrollingBackground } from '../utils/ScrollingBackground';
 import { SpellcardBackground } from '../utils/SpellcardBackground';
 import { STAGES } from '../stages/stages';
@@ -60,6 +61,7 @@ export class GameScene {
 	protected spellcardBg: SpellcardBackground = new SpellcardBackground();
 	protected scoreManager: ScoreManager = new ScoreManager(GameState.difficulty);
 	protected grazeEffect: GrazeEffect = new GrazeEffect();
+	protected blizzardManager: BlizzardManager = new BlizzardManager();
 	lives: number = GAME.INITIAL_LIVES;
 	bombs: number = GAME.INITIAL_BOMBS;
 
@@ -232,6 +234,7 @@ export class GameScene {
 		);
 		MusicManager.play(stage.music);
 		this.enemyManager.loadScript(stage.script);
+		this.blizzardManager.loadScript(stage.blizzard ?? []);
 	}
 
 	protected nextStage(): void {
@@ -307,7 +310,18 @@ export class GameScene {
 
 		this.background.update(dt);
 		this.spellcardBg.update(dt);
+		this.blizzardManager.update(dt);
 		this.player.update(dt);
+		if (this.blizzardManager.windPushX !== 0 && !this.player.isDead()) {
+			const hw = this.player.width / 2;
+			this.player.x = Math.max(
+				hw,
+				Math.min(
+					FIELD.WIDTH - hw,
+					this.player.x + this.blizzardManager.windPushX * dt
+				)
+			);
+		}
 		this.projectileManager.update(dt);
 		this.enemyManager.update(
 			dt,
@@ -480,6 +494,7 @@ export class GameScene {
 		this.player.render(ctx, focused);
 		this.grazeEffect.render(ctx);
 		this.projectileManager.render(ctx);
+		this.blizzardManager.render(ctx);
 		this.renderBombEffect(ctx);
 	}
 

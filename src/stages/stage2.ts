@@ -1,5 +1,6 @@
 import { SpawnEventData, buildScript } from '../game/StageScript';
 import { Patterns as P } from '../game/patterns/PatternLibrary';
+import { BlizzardEvent } from '../systems/BlizzardManager';
 
 const RAW_STAGE_2: SpawnEventData[] = [
 
@@ -67,36 +68,63 @@ const RAW_STAGE_2: SpawnEventData[] = [
 
 	// gravity fairies, red from left, blue from right, top of screen
 	{ time: 38.0, type: 'fairy', x:  -16, y: 10, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 38.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 38.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 38.5, type: 'fairy', x:  -16, y: 15, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 38.5, type: 'fairy', x:  272, y: 45, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 38.5, type: 'fairy', x:  272, y: 45, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 39.0, type: 'fairy', x:  -16, y: 40, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 39.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 39.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 39.5, type: 'fairy', x:  -16, y: 25, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 39.5, type: 'fairy', x:  272, y: 45, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 39.5, type: 'fairy', x:  272, y: 45, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 40.0, type: 'fairy', x:  -16, y: 30, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 40.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 40.0, type: 'fairy', x:  272, y: 40, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 40.5, type: 'fairy', x:  -16, y: 35, color: 'red',  path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 40.5, type: 'fairy', x:  272, y: 25, color: 'blue', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 40.5, type: 'fairy', x:  272, y: 25, color: 'blue', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 41.0, type: 'spirit', x: 120, y: -32, variant: 'blue', path: 'descend', patterns: [P.S2_BLUESPIRIT_ORB_CIRCLE_EASY, P.S2_BLUESPIRIT_ORB_CIRCLE_NORMAL, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA] },
-	{ time: 41.5, type: 'fairy', x:  272, y: 10, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 41.5, type: 'fairy', x:  272, y: 10, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 41.5, type: 'fairy', x:  -16, y: 40, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 42.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 42.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 42.0, type: 'fairy', x:  -16, y: 55, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 42.5, type: 'fairy', x:  272, y: 20, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 42.5, type: 'fairy', x:  272, y: 20, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 42.5, type: 'fairy', x:  -16, y: 50, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 43.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 43.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 43.0, type: 'fairy', x:  -16, y: 25, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 43.5, type: 'fairy', x:  272, y: 40, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 43.5, type: 'fairy', x:  272, y: 40, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 43.5, type: 'fairy', x:  -16, y: 40, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 44.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 44.0, type: 'fairy', x:  272, y: 25, color: 'red',  path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 44.0, type: 'fairy', x:  -16, y: 25, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 44.5, type: 'fairy', x:  -16, y: 45, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 44.5, type: 'fairy', x:  -16, y: 45, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	{ time: 44.5, type: 'fairy', x:  -16, y: 25, color: 'green', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
 	{ time: 45.0, type: 'fairy', x:  272, y: 45, color: 'red', path: 'diagonal-right',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
 	{ time: 45.0, type: 'fairy', x:  272, y: 25, color: 'green', path: 'diagonal-right',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 46.0, type: 'fairy',  x:  -16, y: 20, color: 'blue',path: 'diagonal-left',  patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 46.0, type: 'fairy',  x:  272, y: 20, color: 'red', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 46.5, type: 'fairy',  x:  -16, y: 35, color: 'blue',path: 'diagonal-left',  patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 46.5, type: 'fairy',  x:  272, y: 35, color: 'red', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 47.0, type: 'spirit', x:  64,  y: -32, variant: 'blue', path: 'descend', patterns: [P.S2_BLUESPIRIT_ORB_CIRCLE_EASY, P.S2_BLUESPIRIT_ORB_CIRCLE_NORMAL, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA] },
+	{ time: 47.0, type: 'fairy',  x:  -16, y: 50, color: 'blue', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 47.0, type: 'fairy',  x:  272, y: 50, color: 'red', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 47.5, type: 'fairy',  x:  -16, y: 25, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 47.5, type: 'fairy',  x:  272, y: 25, color: 'blue',path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 48.0, type: 'fairy',  x:  -16, y: 40, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 48.0, type: 'fairy',  x:  272, y: 40, color: 'blue',path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 49.5, type: 'spirit', x: 128,  y: -32, variant: 'blue', path: 'descend', patterns: [P.S2_BLUESPIRIT_ORB_CIRCLE_EASY, P.S2_BLUESPIRIT_ORB_CIRCLE_NORMAL, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA] },
+	{ time: 49.5, type: 'fairy',  x:  -16, y: 15, color: 'blue',path: 'diagonal-left',  patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 49.5, type: 'fairy',  x:  272, y: 15, color: 'red', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 50.0, type: 'fairy',  x:  -16, y: 30, color: 'blue',path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 50.0, type: 'fairy',  x:  272, y: 30, color: 'red', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 50.5, type: 'fairy',  x:  -16, y: 20, color: 'blue',path: 'diagonal-left',  patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 50.5, type: 'fairy',  x:  272, y: 45, color: 'red', path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
+	{ time: 51.0, type: 'fairy',  x:  -16, y: 45, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 51.0, type: 'fairy',  x:  272, y: 20, color: 'blue',path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 51.5, type: 'spirit', x:  48,  y: -32, variant: 'blue', path: 'descend', patterns: [P.S2_BLUESPIRIT_ORB_CIRCLE_EASY, P.S2_BLUESPIRIT_ORB_CIRCLE_NORMAL, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA] },
+	{ time: 51.5, type: 'fairy',  x:  -16, y: 35, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 51.5, type: 'fairy',  x:  272, y: 35, color: 'red', path: 'diagonal-right', patterns: [P.S2_SGRAVITY_E, P.S2_GRAVITY_NH, P.S2_SGRAVITY_L] },
 
 	{ time: 60.0, type: 'spirit', x: -32, y: 60, variant: 'normal', path: 'passing-left' },
 ];
 
 export const STAGE_2 = buildScript(RAW_STAGE_2);
+
+export const STAGE_2_BLIZZARD: BlizzardEvent[] = [
+	{ time: 37.0, duration: 20.0,  direction: 'left',  intensity: 0.7 },
+];

@@ -225,7 +225,7 @@ export class PatternEngine {
 		if (bullet === 'shadow') return new ShadowBullet(x, y, vx, vy);
 		if (bullet === 'burstshadow') return new BurstShadowBullet(x, y, vx, vy);
 		if (bullet === 'star') return new StarBullet(x, y, vx, vy);
-		if (bullet === 'jellybean') return new JellybeanBullet(x, y, vx, vy);
+		if (bullet === 'jellybean') return new JellybeanBullet(x, y, vx, vy, color);
 		return new BallBullet(x, y, vx, vy, color);
 	}
 
