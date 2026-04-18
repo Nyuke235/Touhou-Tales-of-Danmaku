@@ -20,7 +20,7 @@ export class HomingAmulet extends RotatedBullet {
 		getNearestEnemy: (x: number, y: number) => { x: number; y: number } | null
 	) {
 		super(x, y, Math.cos(angle) * SPEED, Math.sin(angle) * SPEED, W, H, SPRITE);
-		this.damage = 0.15;
+		this.damage = 0.2;
 		this.turnRate = turnRate;
 		this.getNearestEnemy = getNearestEnemy;
 	}

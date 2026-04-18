@@ -63,6 +63,7 @@ export abstract class Boss extends Enemy {
 	music?: string;
 
 	requestClearWithEffect: boolean = false;
+	spellcardBgSrc?: string;
 	onReady?: () => void;
 	onPhaseChange?: () => void;
 	onPhaseDrops?: (drops: { type: ItemType; count: number }[]) => void;

@@ -211,7 +211,11 @@ export class GameScene {
 		this.bombsUsed = 0;
 		this.bombEffect = null;
 		this.startTime = Date.now();
-		GameState.power = spellcardEntry ? GameState.maxPower : 0.0;
+		GameState.power = spellcardEntry
+			? GameState.maxPower
+			: GameState.practiceMode
+				? 2.0
+				: 0.0;
 		GameState.pointItems = 0;
 		GameState.graze = 0;
 		this.hud.init(GameState.difficulty, this.lives, this.bombs);
@@ -249,7 +253,8 @@ export class GameScene {
 			if (spellcardEntry) {
 				boss.skipToPhase(spellcardEntry.phaseIndex);
 				boss.onReady = () => {
-					if (boss.isCurrentSpellCard()) this.spellcardBg.show();
+					if (boss.isCurrentSpellCard())
+						this.spellcardBg.show(boss.spellcardBgSrc);
 					this.bossHUD.onPhaseChange(boss);
 				};
 				boss.onPhaseChange = () => {
@@ -257,7 +262,7 @@ export class GameScene {
 					if (boss.getNetPhase() > spellcardEntry.phaseIndex) {
 						boss.forceKill();
 					} else if (boss.isCurrentSpellCard()) {
-						this.spellcardBg.show();
+						this.spellcardBg.show(boss.spellcardBgSrc);
 					} else {
 						this.spellcardBg.hide();
 					}
@@ -266,7 +271,7 @@ export class GameScene {
 				boss.onPhaseChange = () => {
 					this.bossHUD.onPhaseChange(boss);
 					if (boss.isCurrentSpellCard()) {
-						this.spellcardBg.show();
+						this.spellcardBg.show(boss.spellcardBgSrc);
 					} else {
 						this.spellcardBg.hide();
 					}
@@ -401,7 +406,7 @@ export class GameScene {
 
 		this.background.update(dt);
 		this.spellcardBg.update(dt);
-		this.blizzardManager.update(dt);
+		this.blizzardManager.update(dt, this.activeBoss !== null);
 		this.player.update(dt);
 		if (this.blizzardManager.windPushX !== 0 && !this.player.isDead()) {
 			const hw = this.player.width / 2;

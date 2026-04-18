@@ -60,7 +60,7 @@ export class Fairy extends Enemy {
 
 		const explSheet = createExplosionSheet();
 
-		super(x, y, 32, 32, 3, sheet, explSheet);
+		super(x, y, 32, 32, 2, sheet, explSheet);
 		this.scoreValue = 1000;
 		this.path = path;
 

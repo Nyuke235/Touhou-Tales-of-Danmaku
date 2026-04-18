@@ -1,4 +1,5 @@
 import { FIELD } from '../game/Constants';
+import { SoundManager, SFX } from './SoundManager';
 
 export interface BlizzardEvent {
 	time: number;
@@ -46,8 +47,8 @@ export class BlizzardManager {
 		this.windPushX = 0;
 	}
 
-	update(dt: number): void {
-		this.timer += dt;
+	update(dt: number, paused: boolean = false): void {
+		if (!paused) this.timer += dt;
 
 		while (
 			this.eventIndex < this.events.length &&
@@ -61,6 +62,7 @@ export class BlizzardManager {
 				duration: ev.duration,
 			};
 			this.eventIndex++;
+			SoundManager.playAmbient(SFX.BLIZZARD, 1.1);
 		}
 
 		if (this.active) {
@@ -73,7 +75,7 @@ export class BlizzardManager {
 			const dir = this.active.direction === 'right' ? 1 : -1;
 			this.windPushX = dir * WIND_PUSH_SPEED * this.active.intensity * envelope;
 
-			const spawnRate = 18 * this.active.intensity * envelope;
+			const spawnRate = 45 * this.active.intensity * envelope;
 			this.spawnAccum += spawnRate * dt;
 			const count = Math.floor(this.spawnAccum);
 			this.spawnAccum -= count;
@@ -84,6 +86,7 @@ export class BlizzardManager {
 			if (this.active.elapsed >= this.active.duration) {
 				this.active = null;
 				this.windPushX = 0;
+				SoundManager.stopAmbient(SFX.BLIZZARD);
 			}
 		}
 
@@ -104,31 +107,34 @@ export class BlizzardManager {
 
 	private spawnParticle(direction: 'left' | 'right', intensity: number): void {
 		const dir = direction === 'right' ? 1 : -1;
-		const speed = 80 + Math.random() * 140 * intensity;
-		const life = 0.7 + Math.random() * 1.3;
+		const speed = 120 + Math.random() * 200 * intensity;
+		const life = 0.5 + Math.random() * 1.0;
+		const r = Math.random();
+		const size = r < 0.5 ? 1 : r < 0.85 ? 2 : 3;
 		this.particles.push({
 			x: direction === 'right' ? -4 : FIELD.WIDTH + 4,
 			y: Math.random() * FIELD.HEIGHT,
 			vx: dir * speed,
-			vy: 15 + Math.random() * 25,
+			vy: 20 + Math.random() * 40,
 			life,
 			maxLife: life,
-			size: Math.random() < 0.65 ? 1 : 2,
+			size,
 		});
 	}
 
 	render(ctx: CanvasRenderingContext2D): void {
 		if (this.particles.length === 0) return;
 		ctx.save();
-		ctx.fillStyle = '#ffffff';
+		ctx.fillStyle = '#dff4ff';
 		for (const p of this.particles) {
-			ctx.globalAlpha = (p.life / p.maxLife) * 0.85;
+			ctx.globalAlpha = (p.life / p.maxLife) * 0.95;
 			ctx.fillRect(p.x, p.y, p.size, p.size);
 		}
 		ctx.restore();
 	}
 
 	reset(): void {
+		SoundManager.stopAmbient(SFX.BLIZZARD);
 		this.loadScript([]);
 	}
 }

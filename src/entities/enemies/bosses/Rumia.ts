@@ -9,7 +9,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 280,
+		hp: 300,
 		timer: 30,
 		barWeight: 0.3,
 		drops: [
@@ -31,7 +31,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: 'Dark Sign 「Demarcation」',
 		isSpellCard: true,
-		hp: 280,
+		hp: 300,
 		timer: 35,
 		barWeight: 0.2,
 		drops: [
@@ -53,7 +53,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
-		hp: 280,
+		hp: 300,
 		timer: 30,
 		barWeight: 0.25,
 		drops: [
@@ -73,7 +73,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: 'Night Sign 「Abyss Mandala」',
 		isSpellCard: true,
-		hp: 280,
+		hp: 300,
 		timer: 35,
 		barWeight: 0.25,
 		drops: [

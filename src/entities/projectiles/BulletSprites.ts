@@ -1,6 +1,13 @@
 import { Spritesheet } from '../../utils/Spritesheet';
 
-export type BulletColor = 'blue' | 'red' | 'yellow' | 'purple' | 'orange' | 'cyan' | 'green';
+export type BulletColor =
+	| 'blue'
+	| 'red'
+	| 'yellow'
+	| 'purple'
+	| 'orange'
+	| 'cyan'
+	| 'green';
 
 export const BALL_SPRITES: {
 	blue: string;
@@ -72,10 +79,12 @@ export const JELLYBEAN_SPRITES: {
 	purple: string;
 	blue: string;
 	cyan: string;
+	green?: string;
 } = {
 	purple: 'assets/sprites/projectiles/hostile/jellybeanpurple.png',
 	blue: 'assets/sprites/projectiles/hostile/jellybeanblue.png',
 	cyan: 'assets/sprites/projectiles/hostile/jellybeancyan.png',
+	green: 'assets/sprites/projectiles/hostile/jellybeangreen.png',
 };
 
 export function makeSheet(src: string, w: number, h: number): Spritesheet {

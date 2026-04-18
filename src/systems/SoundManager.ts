@@ -17,6 +17,7 @@ export const SFX = {
 	BOSS_DEFEATED: 'assets/audio/sfx/enemies/bossdefeated.wav',
 	PHASE_DEFEATED: 'assets/audio/sfx/enemies/phasedefeated.wav',
 	SPELLCARD: 'assets/audio/sfx/enemies/spellcard.wav',
+	BLIZZARD: 'assets/audio/sfx/ambient/blizzard.wav',
 
 	UI_HIGHLIGHT: 'assets/audio/sfx/ui/highlight.wav',
 	UI_SELECT: 'assets/audio/sfx/ui/select.wav',
@@ -30,6 +31,7 @@ export class SoundManager {
 	private static volume: number = AUDIO.SFX_VOLUME;
 	private static pools: Map<string, HTMLAudioElement[]> = new Map();
 	private static poolIndex: Map<string, number> = new Map();
+	private static ambients: Map<string, HTMLAudioElement> = new Map();
 
 	private static getNext(src: string): HTMLAudioElement {
 		if (!this.pools.has(src)) {
@@ -52,6 +54,23 @@ export class SoundManager {
 		const audio = this.getNext(src);
 		audio.currentTime = 0;
 		audio.play().catch(err => console.warn('[SFX]', err));
+	}
+
+	static playAmbient(src: string, relativeVolume: number = 1.0): void {
+		if (this.ambients.has(src)) return;
+		const a = new Audio(src);
+		a.loop = true;
+		a.volume = this.volume * relativeVolume;
+		a.play().catch(err => console.warn('[SFX ambient]', err));
+		this.ambients.set(src, a);
+	}
+
+	static stopAmbient(src: string): void {
+		const a = this.ambients.get(src);
+		if (!a) return;
+		a.pause();
+		a.currentTime = 0;
+		this.ambients.delete(src);
 	}
 
 	static setVolume(volume: number): void {

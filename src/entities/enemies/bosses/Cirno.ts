@@ -2,6 +2,7 @@ import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { SoundManager, SFX } from '../../../systems/SoundManager';
 import { Patterns } from '../../../game/patterns/PatternLibrary';
+import { Music } from '../../../systems/MusicManager';
 import { BOSS, BOSS_ENTRY } from '../../../game/Constants';
 
 const PHASES: BossPhase[] = [
@@ -10,55 +11,84 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 325,
 		timer: 40,
-		barWeight: 0.45,
+		barWeight: 0.15,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
-			{ type: 'power', count: 6 },
-			{ type: 'life', count: 1 },
+			{ type: 'power', count: 4 },
 		],
-		patterns: [
-			Patterns.DAIYOUSEI_GREEN_HELIX_1,
-			Patterns.DAIYOUSEI_GREEN_HELIX_2,
-			Patterns.DAIYOUSEI_GREEN_HELIX_3,
-			Patterns.DAIYOUSEI_GREEN_HELIX_4,
-			Patterns.DAIYOUSEI_YELLOW_HELIX_1,
-			Patterns.DAIYOUSEI_YELLOW_HELIX_2,
-			Patterns.DAIYOUSEI_YELLOW_HELIX_3,
-			Patterns.DAIYOUSEI_YELLOW_HELIX_4,
-			Patterns.DAIYOUSEI_SUNFLOWER_CIRCLE,
-			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_E,
-			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_N,
-		],
+		patterns: [Patterns.BLANK],
 	},
 	{
-		name: "Fairy Sign 「Daiyousei's Vernal Storm」",
+		name: 'Ice Sign 「Icicle Fall」',
 		isSpellCard: true,
 		hp: 325,
 		timer: 45,
-		barWeight: 0.55,
+		barWeight: 0.18,
 		drops: [
-			{ type: 'bigpoint', count: 4 },
-			{ type: 'power', count: 10 },
+			{ type: 'bigpoint', count: 3 },
+			{ type: 'power', count: 6 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [
-			Patterns.DAIYOUSEI_SUNFLOWER_BOUNCE_EN,
-			Patterns.DAIYOUSEI_SUNFLOWER_BOUNCE_H,
-			Patterns.DAIYOUSEI_SUNFLOWER_BOUNCE_L,
-			Patterns.DAIYOUSEI_CIRCLE_ARROWHEAD,
-			Patterns.DAIYOUSEI_CIRCLE_AIMED_1,
-			Patterns.DAIYOUSEI_CIRCLE_AIMED_2,
+		patterns: [Patterns.BLANK],
+	},
+	{
+		name: '',
+		isSpellCard: false,
+		hp: 325,
+		timer: 40,
+		barWeight: 0.16,
+		drops: [
+			{ type: 'bigpoint', count: 2 },
+			{ type: 'power', count: 5 },
 		],
+		patterns: [Patterns.BLANK],
+	},
+	{
+		name: 'Freeze Sign 「Perfect Freeze」',
+		isSpellCard: true,
+		hp: 325,
+		timer: 50,
+		barWeight: 0.18,
+		drops: [
+			{ type: 'bigpoint', count: 4 },
+			{ type: 'power', count: 8 },
+			{ type: 'bomb', count: 1 },
+		],
+		patterns: [Patterns.BLANK],
+	},
+	{
+		name: '',
+		isSpellCard: false,
+		hp: 325,
+		timer: 40,
+		barWeight: 0.16,
+		drops: [
+			{ type: 'bigpoint', count: 2 },
+			{ type: 'power', count: 5 },
+			{ type: 'life', count: 1 },
+		],
+		patterns: [Patterns.BLANK],
+	},
+	{
+		name: 'Cold Sign 「Frozen Eternity」',
+		isSpellCard: true,
+		hp: 325,
+		timer: 60,
+		barWeight: 0.17,
+		drops: [
+			{ type: 'bigpoint', count: 6 },
+			{ type: 'power', count: 12 },
+			{ type: 'bomb', count: 2 },
+		],
+		patterns: [Patterns.BLANK],
 	},
 ];
 
-const DRIFT_OFFSET_P1 = 95;
-const DRIFT_OFFSET_P2 = 40;
+const DRIFT_OFFSET = 90;
 const DRIFT_LERP = 2.5;
-const MOVE_INTERVAL_P1 = 8.0;
-const MOVE_INTERVAL_P2 = 8.0;
+const MOVE_INTERVAL = 7.0;
 
-export class Daiyousei extends Boss {
+export class Cirno extends Boss {
 	private entered: boolean = false;
 	private charging: boolean = false;
 	private chargeSheet!: Spritesheet;
@@ -70,19 +100,19 @@ export class Daiyousei extends Boss {
 
 	constructor(x: number, y: number) {
 		const idleSheet = new Spritesheet({
-			src: 'assets/sprites/entities/enemies/bosses/daiyousei/daiyousei_spritesheet.png',
+			src: 'assets/sprites/entities/enemies/bosses/cirno/cirno_spritesheet.png',
 			frameX: 32,
 			frameY: 32,
-			frameCount: 7,
+			frameCount: 5,
 			frameSpeed: 0.12,
 			looping: true,
 		});
 		const movingSheet = new Spritesheet({
-			src: 'assets/sprites/entities/enemies/bosses/daiyousei/daiyouseimoving.png',
+			src: 'assets/sprites/entities/enemies/bosses/cirno/cirno_spritesheet.png',
 			frameX: 32,
 			frameY: 32,
-			frameCount: 1,
-			frameSpeed: 1,
+			frameCount: 5,
+			frameSpeed: 0.12,
 			looping: true,
 		});
 		const explSheet = createExplosionSheet();
@@ -98,9 +128,10 @@ export class Daiyousei extends Boss {
 			looping: false,
 		});
 
-		this.scoreValue = 100000;
+		this.scoreValue = 150000;
+		this.music = Music.BOSS2;
 		this.spellcardBgSrc =
-			'assets/sprites/backgrounds/stage2_daiyousei_spellcard.png';
+			'assets/sprites/backgrounds/stage2_cirno_spellcard.png';
 	}
 
 	updateMovement(dt: number): void {
@@ -125,9 +156,6 @@ export class Daiyousei extends Boss {
 			return;
 		}
 
-		const moveInterval =
-			this.currentPhaseIndex === 1 ? MOVE_INTERVAL_P2 : MOVE_INTERVAL_P1;
-
 		if (this.ftmMoving) {
 			const dx = this.ftmMoveTarget - this.x;
 			const dy = BOSS.CENTER_Y - this.y;
@@ -150,12 +178,10 @@ export class Daiyousei extends Boss {
 
 			if (this.state === BossState.ACTIVE) {
 				this.moveTimer += dt;
-				if (this.moveTimer >= moveInterval) {
+				if (this.moveTimer >= MOVE_INTERVAL) {
 					this.ftmMoving = true;
 					this.ftmMoveDir = -this.ftmMoveDir;
-					const driftOffset =
-						this.currentPhaseIndex === 1 ? DRIFT_OFFSET_P2 : DRIFT_OFFSET_P1;
-					this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * driftOffset;
+					this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * DRIFT_OFFSET;
 					this.moveTimer = 0;
 					this.resetPatternEngines();
 				}

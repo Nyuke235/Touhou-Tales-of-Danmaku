@@ -9,6 +9,8 @@ import { BurstShadowBullet } from '../../entities/projectiles/BurstShadowBullet'
 import { StarBullet } from '../../entities/projectiles/StarBullet';
 import { JellybeanBullet } from '../../entities/projectiles/JellybeanBullet';
 import { GravityBullet } from '../../entities/projectiles/GravityBullet';
+import { SunflowerBullet } from '../../entities/projectiles/SunflowerBullet';
+import { BouncingSunflowerBullet } from '../../entities/projectiles/BouncingSunflowerBullet';
 import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
@@ -22,7 +24,9 @@ export type BulletType =
 	| 'burstshadow'
 	| 'star'
 	| 'jellybean'
-	| 'lasertrail';
+	| 'lasertrail'
+	| 'sunflower'
+	| 'sunflower_bounce';
 
 export interface PatternConfig {
 	type:
@@ -129,7 +133,7 @@ export interface PatternConfig {
 }
 
 export interface MorphConfig {
-	type: 'circle' | 'fixed' | 'helix';
+	type: 'circle' | 'fixed' | 'helix' | 'aimed';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -140,6 +144,9 @@ export interface MorphConfig {
 	shots?: number;
 	interval?: number;
 	sweepAngle?: number;
+	// aimed only
+	initSpeed?: number;
+	accelTime?: number;
 }
 
 export class PatternEngine {
@@ -147,6 +154,8 @@ export class PatternEngine {
 	private difficulty: Difficulty;
 	private shotCount: number = 0;
 	private initialized: boolean = false;
+	private lastPx: number = 0;
+	private lastPy: number = 0;
 
 	constructor(difficulty: Difficulty) {
 		this.difficulty = difficulty;
@@ -170,6 +179,8 @@ export class PatternEngine {
 		if (pattern.difficulties && !pattern.difficulties.includes(this.difficulty))
 			return;
 
+		this.lastPx = px;
+		this.lastPy = py;
 		this.timer += dt;
 
 		const cooldown = pattern.cooldown ?? 1.0;
@@ -226,6 +237,9 @@ export class PatternEngine {
 		if (bullet === 'burstshadow') return new BurstShadowBullet(x, y, vx, vy);
 		if (bullet === 'star') return new StarBullet(x, y, vx, vy);
 		if (bullet === 'jellybean') return new JellybeanBullet(x, y, vx, vy, color);
+		if (bullet === 'sunflower') return new SunflowerBullet(x, y, vx, vy);
+		if (bullet === 'sunflower_bounce')
+			return new BouncingSunflowerBullet(x, y, vx, vy);
 		return new BallBullet(x, y, vx, vy, color);
 	}
 
@@ -325,6 +339,20 @@ export class PatternEngine {
 						)
 					);
 				}
+			} else if (mc.type === 'aimed') {
+				const angle = Math.atan2(this.lastPy - y, this.lastPx - x);
+				const b = this.spawn(
+					bullet,
+					x,
+					y,
+					Math.cos(angle) * speed,
+					Math.sin(angle) * speed,
+					color
+				);
+				if (mc.initSpeed !== undefined && mc.accelTime !== undefined) {
+					b.setupAccel(angle, mc.initSpeed, speed, mc.accelTime);
+				}
+				out.push(b);
 			}
 			return out;
 		};

@@ -34,13 +34,13 @@ export class Moth extends Enemy {
 
 		const explSheet = createExplosionSheet();
 
-		super(x, y, 32, 32, 25, sheet, explSheet);
+		super(x, y, 32, 32, 20, sheet, explSheet);
 		this.scoreValue = 8000;
 
 		this.setPatterns(patterns ?? [Patterns.S1_MOTH_ORB_EASY]);
 		this.drops = [
-			{ type: 'power', count: 2 },
-			{ type: 'point', count: 2 },
+			{ type: 'power', count: 3 },
+			{ type: 'point', count: 4 },
 		];
 	}
 

@@ -17,13 +17,21 @@ export class SpellcardBackground {
 	private static ROT_SPEED_2 = -0.38;
 	private static FLASH_DECAY = 3.0;
 
+	private static readonly DEFAULT_SRC = 'assets/sprites/backgrounds/stage1_spellcard.png';
+
 	constructor() {
 		this.img = new Image();
 		this.img.onload = () => (this.loaded = true);
-		this.img.src = 'assets/sprites/backgrounds/stage1_spellcard.png';
+		this.img.src = SpellcardBackground.DEFAULT_SRC;
 	}
 
-	show(): void {
+	show(src?: string): void {
+		if (src && src !== this.img.src) {
+			this.loaded = false;
+			this.img = new Image();
+			this.img.onload = () => (this.loaded = true);
+			this.img.src = src;
+		}
 		this.active = true;
 		this.fadingIn = true;
 		this.fadingOut = false;

@@ -28,7 +28,7 @@ export class MiniSpirit extends Enemy {
 
 		const explSheet = createExplosionSheet();
 
-		super(x, y, 16, 16, 2, sheet, explSheet);
+		super(x, y, 16, 16, 1, sheet, explSheet);
 		this.scoreValue = 2000;
 		this.path = path;
 

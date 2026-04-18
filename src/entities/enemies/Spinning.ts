@@ -38,7 +38,7 @@ const VARIANTS: Record<SpinningColor, SpinningConfig> = {
 	blue: {
 		sprite:
 			'assets/sprites/entities/enemies/spinning/spinningblue_spritesheet.png',
-		hp: 20,
+		hp: 13,
 		drops: [
 			{ type: 'power', count: 2 },
 			{ type: 'point', count: 3 },
@@ -47,7 +47,7 @@ const VARIANTS: Record<SpinningColor, SpinningConfig> = {
 	red: {
 		sprite:
 			'assets/sprites/entities/enemies/spinning/spinningred_spritesheet.png',
-		hp: 20,
+		hp: 13,
 		drops: [
 			{ type: 'power', count: 3 },
 			{ type: 'point', count: 2 },

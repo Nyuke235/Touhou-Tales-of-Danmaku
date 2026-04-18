@@ -24,10 +24,14 @@ interface SpiritConfig {
 	drops: { type: ItemType; count: number }[];
 }
 
-const VARIANTS: { normal: SpiritConfig; red: SpiritConfig; blue: SpiritConfig } = {
+const VARIANTS: {
+	normal: SpiritConfig;
+	red: SpiritConfig;
+	blue: SpiritConfig;
+} = {
 	normal: {
 		sprite: 'assets/sprites/entities/enemies/spirits/spirit_spritesheet.png',
-		hp: 20,
+		hp: 15,
 		defaultPattern: Patterns.S1_SPIRIT_CIRCLE_NORMAL,
 		drops: [
 			{ type: 'power', count: 2 },
@@ -36,7 +40,7 @@ const VARIANTS: { normal: SpiritConfig; red: SpiritConfig; blue: SpiritConfig } 
 	},
 	red: {
 		sprite: 'assets/sprites/entities/enemies/spirits/redspirit_spritesheet.png',
-		hp: 35,
+		hp: 30,
 		defaultPattern: Patterns.S1_CIRCLE_BALL_RED_1,
 		drops: [
 			{ type: 'power', count: 3 },
@@ -45,11 +49,13 @@ const VARIANTS: { normal: SpiritConfig; red: SpiritConfig; blue: SpiritConfig } 
 		],
 	},
 	blue: {
-		sprite: 'assets/sprites/entities/enemies/spirits/bluespirit_spritesheet.png',
-		hp: 25,
+		sprite:
+			'assets/sprites/entities/enemies/spirits/bluespirit_spritesheet.png',
+		hp: 22,
 		defaultPattern: Patterns.S2_FAIRY_AIMED_CYAN_NORMAL,
 		drops: [
 			{ type: 'power', count: 2 },
+			{ type: 'bigpoint', count: 1 },
 			{ type: 'point', count: 4 },
 		],
 	},

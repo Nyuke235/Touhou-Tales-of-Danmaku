@@ -3,6 +3,10 @@ import { Difficulty } from '../GameState';
 
 export const Patterns = {
 
+	BLANK: {
+		type: 'aimed', color: 'purple', speed: 50, delay: 1.0, maxShots: 1,
+	} as PatternConfig,
+
 	// PHASE1 ENNEMIES PATTERNS
 	S1_FAIRY_NORMAL: {
 		type: 'aimed', color: 'purple', speed: 90, delay: 1.0, maxShots: 1,
@@ -424,7 +428,7 @@ export const Patterns = {
 
 	RUMIA_SPECTRAL_COMET_EASY: {
 		type: 'orbit', bullet: 'lasertrail', color: 'purple',
-		count: 6,
+		count: 4,
 		angularVel: Math.PI * 0.22,
 		radialVel: 55,
 		startAngle: 0,
@@ -435,7 +439,7 @@ export const Patterns = {
 
 	RUMIA_SPECTRAL_COMET: {
 		type: 'orbit', bullet: 'lasertrail', color: 'purple',
-		count: 8,
+		count: 6,
 		angularVel: Math.PI * 0.30,
 		radialVel: 65,
 		startAngle: 0,
@@ -446,7 +450,7 @@ export const Patterns = {
 
 	RUMIA_SPECTRAL_COMET_CCW: {
 		type: 'orbit', bullet: 'lasertrail', color: 'purple',
-		count: 8,
+		count: 6,
 		angularVel: -(Math.PI * 0.30),
 		radialVel: 65,
 		startAngle: Math.PI / 8,
@@ -735,38 +739,38 @@ export const Patterns = {
 	} as PatternConfig,
 
 	S2_GRAVITY_E: {
-		type: 'gravity', color: 'cyan', speed: 20, spread: Math.PI,
-		count: 1, gravity: 70, delay: 1.0, cooldown: 1.5, maxShots: 2,
+		type: 'gravity', color: 'cyan', speed: 10, spread: Math.PI,
+		count: 1, gravity: 50, delay: 1.0, cooldown: 1.5, maxShots: 2,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	S2_GRAVITY_NH: {
-		type: 'gravity', color: 'cyan', speed: 20, spread: Math.PI,
-		count: 2, gravity: 70, delay: 1.0, cooldown: 2.0, maxshots: 2,
+		type: 'gravity', color: 'cyan', speed: 10, spread: Math.PI,
+		count: 2, gravity: 50, delay: 1.0, cooldown: 2.0, maxshots: 2,
 		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
 	} as PatternConfig,
 
 	S2_GRAVITY_L: {
-		type: 'gravity', color: 'cyan', speed: 20, spread: Math.PI,
-		count: 3, gravity: 70, delay: 1.0, cooldown: 2.0, maxShots: 3,
+		type: 'gravity', color: 'cyan', speed: 10, spread: Math.PI,
+		count: 3, gravity: 50, delay: 1.0, cooldown: 2.0, maxShots: 3,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	S2_SGRAVITY_E: {
-		type: 'gravity', color: 'blue', speed: 20, spread: Math.PI,
-		count: 1, gravity: 100, delay: 0.5, cooldown: 1.5, maxShots: 2,
+		type: 'gravity', color: 'blue', speed: 10, spread: Math.PI,
+		count: 1, gravity: 80, delay: 0.5, cooldown: 1.5, maxShots: 2,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	S2_SGRAVITY_NH: {
-		type: 'gravity', color: 'blue', speed: 20, spread: Math.PI,
-		count: 2, gravity: 100, delay: 0.5, cooldown: 1.5, maxshots: 3,
+		type: 'gravity', color: 'blue', speed: 10, spread: Math.PI,
+		count: 2, gravity: 80, delay: 0.5, cooldown: 1.5, maxshots: 3,
 		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
 	} as PatternConfig,
 
 	S2_SGRAVITY_L: {
-		type: 'gravity', color: 'blue', speed: 20, spread: Math.PI,
-		count: 3, gravity: 100, delay: 0.5, cooldown: 1.5, maxShots: 3,
+		type: 'gravity', color: 'blue', speed: 10, spread: Math.PI,
+		count: 3, gravity: 80, delay: 0.5, cooldown: 1.5, maxShots: 3,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -774,7 +778,7 @@ export const Patterns = {
 	DAIYOUSEI_GREEN_HELIX_1: {
 		type: 'helix', bullet: 'arrowhead', color: 'green',
 		count: 1, speed: 100, sweepAngle: Math.PI * 6, startAngle: 0,
-		delay: 1.0, cooldown: 0.015, maxShots: 90,
+		delay: 1.1, cooldown: 0.015, maxShots: 90,
 	} as PatternConfig,
 
 	DAIYOUSEI_GREEN_HELIX_2: {
@@ -801,35 +805,131 @@ export const Patterns = {
 	DAIYOUSEI_YELLOW_HELIX_1: {
 		type: 'helix', bullet: 'arrowhead', color: 'yellow',
 		count: 1, speed: 100, sweepAngle: -Math.PI * 6, startAngle: 0,
-		delay: 2.0, cooldown: 0.015, maxShots: 90,
+		delay: 2.2, cooldown: 0.015, maxShots: 90,
 	} as PatternConfig,
 
 	DAIYOUSEI_YELLOW_HELIX_2: {
 		type: 'helix', bullet: 'arrowhead', color: 'yellow',
 		count: 1, speed: 110, sweepAngle: -Math.PI * 6, startAngle: 0,
-		delay: 2.2, cooldown: 0.013, maxShots: 90,
+		delay: 2.3, cooldown: 0.013, maxShots: 90,
 		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	DAIYOUSEI_YELLOW_HELIX_3: {
 		type: 'helix', bullet: 'arrowhead', color: 'yellow',
 		count: 1, speed: 100, sweepAngle: -Math.PI * 6, startAngle: 0,
-		delay: 2.3, cooldown: 0.011, maxShots: 90,
+		delay: 2.4, cooldown: 0.011, maxShots: 90,
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	DAIYOUSEI_YELLOW_HELIX_4: {
 		type: 'helix', bullet: 'arrowhead', color: 'yellow',
 		count: 1, speed: 130, sweepAngle: -Math.PI * 6, startAngle: 0,
-		delay: 2.4, cooldown: 0.009, maxShots: 90,
+		delay: 2.5, cooldown: 0.009, maxShots: 90,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
+	DAIYOUSEI_SUNFLOWER_CIRCLE: {
+		type: 'circle', bullet: 'sunflower',
+		count: 10, speed: 70, startAngle: 0, rotStep: Math.PI / 2,
+		delay: 3.8, cooldown: 0.45, maxShots: 3, ringAngleStep: Math.PI / 7,
+	} as PatternConfig,
+
+	DAIYOUSEI_JELLYBEAN_HELIX_E: {
+		type: 'helix', bullet: 'jellybean', color: 'green',
+		count: 3, speed: 100, sweepAngle: Math.PI * 9,
+		delay: 3.9, cooldown: 0.09, maxShots: 40,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	DAIYOUSEI_JELLYBEAN_HELIX_N: {
+		type: 'helix', bullet: 'jellybean', color: 'green',
+		count: 3, speed: 110, sweepAngle: Math.PI * 9,
+		delay: 3.9, cooldown: 0.08, maxShots: 50,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
 	// DAIYOUSEI PHASE 2 (spellcard)
-	DAIYOUSEI_SPELL_HELIX_1: {
-		type: 'helix', bullet: 'rice', color: 'blue',
-		count: 3, speed: 100, sweepAngle: Math.PI * 6,
-		delay: 1.0, cooldown: 0.15, maxShots: 40,
+	DAIYOUSEI_SUNFLOWER_BOUNCE_EN: {
+		type: 'circle', bullet: 'sunflower_bounce',
+		count: 10, speed: 55, startAngle: Math.PI / 2, rotStep: Math.PI / 6,
+		delay: 0.5, cooldown: 7.0, maxShots: 1,
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+	} as PatternConfig,
+
+	DAIYOUSEI_SUNFLOWER_BOUNCE_H: {
+		type: 'circle', bullet: 'sunflower_bounce',
+		count: 13, speed: 55, startAngle: Math.PI / 2, rotStep: Math.PI / 6,
+		delay: 0.5, cooldown: 7.0, maxShots: 1,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	DAIYOUSEI_SUNFLOWER_BOUNCE_L: {
+		type: 'circle', bullet: 'sunflower_bounce',
+		count: 10, speed: 55, startAngle: Math.PI / 2, rotStep: Math.PI / 6,
+		delay: 0.5, cooldown: 3.0, maxShots: 2,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	DAIYOUSEI_CIRCLE_ARROWHEAD: {
+		type: 'circle', bullet: 'arrowhead', color: 'green',
+		count: 12, speed: 50, initSpeed: 120, accelTime: 2.0, startAngle: 0,
+		delay: 0.8, cooldown: 0.2,
+	} as PatternConfig,
+
+	DAIYOUSEI_CIRCLE_AIMED_1: {
+		type: 'circle', bullet: 'orb', color: 'yellow',
+		count: 8, speed: 12, startAngle: 0, rotStep: Math.PI / 8,
+		delay: 2.8, cooldown: 7.0, initSpeed: 40, accelTime: 1.6,
+		morphDelay: 2.2,
+		morphDeactivate: true,
+		morphConfig: {
+			type: 'aimed',
+			bullet: 'orb',
+			color: 'yellow',
+			speed: 100,
+			initSpeed: 12,
+			accelTime: 2.1,
+		},
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	DAIYOUSEI_CIRCLE_AIMED_2: {
+		type: 'circle', bullet: 'orb', color: 'yellow',
+		count: 8, speed: 12, startAngle: 0, rotStep: Math.PI / 8,
+		delay: 2.8, cooldown: 7.0, initSpeed: 40, accelTime: 1.6,
+		morphDelay: 2.2,
+		morphDeactivate: true,
+		morphConfig: {
+			type: 'aimed',
+			bullet: 'orb',
+			color: 'yellow',
+			speed: 150,
+			initSpeed: 12,
+			accelTime: 1.5,
+		},
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	// STAGE 2 AFTER MID BOSS
+
+	S2_NENUPHAR_ORBS_E: {
+		type: 'spread', bullet: 'jellybean', color: 'green',
+		count: 5, speed: 110, delay: 1.0, maxShots: 1, spread: 0.5,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_NENUPHAR_ORBS_N: {
+		type: 'volley-spread', bullet: 'jellybean', color: 'green', 
+		speed: 110, deltaSpeed: 20, delay: 1.0, maxShots: 1,
+		count: 5, streams: 3, spread: 0.5,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_NENUPHAR_ORBS_H: {
+		type: 'volley-spread', bullet: 'jellybean', color: 'green', 
+		speed: 110, deltaSpeed: 20, delay: 1.0, maxShots: 1,
+		count: 5, streams: 6, spread: 0.5,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 };
