@@ -242,6 +242,7 @@ export class GameScene {
 		this.enemyManager.onDrop = (x, y, drops) =>
 			this.itemManager.dropFromEnemy(x, y, drops);
 		this.enemyManager.onScore = value => this.scoreManager.add(value);
+		this.enemyManager.onFreezePlayer = () => this.player.freeze(0.12);
 		this.enemyManager.onStageComplete = spellcardEntry
 			? undefined
 			: () => this.nextStage();
@@ -565,6 +566,7 @@ export class GameScene {
 		if (this.lives === 0) {
 			this.loop.stop();
 			MusicManager.pause();
+			this.blizzardManager.reset();
 			setTimeout(() => this.triggerGameOver(), 1500);
 		}
 	}

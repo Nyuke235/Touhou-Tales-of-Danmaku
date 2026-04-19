@@ -194,6 +194,7 @@ export abstract class Enemy {
 	}
 
 	onDeath?: () => void;
+	onFreezePlayer?: () => void;
 
 	render(ctx: CanvasRenderingContext2D): void {
 		ctx.save();

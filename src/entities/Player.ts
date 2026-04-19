@@ -43,6 +43,8 @@ export class Player {
 	private blinkTimer: number = 0;
 	private visible: boolean = true;
 
+	private frozenTimer: number = 0;
+
 	private options: IOption[] = [];
 	getNearestEnemy:
 		| ((x: number, y: number) => { x: number; y: number } | null)
@@ -181,8 +183,19 @@ export class Player {
 		SoundManager.play(SFX.PLAYER_SHOOT);
 	}
 
+	freeze(duration: number): void {
+		this.frozenTimer = Math.max(this.frozenTimer, duration);
+	}
+
+	isFrozen(): boolean {
+		return this.frozenTimer > 0;
+	}
+
 	private handleMovement(dt: number, focused: boolean): void {
-		this.speed = focused ? this.config.focusSpeed : this.config.speed;
+		if (this.frozenTimer > 0) this.frozenTimer -= dt;
+		const freezeMult = this.frozenTimer > 0 ? 0.32 : 1.0;
+		this.speed =
+			(focused ? this.config.focusSpeed : this.config.speed) * freezeMult;
 
 		let dx = 0;
 		let dy = 0;

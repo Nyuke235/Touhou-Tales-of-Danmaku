@@ -32,9 +32,8 @@ export class Nenuphar extends Enemy {
 			Patterns.S2_NENUPHAR_ORBS_H,
 		]);
 		this.drops = [
-			{ type: 'point', count: 4 },
-			{ type: 'power', count: 2 },
-			{ type: 'life', count: 1 },
+			{ type: 'point', count: 5 },
+			{ type: 'power', count: 3 },
 		];
 	}
 

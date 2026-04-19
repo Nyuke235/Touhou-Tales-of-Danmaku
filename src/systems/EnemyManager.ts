@@ -34,6 +34,7 @@ export class EnemyManager {
 	onDrop: (x: number, y: number, drops: ItemDrop[]) => void = () => {};
 	onScore: (value: number) => void = () => {};
 	onEnemyDamage?: (spawnId: number, damage: number) => void;
+	onFreezePlayer?: () => void;
 
 	constructor() {
 		this.warningImage.src = 'assets/sprites/effects/warning.png';
@@ -94,6 +95,7 @@ export class EnemyManager {
 			enemy.onDeath = () => {
 				this.onDrop(enemy.x, enemy.y, enemy.drops);
 			};
+			enemy.onFreezePlayer = this.onFreezePlayer;
 
 			this.enemies.push(enemy);
 			if (enemy instanceof Boss) {

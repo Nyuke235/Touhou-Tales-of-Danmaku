@@ -24,8 +24,9 @@ const PHASES: BossPhase[] = [
 			Patterns.RUMIA_JELLYBEAN_SPIRAL_2,
 			Patterns.RUMIA_JELLYBEAN_SPIRAL_3,
 			Patterns.RUMIA_JELLYBEAN_SPIRAL_4,
-			Patterns.RUMIA_ORB_RINGS,
-			Patterns.RUMIA_ORB_RINGS_MORE,
+			Patterns.RUMIA_ORB_RINGS_E,
+			Patterns.RUMIA_ORB_RINGS_NH,
+			Patterns.RUMIA_ORB_RINGS_L,
 		],
 	},
 	{

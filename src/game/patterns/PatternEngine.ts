@@ -404,16 +404,29 @@ export class PatternEngine {
 				const base = Math.atan2(py - ey, px - ex);
 				for (let i = 0; i < count; i++) {
 					const angle = base - spread / 2 + (spread / (count - 1 || 1)) * i;
-					this.spawnWithAccel(
-						pattern,
-						bullet,
-						ex,
-						ey,
-						angle,
-						speed,
-						color,
-						out
-					);
+					if (bullet === 'lasertrail') {
+						out.push(
+							new LaserTrailBullet(
+								ex,
+								ey,
+								angle,
+								pattern.angularVel ?? 0,
+								pattern.radialVel ?? speed,
+								color
+							)
+						);
+					} else {
+						this.spawnWithAccel(
+							pattern,
+							bullet,
+							ex,
+							ey,
+							angle,
+							speed,
+							color,
+							out
+						);
+					}
 				}
 				break;
 			}

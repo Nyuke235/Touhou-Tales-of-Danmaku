@@ -7,7 +7,8 @@ export const Patterns = {
 		type: 'aimed', color: 'purple', speed: 50, delay: 1.0, maxShots: 1,
 	} as PatternConfig,
 
-	// PHASE1 ENNEMIES PATTERNS
+	// -------------------- STAGE 1 FIRST WAVES --------------------
+
 	S1_FAIRY_NORMAL: {
 		type: 'aimed', color: 'purple', speed: 90, delay: 1.0, maxShots: 1,
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
@@ -21,7 +22,7 @@ export const Patterns = {
 
 	S1_FAIRY_LUNA: {
 		type: 'volley-spread', color: 'purple', speed: 100, deltaSpeed: 15, delay: 1.0, maxShots: 1,
-		count: 3, streams: 5, spread: 0.3,
+		count: 3, streams: 3, spread: 0.3,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -39,7 +40,7 @@ export const Patterns = {
 
 	S1_ACCEL_LUNA: {
 		type: 'aimed', color: 'yellow', speed: 50, initSpeed: 15, accelTime: 0.875,
-		delay: 1, cooldown: 0.5, maxShots: 4,
+		delay: 1, cooldown: 0.5, maxShots: 3,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -114,25 +115,25 @@ export const Patterns = {
 	} as PatternConfig,
 
 	S1_AIMED_RICE: {
-		type: 'aimed', bullet: 'rice', color: 'purple', speed: 90, delay: 1.0, maxShots: 1,
+		type: 'aimed', bullet: 'rice', color: 'purple', speed: 85, delay: 1.0, maxShots: 1,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	S1_SPREAD_RICE: {
 		type: 'spread', bullet: 'rice', color: 'purple',
-		count: 3, spread: 0.45, speed: 85, delay: 1.2, maxShots: 1,
+		count: 3, spread: 0.5, speed: 85, delay: 1.2, maxShots: 1,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
 	S1_SPREAD_RICE_2: {
 		type: 'spread', bullet: 'rice', color: 'purple',
-		count: 3, spread: 0.45, speed: 95, delay: 1.2, cooldown: 0.4, maxShots: 2,
+		count: 3, spread: 0.5, speed: 95, delay: 1.2, cooldown: 0.4, maxShots: 1,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S1_SPREAD_RICE_3: {
 		type: 'spread', bullet: 'rice', color: 'purple',
-		count: 3, spread: 0.45, speed: 100, delay: 1.2, cooldown: 0.4, maxShots: 3,
+		count: 3, spread: 0.5, speed: 95, delay: 1.2, cooldown: 0.4, maxShots: 2,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -156,19 +157,19 @@ export const Patterns = {
 
 	S1_CIRCLE_BALL_RED_1: {
 		type: 'circle', bullet: 'ball', color: 'red',
-		count: 12, speed: 75, delay: 2.0, cooldown: 3.0, maxShots: 2,
+		count: 8, speed: 75, delay: 2.0, maxShots: 1,
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
 	} as PatternConfig,
 
 	S1_CIRCLE_BALL_RED_2: {
 		type: 'circle', bullet: 'ball', color: 'red',
-		count: 16, speed: 75, delay: 2.0, cooldown: 3.0, maxShots: 2,
+		count: 12, speed: 75, delay: 2.0, maxShots: 1,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	S1_CIRCLE_BALL_RED_3: {
 		type: 'circle', bullet: 'ball', color: 'red',
-		count: 20, speed: 80, delay: 2.0, cooldown: 3.0, maxShots: 2,
+		count: 16, speed: 80, delay: 2.0, maxShots: 1,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
@@ -236,7 +237,7 @@ export const Patterns = {
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
-	// Dark Rumia
+	// -------------------- DARK RUMIA PHASE 1 --------------------
 	RUMIA_PINWHEEL_1: {
 		type: 'helix', bullet: 'ball', color: 'purple',
 		count: 3, startAngle: 0, sweepAngle: Math.PI * 2.1,
@@ -278,27 +279,29 @@ export const Patterns = {
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 
+	// -------------------- DARK RUMIA SPELLCARD --------------------
+
 	RUMIA_ROSE_1: {
 		type: 'rose', bullet: 'rice', color: 'purple',
 		roseN: 4, count: 1,
-		speed: 90, startAngle: 0,
-		rotStep: 0.07, cooldown: 0.12, delay: 0.5,
+		speed: 80, startAngle: 0,
+		rotStep: 0.07, cooldown: 0.15, delay: 0.5,
 		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
 	} as PatternConfig,
 
 	RUMIA_ROSE_2: {
 		type: 'rose', bullet: 'rice', color: 'purple',
 		roseN: 4, count: 1,
-		speed: 100, startAngle: 0,
-		rotStep: 0.07, cooldown: 0.09, delay: 0.5,
+		speed: 90, startAngle: 0,
+		rotStep: 0.07, cooldown: 0.12, delay: 0.5,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	RUMIA_ROSE_3: {
 		type: 'rose', bullet: 'rice', color: 'purple',
 		roseN: 4, count: 1,
-		speed: 105, startAngle: 0,
-		rotStep: 0.07, cooldown: 0.08, delay: 0.5,
+		speed: 90, startAngle: 0,
+		rotStep: 0.07, cooldown: 0.09, delay: 0.5,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -331,7 +334,7 @@ export const Patterns = {
 	} as PatternConfig,
 
 
-	// Rumia phases
+	// -------------------- RUMIA PHASE 1 --------------------
 	RUMIA_STARWHEEL: {
 		type: 'helix', bullet: 'star', color: 'yellow',
 		count: 1, startAngle: 0, sweepAngle: Math.PI * 6.0,
@@ -398,31 +401,40 @@ export const Patterns = {
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
-	RUMIA_ORB_RINGS: {
+	RUMIA_ORB_RINGS_E: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
-		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0, rotStep: Math.PI / 2,
-		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 7,
-		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: Math.PI / 4,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 6,
+		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
-	RUMIA_ORB_RINGS_MORE: {
+	RUMIA_ORB_RINGS_NH: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
-		count: 18, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0, rotStep: Math.PI / 2,
+		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: Math.PI / 4,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 7,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	RUMIA_ORB_RINGS_L: {
+		type: 'circle', bullet: 'orb', color: 'yellow',
+		count: 18, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0,
 		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 8,
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
 
+	// -------------------- RUMIA PHASE 3 --------------------
+
 	RUMIA_VOLLEY_HARD: {
 		type: 'volley-spread', color: 'yellow', speed: 100,
-		deltaSpeed: 15, delay: 1.0, cooldown: 1.8, maxShots: 6,
-		count: 3, streams: 5, spread: 0.3,
+		deltaSpeed: 15, delay: 1.0, cooldown: 2.8, maxShots: 3,
+		count: 3, streams: 5, spread: 0.4,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	RUMIA_VOLLEY_LUNATIC: {
 		type: 'volley-spread', color: 'yellow', speed: 100,
-		deltaSpeed: 15, delay: 1.0, cooldown: 1.8, maxShots: 6,
-		count: 5, streams: 6, spread: 0.3,
+		deltaSpeed: 15, delay: 1.0, cooldown: 2.8, maxShots: 3,
+		count: 5, streams: 6, spread: 0.4,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -774,6 +786,76 @@ export const Patterns = {
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
+	S2_ICEBUTTERFLY_FIRSTCIRCLE_E: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 12, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.7, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_SECONDCIRCLE_E: {
+		type: 'circle', bullet: 'ball', color: 'cyan',
+		count: 12, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.8, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_FIRSTCIRCLE_NH: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 18, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.7, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_SECONDCIRCLE_NH: {
+		type: 'circle', bullet: 'ball', color: 'cyan',
+		count: 18, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.8, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_FIRSTCIRCLE_L: {
+		type: 'circle', bullet: 'jellybean', color: 'blue',
+		count: 26, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.7, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_SECONDCIRCLE_L: {
+		type: 'circle', bullet: 'ball', color: 'cyan',
+		count: 26, speed: 100, startAngle: Math.PI / 4,
+		delay: 2.8, cooldown: 0.45, maxShots: 1,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_TRAIL_E: {
+		type: 'spread', bullet: 'lasertrail', color: 'blue', 
+		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
+		count: 2, spread: 0.3,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_TRAIL_N: {
+		type: 'spread', bullet: 'lasertrail', color: 'blue', 
+		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
+		count: 4, spread: 0.7,
+		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_TRAIL_H: {
+		type: 'spread', bullet: 'lasertrail', color: 'blue', 
+		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
+		count: 4, spread: 0.55,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	S2_ICEBUTTERFLY_TRAIL_L: {
+		type: 'spread', bullet: 'lasertrail', color: 'blue', 
+		speed: 150, delay: 3.8, cooldown: 2.8, maxShots: 1,
+		count: 4, spread: 0.55,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
 	// DAIYOUSEI PHASE 1
 	DAIYOUSEI_GREEN_HELIX_1: {
 		type: 'helix', bullet: 'arrowhead', color: 'green',
@@ -847,6 +929,20 @@ export const Patterns = {
 		count: 3, speed: 110, sweepAngle: Math.PI * 9,
 		delay: 3.9, cooldown: 0.08, maxShots: 50,
 		difficulties: [Difficulty.NORMAL]
+	} as PatternConfig,
+
+	DAIYOUSEI_JELLYBEAN_HELIX_H: {
+		type: 'helix', bullet: 'jellybean', color: 'green',
+		count: 3, speed: 110, sweepAngle: Math.PI * 9,
+		delay: 3.9, cooldown: 0.06, maxShots: 70,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	DAIYOUSEI_JELLYBEAN_HELIX_L: {
+		type: 'helix', bullet: 'jellybean', color: 'green',
+		count: 3, speed: 110, sweepAngle: Math.PI * 9,
+		delay: 3.9, cooldown: 0.04, maxShots: 90,
+		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	// DAIYOUSEI PHASE 2 (spellcard)
