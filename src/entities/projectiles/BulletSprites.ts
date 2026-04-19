@@ -7,7 +7,8 @@ export type BulletColor =
 	| 'purple'
 	| 'orange'
 	| 'cyan'
-	| 'green';
+	| 'green'
+	| 'gray';
 
 export const BALL_SPRITES: {
 	blue: string;
@@ -17,12 +18,14 @@ export const BALL_SPRITES: {
 	orange?: string;
 	cyan?: string;
 	green?: string;
+	gray?: string;
 } = {
 	red: 'assets/sprites/projectiles/hostile/ballred.png',
 	blue: 'assets/sprites/projectiles/hostile/ballblue.png',
 	yellow: 'assets/sprites/projectiles/hostile/ballyellow.png',
 	purple: 'assets/sprites/projectiles/hostile/ballpurple.png',
 	cyan: 'assets/sprites/projectiles/hostile/ballcyan.png',
+	gray: 'assets/sprites/projectiles/hostile/ballgray.png',
 };
 
 export const ARROWHEAD_SPRITES: {
@@ -33,6 +36,7 @@ export const ARROWHEAD_SPRITES: {
 	orange?: string;
 	cyan?: string;
 	green?: string;
+	gray?: string;
 } = {
 	purple: 'assets/sprites/projectiles/hostile/arrowheadpurple.png',
 	red: 'assets/sprites/projectiles/hostile/arrowheadred.png',
@@ -50,8 +54,10 @@ export const RICE_SPRITES: {
 	orange?: string;
 	cyan?: string;
 	green?: string;
+	gray?: string;
 } = {
 	purple: 'assets/sprites/projectiles/hostile/ricepurple.png',
+	cyan: 'assets/sprites/projectiles/hostile/ricecyan.png',
 };
 
 export const ORB_SPRITES: {
@@ -62,6 +68,7 @@ export const ORB_SPRITES: {
 	orange?: string;
 	cyan?: string;
 	green?: string;
+	gray?: string;
 } = {
 	blue: 'assets/sprites/projectiles/hostile/orbblue.png',
 	yellow: 'assets/sprites/projectiles/hostile/orbyellow.png',

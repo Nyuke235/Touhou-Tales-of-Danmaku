@@ -12,6 +12,7 @@ import { GravityBullet } from '../../entities/projectiles/GravityBullet';
 import { SunflowerBullet } from '../../entities/projectiles/SunflowerBullet';
 import { BouncingSunflowerBullet } from '../../entities/projectiles/BouncingSunflowerBullet';
 import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
+import { IceCubeBullet } from '../../entities/projectiles/IceCubeBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -26,7 +27,8 @@ export type BulletType =
 	| 'jellybean'
 	| 'lasertrail'
 	| 'sunflower'
-	| 'sunflower_bounce';
+	| 'sunflower_bounce'
+	| 'icecube';
 
 export interface PatternConfig {
 	type:
@@ -240,6 +242,7 @@ export class PatternEngine {
 		if (bullet === 'sunflower') return new SunflowerBullet(x, y, vx, vy);
 		if (bullet === 'sunflower_bounce')
 			return new BouncingSunflowerBullet(x, y, vx, vy);
+		if (bullet === 'icecube') return new IceCubeBullet(x, y, vx, vy);
 		return new BallBullet(x, y, vx, vy, color);
 	}
 
@@ -288,59 +291,7 @@ export class PatternEngine {
 			const speed = mc.speed ?? 80;
 			const count = Math.max(1, mc.count ?? 8);
 
-			if (mc.type === 'circle') {
-				const baseAngle = mc.startAngle ?? 0;
-				for (let i = 0; i < count; i++) {
-					const angle = baseAngle + (i / count) * Math.PI * 2;
-					out.push(
-						this.spawn(
-							bullet,
-							x,
-							y,
-							Math.cos(angle) * speed,
-							Math.sin(angle) * speed,
-							color
-						)
-					);
-				}
-			} else if (mc.type === 'fixed') {
-				const baseAngle = mc.startAngle ?? 0;
-				const spread = mc.spread ?? 0;
-				for (let i = 0; i < count; i++) {
-					const angle =
-						count > 1
-							? baseAngle - spread / 2 + (spread / (count - 1)) * i
-							: baseAngle;
-					out.push(
-						this.spawn(
-							bullet,
-							x,
-							y,
-							Math.cos(angle) * speed,
-							Math.sin(angle) * speed,
-							color
-						)
-					);
-				}
-			} else if (mc.type === 'helix') {
-				const shots = mc.shots ?? 12;
-				const step = (mc.sweepAngle ?? Math.PI * 2) / shots;
-				const baseAngle = (mc.startAngle ?? 0) + shotIndex * step;
-				for (let i = 0; i < count; i++) {
-					const angle = baseAngle + (i / count) * Math.PI * 2;
-					out.push(
-						this.spawn(
-							bullet,
-							x,
-							y,
-							Math.cos(angle) * speed,
-							Math.sin(angle) * speed,
-							color
-						)
-					);
-				}
-			} else if (mc.type === 'aimed') {
-				const angle = Math.atan2(this.lastPy - y, this.lastPx - x);
+			const spawnB = (angle: number) => {
 				const b = this.spawn(
 					bullet,
 					x,
@@ -352,7 +303,34 @@ export class PatternEngine {
 				if (mc.initSpeed !== undefined && mc.accelTime !== undefined) {
 					b.setupAccel(angle, mc.initSpeed, speed, mc.accelTime);
 				}
-				out.push(b);
+				return b;
+			};
+
+			if (mc.type === 'circle') {
+				const baseAngle = mc.startAngle ?? 0;
+				for (let i = 0; i < count; i++) {
+					out.push(spawnB(baseAngle + (i / count) * Math.PI * 2));
+				}
+			} else if (mc.type === 'fixed') {
+				const baseAngle = mc.startAngle ?? 0;
+				const spread = mc.spread ?? 0;
+				for (let i = 0; i < count; i++) {
+					const angle =
+						count > 1
+							? baseAngle - spread / 2 + (spread / (count - 1)) * i
+							: baseAngle;
+					out.push(spawnB(angle));
+				}
+			} else if (mc.type === 'helix') {
+				const shots = mc.shots ?? 12;
+				const step = (mc.sweepAngle ?? Math.PI * 2) / shots;
+				const baseAngle = (mc.startAngle ?? 0) + shotIndex * step;
+				for (let i = 0; i < count; i++) {
+					out.push(spawnB(baseAngle + (i / count) * Math.PI * 2));
+				}
+			} else if (mc.type === 'aimed') {
+				const angle = Math.atan2(this.lastPy - y, this.lastPx - x);
+				out.push(spawnB(angle));
 			}
 			return out;
 		};

@@ -16,10 +16,19 @@ const PHASES: BossPhase[] = [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 4 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_ICE_HELIX_E,
+			Patterns.CIRNO_ICE_HELIX_CW_E,
+			Patterns.CIRNO_ICE_HELIX_N,
+			Patterns.CIRNO_ICE_HELIX_CW_N,
+			Patterns.CIRNO_ICE_HELIX_H,
+			Patterns.CIRNO_ICE_HELIX_CW_H,
+			Patterns.CIRNO_ICE_HELIX_L,
+			Patterns.CIRNO_ICE_HELIX_CW_L,
+		],
 	},
 	{
-		name: 'Ice Sign 「Icicle Fall」',
+		name: 'Ice Sign 「No miss!icicle homing missile」',
 		isSpellCard: true,
 		hp: 325,
 		timer: 45,
@@ -29,7 +38,18 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 6 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_AIMED_ICECUBES_E,
+			Patterns.CIRNO_CIRCLE_CRISTALS_E,
+			Patterns.CIRNO_AIMED_ICECUBES_N,
+			Patterns.CIRNO_CIRCLE_CRISTALS_N,
+			Patterns.CIRNO_AIMED_ICECUBES_H,
+			Patterns.CIRNO_CIRCLE_CRISTALS_H,
+			Patterns.CIRNO_AIMED_ICECUBES_L,
+			Patterns.CIRNO_CIRCLE_CRISTALS_L,
+			Patterns.CIRNO_SIMPLE_CIRCLE_EN,
+			Patterns.CIRNO_SIMPLE_CIRCLE_HL,
+		],
 	},
 	{
 		name: '',
@@ -84,7 +104,8 @@ const PHASES: BossPhase[] = [
 	},
 ];
 
-const DRIFT_OFFSET = 90;
+const DRIFT_OFFSET_NORMAL = 90;
+const DRIFT_OFFSET_SPELL = 40;
 const DRIFT_LERP = 2.5;
 const MOVE_INTERVAL = 7.0;
 
@@ -181,7 +202,11 @@ export class Cirno extends Boss {
 				if (this.moveTimer >= MOVE_INTERVAL) {
 					this.ftmMoving = true;
 					this.ftmMoveDir = -this.ftmMoveDir;
-					this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * DRIFT_OFFSET;
+					const driftOffset =
+						this.currentPhaseIndex % 2 === 1
+							? DRIFT_OFFSET_SPELL
+							: DRIFT_OFFSET_NORMAL;
+					this.ftmMoveTarget = BOSS.CENTER_X + this.ftmMoveDir * driftOffset;
 					this.moveTimer = 0;
 					this.resetPatternEngines();
 				}
