@@ -9,6 +9,6 @@ export class BallBullet extends StaticBullet {
 		vy: number,
 		color: BulletColor = 'blue'
 	) {
-		super(x, y, vx, vy, 12, 12, BALL_SPRITES[color] ?? BALL_SPRITES.blue);
+		super(x, y, vx, vy, 12, 12, BALL_SPRITES[color] ?? BALL_SPRITES.blue!);
 	}
 }

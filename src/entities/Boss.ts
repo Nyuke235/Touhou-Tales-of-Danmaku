@@ -4,7 +4,7 @@ import { PatternConfig } from '../game/patterns/PatternEngine';
 import { Enemy } from './Enemy';
 import { ItemType } from './Item';
 import { SoundManager, SFX } from '../systems/SoundManager';
-import { BOSS as B, FIELD } from '../game/Constants';
+import { BOSS as B, BOSS_ENTRY, FIELD } from '../game/Constants';
 
 export interface BossPhase {
 	name: string;
@@ -36,6 +36,7 @@ const CENTER_X = B.CENTER_X;
 const CENTER_Y = B.CENTER_Y;
 const RETURN_LERP = B.RETURN_LERP;
 const PHASE_WAIT = B.PHASE_WAIT;
+const FTM_LERP = 2.5;
 
 export abstract class Boss extends Enemy {
 	private static readonly shadowImg: HTMLImageElement = (() => {
@@ -51,6 +52,14 @@ export abstract class Boss extends Enemy {
 	protected isMoving: boolean = false;
 
 	protected state: BossState = BossState.ENTRY;
+
+	protected entered: boolean = false;
+	protected charging: boolean = false;
+	protected chargeSheet: Spritesheet;
+
+	protected ftmMoving: boolean = false;
+	protected ftmMoveDir: number = 1;
+	protected ftmMoveTarget: number = CENTER_X;
 
 	protected idleSheet: Spritesheet;
 	protected movingSheet: Spritesheet;
@@ -77,6 +86,64 @@ export abstract class Boss extends Enemy {
 	protected completeEntry(): void {
 		this.state = BossState.ACTIVE;
 		this.onReady?.();
+	}
+
+	protected handleEntryAndCharge(dt: number): boolean {
+		if (!this.entered) {
+			this.y += BOSS_ENTRY.ENTRY_SPEED * dt;
+			this.isMoving = false;
+			if (this.y >= CENTER_Y) {
+				this.y = CENTER_Y;
+				this.entered = true;
+				this.charging = true;
+				SoundManager.play(SFX.BOSS_CHARGE);
+			}
+			return true;
+		}
+		if (this.charging) {
+			this.chargeSheet.update(dt);
+			if (this.chargeSheet.isFinished()) {
+				this.charging = false;
+				this.completeEntry();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	protected handleFtmMovement(
+		dt: number,
+		driftOffset: number,
+		shouldMove: boolean,
+		onTrigger?: () => void,
+		onSnap?: () => void
+	): void {
+		if (this.ftmMoving) {
+			const dx = this.ftmMoveTarget - this.x;
+			const dy = CENTER_Y - this.y;
+			this.x += dx * FTM_LERP * dt;
+			this.y += dy * BOSS_ENTRY.FTM_Y_LERP * dt;
+			this.isMoving = Math.abs(dx) > 2;
+			if (Math.abs(dx) < 3 && Math.abs(dy) < 3) {
+				this.x = this.ftmMoveTarget;
+				this.y = CENTER_Y;
+				this.isMoving = false;
+				this.ftmMoving = false;
+				onSnap?.();
+			}
+		} else {
+			const dx = CENTER_X - this.x;
+			const dy = CENTER_Y - this.y;
+			this.x += dx * BOSS_ENTRY.RETURN_LERP * dt;
+			this.y += dy * BOSS_ENTRY.RETURN_LERP * dt;
+			this.isMoving = false;
+			if (this.state === BossState.ACTIVE && shouldMove) {
+				this.ftmMoving = true;
+				this.ftmMoveDir = -this.ftmMoveDir;
+				this.ftmMoveTarget = CENTER_X + this.ftmMoveDir * driftOffset;
+				onTrigger?.();
+			}
+		}
 	}
 
 	skipToPhase(index: number): void {
@@ -132,6 +199,15 @@ export abstract class Boss extends Enemy {
 		this.phaseHP = phases[0].hp;
 		this.phaseTimer = phases[0].timer;
 		this.setPatterns(phases[0].patterns);
+
+		this.chargeSheet = new Spritesheet({
+			src: 'assets/sprites/effects/bosscharge.png',
+			frameX: 64,
+			frameY: 64,
+			frameCount: 9,
+			frameSpeed: 0.07,
+			looping: false,
+		});
 
 		this.hurtSheet = new Spritesheet({
 			src: 'assets/sprites/effects/bosshurt.png',
@@ -498,6 +574,10 @@ export abstract class Boss extends Enemy {
 				HURT_SIZE,
 				HURT_SIZE
 			);
+		}
+
+		if (this.charging) {
+			this.chargeSheet.draw(ctx, this.x - 32, this.y - 32, 64, 64);
 		}
 	}
 }

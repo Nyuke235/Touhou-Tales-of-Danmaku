@@ -19,7 +19,7 @@ export class OrbitingBullet extends StaticBullet {
 		radialVel: number,
 		color: BulletColor = 'purple'
 	) {
-		super(cx, cy, 0, 0, 12, 12, BALL_SPRITES[color] ?? BALL_SPRITES.yellow);
+		super(cx, cy, 0, 0, 12, 12, BALL_SPRITES[color] ?? BALL_SPRITES.yellow!);
 		this.centerX = cx;
 		this.centerY = cy;
 		this.angle = angle;

@@ -224,6 +224,33 @@ export class PatternEngine {
 		}
 	}
 
+	private static readonly bulletFactory: Partial<
+		Record<
+			BulletType,
+			(
+				x: number,
+				y: number,
+				vx: number,
+				vy: number,
+				color: BulletColor
+			) => BaseProjectile
+		>
+	> = {
+		arrowhead: (x, y, vx, vy, color) =>
+			new ArrowheadBullet(x, y, vx, vy, color),
+		orb: (x, y, vx, vy, color) => new OrbBullet(x, y, vx, vy, color),
+		rice: (x, y, vx, vy, color) => new RiceBullet(x, y, vx, vy, color),
+		shadow: (x, y, vx, vy) => new ShadowBullet(x, y, vx, vy),
+		burstshadow: (x, y, vx, vy) => new BurstShadowBullet(x, y, vx, vy),
+		star: (x, y, vx, vy) => new StarBullet(x, y, vx, vy),
+		jellybean: (x, y, vx, vy, color) =>
+			new JellybeanBullet(x, y, vx, vy, color),
+		sunflower: (x, y, vx, vy) => new SunflowerBullet(x, y, vx, vy),
+		sunflower_bounce: (x, y, vx, vy) =>
+			new BouncingSunflowerBullet(x, y, vx, vy),
+		icecube: (x, y, vx, vy) => new IceCubeBullet(x, y, vx, vy),
+	};
+
 	private spawn(
 		bullet: BulletType,
 		x: number,
@@ -232,18 +259,10 @@ export class PatternEngine {
 		vy: number,
 		color: BulletColor
 	): BaseProjectile {
-		if (bullet === 'arrowhead') return new ArrowheadBullet(x, y, vx, vy, color);
-		if (bullet === 'orb') return new OrbBullet(x, y, vx, vy, color);
-		if (bullet === 'rice') return new RiceBullet(x, y, vx, vy, color);
-		if (bullet === 'shadow') return new ShadowBullet(x, y, vx, vy);
-		if (bullet === 'burstshadow') return new BurstShadowBullet(x, y, vx, vy);
-		if (bullet === 'star') return new StarBullet(x, y, vx, vy);
-		if (bullet === 'jellybean') return new JellybeanBullet(x, y, vx, vy, color);
-		if (bullet === 'sunflower') return new SunflowerBullet(x, y, vx, vy);
-		if (bullet === 'sunflower_bounce')
-			return new BouncingSunflowerBullet(x, y, vx, vy);
-		if (bullet === 'icecube') return new IceCubeBullet(x, y, vx, vy);
-		return new BallBullet(x, y, vx, vy, color);
+		const factory = PatternEngine.bulletFactory[bullet];
+		return factory
+			? factory(x, y, vx, vy, color)
+			: new BallBullet(x, y, vx, vy, color);
 	}
 
 	private spawnWithAccel(

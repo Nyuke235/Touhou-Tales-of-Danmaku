@@ -10,16 +10,9 @@ export type BulletColor =
 	| 'green'
 	| 'gray';
 
-export const BALL_SPRITES: {
-	blue: string;
-	red: string;
-	yellow: string;
-	purple: string;
-	orange?: string;
-	cyan?: string;
-	green?: string;
-	gray?: string;
-} = {
+export type ColorMap = Partial<Record<BulletColor, string>>;
+
+export const BALL_SPRITES: ColorMap = {
 	red: 'assets/sprites/projectiles/hostile/ballred.png',
 	blue: 'assets/sprites/projectiles/hostile/ballblue.png',
 	yellow: 'assets/sprites/projectiles/hostile/ballyellow.png',
@@ -28,16 +21,7 @@ export const BALL_SPRITES: {
 	gray: 'assets/sprites/projectiles/hostile/ballgray.png',
 };
 
-export const ARROWHEAD_SPRITES: {
-	blue?: string;
-	red?: string;
-	yellow?: string;
-	purple?: string;
-	orange?: string;
-	cyan?: string;
-	green?: string;
-	gray?: string;
-} = {
+export const ARROWHEAD_SPRITES: ColorMap = {
 	purple: 'assets/sprites/projectiles/hostile/arrowheadpurple.png',
 	red: 'assets/sprites/projectiles/hostile/arrowheadred.png',
 	blue: 'assets/sprites/projectiles/hostile/arrowheadblue.png',
@@ -46,30 +30,12 @@ export const ARROWHEAD_SPRITES: {
 	yellow: 'assets/sprites/projectiles/hostile/arrowheadyellow.png',
 };
 
-export const RICE_SPRITES: {
-	blue?: string;
-	red?: string;
-	yellow?: string;
-	purple?: string;
-	orange?: string;
-	cyan?: string;
-	green?: string;
-	gray?: string;
-} = {
+export const RICE_SPRITES: ColorMap = {
 	purple: 'assets/sprites/projectiles/hostile/ricepurple.png',
 	cyan: 'assets/sprites/projectiles/hostile/ricecyan.png',
 };
 
-export const ORB_SPRITES: {
-	blue?: string;
-	red?: string;
-	yellow?: string;
-	purple?: string;
-	orange?: string;
-	cyan?: string;
-	green?: string;
-	gray?: string;
-} = {
+export const ORB_SPRITES: ColorMap = {
 	blue: 'assets/sprites/projectiles/hostile/orbblue.png',
 	yellow: 'assets/sprites/projectiles/hostile/orbyellow.png',
 	orange: 'assets/sprites/projectiles/hostile/orborange.png',
@@ -82,12 +48,7 @@ export const STAR_SPRITES: {
 	yellow: 'assets/sprites/projectiles/hostile/staryellow.png',
 };
 
-export const JELLYBEAN_SPRITES: {
-	purple: string;
-	blue: string;
-	cyan: string;
-	green?: string;
-} = {
+export const JELLYBEAN_SPRITES: ColorMap = {
 	purple: 'assets/sprites/projectiles/hostile/jellybeanpurple.png',
 	blue: 'assets/sprites/projectiles/hostile/jellybeanblue.png',
 	cyan: 'assets/sprites/projectiles/hostile/jellybeancyan.png',
