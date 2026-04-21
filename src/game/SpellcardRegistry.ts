@@ -2,6 +2,7 @@ import { Boss } from '../entities/Boss';
 import { Rumia } from '../entities/enemies/bosses/Rumia';
 import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
+import { Cirno } from '../entities/enemies/bosses/Cirno';
 import { BOSS } from './Constants';
 
 export interface SpellcardEntry {
@@ -53,6 +54,27 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				phaseIndex: 1,
 				stageIndex: 1,
 				bossFactory: () => new Daiyousei(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Ice Sign 「No miss!icicle homing missile」',
+				bossName: 'Cirno',
+				phaseIndex: 1,
+				stageIndex: 1,
+				bossFactory: () => new Cirno(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Freeze Sign 「Perfect Freeze」',
+				bossName: 'Cirno',
+				phaseIndex: 3,
+				stageIndex: 1,
+				bossFactory: () => new Cirno(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Cold Sign 「Frozen Eternity」',
+				bossName: 'Cirno',
+				phaseIndex: 5,
+				stageIndex: 1,
+				bossFactory: () => new Cirno(BOSS.CENTER_X, -30),
 			},
 		],
 	},

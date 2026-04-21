@@ -517,6 +517,14 @@ export class GameScene {
 	}
 
 	protected checkPlayerCollisions(): void {
+		for (const p of this.projectileManager.enemyProjectiles) {
+			if (!p.active || !p.freezeRadius) continue;
+			const dx = this.player.x - p.x;
+			const dy = this.player.y - p.y;
+			if (dx * dx + dy * dy <= p.freezeRadius * p.freezeRadius)
+				this.player.freeze(0.12);
+		}
+
 		const hitByProjectile = this.player.checkCollisions(
 			this.projectileManager.enemyProjectiles
 		);

@@ -13,6 +13,8 @@ import { SunflowerBullet } from '../../entities/projectiles/SunflowerBullet';
 import { BouncingSunflowerBullet } from '../../entities/projectiles/BouncingSunflowerBullet';
 import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
 import { IceCubeBullet } from '../../entities/projectiles/IceCubeBullet';
+import { BouncingIceCubeBullet } from '../../entities/projectiles/BouncingIceCubeBullet';
+import { GiantSnowflakeBullet } from '../../entities/projectiles/GiantSnowflakeBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -28,7 +30,9 @@ export type BulletType =
 	| 'lasertrail'
 	| 'sunflower'
 	| 'sunflower_bounce'
-	| 'icecube';
+	| 'icecube'
+	| 'icecube_bounce'
+	| 'giantsnowflake';
 
 export interface PatternConfig {
 	type:
@@ -77,8 +81,10 @@ export interface PatternConfig {
 	// ringAngleStep = angle added to the base angle for each successive shot,
 	//                 independently of rotStep. Need a value that is NOT a
 	//                 multiple of (2π / count) to ensure rings don't overlap.
+	// speedVariance = half-range of speed variation distributed evenly across bullets
 	rotStep?: number;
 	ringAngleStep?: number;
+	speedVariance?: number;
 
 	// ------------ ROSE ------------
 	// roseN        = number of arms
@@ -218,9 +224,20 @@ export class PatternEngine {
 		bullet: BulletType,
 		color: BulletColor
 	): void {
+		const variance = pattern.speedVariance ?? 0;
 		for (let i = 0; i < count; i++) {
 			const angle = baseAngle + (i / count) * Math.PI * 2;
-			this.spawnWithAccel(pattern, bullet, ex, ey, angle, speed, color, out);
+			const bulletSpeed = speed + (Math.random() * 2 - 1) * variance;
+			this.spawnWithAccel(
+				pattern,
+				bullet,
+				ex,
+				ey,
+				angle,
+				bulletSpeed,
+				color,
+				out
+			);
 		}
 	}
 
@@ -249,6 +266,8 @@ export class PatternEngine {
 		sunflower_bounce: (x, y, vx, vy) =>
 			new BouncingSunflowerBullet(x, y, vx, vy),
 		icecube: (x, y, vx, vy) => new IceCubeBullet(x, y, vx, vy),
+		icecube_bounce: (x, y, vx, vy) => new BouncingIceCubeBullet(x, y, vx, vy),
+		giantsnowflake: (x, y, vx, vy) => new GiantSnowflakeBullet(x, y, vx, vy),
 	};
 
 	private spawn(

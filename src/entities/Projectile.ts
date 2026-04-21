@@ -8,6 +8,7 @@ export interface IProjectile {
 	damage: number;
 	isShadow?: boolean;
 	grazed?: boolean;
+	freezeRadius?: number;
 	pendingSpawns?: IProjectile[];
 	update(dt: number): void;
 	render(ctx: CanvasRenderingContext2D): void;

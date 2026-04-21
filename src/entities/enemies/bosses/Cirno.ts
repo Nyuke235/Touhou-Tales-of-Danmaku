@@ -59,7 +59,17 @@ const PHASES: BossPhase[] = [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 5 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_GRAVITY_ICECUBES_E,
+			Patterns.CIRNO_BLUE_CIRCLE_E,
+			Patterns.CIRNO_GRAVITY_ICECUBES_N,
+			Patterns.CIRNO_BLUE_CIRCLE_N,
+			Patterns.CIRNO_GRAVITY_ICECUBES_H,
+			Patterns.CIRNO_BLUE_CIRCLE_H,
+			Patterns.CIRNO_GRAVITY_ICECUBES_L,
+			Patterns.CIRNO_BLUE_CIRCLE_L,
+			Patterns.CIRNO_SPECIAL_SPREAD,
+		],
 	},
 	{
 		name: 'Freeze Sign 「Perfect Freeze」',
@@ -72,7 +82,13 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 8 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_SNOWFLAKE,
+			Patterns.CIRNO_PERFECT_FREEZE_BLUE,
+			Patterns.CIRNO_PERFECT_FREEZE_RED,
+			Patterns.CIRNO_PERFECT_FREEZE_PURPLE,
+			Patterns.CIRNO_PERFECT_FREEZE_YELLOW,
+		],
 	},
 	{
 		name: '',
@@ -102,9 +118,10 @@ const PHASES: BossPhase[] = [
 	},
 ];
 
-const DRIFT_OFFSET_NORMAL = 90;
+const DRIFT_OFFSET_NORMAL = 30;
 const DRIFT_OFFSET_SPELL = 40;
 const MOVE_INTERVAL = 7.0;
+const MOVE_INTERVAL_P3 = 2.2;
 
 export class Cirno extends Boss {
 	private moveTimer: number = 0;
@@ -146,7 +163,10 @@ export class Cirno extends Boss {
 
 		if (!this.ftmMoving && this.state === BossState.ACTIVE)
 			this.moveTimer += dt;
-		const shouldMove = this.moveTimer >= MOVE_INTERVAL;
+		const moveInterval =
+			this.currentPhaseIndex === 2 ? MOVE_INTERVAL_P3 : MOVE_INTERVAL;
+		const shouldMove =
+			this.currentPhaseIndex !== 3 && this.moveTimer >= moveInterval;
 
 		this.handleFtmMovement(dt, driftOffset, shouldMove, () => {
 			this.moveTimer = 0;
