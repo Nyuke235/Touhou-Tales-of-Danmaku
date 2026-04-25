@@ -105,7 +105,7 @@ export class Player {
 	}
 
 	isVulnerable(): boolean {
-		return !this.invincible && !this.dying && this.deadTimer <= 0;
+		return !this.invincible && !this.dying && this.deadTimer <= 0 && !GameState.debugInvincible;
 	}
 
 	isDead(): boolean {
@@ -113,7 +113,7 @@ export class Player {
 	}
 
 	checkCollisions(enemyProjectiles: IProjectile[]): boolean {
-		if (this.invincible || this.dying || this.deadTimer > 0) return false;
+		if (GameState.debugInvincible || this.invincible || this.dying || this.deadTimer > 0) return false;
 
 		for (const p of enemyProjectiles) {
 			if (!p.active || p.isShadow) continue;
@@ -131,7 +131,7 @@ export class Player {
 	}
 
 	checkGraze(enemyProjectiles: IProjectile[]): number {
-		if (this.invincible || this.dying || this.deadTimer > 0) return 0;
+		if (this.invincible || this.dying || this.deadTimer > 0 || GameState.debugInvincible) return 0;
 
 		let count = 0;
 		for (const p of enemyProjectiles) {
@@ -148,7 +148,7 @@ export class Player {
 	}
 
 	hit(): void {
-		if (this.invincible || this.dying || this.deadTimer > 0) return;
+		if (GameState.debugInvincible || this.invincible || this.dying || this.deadTimer > 0) return;
 		this.dying = true;
 		this.visible = false;
 		this.explSheet.reset();

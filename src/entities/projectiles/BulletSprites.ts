@@ -40,6 +40,7 @@ export const ORB_SPRITES: ColorMap = {
 	yellow: 'assets/sprites/projectiles/hostile/orbyellow.png',
 	orange: 'assets/sprites/projectiles/hostile/orborange.png',
 	purple: 'assets/sprites/projectiles/hostile/orbpurple.png',
+	cyan: 'assets/sprites/projectiles/hostile/orbcyan.png',
 };
 
 export const STAR_SPRITES: {

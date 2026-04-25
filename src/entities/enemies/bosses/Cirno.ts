@@ -101,7 +101,12 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 5 },
 			{ type: 'life', count: 1 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_BLUE,
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_CYAN,
+			Patterns.CIRNO_ORB_EXPLOSION_BLUE,
+			Patterns.CIRNO_ORB_EXPLOSION_CYAN,
+		],
 	},
 	{
 		name: 'Cold Sign 「Frozen Eternity」',
@@ -166,7 +171,9 @@ export class Cirno extends Boss {
 		const moveInterval =
 			this.currentPhaseIndex === 2 ? MOVE_INTERVAL_P3 : MOVE_INTERVAL;
 		const shouldMove =
-			this.currentPhaseIndex !== 3 && this.moveTimer >= moveInterval;
+			this.currentPhaseIndex !== 3 &&
+			this.currentPhaseIndex !== 4 &&
+			this.moveTimer >= moveInterval;
 
 		this.handleFtmMovement(dt, driftOffset, shouldMove, () => {
 			this.moveTimer = 0;

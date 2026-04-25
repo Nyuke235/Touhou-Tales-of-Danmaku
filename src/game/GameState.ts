@@ -33,4 +33,7 @@ export const GameState = {
 	spellcardGroupIndex: 0,
 	spellcardEntryIndex: 0,
 	startingStage: 0,
+
+	// -------------------- DEBUG --------------------
+	debugInvincible: true,
 };

@@ -828,32 +828,22 @@ export const Patterns = {
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
-	S2_ICEBUTTERFLY_TRAIL_E: {
-		type: 'spread', bullet: 'lasertrail', color: 'blue', 
-		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
-		count: 2, spread: 0.3,
+	S2_ICEBUTTERFLY_SNOWFLAKE_E: {
+		type: 'aimed', bullet: 'giantsnowflake',
+		speed: 80, delay: 2.2, cooldown: 2.2, maxShots: 2,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
-	S2_ICEBUTTERFLY_TRAIL_N: {
-		type: 'spread', bullet: 'lasertrail', color: 'blue', 
-		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
-		count: 4, spread: 0.7,
+	S2_ICEBUTTERFLY_SNOWFLAKE_N: {
+		type: 'aimed', bullet: 'giantsnowflake',
+		speed: 80, delay: 1.8, cooldown: 1.8, maxShots: 3,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
-	S2_ICEBUTTERFLY_TRAIL_H: {
-		type: 'spread', bullet: 'lasertrail', color: 'blue', 
-		speed: 150, delay: 3.4, cooldown: 2.8, maxShots: 1,
-		count: 4, spread: 0.55,
+	S2_ICEBUTTERFLY_SNOWFLAKE_HL: {
+		type: 'spread', bullet: 'giantsnowflake', count: 2, spread: 0.5,
+		speed: 80, delay: 1.8, cooldown: 1.8, maxShots: 3,
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	S2_ICEBUTTERFLY_TRAIL_L: {
-		type: 'spread', bullet: 'lasertrail', color: 'blue', 
-		speed: 150, delay: 3.8, cooldown: 2.8, maxShots: 1,
-		count: 4, spread: 0.55,
-		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
 	// DAIYOUSEI PHASE 1
@@ -1149,7 +1139,7 @@ export const Patterns = {
 		morphDelay: 2.05,
 		morphDeactivate: true,
 		morphConfig: {
-			type: 'circle', count: 6,
+			type: 'circle', count: 7,
 			bullet: 'rice', color: 'cyan', startAngle: Math.PI /2,
 			speed: 80
 		}, difficulties: [Difficulty.EASY]
@@ -1175,7 +1165,7 @@ export const Patterns = {
 		morphDelay: 2.05,
 		morphDeactivate: true,
 		morphConfig: {
-			type: 'circle', count: 10,
+			type: 'circle', count: 11,
 			bullet: 'rice', color: 'cyan', startAngle: Math.PI /2,
 			speed: 80
 		}, difficulties: [Difficulty.NORMAL]
@@ -1201,7 +1191,7 @@ export const Patterns = {
 		morphDelay: 2.05,
 		morphDeactivate: true,
 		morphConfig: {
-			type: 'circle', count: 14,
+			type: 'circle', count: 15,
 			bullet: 'rice', color: 'cyan', startAngle: Math.PI /2,
 			speed: 80
 		}, difficulties: [Difficulty.HARD]
@@ -1227,7 +1217,7 @@ export const Patterns = {
 		morphDelay: 2.05,
 		morphDeactivate: true,
 		morphConfig: {
-			type: 'circle', count: 18,
+			type: 'circle', count: 19,
 			bullet: 'rice', color: 'cyan', startAngle: Math.PI /2,
 			speed: 80
 		}, difficulties: [Difficulty.LUNATIC]
@@ -1252,7 +1242,7 @@ export const Patterns = {
 	CIRNO_GRAVITY_ICECUBES_E: {
 		type: 'circle', bullet: 'icecube_bounce',
 		count: 6, speed: 40, rotStep: Math.PI / 8,
-		delay: 1.5, cooldown: 1.2, initSpeed: 80, accelTime: 2.0,
+		delay: 1.5, cooldown: 0.9, initSpeed: 80, accelTime: 2.0,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
@@ -1265,8 +1255,8 @@ export const Patterns = {
 
 	CIRNO_GRAVITY_ICECUBES_N: {
 		type: 'circle', bullet: 'icecube_bounce',
-		count: 8, speed: 40, rotStep: Math.PI / 8,
-		delay: 1.5, cooldown: 1.2, initSpeed: 80, accelTime: 2.0,
+		count: 10, speed: 40, rotStep: Math.PI / 8,
+		delay: 1.5, cooldown: 0.9, initSpeed: 80, accelTime: 2.0,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
@@ -1279,8 +1269,8 @@ export const Patterns = {
 
 	CIRNO_GRAVITY_ICECUBES_H: {
 		type: 'circle', bullet: 'icecube_bounce',
-		count: 12, speed: 40, rotStep: Math.PI / 8,
-		delay: 1.5, cooldown: 1.2, initSpeed: 80, accelTime: 2.0,
+		count: 14, speed: 40, rotStep: Math.PI / 8,
+		delay: 1.5, cooldown: 0.9, initSpeed: 80, accelTime: 2.0,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
@@ -1293,8 +1283,8 @@ export const Patterns = {
 
 	CIRNO_GRAVITY_ICECUBES_L: {
 		type: 'circle', bullet: 'icecube_bounce',
-		count: 14, speed: 40, rotStep: Math.PI / 8,
-		delay: 1.5, cooldown: 1.2, initSpeed: 80, accelTime: 2.0,
+		count: 16, speed: 40, rotStep: Math.PI / 8,
+		delay: 1.5, cooldown: 0.9, initSpeed: 80, accelTime: 2.0,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -1307,7 +1297,7 @@ export const Patterns = {
 
 	CIRNO_SPECIAL_SPREAD: {
 		type: 'spread', bullet: 'ball', color: 'cyan',
-		count: 3, speed: 90, spread: 0.25, delay: 2.0, cooldown: 2.0,
+		count: 3, speed: 140, spread: 0.25, delay: 2.0, cooldown: 2.0,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
@@ -1322,7 +1312,7 @@ export const Patterns = {
 		type: 'circle', bullet: 'ball', color: 'blue',
 		count: 30, startAngle: 0, rotStep: Math.PI / 16,
 		speed: 90, speedVariance: 50, cooldown: 6.0, delay: 0.5,
-		morphDelay: 2.6, morphDeactivate: true,
+		morphDelay: 2.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'aimed', color: 'cyan',
 			speed: 100, initSpeed: 0, accelTime: 6.0
@@ -1333,7 +1323,7 @@ export const Patterns = {
 		type: 'circle', bullet: 'ball', color: 'red',
 		count: 30, startAngle: 0, rotStep: Math.PI / 16,
 		speed: 80, speedVariance: 40, cooldown: 6.0, delay: 0.5,
-		morphDelay: 2.6, morphDeactivate: true,
+		morphDelay: 2.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'aimed', color: 'cyan',
 			speed: 100, initSpeed: 0, accelTime: 6.0
@@ -1345,7 +1335,7 @@ export const Patterns = {
 		type: 'circle', bullet: 'ball', color: 'purple',
 		count: 30, startAngle: 0, rotStep: Math.PI / 16,
 		speed: 70, speedVariance: 30, cooldown: 6.0, delay: 0.5,
-		morphDelay: 2.6, morphDeactivate: true,
+		morphDelay: 2.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'aimed', color: 'cyan',
 			speed: 100, initSpeed: 0, accelTime: 6.0
@@ -1357,11 +1347,48 @@ export const Patterns = {
 		type: 'circle', bullet: 'ball', color: 'yellow',
 		count: 30, startAngle: 0, rotStep: Math.PI / 8,
 		speed: 60, speedVariance: 30, cooldown: 6.0, delay: 0.5,
-		morphDelay: 2.6, morphDeactivate: true,
+		morphDelay: 2.5, morphDeactivate: true,
 		morphConfig: {
 			type: 'aimed', color: 'cyan',
 			speed: 100, initSpeed: 0, accelTime: 6.0
 		},
 		difficulties: [Difficulty.LUNATIC]
-	} as PatternConfig
+	} as PatternConfig,
+
+	//-------------------- CIRNO PHASE 5 --------------------
+	CIRNO_ARROWHEAD_CIRCLE_BLUE: {
+		type: 'volley-circle', bullet: 'arrowhead', color: 'blue',
+		count: 36, startAngle: Math.PI / 3,
+		speed: 80, streams: 5, deltaSpeed: 5,
+		delay: 6.0, cooldown: 8.0,
+	} as PatternConfig,
+
+	CIRNO_ARROWHEAD_CIRCLE_CYAN: {
+		type: 'volley-circle', bullet: 'arrowhead', color: 'cyan',
+		count: 36, startAngle: 0,
+		speed: 80, streams: 5, deltaSpeed: 5,
+		delay: 2.0, cooldown: 8.0,
+	} as PatternConfig,
+
+	CIRNO_ORB_EXPLOSION_BLUE: {
+		type: 'circle', bullet: 'orb', color: 'blue',
+		count: 8, startAngle: Math.PI / 3,
+		speed: 0, initSpeed: 160, accelTime: 0.8, delay: 1.0, cooldown: 8.0,
+		morphDelay: 0.8, morphDeactivate: true,
+		morphConfig: {
+			type: 'circle', color: 'blue', count: 28,
+			speed: 80, initSpeed: 0, accelTime: 0.5
+		},
+	} as PatternConfig,
+
+	CIRNO_ORB_EXPLOSION_CYAN: {
+		type: 'circle', bullet: 'orb', color: 'cyan',
+		count: 8, startAngle: Math.PI / 3,
+		speed: 0, initSpeed: 160, accelTime: 0.8, delay: 5.0, cooldown: 8.0,
+		morphDelay: 0.8, morphDeactivate: true,
+		morphConfig: {
+			type: 'circle', color: 'cyan', count: 28, startAngle: Math.PI / 3,
+			speed: 80, initSpeed: 0, accelTime: 0.5
+		},
+	} as PatternConfig,
 };
