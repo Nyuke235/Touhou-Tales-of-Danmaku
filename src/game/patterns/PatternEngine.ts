@@ -15,6 +15,7 @@ import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
 import { IceCubeBullet } from '../../entities/projectiles/IceCubeBullet';
 import { BouncingIceCubeBullet } from '../../entities/projectiles/BouncingIceCubeBullet';
 import { GiantSnowflakeBullet } from '../../entities/projectiles/GiantSnowflakeBullet';
+import { CircleLaserBullet } from '../../entities/projectiles/CircleLaserBullet';
 import { BulletColor } from '../../entities/projectiles/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -47,7 +48,8 @@ export interface PatternConfig {
 		| 'volley'
 		| 'volley-spread'
 		| 'volley-circle'
-		| 'gravity';
+		| 'gravity'
+		| 'laser-circle';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -134,6 +136,17 @@ export interface PatternConfig {
 	// spread  = angular spread around straight-up
 	// gravity = downward acceleration in px/s² (default 150)
 	gravity?: number;
+
+	// ------------ LASER-CIRCLE ------------
+	// count          = number of laser directions distributed evenly
+	// startAngle     = base rotation of the ring
+	// rotStep        = additional rotation applied per successive shot
+	// warnDuration   = duration of the thin warning laser in seconds (default 1.5)
+	// activeDuration = duration of the active laser in seconds (default 0.5)
+	// maxFireDelay   = max random stagger before a laser starts its warning phase (default 0.4)
+	warnDuration?: number;
+	activeDuration?: number;
+	maxFireDelay?: number;
 
 	// Optional difficulty filter. If omitted, the pattern fires on all difficulties.
 	// If specified, the pattern only fires when the current difficulty is in the list.
@@ -637,6 +650,35 @@ export class PatternEngine {
 						const s = speed + i * deltaSpeed;
 						this.spawnWithAccel(pattern, bullet, ex, ey, angle, s, color, out);
 					}
+				}
+				break;
+			}
+
+			case 'laser-circle': {
+				const count = Math.max(1, pattern.count ?? 8);
+				const toPlayer = Math.atan2(py - ey, px - ex);
+				const arcOffset =
+					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
+				const warnDuration = pattern.warnDuration ?? 1.5;
+				const activeDuration = pattern.activeDuration ?? 0.5;
+				const maxFireDelay = pattern.maxFireDelay ?? 0.4;
+				for (let i = 0; i < count; i++) {
+					const t = count > 1 ? i / (count - 1) : 0.5;
+					const arcPos =
+						(((t * Math.PI + arcOffset) % Math.PI) + Math.PI) % Math.PI;
+					const angle = toPlayer - Math.PI / 2 + arcPos;
+					const fireDelay = Math.random() * maxFireDelay;
+					out.push(
+						new CircleLaserBullet(
+							ex,
+							ey,
+							angle,
+							fireDelay,
+							warnDuration,
+							activeDuration,
+							color
+						)
+					);
 				}
 				break;
 			}

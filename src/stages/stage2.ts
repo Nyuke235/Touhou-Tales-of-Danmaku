@@ -4,8 +4,6 @@ import { BlizzardEvent } from '../systems/BlizzardManager';
 
 const RAW_STAGE_2: SpawnEventData[] = [
 
-	//{ time: 2.0, type: 'cirno', x: 128, y: -16 },
-
 	// Wave 1 – blue fairies from the top, 5 per side, turn inward
 	{ time:  3.0, type: 'fairy', x:  40, y: -16, color: 'blue', path: 'turn-right', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time:  3.0, type: 'fairy', x: 216, y: -16, color: 'blue', path: 'turn-left',  patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },

@@ -2,6 +2,7 @@ import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { Patterns } from '../../../game/patterns/PatternLibrary';
 import { Music } from '../../../systems/MusicManager';
+import { BOSS } from '../../../game/Constants';
 
 const PHASES: BossPhase[] = [
 	{
@@ -12,7 +13,8 @@ const PHASES: BossPhase[] = [
 		barWeight: 0.15,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
-			{ type: 'power', count: 4 },
+			{ type: 'power', count: 6 },
+			{ type: 'life', count: 1 },
 		],
 		patterns: [
 			Patterns.CIRNO_ICE_HELIX_E,
@@ -58,6 +60,7 @@ const PHASES: BossPhase[] = [
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 5 },
+			{ type: 'life', count: 1 },
 		],
 		patterns: [
 			Patterns.CIRNO_GRAVITY_ICECUBES_E,
@@ -68,7 +71,8 @@ const PHASES: BossPhase[] = [
 			Patterns.CIRNO_BLUE_CIRCLE_H,
 			Patterns.CIRNO_GRAVITY_ICECUBES_L,
 			Patterns.CIRNO_BLUE_CIRCLE_L,
-			Patterns.CIRNO_SPECIAL_SPREAD,
+			Patterns.CIRNO_SPECIAL_SPREAD_H,
+			Patterns.CIRNO_SPECIAL_SPREAD_L,
 		],
 	},
 	{
@@ -84,7 +88,9 @@ const PHASES: BossPhase[] = [
 		],
 		patterns: [
 			Patterns.CIRNO_SNOWFLAKE,
+			Patterns.CIRNO_SNOWFLAKE_L,
 			Patterns.CIRNO_PERFECT_FREEZE_BLUE,
+			Patterns.CIRNO_PERFECT_FREEZE_GREEN,
 			Patterns.CIRNO_PERFECT_FREEZE_RED,
 			Patterns.CIRNO_PERFECT_FREEZE_PURPLE,
 			Patterns.CIRNO_PERFECT_FREEZE_YELLOW,
@@ -102,24 +108,42 @@ const PHASES: BossPhase[] = [
 			{ type: 'life', count: 1 },
 		],
 		patterns: [
-			Patterns.CIRNO_ARROWHEAD_CIRCLE_BLUE,
-			Patterns.CIRNO_ARROWHEAD_CIRCLE_CYAN,
-			Patterns.CIRNO_ORB_EXPLOSION_BLUE,
-			Patterns.CIRNO_ORB_EXPLOSION_CYAN,
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_BLUE_EN,
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_CYAN_EN,
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_BLUE_HL,
+			Patterns.CIRNO_ARROWHEAD_CIRCLE_CYAN_HL,
+			Patterns.CIRNO_ORB_EXPLOSION_BLUE_E,
+			Patterns.CIRNO_ORB_EXPLOSION_CYAN_E,
+			Patterns.CIRNO_ORB_EXPLOSION_BLUE_N,
+			Patterns.CIRNO_ORB_EXPLOSION_CYAN_N,
+			Patterns.CIRNO_ORB_EXPLOSION_BLUE_H,
+			Patterns.CIRNO_ORB_EXPLOSION_CYAN_H,
+			Patterns.CIRNO_ORB_EXPLOSION_BLUE_L,
+			Patterns.CIRNO_ORB_EXPLOSION_CYAN_L,
 		],
 	},
 	{
 		name: 'Cold Sign 「Frozen Eternity」',
 		isSpellCard: true,
-		hp: 325,
+		hp: 400,
 		timer: 60,
 		barWeight: 0.17,
 		drops: [
 			{ type: 'bigpoint', count: 6 },
 			{ type: 'power', count: 12 },
-			{ type: 'bomb', count: 2 },
+			{ type: 'bomb', count: 1 },
 		],
-		patterns: [Patterns.BLANK],
+		patterns: [
+			Patterns.CIRNO_LASER_CIRCLE_E,
+			Patterns.CIRNO_LASER_CIRCLE_N,
+			Patterns.CIRNO_LASER_CIRCLE_H,
+			Patterns.CIRNO_LASER_CIRCLE_L,
+			Patterns.CIRNO_RAIN_ORB,
+			Patterns.CIRNO_RICE_RAIN_E,
+			Patterns.CIRNO_RICE_RAIN_N,
+			Patterns.CIRNO_RICE_RAIN_H,
+			Patterns.CIRNO_RICE_RAIN_L,
+		],
 	},
 ];
 
@@ -127,6 +151,7 @@ const DRIFT_OFFSET_NORMAL = 30;
 const DRIFT_OFFSET_SPELL = 40;
 const MOVE_INTERVAL = 7.0;
 const MOVE_INTERVAL_P3 = 2.2;
+const PHASE6_Y = 20;
 
 export class Cirno extends Boss {
 	private moveTimer: number = 0;
@@ -160,6 +185,15 @@ export class Cirno extends Boss {
 
 	updateMovement(dt: number): void {
 		if (this.handleEntryAndCharge(dt)) return;
+
+		if (this.currentPhaseIndex === 5) {
+			const dx = BOSS.CENTER_X - this.x;
+			const dy = PHASE6_Y - this.y;
+			this.x += dx * 2.0 * dt;
+			this.y += dy * 2.0 * dt;
+			this.isMoving = false;
+			return;
+		}
 
 		const driftOffset =
 			this.currentPhaseIndex % 2 === 1

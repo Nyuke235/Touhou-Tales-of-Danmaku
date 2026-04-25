@@ -35,5 +35,5 @@ export const GameState = {
 	startingStage: 0,
 
 	// -------------------- DEBUG --------------------
-	debugInvincible: true,
+	debugInvincible: false,
 };

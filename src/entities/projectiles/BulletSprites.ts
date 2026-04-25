@@ -18,6 +18,7 @@ export const BALL_SPRITES: ColorMap = {
 	yellow: 'assets/sprites/projectiles/hostile/ballyellow.png',
 	purple: 'assets/sprites/projectiles/hostile/ballpurple.png',
 	cyan: 'assets/sprites/projectiles/hostile/ballcyan.png',
+	green: 'assets/sprites/projectiles/hostile/ballgreen.png',
 	gray: 'assets/sprites/projectiles/hostile/ballgray.png',
 };
 
