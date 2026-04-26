@@ -68,6 +68,7 @@ export abstract class Boss extends Enemy {
 	private phaseWaitTimer: number = 0;
 	private deathWaitTimer: number = 0;
 	private nextPhaseIsSpellCard: boolean = false;
+	private lastTimeoutTick: number = 10;
 
 	music?: string;
 
@@ -152,6 +153,7 @@ export abstract class Boss extends Enemy {
 		const phase = this.phases[index];
 		this.phaseHP = phase.hp;
 		this.phaseTimer = phase.timer;
+		this.lastTimeoutTick = 10;
 		this.setPatterns(phase.patterns);
 		if (phase.isSpellCard) {
 			this.spellBonus = Boss.SPELL_BONUS_INITIAL;
@@ -327,6 +329,7 @@ export abstract class Boss extends Enemy {
 		const nextPhaseData = this.phases[this.currentPhaseIndex];
 		this.phaseHP = nextPhaseData.hp;
 		this.phaseTimer = nextPhaseData.timer;
+		this.lastTimeoutTick = 10;
 		this.setPatterns(nextPhaseData.patterns);
 		this.nextPhaseIsSpellCard = nextPhaseData.isSpellCard;
 
@@ -442,6 +445,11 @@ export abstract class Boss extends Enemy {
 		if (this.phaseTimer <= 0) {
 			this.nextPhase(false);
 			return;
+		}
+
+		if (this.phaseTimer <= this.lastTimeoutTick && this.lastTimeoutTick > 0) {
+			this.lastTimeoutTick--;
+			SoundManager.play(SFX.TIMEOUT);
 		}
 
 		if (this.isCurrentSpellCard() && !this.spellCaptureFailed) {

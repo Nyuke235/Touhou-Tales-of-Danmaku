@@ -1,6 +1,7 @@
 import { BaseProjectile } from '../Projectile';
 import { BulletColor } from './BulletSprites';
 import { FIELD } from '../../game/Constants';
+import { SoundManager, SFX } from '../../systems/SoundManager';
 
 function computeEndPoint(
 	ox: number,
@@ -130,6 +131,7 @@ export class CircleLaserBullet extends BaseProjectile {
 			if (this.elapsed >= this.warnDuration) {
 				this.phase = 'active';
 				this.elapsed -= this.warnDuration;
+				SoundManager.play(SFX.LASER);
 			}
 		} else {
 			if (this.elapsed >= this.activeDuration) {

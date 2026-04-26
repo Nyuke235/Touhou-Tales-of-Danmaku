@@ -7,7 +7,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 325,
-		timer: 40,
+		timer: 30,
 		barWeight: 0.45,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
@@ -34,7 +34,7 @@ const PHASES: BossPhase[] = [
 		name: "Fairy Sign 「Daiyousei's Vernal Storm」",
 		isSpellCard: true,
 		hp: 325,
-		timer: 45,
+		timer: 40,
 		barWeight: 0.55,
 		drops: [
 			{ type: 'bigpoint', count: 4 },

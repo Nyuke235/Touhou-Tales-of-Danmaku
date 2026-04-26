@@ -9,7 +9,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 325,
-		timer: 40,
+		timer: 30,
 		barWeight: 0.15,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
@@ -31,7 +31,7 @@ const PHASES: BossPhase[] = [
 		name: 'Ice Sign 「No miss!icicle homing missile」',
 		isSpellCard: true,
 		hp: 325,
-		timer: 45,
+		timer: 40,
 		barWeight: 0.18,
 		drops: [
 			{ type: 'bigpoint', count: 3 },
@@ -55,7 +55,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 325,
-		timer: 40,
+		timer: 35,
 		barWeight: 0.16,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
@@ -79,7 +79,7 @@ const PHASES: BossPhase[] = [
 		name: 'Freeze Sign 「Perfect Freeze」',
 		isSpellCard: true,
 		hp: 325,
-		timer: 50,
+		timer: 40,
 		barWeight: 0.18,
 		drops: [
 			{ type: 'bigpoint', count: 4 },
@@ -126,7 +126,7 @@ const PHASES: BossPhase[] = [
 		name: 'Cold Sign 「Frozen Eternity」',
 		isSpellCard: true,
 		hp: 400,
-		timer: 60,
+		timer: 45,
 		barWeight: 0.17,
 		drops: [
 			{ type: 'bigpoint', count: 6 },

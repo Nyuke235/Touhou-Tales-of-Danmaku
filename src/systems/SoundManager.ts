@@ -17,6 +17,8 @@ export const SFX = {
 	BOSS_DEFEATED: 'assets/audio/sfx/enemies/bossdefeated.wav',
 	PHASE_DEFEATED: 'assets/audio/sfx/enemies/phasedefeated.wav',
 	SPELLCARD: 'assets/audio/sfx/enemies/spellcard.wav',
+	LASER: 'assets/audio/sfx/enemies/laser.wav',
+	TIMEOUT: 'assets/audio/sfx/enemies/timeout.wav',
 	BLIZZARD: 'assets/audio/sfx/ambient/blizzard.wav',
 
 	UI_HIGHLIGHT: 'assets/audio/sfx/ui/highlight.wav',
