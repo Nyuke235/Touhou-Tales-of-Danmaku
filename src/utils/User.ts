@@ -59,9 +59,19 @@ export class User {
 		this._data = data;
 	}
 
+	private static fetchWithTimeout(url: string, ms = 5000): Promise<Response> {
+		const controller = new AbortController();
+		const id = setTimeout(() => controller.abort(), ms);
+		return fetch(url, { signal: controller.signal }).finally(() =>
+			clearTimeout(id)
+		);
+	}
+
 	static async getUser(username: string | null): Promise<User | null> {
 		try {
-			const response = await fetch(`${NETWORK.SAVE_API}/api/users`);
+			const response = await User.fetchWithTimeout(
+				`${NETWORK.SAVE_API}/api/users`
+			);
 			if (!response.ok) return null;
 			const json = await response.json();
 			const userData = json.find((user: any) => user.username === username);
@@ -83,7 +93,9 @@ export class User {
 
 	static async getAllUser(): Promise<User[] | null> {
 		try {
-			const response = await fetch(`${NETWORK.SAVE_API}/api/users`);
+			const response = await User.fetchWithTimeout(
+				`${NETWORK.SAVE_API}/api/users`
+			);
 			if (!response.ok) return null;
 			const json = await response.json();
 
@@ -118,12 +130,14 @@ export class User {
 		) as HTMLParagraphElement;
 		const rank = userInfo.querySelector('.rank') as HTMLParagraphElement;
 
-		const user = (await User.getUser(loggedUser)) as User;
-		const users = (await User.getAllUser()) as User[];
+		const user = await User.getUser(loggedUser);
+		const users = await User.getAllUser();
+		if (!user || !users) return;
+
 		users.sort((a, b) => b.data.highscore - a.data.highscore);
 		const idx: string | number =
 			user.data.highscore > 0
-				? users.findIndex(user => user.username === loggedUser) + 1
+				? users.findIndex(u => u.username === loggedUser) + 1
 				: 'N/A';
 
 		username.innerHTML = `<span class="label">USERNAME:</span> <span class="value">${user.username}</span>`;
