@@ -1,9 +1,9 @@
 import { Controls } from '../systems/Controls';
 import { InputManager } from '../systems/InputManager';
-import { ProjectileManager } from '../systems/ProjectileManager';
+import { BulletManager } from '../systems/BulletManager';
 import { SoundManager, SFX } from '../systems/SoundManager';
 import { Spritesheet, createExplosionSheet } from '../utils/Spritesheet';
-import { IProjectile } from './Projectile';
+import { IBullet } from './Bullet';
 import { GameState } from '../game/GameState';
 import { IOption } from './Power';
 import { FIELD, PLAYER } from '../game/Constants';
@@ -13,7 +13,7 @@ export interface PlayerConfig {
 	frameCount: number;
 	speed: number;
 	focusSpeed: number;
-	createProjectiles: (x: number, y: number) => IProjectile[];
+	createProjectiles: (x: number, y: number) => IBullet[];
 	createOption: (index: number) => IOption;
 	optionOffsets: [number, number][][];
 	optionFocusOffsets: [number, number][][];
@@ -30,7 +30,7 @@ export class Player {
 	private speed: number;
 	private config: PlayerConfig;
 	private inputManager: InputManager;
-	private projectileManager: ProjectileManager;
+	private bulletManager: BulletManager;
 	private sheet: Spritesheet;
 	private explSheet: Spritesheet;
 	private shootTimer: number = 0;
@@ -52,11 +52,11 @@ export class Player {
 
 	constructor(
 		inputManager: InputManager,
-		projectileManager: ProjectileManager,
+		bulletManager: BulletManager,
 		config: PlayerConfig
 	) {
 		this.inputManager = inputManager;
-		this.projectileManager = projectileManager;
+		this.bulletManager = bulletManager;
 		this.config = config;
 		this.speed = config.speed;
 		this.x = PLAYER.SPAWN_X;
@@ -112,10 +112,10 @@ export class Player {
 		return this.dying || this.deadTimer > 0;
 	}
 
-	checkCollisions(enemyProjectiles: IProjectile[]): boolean {
+	checkCollisions(enemyBullets: IBullet[]): boolean {
 		if (GameState.debugInvincible || this.invincible || this.dying || this.deadTimer > 0) return false;
 
-		for (const p of enemyProjectiles) {
+		for (const p of enemyBullets) {
 			if (!p.active || p.isShadow) continue;
 			const dx = p.x - this.x;
 			const dy = p.y - this.y;
@@ -130,11 +130,11 @@ export class Player {
 		return false;
 	}
 
-	checkGraze(enemyProjectiles: IProjectile[]): number {
+	checkGraze(enemyBullets: IBullet[]): number {
 		if (this.invincible || this.dying || this.deadTimer > 0 || GameState.debugInvincible) return 0;
 
 		let count = 0;
-		for (const p of enemyProjectiles) {
+		for (const p of enemyBullets) {
 			if (!p.active || p.isShadow || p.grazed) continue;
 			const dx = p.x - this.x;
 			const dy = p.y - this.y;
@@ -166,13 +166,13 @@ export class Player {
 
 	private shoot(focused: boolean): void {
 		for (const p of this.config.createProjectiles(this.x, this.y)) {
-			this.projectileManager.addPlayerProjectile(p);
+			this.bulletManager.addPlayerProjectile(p);
 		}
 
 		if (this.getNearestEnemy) {
 			for (const option of this.options) {
 				option.shoot(
-					this.projectileManager,
+					this.bulletManager,
 					this.getNearestEnemy,
 					this.x,
 					focused

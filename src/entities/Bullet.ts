@@ -1,6 +1,6 @@
 import { FIELD } from '../game/Constants';
 
-export interface IProjectile {
+export interface IBullet {
 	x: number;
 	y: number;
 	active: boolean;
@@ -9,13 +9,13 @@ export interface IProjectile {
 	isShadow?: boolean;
 	grazed?: boolean;
 	freezeRadius?: number;
-	pendingSpawns?: IProjectile[];
+	pendingSpawns?: IBullet[];
 	update(dt: number): void;
 	render(ctx: CanvasRenderingContext2D): void;
 	checkTrailHit?(px: number, py: number, hitR: number): boolean;
 }
 
-export abstract class BaseProjectile implements IProjectile {
+export abstract class BaseBullet implements IBullet {
 	x: number;
 	y: number;
 	vx: number;
@@ -36,8 +36,8 @@ export abstract class BaseProjectile implements IProjectile {
 	private accelDuration?: number;
 	private accelElapsed: number = 0;
 
-	pendingSpawns?: IProjectile[];
-	private morphFn?: (x: number, y: number, shotIndex: number) => IProjectile[];
+	pendingSpawns?: IBullet[];
+	private morphFn?: (x: number, y: number, shotIndex: number) => IBullet[];
 	private morphDelay?: number;
 	private morphElapsed: number = 0;
 	private morphStarted: boolean = false;
@@ -81,7 +81,7 @@ export abstract class BaseProjectile implements IProjectile {
 
 	setupMorph(
 		delay: number,
-		spawnFn: (x: number, y: number, shotIndex: number) => IProjectile[],
+		spawnFn: (x: number, y: number, shotIndex: number) => IBullet[],
 		deactivate: boolean = true,
 		interval?: number,
 		maxShots?: number
@@ -153,7 +153,7 @@ export abstract class BaseProjectile implements IProjectile {
 		this.checkBounds();
 	}
 
-	private pushMorphSpawns(spawns: IProjectile[]): void {
+	private pushMorphSpawns(spawns: IBullet[]): void {
 		if (spawns.length === 0) return;
 		if (!this.pendingSpawns) this.pendingSpawns = [];
 		this.pendingSpawns.push(...spawns);
@@ -162,9 +162,9 @@ export abstract class BaseProjectile implements IProjectile {
 	checkBounds(): void {
 		if (
 			this.x + this.width < 0 ||
-			this.x - this.width > BaseProjectile.FIELD_W ||
+			this.x - this.width > BaseBullet.FIELD_W ||
 			this.y + this.height < 0 ||
-			this.y - this.height > BaseProjectile.FIELD_H
+			this.y - this.height > BaseBullet.FIELD_H
 		) {
 			this.active = false;
 		}

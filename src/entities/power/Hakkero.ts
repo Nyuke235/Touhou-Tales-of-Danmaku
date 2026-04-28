@@ -1,7 +1,7 @@
 import { IOption } from '../Power';
 import { Spritesheet } from '../../utils/Spritesheet';
-import { ProjectileManager } from '../../systems/ProjectileManager';
-import { HakkeroLaser } from '../projectiles/HakkeroLaser';
+import { BulletManager } from '../../systems/BulletManager';
+import { HakkeroLaser } from '../bullets/HakkeroLaser';
 
 const SIZE = 12;
 
@@ -23,12 +23,12 @@ export class Hakkero implements IOption {
 	update(_dt: number): void {}
 
 	shoot(
-		projectileManager: ProjectileManager,
+		bulletManager: BulletManager,
 		_getNearestEnemy: (x: number, y: number) => { x: number; y: number } | null,
 		_px: number,
 		_focused: boolean
 	): void {
-		projectileManager.addPlayerProjectile(new HakkeroLaser(this.x, this.y));
+		bulletManager.addPlayerProjectile(new HakkeroLaser(this.x, this.y));
 	}
 
 	render(ctx: CanvasRenderingContext2D): void {

@@ -1,6 +1,6 @@
 import { Player } from '../entities/Player';
 import { InputManager } from '../systems/InputManager';
-import { ProjectileManager } from '../systems/ProjectileManager';
+import { BulletManager } from '../systems/BulletManager';
 import { Character } from './GameState';
 import {
 	REIMU,
@@ -10,8 +10,8 @@ import {
 	HAKKERO_OFFSETS,
 	HAKKERO_FOCUS_OFFSETS,
 } from './Constants';
-import { AmuletProjectile } from '../entities/projectiles/AmuletProjectile';
-import { StardustProjectile } from '../entities/projectiles/StardustProjectile';
+import { AmuletProjectile } from '../entities/bullets/AmuletProjectile';
+import { StardustProjectile } from '../entities/bullets/StardustProjectile';
 import { YingYangOrb } from '../entities/power/YingYangOrb';
 import { Hakkero } from '../entities/power/Hakkero';
 
@@ -31,7 +31,7 @@ const SPRITE_PATHS: { [character: string]: { [color: string]: string } } = {
 
 export function buildPlayer(
 	inputManager: InputManager,
-	projectileManager: ProjectileManager,
+	bulletManager: BulletManager,
 	character: Character,
 	color: string = 'default'
 ): Player {
@@ -39,7 +39,7 @@ export function buildPlayer(
 		SPRITE_PATHS[character]?.[color] ?? SPRITE_PATHS[character]?.default;
 
 	if (character === Character.MARISA) {
-		return new Player(inputManager, projectileManager, {
+		return new Player(inputManager, bulletManager, {
 			spriteSrc,
 			frameCount: MARISA.FRAMECOUNT,
 			speed: MARISA.SPEED,
@@ -54,7 +54,7 @@ export function buildPlayer(
 		});
 	}
 
-	return new Player(inputManager, projectileManager, {
+	return new Player(inputManager, bulletManager, {
 		spriteSrc,
 		frameCount: REIMU.FRAMECOUNT,
 		speed: REIMU.SPEED,

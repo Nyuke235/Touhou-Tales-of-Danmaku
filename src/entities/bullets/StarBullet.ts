@@ -1,18 +1,18 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 import { makeSheet } from './BulletSprites';
 import { Spritesheet } from '../../utils/Spritesheet';
 
 const SPIN_SPEED = 3.0;
 const SIZE = 16;
 
-export class StarBullet extends BaseProjectile {
+export class StarBullet extends BaseBullet {
 	private sheet: Spritesheet;
 	private rotation: number = 0;
 
 	constructor(x: number, y: number, vx: number, vy: number) {
 		super(x, y, vx, vy, SIZE, SIZE);
 		this.sheet = makeSheet(
-			'assets/sprites/projectiles/hostile/staryellow.png',
+			'assets/sprites/bullets/hostile/staryellow.png',
 			SIZE,
 			SIZE
 		);

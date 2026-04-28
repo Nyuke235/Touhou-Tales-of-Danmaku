@@ -1,7 +1,7 @@
 import { IOption } from '../Power';
 import { Spritesheet } from '../../utils/Spritesheet';
-import { ProjectileManager } from '../../systems/ProjectileManager';
-import { HomingAmulet } from '../projectiles/HomingAmulet';
+import { BulletManager } from '../../systems/BulletManager';
+import { HomingAmulet } from '../bullets/HomingAmulet';
 
 const SIZE = 12;
 const SPIN_SPEED = 1.8;
@@ -34,7 +34,7 @@ export class YingYangOrb implements IOption {
 	}
 
 	shoot(
-		projectileManager: ProjectileManager,
+		bulletManager: BulletManager,
 		getNearestEnemy: (x: number, y: number) => { x: number; y: number } | null,
 		px: number,
 		focused: boolean
@@ -45,7 +45,7 @@ export class YingYangOrb implements IOption {
 		const lateral = this.x < px ? -1 : this.x > px ? 1 : 0;
 		const angle = -Math.PI / 2 + lateral * spread;
 
-		projectileManager.addPlayerProjectile(
+		bulletManager.addPlayerProjectile(
 			new HomingAmulet(this.x, this.y, angle, turnRate, getNearestEnemy)
 		);
 	}

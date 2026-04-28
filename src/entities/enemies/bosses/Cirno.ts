@@ -152,6 +152,7 @@ const DRIFT_OFFSET_SPELL = 40;
 const MOVE_INTERVAL = 7.0;
 const MOVE_INTERVAL_P3 = 2.2;
 const PHASE6_Y = 20;
+const STATIC_PHASES = new Set([3, 4]);
 
 export class Cirno extends Boss {
 	private moveTimer: number = 0;
@@ -205,8 +206,7 @@ export class Cirno extends Boss {
 		const moveInterval =
 			this.currentPhaseIndex === 2 ? MOVE_INTERVAL_P3 : MOVE_INTERVAL;
 		const shouldMove =
-			this.currentPhaseIndex !== 3 &&
-			this.currentPhaseIndex !== 4 &&
+			!STATIC_PHASES.has(this.currentPhaseIndex) &&
 			this.moveTimer >= moveInterval;
 
 		this.handleFtmMovement(dt, driftOffset, shouldMove, () => {

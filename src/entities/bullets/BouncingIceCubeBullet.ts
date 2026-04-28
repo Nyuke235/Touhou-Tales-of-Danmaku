@@ -11,7 +11,7 @@ export class BouncingIceCubeBullet extends StaticBullet {
 	private lifetime: number = 0;
 
 	constructor(x: number, y: number, vx: number, vy: number) {
-		super(x, y, vx, vy, W, H, 'assets/sprites/projectiles/hostile/icecube.png');
+		super(x, y, vx, vy, W, H, 'assets/sprites/bullets/hostile/icecube.png');
 		this.spinAngle = Math.random() * Math.PI * 2;
 		this.hitRadius = 8;
 	}

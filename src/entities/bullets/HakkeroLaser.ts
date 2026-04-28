@@ -1,9 +1,9 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 
 const LASER_SPEED = 500;
 const LASER_DAMAGE = 0.25;
 
-export class HakkeroLaser extends BaseProjectile {
+export class HakkeroLaser extends BaseBullet {
 	constructor(x: number, y: number) {
 		super(x, y, 0, -LASER_SPEED, 4, 24);
 		this.damage = LASER_DAMAGE;

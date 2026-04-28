@@ -1,22 +1,22 @@
-import { IProjectile, BaseProjectile } from '../../entities/Projectile';
-import { BallBullet } from '../../entities/projectiles/BallBullet';
-import { ArrowheadBullet } from '../../entities/projectiles/ArrowheadBullet';
-import { OrbBullet } from '../../entities/projectiles/OrbBullet';
-import { RiceBullet } from '../../entities/projectiles/RiceBullet';
-import { ShadowBullet } from '../../entities/projectiles/ShadowBullet';
-import { OrbitingBullet } from '../../entities/projectiles/OrbitingBullet';
-import { BurstShadowBullet } from '../../entities/projectiles/BurstShadowBullet';
-import { StarBullet } from '../../entities/projectiles/StarBullet';
-import { JellybeanBullet } from '../../entities/projectiles/JellybeanBullet';
-import { GravityBullet } from '../../entities/projectiles/GravityBullet';
-import { SunflowerBullet } from '../../entities/projectiles/SunflowerBullet';
-import { BouncingSunflowerBullet } from '../../entities/projectiles/BouncingSunflowerBullet';
-import { LaserTrailBullet } from '../../entities/projectiles/LaserTrailBullet';
-import { IceCubeBullet } from '../../entities/projectiles/IceCubeBullet';
-import { BouncingIceCubeBullet } from '../../entities/projectiles/BouncingIceCubeBullet';
-import { GiantSnowflakeBullet } from '../../entities/projectiles/GiantSnowflakeBullet';
-import { CircleLaserBullet } from '../../entities/projectiles/CircleLaserBullet';
-import { BulletColor } from '../../entities/projectiles/BulletSprites';
+import { IBullet, BaseBullet } from '../../entities/Bullet';
+import { BallBullet } from '../../entities/bullets/BallBullet';
+import { ArrowheadBullet } from '../../entities/bullets/ArrowheadBullet';
+import { OrbBullet } from '../../entities/bullets/OrbBullet';
+import { RiceBullet } from '../../entities/bullets/RiceBullet';
+import { ShadowBullet } from '../../entities/bullets/ShadowBullet';
+import { OrbitingBullet } from '../../entities/bullets/OrbitingBullet';
+import { BurstShadowBullet } from '../../entities/bullets/BurstShadowBullet';
+import { StarBullet } from '../../entities/bullets/StarBullet';
+import { JellybeanBullet } from '../../entities/bullets/JellybeanBullet';
+import { GravityBullet } from '../../entities/bullets/GravityBullet';
+import { SunflowerBullet } from '../../entities/bullets/SunflowerBullet';
+import { BouncingSunflowerBullet } from '../../entities/bullets/BouncingSunflowerBullet';
+import { LaserTrailBullet } from '../../entities/bullets/LaserTrailBullet';
+import { IceCubeBullet } from '../../entities/bullets/IceCubeBullet';
+import { BouncingIceCubeBullet } from '../../entities/bullets/BouncingIceCubeBullet';
+import { GiantSnowflakeBullet } from '../../entities/bullets/GiantSnowflakeBullet';
+import { CircleLaserBullet } from '../../entities/bullets/CircleLaserBullet';
+import { BulletColor } from '../../entities/bullets/BulletSprites';
 import { Difficulty } from '../GameState';
 
 export type BulletType =
@@ -83,7 +83,7 @@ export interface PatternConfig {
 	// ringAngleStep = angle added to the base angle for each successive shot,
 	//                 independently of rotStep. Need a value that is NOT a
 	//                 multiple of (2π / count) to ensure rings don't overlap.
-	// speedVariance = half-range of speed variation distributed evenly across bullets
+	// speedVariance = half-range of random speed variation per bullet (uniform distribution)
 	rotStep?: number;
 	ringAngleStep?: number;
 	speedVariance?: number;
@@ -195,7 +195,7 @@ export class PatternEngine {
 		ey: number,
 		px: number,
 		py: number,
-		out: IProjectile[]
+		out: IBullet[]
 	): void {
 		if (pattern.difficulties && !pattern.difficulties.includes(this.difficulty))
 			return;
@@ -228,7 +228,7 @@ export class PatternEngine {
 
 	private spawnRing(
 		pattern: PatternConfig,
-		out: IProjectile[],
+		out: IBullet[],
 		count: number,
 		baseAngle: number,
 		ex: number,
@@ -263,7 +263,7 @@ export class PatternEngine {
 				vx: number,
 				vy: number,
 				color: BulletColor
-			) => BaseProjectile
+			) => BaseBullet
 		>
 	> = {
 		arrowhead: (x, y, vx, vy, color) =>
@@ -290,7 +290,7 @@ export class PatternEngine {
 		vx: number,
 		vy: number,
 		color: BulletColor
-	): BaseProjectile {
+	): BaseBullet {
 		const factory = PatternEngine.bulletFactory[bullet];
 		return factory
 			? factory(x, y, vx, vy, color)
@@ -305,7 +305,7 @@ export class PatternEngine {
 		angle: number,
 		speed: number,
 		color: BulletColor,
-		out: IProjectile[]
+		out: IBullet[]
 	): void {
 		const b = this.spawn(
 			bullet,
@@ -334,9 +334,9 @@ export class PatternEngine {
 
 	private buildMorphFn(
 		mc: MorphConfig
-	): (x: number, y: number, shotIndex: number) => IProjectile[] {
+	): (x: number, y: number, shotIndex: number) => IBullet[] {
 		return (x, y, shotIndex) => {
-			const out: IProjectile[] = [];
+			const out: IBullet[] = [];
 			const bullet = mc.bullet ?? 'ball';
 			const color = mc.color ?? 'blue';
 			const speed = mc.speed ?? 80;
@@ -393,7 +393,7 @@ export class PatternEngine {
 		ey: number,
 		px: number,
 		py: number,
-		out: IProjectile[],
+		out: IBullet[],
 		shotCount: number
 	): void {
 		const speed = pattern.speed ?? 80;

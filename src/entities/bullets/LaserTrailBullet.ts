@@ -1,4 +1,4 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 import { BulletColor, ORB_SPRITES } from './BulletSprites';
 import { makeSheet } from './BulletSprites';
 import { Spritesheet } from '../../utils/Spritesheet';
@@ -23,7 +23,7 @@ const TRAIL_FILL: Record<string, string> = {
 	orange: '#ff9966',
 };
 
-export class LaserTrailBullet extends BaseProjectile {
+export class LaserTrailBullet extends BaseBullet {
 	private readonly trailBuf: Float32Array;
 	private trailHead: number = 0;
 	private trailCount: number = 0;
@@ -88,9 +88,9 @@ export class LaserTrailBullet extends BaseProjectile {
 			const hh = this.height / 2;
 			const outOfBounds =
 				this.x + hw < 0 ||
-				this.x - hw > BaseProjectile.FIELD_W ||
+				this.x - hw > BaseBullet.FIELD_W ||
 				this.y + hh < 0 ||
-				this.y - hh > BaseProjectile.FIELD_H;
+				this.y - hh > BaseBullet.FIELD_H;
 
 			if (this.radius > MAX_RADIUS || outOfBounds) {
 				this.headAlive = false;

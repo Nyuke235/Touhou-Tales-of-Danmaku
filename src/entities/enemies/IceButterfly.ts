@@ -2,7 +2,8 @@ import { Enemy } from '../Enemy';
 import { Spritesheet, createExplosionSheet } from '../../utils/Spritesheet';
 import { PatternConfig } from '../../game/patterns/PatternEngine';
 import { Patterns } from '../../game/patterns/PatternLibrary';
-import { IProjectile } from '../Projectile';
+import { IBullet } from '../Bullet';
+import { drawFreezeAura } from '../../utils/drawFreezeAura';
 
 export type IceButterflyPath = 'flying-top';
 
@@ -49,9 +50,9 @@ export class IceButterfly extends Enemy {
 		dt: number,
 		px: number,
 		py: number,
-		enemyProjectiles: IProjectile[]
+		enemyBullets: IBullet[]
 	): void {
-		super.update(dt, px, py, enemyProjectiles);
+		super.update(dt, px, py, enemyBullets);
 
 		if (!this.exploding) {
 			const dx = px - this.x;
@@ -64,17 +65,7 @@ export class IceButterfly extends Enemy {
 
 	override render(ctx: CanvasRenderingContext2D): void {
 		super.render(ctx);
-		if (!this.exploding) {
-			ctx.save();
-			ctx.beginPath();
-			ctx.arc(this.x, this.y, FREEZE_RADIUS, 0, Math.PI * 2);
-			ctx.strokeStyle = 'rgba(120, 220, 255, 0.25)';
-			ctx.lineWidth = 1;
-			ctx.stroke();
-			ctx.fillStyle = 'rgba(80, 180, 255, 0.08)';
-			ctx.fill();
-			ctx.restore();
-		}
+		if (!this.exploding) drawFreezeAura(ctx, this.x, this.y, FREEZE_RADIUS);
 	}
 
 	updateMovement(dt: number): void {

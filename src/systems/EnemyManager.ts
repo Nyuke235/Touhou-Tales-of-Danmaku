@@ -1,7 +1,7 @@
 import { Enemy } from '../entities/Enemy';
 import { Boss } from '../entities/Boss';
 import { SpawnEvent } from '../game/StageScript';
-import { IProjectile } from '../entities/Projectile';
+import { IBullet } from '../entities/Bullet';
 import { ItemType } from '../entities/Item';
 import { ScoreManager } from './ScoreManager';
 import { FIELD } from '../game/Constants';
@@ -60,8 +60,8 @@ export class EnemyManager {
 		dt: number,
 		px: number,
 		py: number,
-		playerProjectiles: IProjectile[],
-		enemyProjectiles: IProjectile[]
+		playerBullets: IBullet[],
+		enemyBullets: IBullet[]
 	): void {
 		if (this.activeBoss && !this.activeBoss.active) {
 			this.activeBoss = null;
@@ -109,8 +109,8 @@ export class EnemyManager {
 		}
 
 		for (const e of this.enemies) {
-			e.update(dt, px, py, enemyProjectiles);
-			const { hits, killed, damage } = e.checkCollisions(playerProjectiles);
+			e.update(dt, px, py, enemyBullets);
+			const { hits, killed, damage } = e.checkCollisions(playerBullets);
 			if (hits > 0) this.onScore(ScoreManager.HIT * hits);
 			if (damage > 0) this.onEnemyDamage?.(e.spawnId, damage);
 			if (killed) {

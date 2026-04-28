@@ -1,5 +1,5 @@
 import { Spritesheet } from '../utils/Spritesheet';
-import { IProjectile } from './Projectile';
+import { IBullet } from './Bullet';
 import { PatternConfig } from '../game/patterns/PatternEngine';
 import { Enemy } from './Enemy';
 import { ItemType } from './Item';
@@ -124,7 +124,7 @@ export abstract class Boss extends Enemy {
 			const dy = CENTER_Y - this.y;
 			this.x += dx * FTM_LERP * dt;
 			this.y += dy * BOSS_ENTRY.FTM_Y_LERP * dt;
-			this.isMoving = Math.abs(dx) > 2;
+			this.isMoving = Math.abs(dx) > 3;
 			if (Math.abs(dx) < 3 && Math.abs(dy) < 3) {
 				this.x = this.ftmMoveTarget;
 				this.y = CENTER_Y;
@@ -135,8 +135,10 @@ export abstract class Boss extends Enemy {
 		} else {
 			const dx = CENTER_X - this.x;
 			const dy = CENTER_Y - this.y;
-			this.x += dx * BOSS_ENTRY.RETURN_LERP * dt;
-			this.y += dy * BOSS_ENTRY.RETURN_LERP * dt;
+			if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+				this.x += dx * BOSS_ENTRY.RETURN_LERP * dt;
+				this.y += dy * BOSS_ENTRY.RETURN_LERP * dt;
+			}
 			this.isMoving = false;
 			if (this.state === BossState.ACTIVE && shouldMove) {
 				this.ftmMoving = true;
@@ -357,7 +359,7 @@ export abstract class Boss extends Enemy {
 		this.onDeath?.();
 	}
 
-	override checkCollisions(playerProjectiles: IProjectile[]): {
+	override checkCollisions(playerBullets: IBullet[]): {
 		hits: number;
 		killed: boolean;
 		damage: number;
@@ -367,7 +369,7 @@ export abstract class Boss extends Enemy {
 
 		let hits = 0;
 		let damage = 0;
-		for (const p of playerProjectiles) {
+		for (const p of playerBullets) {
 			if (!p.active) continue;
 			if (
 				p.x > this.x - this.width / 2 &&
@@ -429,7 +431,7 @@ export abstract class Boss extends Enemy {
 		dt: number,
 		px: number,
 		py: number,
-		enemyProjectiles: IProjectile[]
+		enemyBullets: IBullet[]
 	): void {
 		if (this.isDying()) {
 			this.updateDying(dt);
@@ -471,7 +473,7 @@ export abstract class Boss extends Enemy {
 			this.y > 0 &&
 			this.y < FIELD.HEIGHT
 		) {
-			const prevCount = enemyProjectiles.length;
+			const prevCount = enemyBullets.length;
 			for (let i = 0; i < this.patterns.length; i++) {
 				this.engines[i].update(
 					dt,
@@ -480,10 +482,10 @@ export abstract class Boss extends Enemy {
 					this.y,
 					px,
 					py,
-					enemyProjectiles
+					enemyBullets
 				);
 			}
-			if (enemyProjectiles.length > prevCount) {
+			if (enemyBullets.length > prevCount) {
 				SoundManager.play(SFX.BOSS_SHOT);
 			}
 		}

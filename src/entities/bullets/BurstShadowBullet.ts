@@ -1,4 +1,4 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 
 const MAX_SIZE = 128;
 const MIN_SIZE = 12;
@@ -8,11 +8,11 @@ const FADE_DURATION = 1.5;
 
 const IMG: HTMLImageElement = (() => {
 	const img = new Image();
-	img.src = 'assets/sprites/projectiles/hostile/shadowbullet.png';
+	img.src = 'assets/sprites/bullets/hostile/shadowbullet.png';
 	return img;
 })();
 
-export class BurstShadowBullet extends BaseProjectile {
+export class BurstShadowBullet extends BaseBullet {
 	readonly isShadow = true;
 	readonly damage = 0;
 

@@ -1,14 +1,14 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 import { Spritesheet } from '../../utils/Spritesheet';
 
-export class StardustProjectile extends BaseProjectile {
+export class AmuletProjectile extends BaseBullet {
 	private sheet: Spritesheet;
 
 	constructor(x: number, y: number) {
 		super(x, y, 0, -320, 6, 8);
 
 		this.sheet = new Spritesheet({
-			src: 'assets/sprites/projectiles/player/stardust.png',
+			src: 'assets/sprites/bullets/player/amulet.png',
 			frameX: 6,
 			frameY: 8,
 			frameCount: 1,

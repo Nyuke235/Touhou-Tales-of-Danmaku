@@ -3,7 +3,7 @@ import { EnemyManager } from '../systems/EnemyManager';
 import { InputManager } from '../systems/InputManager';
 import { ItemManager } from '../systems/ItemManager';
 import { MusicManager } from '../systems/MusicManager';
-import { ProjectileManager } from '../systems/ProjectileManager';
+import { BulletManager } from '../systems/BulletManager';
 import { SaveManager } from '../systems/SaveManager';
 import { Scene, SceneManager } from '../systems/SceneManager';
 import { ScoreManager } from '../systems/ScoreManager';
@@ -36,7 +36,7 @@ export class GameScene {
 	protected inputManager: InputManager;
 	protected enemyManager: EnemyManager;
 	protected itemManager: ItemManager;
-	protected projectileManager: ProjectileManager;
+	protected bulletManager: BulletManager;
 	protected loop: GameLoop;
 	protected player: Player;
 	protected ctx: CanvasRenderingContext2D;
@@ -74,7 +74,7 @@ export class GameScene {
 		this.inputManager = inputManager;
 		this.itemManager = new ItemManager();
 		this.enemyManager = new EnemyManager();
-		this.projectileManager = new ProjectileManager();
+		this.bulletManager = new BulletManager();
 
 		const canvas = document.getElementById('game-canvas')! as HTMLCanvasElement;
 		this.ctx = canvas.getContext('2d')!;
@@ -82,7 +82,7 @@ export class GameScene {
 
 		this.player = buildPlayer(
 			this.inputManager,
-			this.projectileManager,
+			this.bulletManager,
 			GameState.character,
 			GameState.characterColor
 		);
@@ -222,14 +222,14 @@ export class GameScene {
 		if (spellcardEntry) this.hud.setPower(GameState.power, GameState.maxPower);
 
 		this.spellcardBg.reset();
-		this.projectileManager.clear();
+		this.bulletManager.clear();
 		this.itemManager.clear();
 
 		if (this.spellcardClearMenu?.isActive()) this.spellcardClearMenu.hide();
 
 		this.player = buildPlayer(
 			this.inputManager,
-			this.projectileManager,
+			this.bulletManager,
 			GameState.character,
 			GameState.characterColor
 		);
@@ -242,7 +242,8 @@ export class GameScene {
 		this.enemyManager.onDrop = (x, y, drops) =>
 			this.itemManager.dropFromEnemy(x, y, drops);
 		this.enemyManager.onScore = value => this.scoreManager.add(value);
-		this.enemyManager.onFreezePlayer = () => this.player.freeze(0.12);
+		this.enemyManager.onFreezePlayer = () =>
+			this.player.freeze(GAME.FREEZE_DURATION);
 		this.enemyManager.onStageComplete = spellcardEntry
 			? undefined
 			: () => this.nextStage();
@@ -347,7 +348,7 @@ export class GameScene {
 		blackout.classList.add('fading-in');
 		setTimeout(() => {
 			this.currentStageIndex++;
-			this.projectileManager.clear();
+			this.bulletManager.clear();
 			this.itemManager.clear();
 			this.activeBoss = null;
 			this.bossHUD.hide();
@@ -419,13 +420,13 @@ export class GameScene {
 				)
 			);
 		}
-		this.projectileManager.update(dt);
+		this.bulletManager.update(dt);
 		this.enemyManager.update(
 			dt,
 			this.player.x,
 			this.player.y,
-			this.projectileManager.playerProjectiles,
-			this.projectileManager.enemyProjectiles
+			this.bulletManager.playerBullets,
+			this.bulletManager.enemyBullets
 		);
 
 		this.checkPlayerCollisions();
@@ -454,7 +455,7 @@ export class GameScene {
 		}
 
 		if (this.activeBoss.requestClearWithEffect) {
-			this.projectileManager.clearWithEffect();
+			this.bulletManager.clearWithEffect();
 			this.activeBoss.requestClearWithEffect = false;
 		}
 		this.bossHUD.update(this.activeBoss);
@@ -517,16 +518,16 @@ export class GameScene {
 	}
 
 	protected checkPlayerCollisions(): void {
-		for (const p of this.projectileManager.enemyProjectiles) {
+		for (const p of this.bulletManager.enemyBullets) {
 			if (!p.active || !p.freezeRadius) continue;
 			const dx = this.player.x - p.x;
 			const dy = this.player.y - p.y;
 			if (dx * dx + dy * dy <= p.freezeRadius * p.freezeRadius)
-				this.player.freeze(0.12);
+				this.player.freeze(GAME.FREEZE_DURATION);
 		}
 
 		const hitByProjectile = this.player.checkCollisions(
-			this.projectileManager.enemyProjectiles
+			this.bulletManager.enemyBullets
 		);
 		const hitByEnemy = this.enemyManager.checkBodyCollisions(
 			this.player.x,
@@ -537,7 +538,7 @@ export class GameScene {
 
 		if (!hitByProjectile && !hitByEnemy) {
 			const grazeCount = this.player.checkGraze(
-				this.projectileManager.enemyProjectiles
+				this.bulletManager.enemyBullets
 			);
 			if (grazeCount > 0) {
 				GameState.graze += grazeCount;
@@ -587,7 +588,7 @@ export class GameScene {
 		SoundManager.play(SFX.PLAYER_BOMB);
 		this.activeBoss?.failSpellCapture();
 		this.enemyManager.applyBomb(GAME.BOMB_DAMAGE);
-		this.projectileManager.clearWithEffect();
+		this.bulletManager.clearWithEffect();
 		this.bombEffect = { x: this.player.x, y: this.player.y, t: 0 };
 	}
 
@@ -602,7 +603,7 @@ export class GameScene {
 		this.itemManager.render(ctx);
 		this.player.render(ctx, focused);
 		this.grazeEffect.render(ctx);
-		this.projectileManager.render(ctx);
+		this.bulletManager.render(ctx);
 		this.blizzardManager.render(ctx);
 		this.renderBombEffect(ctx);
 	}

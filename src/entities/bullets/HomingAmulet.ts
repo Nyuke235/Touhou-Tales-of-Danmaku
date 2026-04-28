@@ -3,7 +3,7 @@ import { RotatedBullet } from './RotatedBullet';
 const SPEED = 260;
 const W = 4;
 const H = 6;
-const SPRITE = 'assets/sprites/projectiles/player/homingamulet.png';
+const SPRITE = 'assets/sprites/bullets/player/homingamulet.png';
 
 export class HomingAmulet extends RotatedBullet {
 	private turnRate: number;

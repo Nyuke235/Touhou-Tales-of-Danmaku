@@ -1,8 +1,8 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 import { Spritesheet } from '../../utils/Spritesheet';
 import { makeSheet } from './BulletSprites';
 
-export abstract class StaticBullet extends BaseProjectile {
+export abstract class StaticBullet extends BaseBullet {
 	protected sheet: Spritesheet;
 
 	constructor(

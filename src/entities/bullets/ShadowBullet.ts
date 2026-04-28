@@ -1,8 +1,8 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 
 const IMG = (() => {
 	const img = new Image();
-	img.src = 'assets/sprites/projectiles/hostile/shadowbullet.png';
+	img.src = 'assets/sprites/bullets/hostile/shadowbullet.png';
 	return img;
 })();
 
@@ -10,7 +10,7 @@ const MAX_SIZE = 96;
 const MIN_SIZE = 4;
 const GROW_DURATION = 3.0;
 
-export class ShadowBullet extends BaseProjectile {
+export class ShadowBullet extends BaseBullet {
 	readonly isShadow = true;
 	readonly damage = 0;
 

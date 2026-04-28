@@ -1,4 +1,4 @@
-import { BaseProjectile } from '../Projectile';
+import { BaseBullet } from '../Bullet';
 import { BulletColor } from './BulletSprites';
 import { FIELD } from '../../game/Constants';
 import { SoundManager, SFX } from '../../systems/SoundManager';
@@ -83,7 +83,7 @@ const GLOW_COLORS: Record<string, string> = {
 
 type LaserPhase = 'waiting' | 'warning' | 'active';
 
-export class CircleLaserBullet extends BaseProjectile {
+export class CircleLaserBullet extends BaseBullet {
 	private readonly originX: number;
 	private readonly originY: number;
 	private readonly endX: number;

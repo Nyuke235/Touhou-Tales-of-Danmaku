@@ -68,6 +68,7 @@ export const GAME = {
 	POWER_PER_ITEM: 0.02,
 	POWER_PER_BIG: 1.0,
 	POWER_LOST_ON_DEATH: 1.0,
+	FREEZE_DURATION: 0.12,
 } as const;
 
 export const BOSS = {

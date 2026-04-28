@@ -1,4 +1,5 @@
 import { StaticBullet } from './StaticBullet';
+import { drawFreezeAura } from '../../utils/drawFreezeAura';
 
 const SPIN_SPEED = 0.9;
 const W = 34;
@@ -19,7 +20,7 @@ export class GiantSnowflakeBullet extends StaticBullet {
 			vy,
 			W,
 			H,
-			'assets/sprites/projectiles/hostile/giantsnowflake.png'
+			'assets/sprites/bullets/hostile/giantsnowflake.png'
 		);
 		this.spinAngle = Math.random() * Math.PI * 2;
 		this.hitRadius = 12;
@@ -34,15 +35,7 @@ export class GiantSnowflakeBullet extends StaticBullet {
 	override render(ctx: CanvasRenderingContext2D): void {
 		const scale = Math.min(1, this.growElapsed / GROW_DURATION);
 
-		ctx.save();
-		ctx.beginPath();
-		ctx.arc(this.x, this.y, FREEZE_RADIUS * scale, 0, Math.PI * 2);
-		ctx.strokeStyle = 'rgba(120, 220, 255, 0.25)';
-		ctx.lineWidth = 1;
-		ctx.stroke();
-		ctx.fillStyle = 'rgba(80, 180, 255, 0.08)';
-		ctx.fill();
-		ctx.restore();
+		drawFreezeAura(ctx, this.x, this.y, FREEZE_RADIUS * scale);
 
 		ctx.save();
 		ctx.translate(this.x, this.y);

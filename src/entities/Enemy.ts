@@ -1,5 +1,5 @@
 import { Spritesheet } from '../utils/Spritesheet';
-import { type IProjectile } from './Projectile';
+import { type IBullet } from './Bullet';
 import { PatternEngine, PatternConfig } from '../game/patterns/PatternEngine';
 import { GameState } from '../game/GameState';
 import { ItemType } from './Item';
@@ -59,7 +59,7 @@ export abstract class Enemy {
 		dt: number,
 		px: number,
 		py: number,
-		enemyProjectiles: IProjectile[]
+		enemyBullets: IBullet[]
 	): void {
 		this.hitFlash = false;
 		if (this.exploding) {
@@ -77,7 +77,7 @@ export abstract class Enemy {
 		this.checkOutOfBounds();
 
 		if (this.isInField()) {
-			const prevCount = enemyProjectiles.length;
+			const prevCount = enemyBullets.length;
 			for (let i = 0; i < this.patterns.length; i++) {
 				this.engines[i].update(
 					dt,
@@ -86,10 +86,10 @@ export abstract class Enemy {
 					this.y,
 					px,
 					py,
-					enemyProjectiles
+					enemyBullets
 				);
 			}
-			if (enemyProjectiles.length > prevCount) {
+			if (enemyBullets.length > prevCount) {
 				SoundManager.play(this.shotSFX());
 			}
 		}
@@ -116,7 +116,7 @@ export abstract class Enemy {
 		}
 	}
 
-	checkCollisions(playerProjectiles: IProjectile[]): {
+	checkCollisions(playerBullets: IBullet[]): {
 		hits: number;
 		killed: boolean;
 		damage: number;
@@ -125,7 +125,7 @@ export abstract class Enemy {
 
 		let hits = 0;
 		let damage = 0;
-		for (const p of playerProjectiles) {
+		for (const p of playerBullets) {
 			if (!p.active) continue;
 			if (this.hits(p)) {
 				p.active = false;
@@ -145,7 +145,7 @@ export abstract class Enemy {
 		return { hits, killed: false, damage };
 	}
 
-	private hits(p: IProjectile): boolean {
+	private hits(p: IBullet): boolean {
 		return (
 			p.x > this.x - this.width / 2 &&
 			p.x < this.x + this.width / 2 &&
