@@ -55,7 +55,7 @@ Controls can be remapped in-game via the **Key Config** menu.
 | Stage       | Title                      | Mid-boss       | Boss                | Status |
 | ----------- | -------------------------- | -------------- | ------------------- | ------ |
 | Stage 1     | Black Ink Staining the Sky | Rumia (dark)   | Rumia               | ✅️     |
-| Stage 2     | Ripples on the Misty Lake  | Daiyousei      | Cirno               | 🔄     |
+| Stage 2     | Ripples on the Misty Lake  | Daiyousei      | Cirno               | ✅️     |
 | Stage 3     | ???                        | Mystia Lorelei | Hong Meiling        | ❌     |
 | Stage 4     | ???                        | Koakuma        | Patchouli Knowledge | ❌     |
 | Stage 5     | ???                        | Koakuma        | Sakuya Izayoi       | ❌     |
@@ -98,7 +98,7 @@ While the game is supposed to have a Multiplayer mode option, **online multiplay
 
 ## Future plans
 
-_A trello link will soon be available with the progress on the game._
+[Trello](https://trello.com/b/4uOfHXhw/touhou-tales-of-danmaku)
 
 ## Credits
 

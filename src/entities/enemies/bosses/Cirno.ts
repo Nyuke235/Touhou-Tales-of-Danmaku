@@ -179,6 +179,7 @@ export class Cirno extends Boss {
 		super(x, y, 32, 32, idleSheet, movingSheet, explSheet, PHASES);
 
 		this.scoreValue = 150000;
+		this.dialogueId = 'cirno';
 		this.music = Music.BOSS2;
 		this.spellcardBgSrc =
 			'assets/sprites/backgrounds/stage2_cirno_spellcard.png';

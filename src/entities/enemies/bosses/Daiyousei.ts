@@ -82,6 +82,7 @@ export class Daiyousei extends Boss {
 		super(x, y, 32, 32, idleSheet, movingSheet, explSheet, PHASES);
 
 		this.scoreValue = 100000;
+		this.dialogueId = 'daiyousei';
 		this.spellcardBgSrc =
 			'assets/sprites/backgrounds/stage2_daiyousei_spellcard.png';
 	}

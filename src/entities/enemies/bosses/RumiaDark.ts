@@ -75,6 +75,7 @@ export class RumiaDark extends Boss {
 		super(x, y, 32, 32, idleSheet, movingSheet, explSheet, PHASES);
 
 		this.scoreValue = 50000;
+		this.dialogueId = 'darkrumia';
 	}
 
 	updateMovement(dt: number): void {
