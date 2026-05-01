@@ -125,6 +125,7 @@ export class Rumia extends Boss {
 
 		this.scoreValue = 80000;
 		this.music = Music.BOSS;
+		this.dialogueId = 'rumia';
 	}
 
 	updateMovement(dt: number): void {

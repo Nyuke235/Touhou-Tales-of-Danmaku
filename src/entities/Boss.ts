@@ -22,6 +22,7 @@ export const BossState = {
 	PHASE_HURT: 'PHASE_HURT',
 	PHASE_MOVING: 'PHASE_MOVING',
 	PHASE_WAITING: 'PHASE_WAITING',
+	DYING_DIALOGUE: 'DYING_DIALOGUE',
 	DYING_HURT: 'DYING_HURT',
 	DYING_WAITING: 'DYING_WAITING',
 	DYING_LEAVING: 'DYING_LEAVING',
@@ -67,22 +68,36 @@ export abstract class Boss extends Enemy {
 
 	private phaseWaitTimer: number = 0;
 	private deathWaitTimer: number = 0;
+	private dialogueWaitTimer: number = 0;
+	private static readonly POST_DIALOGUE_DELAY = 1.5;
 	private nextPhaseIsSpellCard: boolean = false;
 	private lastTimeoutTick: number = 10;
 
 	music?: string;
+	dialogueId: string = '';
 
 	requestClearWithEffect: boolean = false;
 	spellcardBgSrc?: string;
+	onArrived?: () => void;
 	onReady?: () => void;
 	onPhaseChange?: () => void;
 	onPhaseDrops?: (drops: { type: ItemType; count: number }[]) => void;
 	onSpellCapture?: (bonus: number) => void;
+	onDefeated?: () => void;
 
 	private spellBonus: number = 0;
 	private spellCaptureFailed: boolean = false;
 	private static readonly SPELL_BONUS_INITIAL = B.SPELL_BONUS_INITIAL;
 	private static readonly SPELL_BONUS_DECAY = B.SPELL_BONUS_DECAY;
+
+	startCharge(): void {
+		this.charging = true;
+		SoundManager.play(SFX.BOSS_CHARGE);
+	}
+
+	beginLeave(): void {
+		this.state = BossState.DYING_LEAVING;
+	}
 
 	protected completeEntry(): void {
 		this.state = BossState.ACTIVE;
@@ -96,8 +111,11 @@ export abstract class Boss extends Enemy {
 			if (this.y >= CENTER_Y) {
 				this.y = CENTER_Y;
 				this.entered = true;
-				this.charging = true;
-				SoundManager.play(SFX.BOSS_CHARGE);
+				if (this.onArrived) {
+					this.onArrived();
+				} else {
+					this.startCharge();
+				}
 			}
 			return true;
 		}
@@ -281,6 +299,7 @@ export abstract class Boss extends Enemy {
 
 	isDying(): boolean {
 		return (
+			this.state === BossState.DYING_DIALOGUE ||
 			this.state === BossState.DYING_HURT ||
 			this.state === BossState.DYING_WAITING ||
 			this.state === BossState.DYING_LEAVING
@@ -443,22 +462,24 @@ export abstract class Boss extends Enemy {
 			return;
 		}
 
-		this.phaseTimer -= dt;
-		if (this.phaseTimer <= 0) {
-			this.nextPhase(false);
-			return;
-		}
+		if (this.state === BossState.ACTIVE) {
+			this.phaseTimer -= dt;
+			if (this.phaseTimer <= 0) {
+				this.nextPhase(false);
+				return;
+			}
 
-		if (this.phaseTimer <= this.lastTimeoutTick && this.lastTimeoutTick > 0) {
-			this.lastTimeoutTick--;
-			SoundManager.play(SFX.TIMEOUT);
-		}
+			if (this.phaseTimer <= this.lastTimeoutTick && this.lastTimeoutTick > 0) {
+				this.lastTimeoutTick--;
+				SoundManager.play(SFX.TIMEOUT);
+			}
 
-		if (this.isCurrentSpellCard() && !this.spellCaptureFailed) {
-			this.spellBonus = Math.max(
-				0,
-				this.spellBonus - Boss.SPELL_BONUS_DECAY * dt
-			);
+			if (this.isCurrentSpellCard() && !this.spellCaptureFailed) {
+				this.spellBonus = Math.max(
+					0,
+					this.spellBonus - Boss.SPELL_BONUS_DECAY * dt
+				);
+			}
 		}
 
 		const prevX = this.x;
@@ -495,8 +516,22 @@ export abstract class Boss extends Enemy {
 		if (this.state === BossState.DYING_HURT) {
 			this.hurtSheet.update(dt);
 			if (this.hurtSheet.isFinished()) {
-				this.state = BossState.DYING_WAITING;
-				this.deathWaitTimer = DEST_WAIT;
+				if (this.onDefeated) {
+					this.state = BossState.DYING_DIALOGUE;
+					this.dialogueWaitTimer = Boss.POST_DIALOGUE_DELAY;
+				} else {
+					this.state = BossState.DYING_WAITING;
+					this.deathWaitTimer = DEST_WAIT;
+				}
+			}
+		} else if (this.state === BossState.DYING_DIALOGUE) {
+			this.tickActiveSheet(dt);
+			if (this.dialogueWaitTimer > 0) {
+				this.dialogueWaitTimer -= dt;
+				if (this.dialogueWaitTimer <= 0) {
+					this.dialogueWaitTimer = 0;
+					this.onDefeated?.();
+				}
 			}
 		} else if (this.state === BossState.DYING_WAITING) {
 			this.deathWaitTimer -= dt;

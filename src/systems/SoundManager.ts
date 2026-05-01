@@ -25,6 +25,8 @@ export const SFX = {
 	UI_SELECT: 'assets/audio/sfx/ui/select.wav',
 	UI_PAUSE: 'assets/audio/sfx/ui/pause.wav',
 	GAME_OVER: 'assets/audio/sfx/ui/gameover.wav',
+	LETTER: 'assets/audio/sfx/ui/letter.wav',
+	SKIP: 'assets/audio/sfx/ui/skip.wav',
 } as const;
 
 export type SFXKey = keyof typeof SFX;

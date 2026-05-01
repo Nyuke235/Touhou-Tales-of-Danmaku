@@ -18,9 +18,11 @@ import { SpellcardListScene } from './scenes/SpellcardListScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { User } from './utils/User';
 import { GameState } from './game/GameState';
+import { DialogueRegistry } from './stages/DialogueRegistry';
 
 scaleGameWindow();
 initAuth();
+await DialogueRegistry.load();
 await LeaderboardManagement.generateLeaderboard();
 await User.showUserInfo();
 

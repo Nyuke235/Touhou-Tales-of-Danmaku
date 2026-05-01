@@ -1,0 +1,156 @@
+{
+	"rumia": {
+		"reimu": {
+			"pre": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Darkness is more fun when you’re inside it, don’t you think?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"name": "Reimu Hakurei",
+					"text": "Oh, it’s just a low-level youkai. Do you ever get tired of stretching your arms out like that?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "It’s a holy gesture! Also, I don’t get lost if I’m pointing in every direction."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"name": "Reimu Hakurei",
+					"text": "The only thing you’re pointing toward is a quick trip to the afterlife. Move, I have a real incident to solve."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Too late! My stomach just growled. You look like a delicious red-and-white snack!",
+					"music": "assets/audio/music/stage1/apparitions_stalk_the_night.ogg"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"name": "Reimu Hakurei",
+					"text": "Try a bite. I’m a lot harder to swallow than I look."
+				}
+			],
+			"post": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "...I think I bit my tongue."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"name": "Reimu Hakurei",
+					"text": "That’s for getting in my way. Now, why is the mist so thick here?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "I don’t know! I just like it because it's dim. It’s perfect for napping."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"name": "Reimu Hakurei",
+					"text": "Useless as always. Go find a tree to haunt."
+				}
+			]
+		},
+		"marisa": {
+			"pre": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "The mist is nice, isn’t it? It makes everything feel like a midnight snack. And speaking of snacks... I haven’t had a human today."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "Listen, kid, I don’t have time for the \"I’m gonna eat you\" routine. Go find a stray cat or somethin’. I’ve got a real incident to solve."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Is \"solving an incident\" what humans call \"getting lost in the dark\"?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "It’s called \"investigating.\" And if you don’t move, I’m gonna \"investigate\" how many Master Sparks it takes to brighten up your attitude."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Darkness is more than just a lack of light, you know. It’s where the teeth are."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "Then I guess I’ll just have to knock a few out! Move it or lose it, little darkness!",
+					"music": "assets/audio/music/stage1/apparitions_stalk_the_night.ogg"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "I think I’ll just take a bite out of your \"investigation\" instead!"
+				}
+			],
+			"post": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Ouch, ouch, ouch... My eyes! Everything is too bright!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "Told ya. You’re all talk and no bite, Rumia. Now, tell me. Which way did that red mist get thicker?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "That way... I think. It smells like iron and fancy tea over there."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "Fancy tea, huh? Sounds like someone with too much time and too much magic on their hands."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"name": "Rumia",
+					"text": "Are you really going? If you get eaten by someone bigger than me, I’m going to be very disappointed that I missed out on lunch."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"name": "Marisa Kirisame",
+					"text": "If I find the person behind this, I’m gonna make them pay for my dry cleaning. This mist is stickier than it looks."
+				}
+			]
+		}
+	}
+}

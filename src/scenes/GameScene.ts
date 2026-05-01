@@ -13,6 +13,7 @@ import { GameLoop } from '../game/GameLoop';
 import { GameState } from '../game/GameState';
 
 import { BossHUD } from './BossHUD';
+import { DialogueBox } from './DialogueBox';
 import { GameHUD } from './GameHUD';
 import { GameOverMenu } from './GameOverMenu';
 import { PauseMenu } from './PauseMenu';
@@ -26,6 +27,7 @@ import { BlizzardManager } from '../systems/BlizzardManager';
 import { ScrollingBackground } from '../utils/ScrollingBackground';
 import { SpellcardBackground } from '../utils/SpellcardBackground';
 import { STAGES } from '../stages/stages';
+import { DialogueRegistry } from '../stages/DialogueRegistry';
 import { buildPlayer } from '../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
 import { SPELLCARD_REGISTRY, SpellcardEntry } from '../game/SpellcardRegistry';
@@ -45,6 +47,8 @@ export class GameScene {
 
 	protected hud: GameHUD = new GameHUD();
 	protected bossHUD: BossHUD = new BossHUD();
+	protected dialogueBox: DialogueBox = new DialogueBox();
+	protected dialoguePaused: boolean = false;
 	protected activeBoss: Boss | null = null;
 	protected pauseMenu!: PauseMenu;
 	protected gameOverMenu!: GameOverMenu;
@@ -166,6 +170,13 @@ export class GameScene {
 		this.inputManager.onKeyDown(code => {
 			if (this.sceneManager.getCurrentScene() !== Scene.GAME) return;
 			if (!this.isActive) return;
+
+			if (this.dialoguePaused) {
+				if (code === Controls.SHOOT || code === Controls.MENU_SELECT)
+					this.dialogueBox.advance();
+				return;
+			}
+
 			if (
 				code === Controls.BACK &&
 				!this.pauseMenu.isActive() &&
@@ -238,6 +249,8 @@ export class GameScene {
 
 		this.activeBoss = null;
 		this.bossHUD.hide();
+		this.dialoguePaused = false;
+		this.dialogueBox.hide();
 
 		this.enemyManager.onDrop = (x, y, drops) =>
 			this.itemManager.dropFromEnemy(x, y, drops);
@@ -252,8 +265,15 @@ export class GameScene {
 			this.activeBoss = boss;
 			this.bossHUD.show(boss);
 
+			boss.onSpellCapture = bonus => {
+				this.scoreManager.add(bonus);
+				this.hud.setScore(this.scoreManager.value);
+			};
+
 			if (spellcardEntry) {
+				// Spellcard practice: no dialogue, charge immediately
 				boss.skipToPhase(spellcardEntry.phaseIndex);
+				boss.onArrived = () => boss.startCharge();
 				boss.onReady = () => {
 					if (boss.isCurrentSpellCard())
 						this.spellcardBg.show(boss.spellcardBgSrc);
@@ -269,6 +289,7 @@ export class GameScene {
 						this.spellcardBg.hide();
 					}
 				};
+				if (boss.music) MusicManager.play(boss.music);
 			} else {
 				boss.onPhaseChange = () => {
 					this.bossHUD.onPhaseChange(boss);
@@ -278,14 +299,43 @@ export class GameScene {
 						this.spellcardBg.hide();
 					}
 				};
-			}
 
-			boss.onSpellCapture = bonus => {
-				this.scoreManager.add(bonus);
-				this.hud.setScore(this.scoreManager.value);
-			};
-			if (boss.music) {
-				MusicManager.play(boss.music);
+				// Pre-battle dialogue: plays when boss lands, charge happens after
+				boss.onArrived = () => {
+					const pre = DialogueRegistry.getPre(
+						boss.dialogueId,
+						GameState.character
+					);
+					if (pre.length > 0) {
+						this.dialoguePaused = true;
+						this.dialogueBox.start(pre, () => {
+							this.dialoguePaused = false;
+							boss.startCharge();
+						});
+					} else {
+						boss.startCharge();
+					}
+				};
+
+				// onReady fires after charge finishes
+				boss.onReady = () => {
+					if (boss.music) MusicManager.play(boss.music);
+				};
+
+				// Post-battle dialogue: plays after hurt animation, boss leaves after
+				const post = DialogueRegistry.getPost(
+					boss.dialogueId,
+					GameState.character
+				);
+				if (post.length > 0) {
+					boss.onDefeated = () => {
+						this.dialoguePaused = true;
+						this.dialogueBox.start(post, () => {
+							this.dialoguePaused = false;
+							boss.beginLeave();
+						});
+					};
+				}
 			}
 		};
 
@@ -409,36 +459,42 @@ export class GameScene {
 		this.background.update(dt);
 		this.spellcardBg.update(dt);
 		this.blizzardManager.update(dt, this.activeBoss !== null);
-		this.player.update(dt);
-		if (this.blizzardManager.windPushX !== 0 && !this.player.isDead()) {
-			const hw = this.player.width / 2;
-			this.player.x = Math.max(
-				hw,
-				Math.min(
-					FIELD.WIDTH - hw,
-					this.player.x + this.blizzardManager.windPushX * dt
-				)
-			);
+		this.dialogueBox.update(dt);
+
+		if (!this.dialoguePaused) {
+			this.player.update(dt);
+			if (this.blizzardManager.windPushX !== 0 && !this.player.isDead()) {
+				const hw = this.player.width / 2;
+				this.player.x = Math.max(
+					hw,
+					Math.min(
+						FIELD.WIDTH - hw,
+						this.player.x + this.blizzardManager.windPushX * dt
+					)
+				);
+			}
 		}
+
 		this.bulletManager.update(dt);
 		this.enemyManager.update(
 			dt,
 			this.player.x,
 			this.player.y,
-			this.bulletManager.playerBullets,
+			this.dialoguePaused ? [] : this.bulletManager.playerBullets,
 			this.bulletManager.enemyBullets
 		);
 
-		this.checkPlayerCollisions();
-		this.grazeEffect.update(dt);
-
-		const collected = this.itemManager.update(
-			dt,
-			this.player.x,
-			this.player.y,
-			!this.player.isDead()
-		);
-		this.processCollectedItems(collected);
+		if (!this.dialoguePaused) {
+			this.checkPlayerCollisions();
+			this.grazeEffect.update(dt);
+			const collected = this.itemManager.update(
+				dt,
+				this.player.x,
+				this.player.y,
+				!this.player.isDead()
+			);
+			this.processCollectedItems(collected);
+		}
 	}
 
 	protected updateBossState(): void {
@@ -606,6 +662,7 @@ export class GameScene {
 		this.bulletManager.render(ctx);
 		this.blizzardManager.render(ctx);
 		this.renderBombEffect(ctx);
+		this.dialogueBox.render(ctx);
 	}
 
 	protected renderBombEffect(

@@ -403,6 +403,95 @@
 		}
 	}
 
+	#dialogue-box {
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 76px;
+		background: rgba(0, 0, 0, 1);
+		border-top: 1px solid rgba(255, 255, 255, 0.55);
+		z-index: 15;
+		flex-direction: row;
+		align-items: stretch;
+		pointer-events: none;
+
+		&.visible {
+			display: flex;
+		}
+
+		&.speaker-boss {
+			.dlg-bar { background: #cc0000; }
+			.dlg-name { color: #cc0000; }
+		}
+
+		&.speaker-player {
+			.dlg-bar { background: #ffd000; }
+			.dlg-name { color: #ffd000; }
+		}
+
+		.dlg-bar {
+			width: 2px;
+			flex-shrink: 0;
+		}
+
+		.dlg-portrait {
+			width: 60px;
+			height: 60px;
+			image-rendering: pixelated;
+			margin: 4px;
+			border: 1px solid rgba(255, 255, 255, 0.65);
+			flex-shrink: 0;
+			object-fit: cover;
+		}
+
+		.dlg-content {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			padding: 6px 4px 4px 2px;
+			min-width: 0;
+		}
+
+		.dlg-name {
+			font-family: 'sburbits', monospace;
+			font-size: 0.75em;
+			margin: 0 0 2px;
+			display: block;
+		}
+
+		.dlg-separator {
+			width: 100%;
+			height: 1px;
+			background: rgba(150, 180, 220, 0.3);
+			margin-bottom: 5px;
+		}
+
+		.dlg-text {
+			font-family: 'sburbits', monospace;
+			font-size: 0.5em;
+			color: white;
+			margin: 0;
+			line-height: 1.5;
+		}
+
+		.dlg-arrow {
+			position: absolute;
+			bottom: 4px;
+			right: 6px;
+			font-size: 0.5em;
+			color: #ffffff;
+			display: none;
+			animation: dlg-blink 0.8s steps(1, end) infinite;
+
+			&.visible {
+				display: block;
+			}
+		}
+	}
+
 	.side-hud {
 		flex: 1;
 		height: 100%;
@@ -532,6 +621,11 @@
 			}
 		}
 	}
+}
+
+@keyframes dlg-blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
 }
 
 @keyframes spellcard-title-enter {
