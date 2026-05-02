@@ -6,6 +6,8 @@ export const Music = {
 	BOSS: 'assets/audio/music/stage1/apparitions_stalk_the_night.ogg',
 	STAGE2: 'assets/audio/music/stage2/lunate_elf.ogg',
 	BOSS2: 'assets/audio/music/stage2/tomboyish_girl_in_love.ogg',
+	STAGE3: 'assets/audio/music/stage3/deaf_to_all_but_the_song.ogg',
+	BOSS3: 'assets/audio/music/stage3/shanghai_teahouse.ogg',
 } as const;
 
 export class MusicManager {

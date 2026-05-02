@@ -16,6 +16,11 @@ import { IceCubeBullet } from '../../entities/bullets/IceCubeBullet';
 import { BouncingIceCubeBullet } from '../../entities/bullets/BouncingIceCubeBullet';
 import { GiantSnowflakeBullet } from '../../entities/bullets/GiantSnowflakeBullet';
 import { CircleLaserBullet } from '../../entities/bullets/CircleLaserBullet';
+import {
+	BubbleBigBullet,
+	BubbleMediumBullet,
+	BubbleSmallBullet,
+} from '../../entities/bullets/BubbleBullet';
 import { BulletColor } from '../../entities/bullets/BulletSprites';
 import { Difficulty } from '../GameState';
 
@@ -33,7 +38,10 @@ export type BulletType =
 	| 'sunflower_bounce'
 	| 'icecube'
 	| 'icecube_bounce'
-	| 'giantsnowflake';
+	| 'giantsnowflake'
+	| 'bubble-big'
+	| 'bubble-medium'
+	| 'bubble-small';
 
 export interface PatternConfig {
 	type:
@@ -49,7 +57,8 @@ export interface PatternConfig {
 		| 'volley-spread'
 		| 'volley-circle'
 		| 'gravity'
-		| 'laser-circle';
+		| 'laser-circle'
+		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -148,6 +157,13 @@ export interface PatternConfig {
 	activeDuration?: number;
 	maxFireDelay?: number;
 
+	// ------------ BURST ------------
+	// count         = bullets per burst
+	// burstInterval = seconds between each bullet within the burst
+	// cooldown      = seconds between bursts
+	// spread        = random angular spread around player aim (radians)
+	burstInterval?: number;
+
 	// Optional difficulty filter. If omitted, the pattern fires on all difficulties.
 	// If specified, the pattern only fires when the current difficulty is in the list.
 	difficulties?: Difficulty[];
@@ -177,6 +193,9 @@ export class PatternEngine {
 	private initialized: boolean = false;
 	private lastPx: number = 0;
 	private lastPy: number = 0;
+	private inBurst: boolean = false;
+	private burstCount: number = 0;
+	private burstTimer: number = 0;
 
 	constructor(difficulty: Difficulty) {
 		this.difficulty = difficulty;
@@ -202,6 +221,12 @@ export class PatternEngine {
 
 		this.lastPx = px;
 		this.lastPy = py;
+
+		if (pattern.type === 'burst') {
+			this.updateBurst(dt, pattern, ex, ey, px, py, out);
+			return;
+		}
+
 		this.timer += dt;
 
 		const cooldown = pattern.cooldown ?? 1.0;
@@ -224,6 +249,48 @@ export class PatternEngine {
 		this.timer = 0;
 		this.shotCount = 0;
 		this.initialized = false;
+		this.inBurst = false;
+		this.burstCount = 0;
+		this.burstTimer = 0;
+	}
+
+	private updateBurst(
+		dt: number,
+		pattern: PatternConfig,
+		ex: number,
+		ey: number,
+		px: number,
+		py: number,
+		out: IBullet[]
+	): void {
+		const cooldown = pattern.cooldown ?? 2.0;
+		const interval = pattern.burstInterval ?? 0.1;
+		const burstSize = Math.max(1, pattern.count ?? 4);
+
+		if (!this.initialized) {
+			this.timer = cooldown - (pattern.delay ?? 0);
+			this.initialized = true;
+		}
+
+		if (this.inBurst) {
+			this.burstTimer += dt;
+			while (this.burstTimer >= interval && this.burstCount < burstSize) {
+				this.burstTimer -= interval;
+				this.fire(pattern, ex, ey, px, py, out, this.shotCount++);
+				this.burstCount++;
+			}
+			if (this.burstCount >= burstSize) {
+				this.inBurst = false;
+				this.timer = 0;
+			}
+		} else {
+			this.timer += dt;
+			if (this.timer >= cooldown) {
+				this.inBurst = true;
+				this.burstCount = 0;
+				this.burstTimer = interval;
+			}
+		}
 	}
 
 	private spawnRing(
@@ -281,6 +348,9 @@ export class PatternEngine {
 		icecube: (x, y, vx, vy) => new IceCubeBullet(x, y, vx, vy),
 		icecube_bounce: (x, y, vx, vy) => new BouncingIceCubeBullet(x, y, vx, vy),
 		giantsnowflake: (x, y, vx, vy) => new GiantSnowflakeBullet(x, y, vx, vy),
+		'bubble-big': (x, y, vx, vy) => new BubbleBigBullet(x, y, vx, vy),
+		'bubble-medium': (x, y, vx, vy) => new BubbleMediumBullet(x, y, vx, vy),
+		'bubble-small': (x, y, vx, vy) => new BubbleSmallBullet(x, y, vx, vy),
 	};
 
 	private spawn(
@@ -651,6 +721,14 @@ export class PatternEngine {
 						this.spawnWithAccel(pattern, bullet, ex, ey, angle, s, color, out);
 					}
 				}
+				break;
+			}
+
+			case 'burst': {
+				const spread = pattern.spread ?? 0;
+				const angle =
+					Math.atan2(py - ey, px - ex) + (Math.random() - 0.5) * spread;
+				this.spawnWithAccel(pattern, bullet, ex, ey, angle, speed, color, out);
 				break;
 			}
 

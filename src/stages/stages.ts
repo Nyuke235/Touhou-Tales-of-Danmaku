@@ -3,6 +3,7 @@ import { Music } from '../systems/MusicManager';
 import { BlizzardEvent } from '../systems/BlizzardManager';
 import { STAGE_1 } from './stage1';
 import { STAGE_2, STAGE_2_BLIZZARD } from './stage2';
+import { STAGE_3 } from './stage3';
 
 export interface StageConfig {
 	backgroundSrc: string;
@@ -35,5 +36,14 @@ export const STAGES: StageConfig[] = [
 		name: 'Ripples on the Misty Lake',
 		description: '~ Where Darkness Meets Still Water ~',
 	},
-	// Stages 3-6: scripts to be added
+	{
+		backgroundSrc: 'assets/sprites/backgrounds/stage3_bg.png',
+		backgroundSpeed: 20,
+		music: Music.STAGE3,
+		script: STAGE_3,
+		number: 'STAGE 3',
+		name: 'The Sleeping Dragon’s Courtyard',
+		description: '~ Where Thorns Protect the Gates ~',
+	},
+	// Stages 4-6: scripts to be added
 ];

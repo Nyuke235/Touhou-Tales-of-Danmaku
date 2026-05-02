@@ -4,6 +4,8 @@ import { Spirit } from '../entities/enemies/Spirit';
 import { MiniSpirit } from '../entities/enemies/MiniSpirit';
 import { Moth } from '../entities/enemies/Moth';
 import { Spinning } from '../entities/enemies/Spinning';
+import { BubbleFairy } from '../entities/enemies/BubbleFairy';
+import type { BubbleFairyPath } from '../entities/enemies/BubbleFairy';
 import { Rumia } from '../entities/enemies/bosses/Rumia';
 import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
@@ -69,6 +71,14 @@ export type SpawnEventData =
 			path: SpinningPath;
 			patterns?: PatternConfig[];
 	  }
+	| {
+			time: number;
+			type: 'bubblefairy';
+			x: number;
+			y: number;
+			path: BubbleFairyPath;
+			patterns?: PatternConfig[];
+	  }
 	| { time: number; type: 'rumia'; x: number; y: number }
 	| { time: number; type: 'rumiadark'; x: number; y: number }
 	| { time: number; type: 'daiyousei'; x: number; y: number }
@@ -90,6 +100,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 		spawnY: d.y,
 		factory: (): Enemy => {
 			switch (d.type) {
+				case 'bubblefairy':
+					return new BubbleFairy(d.x, d.y, d.path, d.patterns);
 				case 'fairy':
 					return new Fairy(d.x, d.y, d.color, d.path, d.patterns);
 				case 'spirit':

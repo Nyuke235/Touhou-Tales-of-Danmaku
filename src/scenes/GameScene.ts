@@ -271,7 +271,6 @@ export class GameScene {
 			};
 
 			if (spellcardEntry) {
-				// Spellcard practice: no dialogue, charge immediately
 				boss.skipToPhase(spellcardEntry.phaseIndex);
 				boss.onArrived = () => boss.startCharge();
 				boss.onReady = () => {
@@ -300,7 +299,6 @@ export class GameScene {
 					}
 				};
 
-				// Pre-battle dialogue: plays when boss lands, charge happens after
 				boss.onArrived = () => {
 					const pre = DialogueRegistry.getPre(
 						boss.dialogueId,
@@ -317,12 +315,10 @@ export class GameScene {
 					}
 				};
 
-				// onReady fires after charge finishes
 				boss.onReady = () => {
 					if (boss.music) MusicManager.play(boss.music);
 				};
 
-				// Post-battle dialogue: plays after hurt animation, boss leaves after
 				const post = DialogueRegistry.getPost(
 					boss.dialogueId,
 					GameState.character
@@ -574,6 +570,22 @@ export class GameScene {
 	}
 
 	protected checkPlayerCollisions(): void {
+		for (const pb of this.bulletManager.playerBullets) {
+			if (!pb.active) continue;
+			for (const eb of this.bulletManager.enemyBullets) {
+				if (!eb.active || !eb.takeDamage) continue;
+				const dx = pb.x - eb.x;
+				const dy = pb.y - eb.y;
+				if (dx * dx + dy * dy <= (pb.hitRadius + eb.hitRadius) ** 2) {
+					const children = eb.takeDamage(pb.damage);
+					for (const c of children) this.bulletManager.addEnemyProjectile(c);
+					pb.active = false;
+					SoundManager.play(SFX.ENEMY_HIT);
+					break;
+				}
+			}
+		}
+
 		for (const p of this.bulletManager.enemyBullets) {
 			if (!p.active || !p.freezeRadius) continue;
 			const dx = this.player.x - p.x;

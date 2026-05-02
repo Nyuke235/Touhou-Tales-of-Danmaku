@@ -13,6 +13,7 @@ export interface IBullet {
 	update(dt: number): void;
 	render(ctx: CanvasRenderingContext2D): void;
 	checkTrailHit?(px: number, py: number, hitR: number): boolean;
+	takeDamage?(damage: number): IBullet[];
 }
 
 export abstract class BaseBullet implements IBullet {

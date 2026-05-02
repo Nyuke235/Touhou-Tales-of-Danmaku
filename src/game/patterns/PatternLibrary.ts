@@ -1569,4 +1569,27 @@ export const Patterns = {
 		speed: 50, speedVariance: 10, cooldown: 1.7, delay: 1.7,
 		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
 	} as PatternConfig,
+
+	//-------------------- BUBBLE FAIRY --------------------
+
+	S3_BUBBLEFAIRY_EN: {
+		type: 'burst', bullet: 'bubble-big',
+		count: 3, burstInterval: 0.13, spread: 0.3,
+		speed: 70, delay: 0.7, cooldown: 2.0,
+		difficulties: [Difficulty.EASY, Difficulty.NORMAL]
+	} as PatternConfig,
+
+	S3_BUBBLEFAIRY_H: {
+		type: 'burst', bullet: 'bubble-big',
+		count: 4, burstInterval: 0.1, spread: 0.25,
+		speed: 80, delay: 0.6, cooldown: 1.8,
+		difficulties: [Difficulty.HARD]
+	} as PatternConfig,
+
+	S3_BUBBLEFAIRY_L: {
+		type: 'burst', bullet: 'bubble-big',
+		count: 5, burstInterval: 0.09, spread: 0.2,
+		speed: 90, delay: 0.5, cooldown: 1.5,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
 };
