@@ -56,6 +56,7 @@ document.addEventListener('keydown', startMusic, { capture: true });
 document.addEventListener('click', startMusic, { capture: true });
 
 await showTitleScreen();
+inputManager.enable();
 
 const originalSwitchTo = sceneManager.switchTo.bind(sceneManager);
 
