@@ -157,19 +157,13 @@ export class CircleLaserBullet extends BaseBullet {
 	render(ctx: CanvasRenderingContext2D): void {
 		if (this.phase === 'waiting') return;
 
-		const warnColor = WARN_COLORS[this.color] ?? '#ffffff';
-		const coreColor = CORE_COLORS[this.color] ?? '#ffffff';
-		const glowColor = GLOW_COLORS[this.color] ?? 'rgba(255,255,255,0.8)';
-
 		ctx.save();
 		ctx.lineCap = 'round';
 
 		if (this.phase === 'warning') {
 			const pulse = 0.5 + 0.5 * Math.sin(this.elapsed * Math.PI * 8);
 			ctx.globalAlpha = 0.35 + pulse * 0.45;
-			ctx.strokeStyle = warnColor;
-			ctx.shadowColor = warnColor;
-			ctx.shadowBlur = 4;
+			ctx.strokeStyle = WARN_COLORS[this.color] ?? '#ffffff';
 			ctx.lineWidth = 1;
 			ctx.beginPath();
 			ctx.moveTo(this.originX, this.originY);
@@ -178,36 +172,36 @@ export class CircleLaserBullet extends BaseBullet {
 		} else {
 			const t = this.elapsed / this.activeDuration;
 			const alpha = 1 - t * 0.5;
+			const ox = this.originX,
+				oy = this.originY,
+				ex = this.endX,
+				ey = this.endY;
 
 			// outer glow
-			ctx.globalAlpha = 0.18 * alpha;
-			ctx.strokeStyle = glowColor;
-			ctx.shadowColor = glowColor;
-			ctx.shadowBlur = 12;
-			ctx.lineWidth = 9;
+			ctx.globalAlpha = 0.22 * alpha;
+			ctx.strokeStyle = GLOW_COLORS[this.color] ?? 'rgba(255,255,255,0.8)';
+			ctx.lineWidth = 11;
 			ctx.beginPath();
-			ctx.moveTo(this.originX, this.originY);
-			ctx.lineTo(this.endX, this.endY);
+			ctx.moveTo(ox, oy);
+			ctx.lineTo(ex, ey);
 			ctx.stroke();
 
 			// core
-			ctx.globalAlpha = 0.85 * alpha;
-			ctx.strokeStyle = coreColor;
-			ctx.shadowBlur = 6;
+			ctx.globalAlpha = 0.9 * alpha;
+			ctx.strokeStyle = CORE_COLORS[this.color] ?? '#ffffff';
 			ctx.lineWidth = 3;
 			ctx.beginPath();
-			ctx.moveTo(this.originX, this.originY);
-			ctx.lineTo(this.endX, this.endY);
+			ctx.moveTo(ox, oy);
+			ctx.lineTo(ex, ey);
 			ctx.stroke();
 
-			// center
+			// center white
 			ctx.globalAlpha = alpha;
 			ctx.strokeStyle = '#ffffff';
-			ctx.shadowBlur = 0;
 			ctx.lineWidth = 1;
 			ctx.beginPath();
-			ctx.moveTo(this.originX, this.originY);
-			ctx.lineTo(this.endX, this.endY);
+			ctx.moveTo(ox, oy);
+			ctx.lineTo(ex, ey);
 			ctx.stroke();
 		}
 

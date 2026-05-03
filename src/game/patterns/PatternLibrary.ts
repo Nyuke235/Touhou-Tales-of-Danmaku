@@ -425,16 +425,16 @@ export const Patterns = {
 	// -------------------- RUMIA PHASE 3 --------------------
 
 	RUMIA_VOLLEY_HARD: {
-		type: 'volley-spread', color: 'yellow', speed: 100,
-		deltaSpeed: 15, delay: 1.0, cooldown: 2.8, maxShots: 3,
-		count: 3, streams: 5, spread: 0.4,
+		type: 'volley-spread', color: 'yellow', speed: 70,
+		deltaSpeed: 15, delay: 1.0, cooldown: 3.8, maxShots: 3,
+		count: 1, streams: 5, spread: 0.4,
 		difficulties: [Difficulty.HARD]
 	} as PatternConfig,
 
 	RUMIA_VOLLEY_LUNATIC: {
-		type: 'volley-spread', color: 'yellow', speed: 100,
-		deltaSpeed: 15, delay: 1.0, cooldown: 2.8, maxShots: 3,
-		count: 5, streams: 6, spread: 0.4,
+		type: 'volley-spread', color: 'yellow', speed: 70,
+		deltaSpeed: 15, delay: 1.0, cooldown: 3.8, maxShots: 3,
+		count: 3, streams: 6, spread: 0.4,
 		difficulties: [Difficulty.LUNATIC]
 	} as PatternConfig,
 
