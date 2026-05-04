@@ -14,6 +14,11 @@ if (eth0) {
 	HOST = '127.0.0.1';
 }
 
+fs.mkdirSync(path.dirname(dataFilePath), { recursive: true });
+if (!fs.existsSync(dataFilePath)) {
+	fs.writeFileSync(dataFilePath, '[]', 'utf8');
+}
+
 const app = express();
 app.use(express.json());
 

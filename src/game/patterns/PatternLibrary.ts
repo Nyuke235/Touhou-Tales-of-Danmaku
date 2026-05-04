@@ -280,7 +280,6 @@ export const Patterns = {
 	} as PatternConfig,
 
 	// -------------------- DARK RUMIA SPELLCARD --------------------
-
 	RUMIA_ROSE_1: {
 		type: 'rose', bullet: 'rice', color: 'purple',
 		roseN: 4, count: 1,
@@ -404,22 +403,77 @@ export const Patterns = {
 	RUMIA_ORB_RINGS_E: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
 		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: Math.PI / 4,
-		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 6,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 7,
 		difficulties: [Difficulty.EASY]
 	} as PatternConfig,
 
 	RUMIA_ORB_RINGS_NH: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
 		count: 12, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: Math.PI / 4,
-		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 7,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 6,
 		difficulties: [Difficulty.NORMAL]
 	} as PatternConfig,
 
 	RUMIA_ORB_RINGS_L: {
 		type: 'circle', bullet: 'orb', color: 'yellow',
 		count: 18, speed: 100, initSpeed: 40, accelTime: 2.0, startAngle: 0,
-		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 8,
+		cooldown: 0.3, delay: 7.0, maxShots: 9, ringAngleStep: Math.PI / 6,
 		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	// -------------------- RUMIA PHASE 2 --------------------
+	RUMIA_WHEEL_CW_EASY: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: Math.PI * 0.08, radialVel: 64,
+		startAngle: 0, delay: 0.2, cooldown: 1.8,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CCW_EASY: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: -(Math.PI * 0.08), radialVel: 64,
+		startAngle: Math.PI / 14, delay: 0.2, cooldown: 1.8,
+		difficulties: [Difficulty.EASY]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CW: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: Math.PI * 0.14, radialVel: 64,
+		startAngle: 0, delay: 0.2, cooldown: 1.8,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CCW: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: -(Math.PI * 0.14), radialVel: 64,
+		startAngle: Math.PI / 14, delay: 0.2, cooldown: 1.8,
+		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CW_2: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: Math.PI * 0.14, radialVel: 64,
+		startAngle: 0, delay: 0.8, cooldown: 1.8,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_WHEEL_CCW_2: {
+		type: 'orbit', color: 'purple',
+		count: 16, angularVel: -(Math.PI * 0.14), radialVel: 64,
+		startAngle: Math.PI, delay: 0.8, cooldown: 1.8,
+		difficulties: [Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_ORB_RINGS_PURPLE: {
+		type: 'circle', bullet: 'orb', color: 'purple',
+		count: 8, speed: 40, startAngle: 0, rotStep: Math.PI / 2,
+		cooldown: 1.2, delay: 0.8, maxShots: 10, ringAngleStep: Math.PI / 8,
+		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
+	} as PatternConfig,
+
+	RUMIA_SHADOW_AIMED: {
+		type: 'aimed', bullet: 'shadow',
+		speed: 40, delay: 1.5, cooldown: 3.0, maxShots: 3,
 	} as PatternConfig,
 
 	// -------------------- RUMIA PHASE 3 --------------------
@@ -478,62 +532,7 @@ export const Patterns = {
 		speed: 50, initSpeed: 80, accelTime: 2.0, cooldown: 0.04, delay: 0.4,
 	} as PatternConfig,
 
-	// Rumia spellcard
-	RUMIA_WHEEL_CW_EASY: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: Math.PI * 0.08, radialVel: 64,
-		startAngle: 0, delay: 0.2, cooldown: 1.8,
-		difficulties: [Difficulty.EASY]
-	} as PatternConfig,
-
-	RUMIA_WHEEL_CCW_EASY: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: -(Math.PI * 0.08), radialVel: 64,
-		startAngle: Math.PI / 14, delay: 0.2, cooldown: 1.8,
-		difficulties: [Difficulty.EASY]
-	} as PatternConfig,
-
-	RUMIA_WHEEL_CW: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: Math.PI * 0.14, radialVel: 64,
-		startAngle: 0, delay: 0.2, cooldown: 1.8,
-		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	RUMIA_WHEEL_CCW: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: -(Math.PI * 0.14), radialVel: 64,
-		startAngle: Math.PI / 14, delay: 0.2, cooldown: 1.8,
-		difficulties: [Difficulty.NORMAL, Difficulty.HARD, Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	RUMIA_WHEEL_CW_2: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: Math.PI * 0.14, radialVel: 64,
-		startAngle: 0, delay: 0.8, cooldown: 1.8,
-		difficulties: [Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	RUMIA_WHEEL_CCW_2: {
-		type: 'orbit', color: 'purple',
-		count: 16, angularVel: -(Math.PI * 0.14), radialVel: 64,
-		startAngle: Math.PI, delay: 0.8, cooldown: 1.8,
-		difficulties: [Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	RUMIA_ORB_RINGS_PURPLE: {
-		type: 'circle', bullet: 'orb', color: 'purple',
-		count: 8, speed: 40, startAngle: 0, rotStep: Math.PI / 2,
-		cooldown: 1.2, delay: 0.8, maxShots: 10, ringAngleStep: Math.PI / 8,
-		difficulties: [Difficulty.HARD, Difficulty.LUNATIC]
-	} as PatternConfig,
-
-	RUMIA_SHADOW_AIMED: {
-		type: 'aimed', bullet: 'shadow',
-		speed: 40, delay: 1.5, cooldown: 3.0, maxShots: 3,
-	} as PatternConfig,
-
-	// Rumia spellcard 2
+	// -------------------- RUMIA PHASE 4 --------------------
 	RUMIA_BURST_SHADOW_1: {
 		type: 'circle', bullet: 'burstshadow',
 		count: 5, speed: 4, initSpeed: 40, accelTime: 3.0, startAngle: 0, rotStep: Math.PI / 8,
