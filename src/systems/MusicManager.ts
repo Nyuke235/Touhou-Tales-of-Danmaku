@@ -14,6 +14,22 @@ export class MusicManager {
 	private static audio: HTMLAudioElement | null = null;
 	private static currentSrc: string = '';
 	private static volume: number = AUDIO.MUSIC_VOLUME;
+	private static pendingSrc: string | null = null;
+
+	static {
+		const unlock = () => {
+			if (MusicManager.pendingSrc) {
+				const src = MusicManager.pendingSrc;
+				MusicManager.pendingSrc = null;
+				MusicManager.currentSrc = '';
+				MusicManager.play(src);
+			}
+			document.removeEventListener('keydown', unlock);
+			document.removeEventListener('click', unlock);
+		};
+		document.addEventListener('keydown', unlock);
+		document.addEventListener('click', unlock);
+	}
 
 	static play(src: string): void {
 		if (this.currentSrc === src) return;
@@ -27,7 +43,9 @@ export class MusicManager {
 		this.audio.loop = true;
 		this.audio.volume = this.volume;
 		this.currentSrc = src;
-		this.audio.play().catch(err => console.warn('[Music]', err));
+		this.audio.play().catch(() => {
+			this.pendingSrc = src;
+		});
 	}
 
 	static stop(): void {

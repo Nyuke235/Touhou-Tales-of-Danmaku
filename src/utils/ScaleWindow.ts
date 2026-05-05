@@ -3,8 +3,8 @@ export function scaleGameWindow(): void {
 
 	const scale = Math.min(window.innerWidth / 400, window.innerHeight / 300);
 
-	gameWindow.style.transform = `scale(${scale})`;
-	gameWindow.style.transformOrigin = 'center center';
+	gameWindow.style.zoom = String(scale);
+	gameWindow.style.transform = '';
 }
 
 window.addEventListener('resize', scaleGameWindow);

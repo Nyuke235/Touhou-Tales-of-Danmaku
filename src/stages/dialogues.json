@@ -38,7 +38,7 @@
 			"pre": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
 					"name": "Rumia",
 					"text": "Darkness is more fun when you’re inside it, don’t you think?"
 				},
@@ -50,7 +50,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
 					"text": "It’s a holy gesture! Also, I don’t get lost if I’m pointing in every direction."
 				},
@@ -62,7 +62,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
 					"name": "Rumia",
 					"text": "Too late! My stomach just growled. You look like a delicious red-and-white snack!",
 					"music": "assets/audio/music/stage1/apparitions_stalk_the_night.ogg"
@@ -77,7 +77,7 @@
 			"post": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_weak.png",
 					"name": "Rumia",
 					"text": "...I think I bit my tongue."
 				},
@@ -89,7 +89,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
 					"name": "Rumia",
 					"text": "I don’t know! I just like it because it's dim. It’s perfect for napping."
 				},
@@ -105,7 +105,7 @@
 			"pre": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
 					"name": "Rumia",
 					"text": "The mist is nice, isn’t it? It makes everything feel like a midnight snack. And speaking of snacks... I haven’t had a human today."
 				},
@@ -117,7 +117,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
 					"text": "Is \"solving an incident\" what humans call \"getting lost in the dark\"?"
 				},
@@ -129,7 +129,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
 					"name": "Rumia",
 					"text": "Darkness is more than just a lack of light, you know. It’s where the teeth are."
 				},
@@ -142,7 +142,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
 					"name": "Rumia",
 					"text": "I think I’ll just take a bite out of your \"investigation\" instead!"
 				}
@@ -150,7 +150,7 @@
 			"post": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_weak.png",
 					"name": "Rumia",
 					"text": "Ouch, ouch, ouch... My eyes! Everything is too bright!"
 				},
@@ -162,7 +162,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_weak.png",
 					"name": "Rumia",
 					"text": "That way... I think. It smells like iron and fancy tea over there."
 				},
@@ -174,7 +174,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
 					"name": "Rumia",
 					"text": "Are you really going? If you get eaten by someone bigger than me, I’m going to be very disappointed that I missed out on lunch."
 				},
