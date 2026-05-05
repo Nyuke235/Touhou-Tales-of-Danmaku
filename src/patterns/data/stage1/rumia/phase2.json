@@ -1,0 +1,109 @@
+{
+  "RUMIA_WHEEL_CW_EASY": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "PI*0.08",
+    "radialVel": 64,
+    "startAngle": 0,
+    "delay": 0.2,
+    "cooldown": 1.8,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_WHEEL_CCW_EASY": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "-PI*0.08",
+    "radialVel": 64,
+    "startAngle": "PI/14",
+    "delay": 0.2,
+    "cooldown": 1.8,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_WHEEL_CW": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "PI*0.14",
+    "radialVel": 64,
+    "startAngle": 0,
+    "delay": 0.2,
+    "cooldown": 1.8,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_WHEEL_CCW": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "-PI*0.14",
+    "radialVel": 64,
+    "startAngle": "PI/14",
+    "delay": 0.2,
+    "cooldown": 1.8,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_WHEEL_CW_2": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "PI*0.14",
+    "radialVel": 64,
+    "startAngle": 0,
+    "delay": 0.8,
+    "cooldown": 1.8,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_WHEEL_CCW_2": {
+    "type": "orbit",
+    "color": "purple",
+    "count": 16,
+    "angularVel": "-PI*0.14",
+    "radialVel": 64,
+    "startAngle": "PI",
+    "delay": 0.8,
+    "cooldown": 1.8,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_ORB_RINGS_PURPLE": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "purple",
+    "count": 8,
+    "speed": 40,
+    "startAngle": 0,
+    "rotStep": "PI/2",
+    "cooldown": 1.2,
+    "delay": 0.8,
+    "maxShots": 10,
+    "ringAngleStep": "PI/8",
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_SHADOW_AIMED": {
+    "type": "aimed",
+    "bullet": "shadow",
+    "speed": 40,
+    "delay": 1.5,
+    "cooldown": 3,
+    "maxShots": 3
+  }
+}

@@ -1,6 +1,6 @@
 import { Spritesheet } from '../utils/Spritesheet';
 import { IBullet } from './Bullet';
-import { PatternConfig } from '../game/patterns/PatternEngine';
+import { PatternConfig } from '../patterns/PatternEngine';
 import { Enemy } from './Enemy';
 import { ItemType } from './Item';
 import { SoundManager, SFX } from '../systems/SoundManager';

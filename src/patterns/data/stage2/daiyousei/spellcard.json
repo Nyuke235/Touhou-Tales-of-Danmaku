@@ -1,0 +1,110 @@
+{
+  "DAIYOUSEI_SUNFLOWER_BOUNCE_EN": {
+    "type": "circle",
+    "bullet": "sunflower_bounce",
+    "count": 10,
+    "speed": 55,
+    "startAngle": "PI/2",
+    "rotStep": "PI/6",
+    "delay": 0.5,
+    "cooldown": 7,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "DAIYOUSEI_SUNFLOWER_BOUNCE_H": {
+    "type": "circle",
+    "bullet": "sunflower_bounce",
+    "count": 13,
+    "speed": 55,
+    "startAngle": "PI/2",
+    "rotStep": "PI/6",
+    "delay": 0.5,
+    "cooldown": 7,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "DAIYOUSEI_SUNFLOWER_BOUNCE_L": {
+    "type": "circle",
+    "bullet": "sunflower_bounce",
+    "count": 10,
+    "speed": 55,
+    "startAngle": "PI/2",
+    "rotStep": "PI/6",
+    "delay": 0.5,
+    "cooldown": 3,
+    "maxShots": 2,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "DAIYOUSEI_CIRCLE_ARROWHEAD": {
+    "type": "circle",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 12,
+    "speed": 50,
+    "initSpeed": 120,
+    "accelTime": 2,
+    "startAngle": 0,
+    "delay": 0.8,
+    "cooldown": 0.2
+  },
+  "DAIYOUSEI_CIRCLE_AIMED_1": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 8,
+    "speed": 12,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 2.8,
+    "cooldown": 7,
+    "initSpeed": 40,
+    "accelTime": 1.6,
+    "morphDelay": 2.2,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "bullet": "orb",
+      "color": "yellow",
+      "speed": 100,
+      "initSpeed": 12,
+      "accelTime": 2.1
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "DAIYOUSEI_CIRCLE_AIMED_2": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 8,
+    "speed": 12,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 2.8,
+    "cooldown": 7,
+    "initSpeed": 40,
+    "accelTime": 1.6,
+    "morphDelay": 2.2,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "bullet": "orb",
+      "color": "yellow",
+      "speed": 150,
+      "initSpeed": 12,
+      "accelTime": 1.5
+    },
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

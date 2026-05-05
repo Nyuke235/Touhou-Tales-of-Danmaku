@@ -1,0 +1,105 @@
+{
+  "RUMIA_ROSE_1": {
+    "type": "rose",
+    "bullet": "rice",
+    "color": "purple",
+    "roseN": 4,
+    "count": 1,
+    "speed": 80,
+    "startAngle": 0,
+    "rotStep": 0.07,
+    "cooldown": 0.15,
+    "delay": 0.5,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "RUMIA_ROSE_2": {
+    "type": "rose",
+    "bullet": "rice",
+    "color": "purple",
+    "roseN": 4,
+    "count": 1,
+    "speed": 90,
+    "startAngle": 0,
+    "rotStep": 0.07,
+    "cooldown": 0.12,
+    "delay": 0.5,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_ROSE_3": {
+    "type": "rose",
+    "bullet": "rice",
+    "color": "purple",
+    "roseN": 4,
+    "count": 1,
+    "speed": 90,
+    "startAngle": 0,
+    "rotStep": 0.07,
+    "cooldown": 0.09,
+    "delay": 0.5,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_SHADOW_CIRCLE_1": {
+    "type": "circle",
+    "bullet": "shadow",
+    "count": 4,
+    "speed": 40,
+    "startAngle": "PI/8",
+    "rotStep": "PI/8",
+    "delay": 2,
+    "cooldown": 3,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_SHADOW_CIRCLE_2": {
+    "type": "circle",
+    "bullet": "shadow",
+    "count": 8,
+    "speed": 40,
+    "startAngle": "PI/8",
+    "rotStep": "PI/8",
+    "delay": 2,
+    "cooldown": 3,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_VOLLEY_1": {
+    "type": "volley",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 5,
+    "speed": 120,
+    "deltaSpeed": 10,
+    "delay": 1,
+    "cooldown": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_VOLLEY_2": {
+    "type": "volley-spread",
+    "color": "yellow",
+    "count": 3,
+    "streams": 5,
+    "speed": 120,
+    "deltaSpeed": 10,
+    "spread": 0.3,
+    "delay": 1,
+    "cooldown": 1.5,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

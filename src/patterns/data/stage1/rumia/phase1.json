@@ -1,0 +1,194 @@
+{
+  "RUMIA_STARWHEEL": {
+    "type": "helix",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "sweepAngle": "PI*6",
+    "speed": 32,
+    "initSpeed": 112,
+    "accelTime": 2,
+    "cooldown": 0.03,
+    "delay": 1,
+    "maxShots": 80
+  },
+  "RUMIA_STARWHEEL_CCW": {
+    "type": "helix",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "sweepAngle": "-PI*6",
+    "speed": 32,
+    "initSpeed": 112,
+    "accelTime": 2,
+    "cooldown": 0.03,
+    "delay": 4,
+    "maxShots": 80
+  },
+  "RUMIA_JELLYBEAN_SPIRAL_1": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 1,
+    "startAngle": 0,
+    "sweepAngle": "PI*2",
+    "speed": 50,
+    "cooldown": 0.09,
+    "delay": 1.2,
+    "maxShots": 8,
+    "morphDelay": 1.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "helix",
+      "bullet": "jellybean",
+      "color": "purple",
+      "count": 1,
+      "speed": 60,
+      "shots": 6,
+      "interval": 0.17,
+      "startAngle": "PI/4",
+      "sweepAngle": "PI*3/4"
+    },
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_JELLYBEAN_SPIRAL_2": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 1,
+    "startAngle": 0,
+    "sweepAngle": "PI*2",
+    "speed": 50,
+    "cooldown": 0.09,
+    "delay": 1.2,
+    "maxShots": 8,
+    "morphDelay": 1.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "helix",
+      "bullet": "jellybean",
+      "color": "purple",
+      "count": 1,
+      "speed": 70,
+      "shots": 8,
+      "interval": 0.08,
+      "startAngle": "PI/4",
+      "sweepAngle": "PI*3/4"
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "RUMIA_JELLYBEAN_SPIRAL_3": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 1,
+    "startAngle": 0,
+    "sweepAngle": "PI*2",
+    "speed": 50,
+    "cooldown": 0.09,
+    "delay": 1.2,
+    "maxShots": 8,
+    "morphDelay": 1.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "helix",
+      "bullet": "jellybean",
+      "color": "purple",
+      "count": 1,
+      "speed": 70,
+      "shots": 12,
+      "interval": 0.07,
+      "startAngle": "PI/4",
+      "sweepAngle": "PI*3/4"
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_JELLYBEAN_SPIRAL_4": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 2,
+    "startAngle": 0,
+    "sweepAngle": "PI*2",
+    "speed": 50,
+    "cooldown": 0.09,
+    "delay": 1.2,
+    "maxShots": 8,
+    "morphDelay": 1.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "helix",
+      "bullet": "jellybean",
+      "color": "purple",
+      "count": 1,
+      "speed": 70,
+      "shots": 10,
+      "interval": 0.07,
+      "startAngle": "PI/4",
+      "sweepAngle": "PI*3/4"
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_ORB_RINGS_E": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 12,
+    "speed": 100,
+    "initSpeed": 40,
+    "accelTime": 2,
+    "startAngle": "PI/4",
+    "cooldown": 0.3,
+    "delay": 7,
+    "maxShots": 9,
+    "ringAngleStep": "PI/7",
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_ORB_RINGS_NH": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 12,
+    "speed": 100,
+    "initSpeed": 40,
+    "accelTime": 2,
+    "startAngle": "PI/4",
+    "cooldown": 0.3,
+    "delay": 7,
+    "maxShots": 9,
+    "ringAngleStep": "PI/6",
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "RUMIA_ORB_RINGS_L": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 18,
+    "speed": 100,
+    "initSpeed": 40,
+    "accelTime": 2,
+    "startAngle": 0,
+    "cooldown": 0.3,
+    "delay": 7,
+    "maxShots": 9,
+    "ringAngleStep": "PI/6",
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

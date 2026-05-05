@@ -1,7 +1,7 @@
 import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { Music } from '../../../systems/MusicManager';
-import { Patterns } from '../../../game/patterns/PatternLibrary';
+import { Patterns } from '../../../patterns/PatternLibrary';
 
 const PHASES: BossPhase[] = [
 	{

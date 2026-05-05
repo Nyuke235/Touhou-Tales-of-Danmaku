@@ -1,7 +1,7 @@
 import { Enemy } from '../Enemy';
 import { Spritesheet, createExplosionSheet } from '../../utils/Spritesheet';
-import { PatternConfig } from '../../game/patterns/PatternEngine';
-import { Patterns } from '../../game/patterns/PatternLibrary';
+import { PatternConfig } from '../../patterns/PatternEngine';
+import { Patterns } from '../../patterns/PatternLibrary';
 import { ENEMY_MOVEMENT } from '../../game/Constants';
 
 export type BubbleFairyPath =

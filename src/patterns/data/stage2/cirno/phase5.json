@@ -1,0 +1,270 @@
+{
+  "CIRNO_ARROWHEAD_CIRCLE_BLUE_EN": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 28,
+    "startAngle": "PI/3",
+    "speed": 80,
+    "streams": 5,
+    "deltaSpeed": 5,
+    "delay": 6,
+    "cooldown": 8,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ARROWHEAD_CIRCLE_CYAN_EN": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 28,
+    "startAngle": 0,
+    "speed": 80,
+    "streams": 5,
+    "deltaSpeed": 5,
+    "delay": 2,
+    "cooldown": 8,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ARROWHEAD_CIRCLE_BLUE_HL": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 36,
+    "startAngle": "PI/3",
+    "speed": 80,
+    "streams": 5,
+    "deltaSpeed": 5,
+    "delay": 6,
+    "cooldown": 8,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_ARROWHEAD_CIRCLE_CYAN_HL": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 36,
+    "startAngle": 0,
+    "speed": 80,
+    "streams": 5,
+    "deltaSpeed": 5,
+    "delay": 2,
+    "cooldown": 8,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_BLUE_E": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 1,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "blue",
+      "count": 12,
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_CYAN_E": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "cyan",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 5,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "cyan",
+      "count": 12,
+      "startAngle": "PI/3",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_BLUE_N": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 1,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "blue",
+      "count": 18,
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_CYAN_N": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "cyan",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 5,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "cyan",
+      "count": 18,
+      "startAngle": "PI/3",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_BLUE_H": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 1,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "blue",
+      "count": 26,
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_CYAN_H": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "cyan",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 5,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "cyan",
+      "count": 26,
+      "startAngle": "PI/3",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_BLUE_L": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 1,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "blue",
+      "count": 30,
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_ORB_EXPLOSION_CYAN_L": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "cyan",
+    "count": 8,
+    "startAngle": "PI/3",
+    "speed": 0,
+    "initSpeed": 160,
+    "accelTime": 0.8,
+    "delay": 5,
+    "cooldown": 8,
+    "morphDelay": 0.8,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "color": "cyan",
+      "count": 30,
+      "startAngle": "PI/3",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 0.5
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "CIRNO_SNOWFLAKE": {
+    "type": "aimed",
+    "bullet": "giantsnowflake",
+    "speed": 60,
+    "delay": 2.5,
+    "cooldown": 2.5,
+    "difficulties": [
+      "EASY",
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "CIRNO_SNOWFLAKE_L": {
+    "type": "aimed",
+    "bullet": "giantsnowflake",
+    "speed": 55,
+    "delay": 2.15,
+    "cooldown": 2.15,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_PERFECT_FREEZE_BLUE": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 30,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 90,
+    "speedVariance": 50,
+    "cooldown": 6,
+    "delay": 0.5,
+    "morphDelay": 2.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 6
+    }
+  },
+  "CIRNO_PERFECT_FREEZE_GREEN": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "green",
+    "count": 30,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 95,
+    "speedVariance": 55,
+    "cooldown": 6,
+    "delay": 0.5,
+    "morphDelay": 2.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 6
+    }
+  },
+  "CIRNO_PERFECT_FREEZE_RED": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "red",
+    "count": 30,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 80,
+    "speedVariance": 40,
+    "cooldown": 6,
+    "delay": 0.5,
+    "morphDelay": 2.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 6
+    },
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_PERFECT_FREEZE_PURPLE": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 30,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 70,
+    "speedVariance": 30,
+    "cooldown": 6,
+    "delay": 0.5,
+    "morphDelay": 2.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 6
+    },
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_PERFECT_FREEZE_YELLOW": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 30,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "speed": 60,
+    "speedVariance": 30,
+    "cooldown": 6,
+    "delay": 0.5,
+    "morphDelay": 2.5,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 6
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

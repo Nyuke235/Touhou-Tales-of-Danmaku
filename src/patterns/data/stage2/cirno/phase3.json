@@ -1,0 +1,142 @@
+{
+  "CIRNO_GRAVITY_ICECUBES_E": {
+    "type": "circle",
+    "bullet": "icecube_bounce",
+    "count": 6,
+    "speed": 40,
+    "rotStep": "PI/8",
+    "delay": 1.5,
+    "cooldown": 0.9,
+    "initSpeed": 80,
+    "accelTime": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_BLUE_CIRCLE_E": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 16,
+    "speed": 80,
+    "rotStep": "PI/12",
+    "startAngle": "PI/3",
+    "delay": 0.5,
+    "cooldown": 0.8,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_GRAVITY_ICECUBES_N": {
+    "type": "circle",
+    "bullet": "icecube_bounce",
+    "count": 10,
+    "speed": 40,
+    "rotStep": "PI/8",
+    "delay": 1.5,
+    "cooldown": 0.9,
+    "initSpeed": 80,
+    "accelTime": 2,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_BLUE_CIRCLE_N": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 16,
+    "speed": 80,
+    "rotStep": "PI/12",
+    "startAngle": "PI/3",
+    "delay": 0.5,
+    "cooldown": 0.5,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_GRAVITY_ICECUBES_H": {
+    "type": "circle",
+    "bullet": "icecube_bounce",
+    "count": 14,
+    "speed": 40,
+    "rotStep": "PI/8",
+    "delay": 1.5,
+    "cooldown": 0.9,
+    "initSpeed": 80,
+    "accelTime": 2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_BLUE_CIRCLE_H": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 22,
+    "speed": 80,
+    "rotStep": "PI/12",
+    "startAngle": "PI/3",
+    "delay": 0.5,
+    "cooldown": 0.5,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_GRAVITY_ICECUBES_L": {
+    "type": "circle",
+    "bullet": "icecube_bounce",
+    "count": 16,
+    "speed": 40,
+    "rotStep": "PI/8",
+    "delay": 1.5,
+    "cooldown": 0.9,
+    "initSpeed": 80,
+    "accelTime": 2,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_BLUE_CIRCLE_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 22,
+    "speed": 80,
+    "rotStep": "PI/12",
+    "startAngle": "PI/3",
+    "delay": 0.5,
+    "cooldown": 0.4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_SPECIAL_SPREAD_H": {
+    "type": "spread",
+    "bullet": "ball",
+    "color": "cyan",
+    "count": 3,
+    "speed": 140,
+    "spread": 0.25,
+    "delay": 2,
+    "cooldown": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_SPECIAL_SPREAD_L": {
+    "type": "spread",
+    "bullet": "ball",
+    "color": "cyan",
+    "count": 3,
+    "speed": 140,
+    "spread": 0.25,
+    "delay": 2,
+    "cooldown": 0.3,
+    "maxShots": 3,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

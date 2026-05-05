@@ -1,0 +1,88 @@
+{
+  "S2_ICEBUTTERFLY_FIRSTCIRCLE_E": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 12,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.7,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_ICEBUTTERFLY_SECONDCIRCLE_E": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "cyan",
+    "count": 12,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.8,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_ICEBUTTERFLY_FIRSTCIRCLE_NH": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 18,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.7,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_ICEBUTTERFLY_SECONDCIRCLE_NH": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "cyan",
+    "count": 18,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.8,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_ICEBUTTERFLY_FIRSTCIRCLE_L": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 26,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.7,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_ICEBUTTERFLY_SECONDCIRCLE_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "cyan",
+    "count": 26,
+    "speed": 100,
+    "startAngle": "PI/4",
+    "delay": 2.8,
+    "cooldown": 0.45,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

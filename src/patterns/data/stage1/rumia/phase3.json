@@ -1,0 +1,92 @@
+{
+  "RUMIA_VOLLEY_HARD": {
+    "type": "volley-spread",
+    "color": "yellow",
+    "speed": 70,
+    "deltaSpeed": 15,
+    "delay": 1,
+    "cooldown": 3.8,
+    "maxShots": 3,
+    "count": 1,
+    "streams": 5,
+    "spread": 0.4,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_VOLLEY_LUNATIC": {
+    "type": "volley-spread",
+    "color": "yellow",
+    "speed": 70,
+    "deltaSpeed": 15,
+    "delay": 1,
+    "cooldown": 3.8,
+    "maxShots": 3,
+    "count": 3,
+    "streams": 6,
+    "spread": 0.4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_SPECTRAL_COMET_EASY": {
+    "type": "orbit",
+    "bullet": "lasertrail",
+    "color": "purple",
+    "count": 6,
+    "angularVel": "PI*0.22",
+    "radialVel": 55,
+    "startAngle": 0,
+    "rotStep": "PI/6",
+    "delay": 0.8,
+    "cooldown": 2.5,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIA_SPECTRAL_COMET": {
+    "type": "orbit",
+    "bullet": "lasertrail",
+    "color": "purple",
+    "count": 8,
+    "angularVel": "PI*3/10",
+    "radialVel": 65,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 0.8,
+    "cooldown": 2.5,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_SPECTRAL_COMET_CCW": {
+    "type": "orbit",
+    "bullet": "lasertrail",
+    "color": "purple",
+    "count": 8,
+    "angularVel": "-PI*3/10",
+    "radialVel": 65,
+    "startAngle": "PI/8",
+    "rotStep": "-PI/8",
+    "delay": 3,
+    "cooldown": 2.5,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_STARWHEEL_LOOP": {
+    "type": "helix",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "angleStep": -0.23561944901923448,
+    "speed": 50,
+    "initSpeed": 80,
+    "accelTime": 2,
+    "cooldown": 0.04,
+    "delay": 0.4
+  }
+}

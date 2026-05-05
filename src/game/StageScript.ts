@@ -18,7 +18,7 @@ import type { SpiritVariant, SpiritPath } from '../entities/enemies/Spirit';
 import type { MiniSpiritPath } from '../entities/enemies/MiniSpirit';
 import type { MothPath } from '../entities/enemies/Moth';
 import type { SpinningColor, SpinningPath } from '../entities/enemies/Spinning';
-import type { PatternConfig } from './patterns/PatternEngine';
+import type { PatternConfig } from '../patterns/PatternEngine';
 
 export interface SpawnEvent {
 	time: number;

@@ -1,5 +1,5 @@
 import { SpawnEventData, buildScript } from '../game/StageScript';
-import { Patterns as P } from '../game/patterns/PatternLibrary';
+import { Patterns as P } from '../patterns/PatternLibrary';
 
 const RAW_STAGE_1: SpawnEventData[] = [
 

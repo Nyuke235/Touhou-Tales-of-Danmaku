@@ -1,0 +1,139 @@
+{
+  "CIRNO_LASER_CIRCLE_E": {
+    "type": "laser-circle",
+    "color": "cyan",
+    "count": 12,
+    "startAngle": "PI/3",
+    "rotStep": "PI/5",
+    "warnDuration": 1,
+    "activeDuration": 0.5,
+    "laserWidth": 20,
+    "maxFireDelay": 0.3,
+    "cooldown": 1.5,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_LASER_CIRCLE_N": {
+    "type": "laser-circle",
+    "color": "cyan",
+    "count": 18,
+    "startAngle": "PI/3",
+    "rotStep": "PI/5",
+    "warnDuration": 0.9,
+    "activeDuration": 0.5,
+    "laserWidth": 20,
+    "maxFireDelay": 0.3,
+    "cooldown": 1.4,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_LASER_CIRCLE_H": {
+    "type": "laser-circle",
+    "color": "cyan",
+    "count": 26,
+    "startAngle": "PI/3",
+    "rotStep": "PI/6",
+    "warnDuration": 0.8,
+    "activeDuration": 0.5,
+    "laserWidth": 20,
+    "maxFireDelay": 0.3,
+    "cooldown": 1.3,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_LASER_CIRCLE_L": {
+    "type": "laser-circle",
+    "color": "cyan",
+    "count": 28,
+    "startAngle": "PI/3",
+    "rotStep": "PI/6",
+    "warnDuration": 0.7,
+    "activeDuration": 0.5,
+    "laserWidth": 20,
+    "maxFireDelay": 0.3,
+    "cooldown": 1.1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_RICE_RAIN_E": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 36,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 70,
+    "speedVariance": 20,
+    "cooldown": 0.7,
+    "delay": 0.7,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_RICE_RAIN_N": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 42,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 80,
+    "speedVariance": 20,
+    "cooldown": 0.6,
+    "delay": 0.6,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_RICE_RAIN_H": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 48,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 80,
+    "speedVariance": 20,
+    "cooldown": 0.5,
+    "delay": 0.5,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_RICE_RAIN_L": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 56,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 90,
+    "speedVariance": 20,
+    "cooldown": 0.4,
+    "delay": 0.4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_RAIN_ORB": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 12,
+    "startAngle": 0,
+    "rotStep": "PI/16",
+    "speed": 50,
+    "speedVariance": 10,
+    "cooldown": 1.7,
+    "delay": 1.7,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

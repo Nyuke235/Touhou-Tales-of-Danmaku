@@ -1,0 +1,147 @@
+{
+  "RUMIA_BURST_SHADOW_1": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 5,
+    "speed": 4,
+    "initSpeed": 40,
+    "accelTime": 3,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 18,
+      "speed": 40
+    },
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "RUMIA_BURST_SHADOW_2": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 5,
+    "speed": 4,
+    "initSpeed": 90,
+    "accelTime": 3,
+    "startAngle": "PI/8",
+    "rotStep": "PI/4",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 18,
+      "speed": 35
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "RUMIA_BURST_SHADOW_3": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 5,
+    "speed": 4,
+    "initSpeed": 40,
+    "accelTime": 3,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 22,
+      "speed": 35
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_BURST_SHADOW_4": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 5,
+    "speed": 4,
+    "initSpeed": 90,
+    "accelTime": 3,
+    "startAngle": "PI/8",
+    "rotStep": "PI/4",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 22,
+      "speed": 35
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIA_BURST_SHADOW_5": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 6,
+    "speed": 4,
+    "initSpeed": 40,
+    "accelTime": 3,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 28,
+      "speed": 35
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_BURST_SHADOW_6": {
+    "type": "circle",
+    "bullet": "burstshadow",
+    "count": 6,
+    "speed": 4,
+    "initSpeed": 90,
+    "accelTime": 3,
+    "startAngle": "PI/8",
+    "rotStep": "PI/4",
+    "delay": 0.1,
+    "cooldown": 4.2,
+    "morphDelay": 3,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "rice",
+      "color": "purple",
+      "count": 28,
+      "speed": 35
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "RUMIA_PINWHEEL_1": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 3,
+    "startAngle": 0,
+    "sweepAngle": "PI*2.1",
+    "speed": 100,
+    "cooldown": 0.04,
+    "delay": 0.4,
+    "maxShots": 40,
+    "difficulties": [
+      "EASY",
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_PINWHEEL_2": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 3,
+    "startAngle": "PI/4",
+    "sweepAngle": "PI*2.1",
+    "speed": 100,
+    "cooldown": 0.04,
+    "delay": 0.6,
+    "maxShots": 40,
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_PINWHEEL_SUPER": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 3,
+    "startAngle": "PI*3/4",
+    "sweepAngle": "PI*2.1",
+    "speed": 85,
+    "cooldown": 0.03,
+    "delay": 1.2,
+    "maxShots": 40,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_PINWHEEL_SUPER_2": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 3,
+    "startAngle": "PI*3/4",
+    "sweepAngle": "PI*2.1",
+    "speed": 85,
+    "cooldown": 0.03,
+    "delay": 1.3,
+    "maxShots": 40,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_ORB_RINGS_1": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 12,
+    "speed": 55,
+    "startAngle": 0,
+    "rotStep": "PI/12",
+    "cooldown": 0.45,
+    "delay": 1.4,
+    "maxShots": 4
+  },
+  "RUMIA_ORB_RINGS_2": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "orange",
+    "count": 12,
+    "speed": 75,
+    "startAngle": "PI/2",
+    "rotStep": "PI/12",
+    "cooldown": 0.45,
+    "delay": 1.6,
+    "maxShots": 4,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

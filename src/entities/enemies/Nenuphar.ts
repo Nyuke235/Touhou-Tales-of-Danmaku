@@ -1,6 +1,6 @@
 import { Enemy } from '../Enemy';
 import { Spritesheet, createExplosionSheet } from '../../utils/Spritesheet';
-import { Patterns } from '../../game/patterns/PatternLibrary';
+import { Patterns } from '../../patterns/PatternLibrary';
 import { ENEMY_MOVEMENT } from '../../game/Constants';
 
 type Phase = 'entering' | 'waiting' | 'leaving';

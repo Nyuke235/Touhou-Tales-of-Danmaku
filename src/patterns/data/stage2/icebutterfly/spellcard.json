@@ -1,0 +1,38 @@
+{
+  "S2_ICEBUTTERFLY_SNOWFLAKE_E": {
+    "type": "aimed",
+    "bullet": "giantsnowflake",
+    "speed": 80,
+    "delay": 2.2,
+    "cooldown": 2.2,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_ICEBUTTERFLY_SNOWFLAKE_N": {
+    "type": "aimed",
+    "bullet": "giantsnowflake",
+    "speed": 80,
+    "delay": 1.8,
+    "cooldown": 1.8,
+    "maxShots": 3,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S2_ICEBUTTERFLY_SNOWFLAKE_HL": {
+    "type": "spread",
+    "bullet": "giantsnowflake",
+    "count": 2,
+    "spread": 0.5,
+    "speed": 80,
+    "delay": 1.8,
+    "cooldown": 1.8,
+    "maxShots": 3,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

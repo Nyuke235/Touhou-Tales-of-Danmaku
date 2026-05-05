@@ -1,0 +1,210 @@
+{
+  "CIRNO_ICE_HELIX_E": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "PI*18.2",
+    "speed": 120,
+    "cooldown": 0.12,
+    "delay": 0.4,
+    "maxShots": 20,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "cyan",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 3,
+      "startAngle": "PI/2"
+    },
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_ICE_HELIX_CW_E": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "-PI*18.2",
+    "speed": 120,
+    "cooldown": 0.12,
+    "delay": 3.4,
+    "maxShots": 20,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "gray",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 3,
+      "startAngle": "PI/2"
+    },
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_ICE_HELIX_N": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "PI*16.2",
+    "speed": 120,
+    "cooldown": 0.09,
+    "delay": 0.4,
+    "maxShots": 30,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "cyan",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 2.4,
+      "startAngle": -23.4292036732051
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ICE_HELIX_CW_N": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "-PI*16.2",
+    "speed": 120,
+    "cooldown": 0.09,
+    "delay": 3.4,
+    "maxShots": 30,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "gray",
+      "speed": 80,
+      "initSpeed": 0,
+      "accelTime": 2.4,
+      "startAngle": 26.5707963267949
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_ICE_HELIX_H": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "PI*14.2",
+    "speed": 120,
+    "cooldown": 0.058,
+    "delay": 0.4,
+    "maxShots": 35,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 2,
+      "startAngle": -23.4292036732051
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_ICE_HELIX_CW_H": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 6,
+    "startAngle": 0,
+    "sweepAngle": "-PI*14.2",
+    "speed": 120,
+    "cooldown": 0.058,
+    "delay": 3.4,
+    "maxShots": 35,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "gray",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 2,
+      "startAngle": 26.5707963267949
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_ICE_HELIX_L": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 7,
+    "startAngle": 0,
+    "sweepAngle": "PI*14.2",
+    "speed": 120,
+    "cooldown": 0.058,
+    "delay": 0.4,
+    "maxShots": 35,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "cyan",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 1.9,
+      "startAngle": -23.4292036732051
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "CIRNO_ICE_HELIX_CW_L": {
+    "type": "helix",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 7,
+    "startAngle": 0,
+    "sweepAngle": "-PI*14.2",
+    "speed": 120,
+    "cooldown": 0.058,
+    "delay": 3.4,
+    "maxShots": 35,
+    "morphDelay": 1,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "fixed",
+      "bullet": "ball",
+      "color": "gray",
+      "speed": 100,
+      "initSpeed": 0,
+      "accelTime": 1.9,
+      "startAngle": 26.5707963267949
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

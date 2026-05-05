@@ -1,6 +1,6 @@
 import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
-import { Patterns } from '../../../game/patterns/PatternLibrary';
+import { Patterns } from '../../../patterns/PatternLibrary';
 import { Music } from '../../../systems/MusicManager';
 import { BOSS } from '../../../game/Constants';
 

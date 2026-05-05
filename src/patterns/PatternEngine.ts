@@ -1,28 +1,28 @@
-import { IBullet, BaseBullet } from '../../entities/Bullet';
-import { BallBullet } from '../../entities/bullets/BallBullet';
-import { ArrowheadBullet } from '../../entities/bullets/ArrowheadBullet';
-import { OrbBullet } from '../../entities/bullets/OrbBullet';
-import { RiceBullet } from '../../entities/bullets/RiceBullet';
-import { ShadowBullet } from '../../entities/bullets/ShadowBullet';
-import { OrbitingBullet } from '../../entities/bullets/OrbitingBullet';
-import { BurstShadowBullet } from '../../entities/bullets/BurstShadowBullet';
-import { StarBullet } from '../../entities/bullets/StarBullet';
-import { JellybeanBullet } from '../../entities/bullets/JellybeanBullet';
-import { GravityBullet } from '../../entities/bullets/GravityBullet';
-import { SunflowerBullet } from '../../entities/bullets/SunflowerBullet';
-import { BouncingSunflowerBullet } from '../../entities/bullets/BouncingSunflowerBullet';
-import { LaserTrailBullet } from '../../entities/bullets/LaserTrailBullet';
-import { IceCubeBullet } from '../../entities/bullets/IceCubeBullet';
-import { BouncingIceCubeBullet } from '../../entities/bullets/BouncingIceCubeBullet';
-import { GiantSnowflakeBullet } from '../../entities/bullets/GiantSnowflakeBullet';
-import { CircleLaserBullet } from '../../entities/bullets/CircleLaserBullet';
+import { IBullet, BaseBullet } from '../entities/Bullet';
+import { BallBullet } from '../entities/bullets/BallBullet';
+import { ArrowheadBullet } from '../entities/bullets/ArrowheadBullet';
+import { OrbBullet } from '../entities/bullets/OrbBullet';
+import { RiceBullet } from '../entities/bullets/RiceBullet';
+import { ShadowBullet } from '../entities/bullets/ShadowBullet';
+import { OrbitingBullet } from '../entities/bullets/OrbitingBullet';
+import { BurstShadowBullet } from '../entities/bullets/BurstShadowBullet';
+import { StarBullet } from '../entities/bullets/StarBullet';
+import { JellybeanBullet } from '../entities/bullets/JellybeanBullet';
+import { GravityBullet } from '../entities/bullets/GravityBullet';
+import { SunflowerBullet } from '../entities/bullets/SunflowerBullet';
+import { BouncingSunflowerBullet } from '../entities/bullets/BouncingSunflowerBullet';
+import { LaserTrailBullet } from '../entities/bullets/LaserTrailBullet';
+import { IceCubeBullet } from '../entities/bullets/IceCubeBullet';
+import { BouncingIceCubeBullet } from '../entities/bullets/BouncingIceCubeBullet';
+import { GiantSnowflakeBullet } from '../entities/bullets/GiantSnowflakeBullet';
+import { CircleLaserBullet } from '../entities/bullets/CircleLaserBullet';
 import {
 	BubbleBigBullet,
 	BubbleMediumBullet,
 	BubbleSmallBullet,
-} from '../../entities/bullets/BubbleBullet';
-import { BulletColor } from '../../entities/bullets/BulletSprites';
-import { Difficulty } from '../GameState';
+} from '../entities/bullets/BubbleBullet';
+import { BulletColor } from '../entities/bullets/BulletSprites';
+import { Difficulty } from '../game/GameState';
 
 export type BulletType =
 	| 'ball'
@@ -107,7 +107,7 @@ export interface PatternConfig {
 	oscAmplitude?: number;
 	oscFreq?: number;
 
-	// ------------ ORBIT - BULLETS ROTATING AROUND SPAWN POINT WHILE DRIFTING OUTWARD ------------
+	// ------------ ORBIT ------------
 	// angularVel = rotation speed in rad/s (positive = clockwise in canvas)
 	// radialVel  = outward drift speed in px/s
 	angularVel?: number;
@@ -125,7 +125,7 @@ export interface PatternConfig {
 	// deltaSpeed = speed increment per bullet within each line
 	deltaSpeed?: number;
 
-	// ------------ SPEED TRANSITION (accel / decel) ------------
+	// ------------ SPEED TRANSITION ------------
 	// initSpeed = starting speed at spawn (< speed : accelerates, > speed : decelerates)
 	// accelTime = seconds to linearly interpolate from initSpeed to speed
 	initSpeed?: number;

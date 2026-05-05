@@ -1,6 +1,6 @@
 import { Spritesheet } from '../utils/Spritesheet';
 import { type IBullet } from './Bullet';
-import { PatternEngine, PatternConfig } from '../game/patterns/PatternEngine';
+import { PatternEngine, PatternConfig } from '../patterns/PatternEngine';
 import { GameState } from '../game/GameState';
 import { ItemType } from './Item';
 import { SoundManager, SFX } from '../systems/SoundManager';
@@ -55,12 +55,7 @@ export abstract class Enemy {
 
 	abstract updateMovement(dt: number): void;
 
-	update(
-		dt: number,
-		px: number,
-		py: number,
-		enemyBullets: IBullet[]
-	): void {
+	update(dt: number, px: number, py: number, enemyBullets: IBullet[]): void {
 		this.hitFlash = false;
 		if (this.exploding) {
 			this.explSheet.update(dt);
