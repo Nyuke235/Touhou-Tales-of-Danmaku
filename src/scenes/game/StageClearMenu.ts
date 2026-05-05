@@ -1,4 +1,4 @@
-import { Difficulty } from '../game/GameState';
+import { Difficulty } from '../../game/GameState';
 
 const DISPLAY_DURATION = 3400;
 const LEAVE_DURATION = 500;

@@ -1,5 +1,5 @@
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { InputManager } from '../systems/InputManager';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { InputManager } from '../../systems/InputManager';
 
 export abstract class MenuScene {
 	protected sceneManager: SceneManager;

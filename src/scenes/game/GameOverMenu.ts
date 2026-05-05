@@ -1,34 +1,45 @@
-import { InputManager } from '../systems/InputManager';
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { Controls } from '../systems/Controls';
-import { SoundManager, SFX } from '../systems/SoundManager';
+import { InputManager } from '../../systems/InputManager';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { Controls } from '../../systems/Controls';
+import { SoundManager, SFX } from '../../systems/SoundManager';
+import { Difficulty } from '../../game/GameState';
 
-const ENTER_DURATION = 200;
-const LEAVE_DURATION = 150;
+const ENTER_DURATION = 400;
+const LEAVE_DURATION = 250;
 
-export class PauseMenu {
+export interface GameOverStats {
+	score: number;
+	difficulty: Difficulty;
+	playingTime: number;
+	misses: number;
+	bombsUsed: number;
+	enemiesDefeated: number;
+}
+
+function formatTime(ms: number): string {
+	const s = Math.floor(ms / 1000);
+	const min = Math.floor(s / 60);
+	const sec = s % 60;
+	return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+}
+
+export class GameOverMenu {
 	private el: HTMLElement;
 	private btns: HTMLButtonElement[];
 	private index: number = 0;
 	private visible: boolean = false;
 	private closing: boolean = false;
 
-	private onResume: () => void;
 	private onBackToTitle: () => void;
 	private onRestart: () => void;
 
 	constructor(
 		inputManager: InputManager,
 		sceneManager: SceneManager,
-		callbacks: {
-			onResume: () => void;
-			onBackToTitle: () => void;
-			onRestart: () => void;
-		}
+		callbacks: { onBackToTitle: () => void; onRestart: () => void }
 	) {
-		this.el = document.getElementById('pause-menu')!;
-		this.btns = Array.from(this.el.querySelectorAll('.pause-btn'));
-		this.onResume = callbacks.onResume;
+		this.el = document.getElementById('gameover-menu')!;
+		this.btns = Array.from(this.el.querySelectorAll('.go-btn'));
 		this.onBackToTitle = callbacks.onBackToTitle;
 		this.onRestart = callbacks.onRestart;
 
@@ -36,12 +47,13 @@ export class PauseMenu {
 		this.bindKeyboard(inputManager, sceneManager);
 	}
 
-	show(): void {
+	show(stats: GameOverStats): void {
 		if (this.visible) return;
 		this.visible = true;
 		this.closing = false;
 		this.index = 0;
 		this.updateSelection();
+		this.populate(stats);
 		this.el.classList.remove('leaving');
 		this.el.classList.add('visible', 'entering');
 		setTimeout(() => this.el.classList.remove('entering'), ENTER_DURATION);
@@ -65,19 +77,31 @@ export class PauseMenu {
 	isVisible(): boolean {
 		return this.visible && !this.closing;
 	}
-
 	isActive(): boolean {
 		return this.visible;
 	}
 
 	setCallbacks(callbacks: {
-		onResume: () => void;
 		onBackToTitle: () => void;
 		onRestart: () => void;
 	}): void {
-		this.onResume = callbacks.onResume;
 		this.onBackToTitle = callbacks.onBackToTitle;
 		this.onRestart = callbacks.onRestart;
+	}
+
+	private populate(stats: GameOverStats): void {
+		document.getElementById('go-score')!.textContent = stats.score
+			.toString()
+			.padStart(11, '0');
+		document.getElementById('go-difficulty')!.textContent = stats.difficulty;
+		document.getElementById('go-time')!.textContent = formatTime(
+			stats.playingTime
+		);
+		document.getElementById('go-misses')!.textContent = stats.misses.toString();
+		document.getElementById('go-bombs')!.textContent =
+			stats.bombsUsed.toString();
+		document.getElementById('go-enemies')!.textContent =
+			stats.enemiesDefeated.toString();
 	}
 
 	private bindMouse(): void {
@@ -109,9 +133,6 @@ export class PauseMenu {
 				this.updateSelection();
 			} else if (code === Controls.MENU_SELECT) {
 				this.confirm();
-			} else if (code === Controls.BACK) {
-				SoundManager.play(SFX.UI_SELECT);
-				this.hide(() => this.onResume());
 			}
 		});
 	}
@@ -124,16 +145,7 @@ export class PauseMenu {
 
 	private confirm(): void {
 		SoundManager.play(SFX.UI_SELECT);
-		switch (this.index) {
-			case 0:
-				this.hide(() => this.onResume());
-				break;
-			case 1:
-				this.hide(() => this.onBackToTitle());
-				break;
-			case 2:
-				this.hide(() => this.onRestart());
-				break;
-		}
+		if (this.index === 0) this.hide(() => this.onBackToTitle());
+		else this.hide(() => this.onRestart());
 	}
 }

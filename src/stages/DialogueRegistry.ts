@@ -1,4 +1,4 @@
-import { NETWORK } from '../game/Constants';
+import rawData from './dialogues.json';
 
 export type DialogueLine = {
 	speaker: 'boss' | 'player';
@@ -15,13 +15,10 @@ type CharacterDialogue = {
 
 type DialogueData = Record<string, Partial<Record<string, CharacterDialogue>>>;
 
-let data: DialogueData = {};
+const data = rawData as unknown as DialogueData;
 
 export const DialogueRegistry = {
-	async load(): Promise<void> {
-		const res = await fetch(`${NETWORK.ASSET_BASE}/assets/json/dialogues.json`);
-		data = await res.json();
-	},
+	async load(): Promise<void> {},
 
 	getPre(bossId: string, characterId: string): DialogueLine[] {
 		return data[bossId]?.[characterId]?.pre ?? [];

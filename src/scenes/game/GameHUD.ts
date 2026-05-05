@@ -1,4 +1,4 @@
-import { Difficulty, GameState } from '../game/GameState';
+import { Difficulty, GameState } from '../../game/GameState';
 
 const DIFF_CLASS = new Map<Difficulty, string>([
 	[Difficulty.EASY, 'easy'],

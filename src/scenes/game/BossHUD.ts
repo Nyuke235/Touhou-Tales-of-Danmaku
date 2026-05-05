@@ -1,4 +1,4 @@
-import { Boss } from '../entities/Boss';
+import { Boss } from '../../entities/Boss';
 
 export class BossHUD {
 	private nameEl: HTMLElement;

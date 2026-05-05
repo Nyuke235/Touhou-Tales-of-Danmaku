@@ -1,16 +1,16 @@
-import { Controls } from '../systems/Controls';
-import { EnemyManager } from '../systems/EnemyManager';
-import { InputManager } from '../systems/InputManager';
-import { ItemManager } from '../systems/ItemManager';
-import { MusicManager } from '../systems/MusicManager';
-import { BulletManager } from '../systems/BulletManager';
-import { SaveManager } from '../systems/SaveManager';
-import { Scene, SceneManager } from '../systems/SceneManager';
-import { ScoreManager } from '../systems/ScoreManager';
-import { SFX, SoundManager } from '../systems/SoundManager';
+import { Controls } from '../../systems/Controls';
+import { EnemyManager } from '../../systems/EnemyManager';
+import { InputManager } from '../../systems/InputManager';
+import { ItemManager } from '../../systems/ItemManager';
+import { MusicManager } from '../../systems/MusicManager';
+import { BulletManager } from '../../systems/BulletManager';
+import { SaveManager } from '../../systems/SaveManager';
+import { Scene, SceneManager } from '../../systems/SceneManager';
+import { ScoreManager } from '../../systems/ScoreManager';
+import { SFX, SoundManager } from '../../systems/SoundManager';
 
-import { GameLoop } from '../game/GameLoop';
-import { GameState } from '../game/GameState';
+import { GameLoop } from '../../game/GameLoop';
+import { GameState } from '../../game/GameState';
 
 import { BossHUD } from './BossHUD';
 import { DialogueBox } from './DialogueBox';
@@ -19,19 +19,19 @@ import { GameOverMenu } from './GameOverMenu';
 import { PauseMenu } from './PauseMenu';
 import { StageClearMenu } from './StageClearMenu';
 
-import { Boss } from '../entities/Boss';
-import { Player } from '../entities/Player';
-import { BOSS, FIELD, GAME } from '../game/Constants';
-import { GrazeEffect } from '../utils/GrazeEffect';
-import { BlizzardManager } from '../systems/BlizzardManager';
-import { ScrollingBackground } from '../utils/ScrollingBackground';
-import { SpellcardBackground } from '../utils/SpellcardBackground';
-import { STAGES } from '../stages/stages';
-import { DialogueRegistry } from '../stages/DialogueRegistry';
-import { buildPlayer } from '../game/PlayerBuilder';
+import { Boss } from '../../entities/Boss';
+import { Player } from '../../entities/Player';
+import { BOSS, FIELD, GAME } from '../../game/Constants';
+import { GrazeEffect } from '../../utils/GrazeEffect';
+import { BlizzardManager } from '../../systems/BlizzardManager';
+import { ScrollingBackground } from '../../utils/ScrollingBackground';
+import { SpellcardBackground } from '../../utils/SpellcardBackground';
+import { STAGES } from '../../stages/stages';
+import { DialogueRegistry } from '../../stages/DialogueRegistry';
+import { buildPlayer } from '../../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
-import { SPELLCARD_REGISTRY, SpellcardEntry } from '../game/SpellcardRegistry';
-import { SpawnEvent } from '../game/StageScript';
+import { SPELLCARD_REGISTRY, SpellcardEntry } from '../../game/SpellcardRegistry';
+import { SpawnEvent } from '../../game/StageScript';
 
 export class GameScene {
 	protected sceneManager: SceneManager;

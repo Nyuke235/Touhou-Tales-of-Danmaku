@@ -1,6 +1,6 @@
-import { DialogueLine } from '../stages/DialogueRegistry';
-import { MusicManager } from '../systems/MusicManager';
-import { SoundManager, SFX } from '../systems/SoundManager';
+import { DialogueLine } from '../../stages/DialogueRegistry';
+import { MusicManager } from '../../systems/MusicManager';
+import { SoundManager, SFX } from '../../systems/SoundManager';
 
 const CHARS_PER_SEC = 32;
 const PERIOD_PAUSE = 0.25;

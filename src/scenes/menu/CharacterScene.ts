@@ -1,10 +1,10 @@
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { InputManager } from '../systems/InputManager';
-import { Controls } from '../systems/Controls';
-import { GameState, Character } from '../game/GameState';
-import { SoundManager, SFX } from '../systems/SoundManager';
-import { loadCharacters, CharacterData } from '../characters/Characters';
-import { Spritesheet } from '../utils/Spritesheet';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { InputManager } from '../../systems/InputManager';
+import { Controls } from '../../systems/Controls';
+import { GameState, Character } from '../../game/GameState';
+import { SoundManager, SFX } from '../../systems/SoundManager';
+import { loadCharacters, CharacterData } from '../../characters/Characters';
+import { Spritesheet } from '../../utils/Spritesheet';
 import { MenuScene } from './MenuScene';
 
 interface ColorOption {

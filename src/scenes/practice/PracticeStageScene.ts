@@ -1,10 +1,10 @@
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { InputManager } from '../systems/InputManager';
-import { Controls } from '../systems/Controls';
-import { GameState } from '../game/GameState';
-import { SoundManager, SFX } from '../systems/SoundManager';
-import { STAGES } from '../stages/stages';
-import { MenuScene } from './MenuScene';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { InputManager } from '../../systems/InputManager';
+import { Controls } from '../../systems/Controls';
+import { GameState } from '../../game/GameState';
+import { SoundManager, SFX } from '../../systems/SoundManager';
+import { STAGES } from '../../stages/stages';
+import { MenuScene } from '../menu/MenuScene';
 
 export class PracticeStageScene extends MenuScene {
 	private stageIndex: number = 0;

@@ -1,6 +1,6 @@
-import { Controls } from '../systems/Controls';
-import { InputManager } from '../systems/InputManager';
-import { Scene, SceneManager } from '../systems/SceneManager';
+import { Controls } from '../../systems/Controls';
+import { InputManager } from '../../systems/InputManager';
+import { Scene, SceneManager } from '../../systems/SceneManager';
 import { MenuScene } from './MenuScene';
 
 export class LeaderboardScene extends MenuScene {

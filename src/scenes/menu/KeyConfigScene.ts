@@ -1,9 +1,9 @@
-import { Controls } from '../systems/Controls';
-import { InputManager } from '../systems/InputManager';
-import { SaveManager } from '../systems/SaveManager';
-import { Scene, SceneManager } from '../systems/SceneManager';
-import { SFX, SoundManager } from '../systems/SoundManager';
-import { User } from '../utils/User';
+import { Controls } from '../../systems/Controls';
+import { InputManager } from '../../systems/InputManager';
+import { SaveManager } from '../../systems/SaveManager';
+import { Scene, SceneManager } from '../../systems/SceneManager';
+import { SFX, SoundManager } from '../../systems/SoundManager';
+import { User } from '../../utils/User';
 import { MenuScene } from './MenuScene';
 
 const CONTROL_MAP: Array<{ action: keyof typeof Controls }> = [

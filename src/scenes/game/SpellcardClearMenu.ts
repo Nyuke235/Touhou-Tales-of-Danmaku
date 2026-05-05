@@ -1,7 +1,7 @@
-import { InputManager } from '../systems/InputManager';
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { Controls } from '../systems/Controls';
-import { SoundManager, SFX } from '../systems/SoundManager';
+import { InputManager } from '../../systems/InputManager';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { Controls } from '../../systems/Controls';
+import { SoundManager, SFX } from '../../systems/SoundManager';
 
 const ENTER_DURATION = 200;
 const LEAVE_DURATION = 150;

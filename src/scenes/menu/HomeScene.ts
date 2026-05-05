@@ -1,8 +1,8 @@
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { InputManager } from '../systems/InputManager';
-import { Controls } from '../systems/Controls';
-import { GameState } from '../game/GameState';
-import { SoundManager, SFX } from '../systems/SoundManager';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { InputManager } from '../../systems/InputManager';
+import { Controls } from '../../systems/Controls';
+import { GameState } from '../../game/GameState';
+import { SoundManager, SFX } from '../../systems/SoundManager';
 import { MenuScene } from './MenuScene';
 
 export class HomeScene extends MenuScene {

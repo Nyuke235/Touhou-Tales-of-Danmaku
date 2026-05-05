@@ -1,11 +1,11 @@
-import { SceneManager, Scene } from '../systems/SceneManager';
-import { InputManager } from '../systems/InputManager';
-import { Controls, setControls } from '../systems/Controls';
-import { MusicManager } from '../systems/MusicManager';
-import { SoundManager, SFX } from '../systems/SoundManager';
-import { SaveManager } from '../systems/SaveManager';
+import { SceneManager, Scene } from '../../systems/SceneManager';
+import { InputManager } from '../../systems/InputManager';
+import { Controls, setControls } from '../../systems/Controls';
+import { MusicManager } from '../../systems/MusicManager';
+import { SoundManager, SFX } from '../../systems/SoundManager';
+import { SaveManager } from '../../systems/SaveManager';
 import { MenuScene } from './MenuScene';
-import { User } from '../utils/User';
+import { User } from '../../utils/User';
 
 const VOLUME_STEPS = 5;
 
