@@ -1,4 +1,4 @@
-import { NETWORK } from '../game/Constants';
+import { BackendAPI, UserRecord } from './BackendAPI';
 import { Controls } from '../systems/Controls';
 
 export interface GameUserData {
@@ -19,28 +19,17 @@ export interface Ranking {
 
 export class User {
 	private _username: string;
-	private _password: string;
 	private _data: GameUserData;
 	private _ranking: Ranking | null;
 
-	constructor(
-		username: string,
-		password: string,
-		data: GameUserData,
-		rank: Ranking | null
-	) {
+	constructor(username: string, data: GameUserData, rank: Ranking | null) {
 		this._username = username;
-		this._password = password;
 		this._data = data;
 		this._ranking = rank;
 	}
 
 	get username(): string {
 		return this._username;
-	}
-
-	get password(): string {
-		return this._password;
 	}
 
 	get data(): GameUserData {
@@ -59,79 +48,39 @@ export class User {
 		this._data = data;
 	}
 
-	private static fetchWithTimeout(url: string, ms = 5000): Promise<Response> {
-		const controller = new AbortController();
-		const id = setTimeout(() => controller.abort(), ms);
-		return fetch(url, { signal: controller.signal }).finally(() =>
-			clearTimeout(id)
-		);
-	}
-
 	static async getUser(username: string | null): Promise<User | null> {
-		try {
-			const response = await User.fetchWithTimeout(
-				`${NETWORK.SAVE_API}/api/users`
-			);
-			if (!response.ok) return null;
-			const json = await response.json();
-			const userData = json.find((user: any) => user.username === username);
-
-			if (userData) {
-				return new User(
-					userData.username,
-					userData.password,
-					userData.saveData,
-					null
-				);
-			}
-		} catch {
-			console.error('Failed to fetch user data from server.');
-		}
-
-		return null;
+		const users = await BackendAPI.getUsers();
+		const record = users.find((u: UserRecord) => u.username === username);
+		return record
+			? new User(record.username, record.saveData as GameUserData, null)
+			: null;
 	}
 
 	static async getAllUser(): Promise<User[] | null> {
-		try {
-			const response = await User.fetchWithTimeout(
-				`${NETWORK.SAVE_API}/api/users`
-			);
-			if (!response.ok) return null;
-			const json = await response.json();
-
-			const users: User[] = json.map(
-				(userData: any) =>
-					new User(
-						userData.username,
-						userData.password,
-						userData.saveData,
-						null
-					)
-			);
-
-			return users.length > 0 ? users : null;
-		} catch {
-			console.error('Failed to fetch users from server.');
-			return null;
-		}
+		const users = await BackendAPI.getUsers();
+		if (!users.length) return null;
+		return users.map(
+			(u: UserRecord) => new User(u.username, u.saveData as GameUserData, null)
+		);
 	}
 
 	static showUserInfo = async (): Promise<void> => {
 		const userInfo = document.getElementById('user-info') as HTMLDivElement;
 		const loggedUser = localStorage.getItem('loggedUser');
-
 		if (!loggedUser) return;
 
-		const username = userInfo.querySelector(
+		const usernameEl = userInfo.querySelector(
 			'.username'
 		) as HTMLParagraphElement;
-		const highscore = userInfo.querySelector(
+		const highscoreEl = userInfo.querySelector(
 			'.highscore'
 		) as HTMLParagraphElement;
-		const rank = userInfo.querySelector('.rank') as HTMLParagraphElement;
+		const rankEl = userInfo.querySelector('.rank') as HTMLParagraphElement;
 
-		const user = await User.getUser(loggedUser);
-		const users = await User.getAllUser();
+		const [user, users] = await Promise.all([
+			User.getUser(loggedUser),
+			User.getAllUser(),
+		]);
 		if (!user || !users) return;
 
 		users.sort((a, b) => b.data.highscore - a.data.highscore);
@@ -140,8 +89,8 @@ export class User {
 				? users.findIndex(u => u.username === loggedUser) + 1
 				: 'N/A';
 
-		username.innerHTML = `<span class="label">USERNAME:</span> <span class="value">${user.username}</span>`;
-		highscore.innerHTML = `<span class="label">HIGHSCORE:</span> <span class="value">${user.data.highscore}</span>`;
-		rank.innerHTML = `<span class="label">RANK:</span> <span class="value">${idx}</span>`;
+		usernameEl.innerHTML = `<span class="label">USERNAME:</span> <span class="value">${user.username}</span>`;
+		highscoreEl.innerHTML = `<span class="label">HIGHSCORE:</span> <span class="value">${user.data.highscore}</span>`;
+		rankEl.innerHTML = `<span class="label">RANK:</span> <span class="value">${idx}</span>`;
 	};
 }

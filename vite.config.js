@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
     server: {
@@ -6,5 +7,10 @@ export default defineConfig({
         watch: {
             usePolling: true,
         }
-    }
+    },
+    plugins: [
+        viteStaticCopy({
+            targets: [{ src: 'assets', dest: '.' }]
+        })
+    ]
 })

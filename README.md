@@ -2,6 +2,7 @@
 
 ![HTML5](https://img.shields.io/badge/HTML5-Canvas-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tauri](https://img.shields.io/badge/Tauri-24C8D8?style=for-the-badge&logo=tauri&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
@@ -12,7 +13,7 @@
 
 ---
 
-**東方弾幕譚 (Tales of Danmaku)** is a Touhou fan-made danmaku game playable in the browser, built from scratch in TypeScript using the HTML5 Canvas.
+**東方弾幕譚 (Tales of Danmaku)** is a Touhou fan-made danmaku game playable in the browser or as a native desktop app, built from scratch in TypeScript using the HTML5 Canvas.
 
 Originally a uni project, the goal was to build a 2D shoot'em up playable in both solo and multiplayer. The player controls a character who must face waves of enemies and bosses while dodging bullets.
 
@@ -22,11 +23,10 @@ The game is inspired by **Embodiment of Scarlet Devil (EoSD)** and uses a **pixe
     <img src="docs/img/gameplay.gif" width=440>
 </p>
 
-> The game is missing a lot of content, may contain bugs and only stage 1 is currently playable.
+> The game is missing a lot of content, may contain bugs and only stages 1 and 2 are currently playable.
 
 ## Notice
 
-- Currently, the game must be run locally. You’ll need to clone the repo and use Docker to play (see [Running the game](#running-the-game)). A live online version is planned in the future.
 - As this is a learning project, you may encounter some "scaffolded" or messy code. Refactoring is an ongoing part of the roadmap.
 - This project is built strictly for educational purposes and personal enjoyment.
 
@@ -54,8 +54,8 @@ Controls can be remapped in-game via the **Key Config** menu.
 
 | Stage       | Title                      | Mid-boss       | Boss                | Status |
 | ----------- | -------------------------- | -------------- | ------------------- | ------ |
-| Stage 1     | Black Ink Staining the Sky | Rumia (dark)   | Rumia               | ✅️     |
-| Stage 2     | Ripples on the Misty Lake  | Daiyousei      | Cirno               | ✅️     |
+| Stage 1     | Black Ink Staining the Sky | Rumia (dark)   | Rumia               | ✅     |
+| Stage 2     | Ripples on the Misty Lake  | Daiyousei      | Cirno               | ✅     |
 | Stage 3     | ???                        | Mystia Lorelei | Hong Meiling        | ❌     |
 | Stage 4     | ???                        | Koakuma        | Patchouli Knowledge | ❌     |
 | Stage 5     | ???                        | Koakuma        | Sakuya Izayoi       | ❌     |
@@ -64,6 +64,8 @@ Controls can be remapped in-game via the **Key Config** menu.
 
 ## Running the game
 
+### Browser (Docker Compose)
+
 ```bash
 git clone https://github.com/Nyuke235/Touhou-Tales-of-Danmaku
 cd Touhou-Tales-of-Danmaku
@@ -71,22 +73,32 @@ cd Touhou-Tales-of-Danmaku
 docker compose up --build
 ```
 
-The game will be available at `http://localhost:8000`.
+The game will be available at `http://localhost:8000`. The Express save server runs on port `9000`.
+
+### Desktop app (Tauri)
+
+```bash
+docker build -f Dockerfile.tauri --output type=local,dest=./release .
+```
+
+The `.deb` and `.AppImage` artifacts will be written to `./release/`.
 
 ## Backend
 
-The game includes a lightweight Express server (port `9000`) that handles two responsibilities:
+The game supports two backend modes that share the same TypeScript interface (`BackendAPI`):
 
-- **Authentication** (`POST /api/auth`): Registers new users or logs in existing ones. On success, the server returns the user's save data.
-- **Save / Load** (`POST /api/save`, `POST /api/load`): Persists and retrieves per-user game progress (unlocked stages, settings, etc.).
+| Mode    | Backend          | Storage                                        |
+| ------- | ---------------- | ---------------------------------------------- |
+| Browser | Express (Node)   | `server/data/data.json`                        |
+| Desktop | Tauri (Rust)     | `~/.local/share/com.nyuke235.tales-of-danmaku/` |
 
-User data is stored in a flat JSON file (`server/data/data.json`). The server is spun up alongside the frontend via Docker Compose.
+Both modes expose the same operations: **auth**, **save**, **load**, and **get users** (for the leaderboard). The frontend detects the environment at runtime and routes calls accordingly.
 
 ### Known security limitations
 
 The current implementation is intentionally minimal and **not production-ready**:
 
-- Passwords are stored and compared in **plaintext**, no hashing. **DO NOT USE YOUR REAL PASSWORD**
+- Passwords are stored and compared in **plaintext**. **DO NOT USE YOUR REAL PASSWORD.**
 - CORS is fully open (`Access-Control-Allow-Origin: *`).
 - There is no rate limiting, session management, or token-based authentication.
 

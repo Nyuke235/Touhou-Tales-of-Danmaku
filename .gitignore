@@ -12,8 +12,13 @@ node_modules
 dist
 dist-ssr
 
-# SAVE
-server/data/data.json
+# SAVE DATA
+server/data/
+
+# TAURI BUILD ARTIFACTS
+src-tauri/target/
+src-tauri/gen/
+release/
 
 # IDE/OS
 .idea

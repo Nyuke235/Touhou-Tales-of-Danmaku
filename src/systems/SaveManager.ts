@@ -2,7 +2,7 @@ import { GameState } from '../game/GameState';
 import { Controls, setControls } from './Controls';
 import { MusicManager } from './MusicManager';
 import { SoundManager } from './SoundManager';
-import { NETWORK } from '../game/Constants';
+import { BackendAPI } from '../utils/BackendAPI';
 import { GameUserData } from '../utils/User';
 
 export class SaveManager {
@@ -19,12 +19,7 @@ export class SaveManager {
 			},
 		};
 
-		fetch(`${NETWORK.SAVE_API}/api/save`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ username, saveData: data }),
-			keepalive: true,
-		}).catch(e => console.error('Failed to send save data.', e));
+		BackendAPI.save(username, data);
 	}
 
 	static loadData(data: any, username: string) {
