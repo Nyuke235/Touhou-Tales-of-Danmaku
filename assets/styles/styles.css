@@ -52,6 +52,7 @@ main {
 	background-size: cover;
 	background-position: 58% center;
 	transition: background-position 0.7s steps(12, end);
+	isolation: isolate;
 }
 
 section {

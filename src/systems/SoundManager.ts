@@ -1,4 +1,5 @@
 import { AUDIO } from '../game/Constants';
+import { isTauri, invoke } from '../utils/BackendAPI';
 
 export const SFX = {
 	PLAYER_DEATH: 'assets/audio/sfx/player/death.wav',
@@ -33,53 +34,92 @@ export type SFXKey = keyof typeof SFX;
 
 export class SoundManager {
 	private static volume: number = AUDIO.SFX_VOLUME;
-	private static pools: Map<string, HTMLAudioElement[]> = new Map();
-	private static poolIndex: Map<string, number> = new Map();
-	private static ambients: Map<string, HTMLAudioElement> = new Map();
 
-	private static getNext(src: string): HTMLAudioElement {
-		if (!this.pools.has(src)) {
-			const pool = Array.from({ length: AUDIO.POOL_SIZE }, () => {
-				const a = new Audio(src);
-				a.volume = this.volume;
-				return a;
-			});
-			this.pools.set(src, pool);
-			this.poolIndex.set(src, 0);
-		}
+	// Web Audio (browser)
+	private static ctx: AudioContext | null = null;
+	private static buffers = new Map<string, AudioBuffer>();
+	private static ambientNodes = new Map<
+		string,
+		{ source: AudioBufferSourceNode; gain: GainNode }
+	>();
 
-		const pool = this.pools.get(src)!;
-		const idx = this.poolIndex.get(src)!;
-		this.poolIndex.set(src, (idx + 1) % AUDIO.POOL_SIZE);
-		return pool[idx];
+	private static getCtx(): AudioContext {
+		if (!this.ctx) this.ctx = new AudioContext();
+		return this.ctx;
 	}
 
+	private static async loadBuffer(src: string): Promise<AudioBuffer | null> {
+		if (this.buffers.has(src)) return this.buffers.get(src)!;
+		try {
+			const ab = await fetch(src).then(r => r.arrayBuffer());
+			const buf = await this.getCtx().decodeAudioData(ab);
+			this.buffers.set(src, buf);
+			return buf;
+		} catch (e) {
+			console.warn('[SFX load]', src, e);
+			return null;
+		}
+	}
+
+	// Public API
+
 	static play(src: string): void {
-		const audio = this.getNext(src);
-		audio.currentTime = 0;
-		audio.play().catch(err => console.warn('[SFX]', err));
+		if (isTauri()) {
+			invoke('play_sfx', { src }).catch(e => console.error('[SFX]', src, e));
+			return;
+		}
+		this.loadBuffer(src).then(buf => {
+			if (!buf) return;
+			const ctx = this.getCtx();
+			if (ctx.state === 'suspended') ctx.resume();
+			const gain = ctx.createGain();
+			gain.gain.value = this.volume;
+			gain.connect(ctx.destination);
+			const source = ctx.createBufferSource();
+			source.buffer = buf;
+			source.connect(gain);
+			source.start();
+		});
 	}
 
 	static playAmbient(src: string, relativeVolume: number = 1.0): void {
-		if (this.ambients.has(src)) return;
-		const a = new Audio(src);
-		a.loop = true;
-		a.volume = this.volume * relativeVolume;
-		a.play().catch(err => console.warn('[SFX ambient]', err));
-		this.ambients.set(src, a);
+		if (isTauri()) {
+			invoke('play_sfx', { src }).catch(e => console.error('[SFX]', src, e));
+			return;
+		}
+		if (this.ambientNodes.has(src)) return;
+		this.loadBuffer(src).then(buf => {
+			if (!buf) return;
+			const ctx = this.getCtx();
+			if (ctx.state === 'suspended') ctx.resume();
+			const gain = ctx.createGain();
+			gain.gain.value = this.volume * relativeVolume;
+			gain.connect(ctx.destination);
+			const source = ctx.createBufferSource();
+			source.buffer = buf;
+			source.loop = true;
+			source.connect(gain);
+			source.start();
+			this.ambientNodes.set(src, { source, gain });
+		});
 	}
 
 	static stopAmbient(src: string): void {
-		const a = this.ambients.get(src);
-		if (!a) return;
-		a.pause();
-		a.currentTime = 0;
-		this.ambients.delete(src);
+		const node = this.ambientNodes.get(src);
+		if (!node) return;
+		node.source.stop();
+		this.ambientNodes.delete(src);
 	}
 
 	static setVolume(volume: number): void {
 		this.volume = Math.max(0, Math.min(1, volume));
-		this.pools.forEach(pool => pool.forEach(a => (a.volume = this.volume)));
+		if (isTauri()) {
+			invoke('set_sfx_volume', { volume: this.volume }).catch(() => {});
+			return;
+		}
+		this.ambientNodes.forEach(({ gain }) => {
+			gain.gain.value = this.volume;
+		});
 	}
 
 	static getVolume(): number {

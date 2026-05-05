@@ -20,6 +20,10 @@ src-tauri/target/
 src-tauri/gen/
 release/
 
+# CODE FORMATTER
+.prettierrc
+.prettierignore
+
 # IDE/OS
 .idea
 .vscode

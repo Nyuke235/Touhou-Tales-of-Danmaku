@@ -7,7 +7,10 @@ type TauriInternals = {
 export const isTauri = (): boolean =>
 	typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window;
 
-function invoke<T>(cmd: string, args?: Record<string, unknown>): Promise<T> {
+export function invoke<T>(
+	cmd: string,
+	args?: Record<string, unknown>
+): Promise<T> {
 	const internals = (
 		window as unknown as { __TAURI_INTERNALS__: TauriInternals }
 	).__TAURI_INTERNALS__;

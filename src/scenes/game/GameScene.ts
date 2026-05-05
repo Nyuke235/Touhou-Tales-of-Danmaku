@@ -30,7 +30,10 @@ import { STAGES } from '../../stages/stages';
 import { DialogueRegistry } from '../../stages/DialogueRegistry';
 import { buildPlayer } from '../../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
-import { SPELLCARD_REGISTRY, SpellcardEntry } from '../../game/SpellcardRegistry';
+import {
+	SPELLCARD_REGISTRY,
+	SpellcardEntry,
+} from '../../game/SpellcardRegistry';
 import { SpawnEvent } from '../../game/StageScript';
 
 export class GameScene {
@@ -325,6 +328,7 @@ export class GameScene {
 				);
 				if (post.length > 0) {
 					boss.onDefeated = () => {
+						this.spellcardBg.hide();
 						this.dialoguePaused = true;
 						this.dialogueBox.start(post, () => {
 							this.dialoguePaused = false;
