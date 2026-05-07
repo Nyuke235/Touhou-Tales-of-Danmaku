@@ -1,71 +1,157 @@
-#leaderboard {
-    background: rgba(0, 0, 0, 0.7);
-    border: 2px solid white;
-    color: white;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: scroll;
-    scrollbar-width: none;
-
-    h1 {
-        text-align: center;
-        color: #ffffff;
-        font-size: 1em;
-        letter-spacing: 2px;
-        padding: 10px 0 10px 0;
-        border-bottom: 1px solid white;
-        width: 100%;
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th {
-        color: white;
-        text-align: center;
-        font-size: 10px;
-        padding: 10px;
-        border-bottom: 1px solid white;
-        font-family: 'JFDot-normal';
-        letter-spacing: 1px;
-    }
-
-    td {
-        text-align: center;
-        padding: 10px;
-        font-size: 4.5px;
-        font-weight: 500;
-        border-bottom: 1px solid white;
-    }
-
-    #board tr:last-child td {
-        border-bottom: none;
-    }
-
-    #board tr:first-child {
-        background-color: rgba(72, 18, 26, 0.7) !important;
-    }
-
-    #board tr:nth-child(2) {
-        background-color: rgba(121, 41, 13, 0.7) !important
-    }
-
-    #board tr:nth-child(3) {
-        background-color: rgba(138, 103, 14, 0.7) !important;
-    }
-
-    #board tr:nth-child(even) {
-        background-color: rgba(14, 20, 27, 0.7);
-    }
-    
-    #board tr:nth-child(odd) {
-        background-color: rgba(19, 28, 43, 0.7);
-    }
-
+#leaderboard #lb-tabs,
+#leaderboard #lb-table-wrapper {
+	transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#leaderboard::-webkit-scrollbar {
-    display: none;
+#leaderboard.entering #lb-tabs,
+#leaderboard.entering #lb-table-wrapper {
+	opacity: 0;
+	transform: translateX(-30px);
+	transition-delay: 0s !important;
+}
+
+#leaderboard {
+	background: rgba(0, 0, 0, 0.7);
+	border: 2px solid white;
+	color: white;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+
+	h1 {
+		text-align: center;
+		color: #ffffff;
+		font-size: 1em;
+		letter-spacing: 2px;
+		padding: 6px 0;
+		border-bottom: 1px solid white;
+		width: 100%;
+	}
+}
+
+#lb-tabs {
+	display: flex;
+	width: 100%;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+	.lb-tab {
+		flex: 1;
+		background: transparent;
+		border: none;
+		border-right: 1px solid rgba(255, 255, 255, 0.3);
+		color: rgba(255, 255, 255, 0.45);
+		font-size: 12px;
+		text-shadow: none;
+		letter-spacing: 1px;
+		padding: 4px 0;
+		cursor: pointer;
+
+		&:last-child {
+			border-right: none;
+		}
+
+		&:hover {
+			color: white;
+			background: rgba(255, 255, 255, 0.06);
+		}
+
+		&.selected {
+			color: white;
+			background: rgba(255, 255, 255, 0.1);
+			border-bottom: 2px solid white;
+		}
+	}
+}
+
+#lb-table-wrapper {
+	width: 100%;
+	flex: 1;
+	overflow-y: auto;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+#leaderboard table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#board-head tr {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#board-head th {
+	color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+	font-size: 8px;
+	padding: 5px 4px;
+	font-family: 'JFDot-normal', monospace;
+	letter-spacing: 1px;
+}
+
+#board td {
+	text-align: center;
+	padding: 6px 4px;
+	font-size: 8px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+#board tr:last-child td {
+	border-bottom: none;
+}
+
+#board tr:first-child {
+	background-color: rgba(72, 18, 26) !important;
+}
+
+#board tr:nth-child(2) {
+	background-color: rgb(90, 36, 16) !important;
+}
+
+#board tr:nth-child(3) {
+	background-color: rgb(88, 69, 14) !important;
+}
+
+#board tr:nth-child(even):not(.lb-invalid) {
+	background-color: rgba(14, 20, 27, 0.7);
+}
+
+#board tr:nth-child(odd):not(.lb-invalid) {
+	background-color: rgba(19, 28, 43, 0.7);
+}
+
+#board tr.lb-invalid {
+	background-color: rgba(80, 0, 0, 0.4);
+
+	td {
+		color: #ff4444;
+	}
+}
+
+.lb-empty {
+	color: rgba(255, 255, 255, 0.35);
+	font-size: 5px;
+	padding: 20px !important;
+	text-align: center;
+}
+
+.lb-no {
+	width: 12%;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.lb-score {
+	letter-spacing: 0.5px;
+}
+
+.lb-slow {
+	width: 14%;
+}
+
+.lb-date {
+	width: 22%;
+	color: rgba(255, 255, 255, 0.7);
 }

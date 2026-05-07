@@ -87,22 +87,19 @@ The `.deb` and `.AppImage` artifacts will be written to `./release/`.
 
 The game supports two backend modes that share the same TypeScript interface (`BackendAPI`):
 
-| Mode    | Backend          | Storage                                        |
-| ------- | ---------------- | ---------------------------------------------- |
-| Browser | Express (Node)   | `server/data/data.json`                        |
-| Desktop | Tauri (Rust)     | `~/.local/share/com.nyuke235.tales-of-danmaku/` |
+| Mode    | Backend        | Storage                                                   |
+| ------- | -------------- | --------------------------------------------------------- |
+| Browser | Express (Node) | SQLite `server/data/game.db`                            |
+| Desktop | Tauri (Rust)   | SQLite `~/.local/share/com.nyuke235.tales-of-danmaku/game.db` |
 
-Both modes expose the same operations: **auth**, **save**, **load**, and **get users** (for the leaderboard). The frontend detects the environment at runtime and routes calls accordingly.
+Both modes expose the same operations: **auth**, **save settings**, **save score**, **load data**, and **get users** (for the leaderboard). The frontend detects the environment at runtime and routes calls accordingly.
 
-### Known security limitations
+### Security
 
-The current implementation is intentionally minimal and **not production-ready**:
-
-- Passwords are stored and compared in **plaintext**. **DO NOT USE YOUR REAL PASSWORD.**
-- CORS is fully open (`Access-Control-Allow-Origin: *`).
-- There is no rate limiting, session management, or token-based authentication.
-
-These issues are known and will be addressed in a future pass once the core gameplay is further along.
+- Passwords are hashed with **bcrypt** (cost 10).
+- Web sessions use cryptographically random **Bearer tokens** stored in a `sessions` table with a 30-day TTL.
+- The Express API enforces **rate limiting** (20 req/15 min on auth, 120 req/min globally) and **input validation** on all endpoints.
+- Each user is limited to **200 saved scores**.
 
 ### Multiplayer
 

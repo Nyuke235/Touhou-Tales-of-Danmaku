@@ -17,3 +17,5 @@ serde_json = "1"
 rodio = { version = "0.19", default-features = false, features = ["symphonia-wav"] }
 lewton = "0.10"
 ogg = "0.9"
+rusqlite = { version = "0.31", features = ["bundled"] }
+bcrypt = "0.15"

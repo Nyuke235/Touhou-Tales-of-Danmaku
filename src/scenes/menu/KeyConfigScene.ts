@@ -3,7 +3,6 @@ import { InputManager } from '../../systems/InputManager';
 import { SaveManager } from '../../systems/SaveManager';
 import { Scene, SceneManager } from '../../systems/SceneManager';
 import { SFX, SoundManager } from '../../systems/SoundManager';
-import { User } from '../../utils/User';
 import { MenuScene } from './MenuScene';
 
 const CONTROL_MAP: Array<{ action: keyof typeof Controls }> = [
@@ -81,19 +80,9 @@ export class KeyConfig extends MenuScene {
 	}
 
 	private loadCurrentValues(): void {
-		CONTROL_MAP.forEach(async (ctrl, i) => {
+		CONTROL_MAP.forEach((ctrl, i) => {
 			if (this.valueSpans[i]) {
-				const username = localStorage.getItem('loggedUser');
-				const user = await User.getUser(username);
-
-				if (user) {
-					const userControls: Controls = user.data.controls;
-					this.valueSpans[i].textContent = codeToDisplay(
-						userControls[ctrl.action]
-					);
-				} else {
-					this.valueSpans[i].textContent = codeToDisplay(Controls[ctrl.action]);
-				}
+				this.valueSpans[i].textContent = codeToDisplay(Controls[ctrl.action]);
 			}
 		});
 	}
@@ -244,7 +233,7 @@ export class KeyConfig extends MenuScene {
 
 		const currentUser = localStorage.getItem('loggedUser');
 		if (currentUser) {
-			SaveManager.save(currentUser);
+			SaveManager.saveSettings(currentUser);
 		}
 
 		const section = document.getElementById('keyconfig')!;

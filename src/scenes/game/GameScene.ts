@@ -64,6 +64,8 @@ export class GameScene {
 	protected misses: number = 0;
 	protected bombsUsed: number = 0;
 	protected bombEffect: { x: number; y: number; t: number } | null = null;
+	protected slowFrames: number = 0;
+	protected totalFrames: number = 0;
 
 	protected background: ScrollingBackground = new ScrollingBackground(
 		STAGES[0].backgroundSrc,
@@ -224,6 +226,8 @@ export class GameScene {
 		this.misses = 0;
 		this.bombsUsed = 0;
 		this.bombEffect = null;
+		this.slowFrames = 0;
+		this.totalFrames = 0;
 		this.startTime = Date.now();
 		GameState.power = spellcardEntry
 			? GameState.maxPower
@@ -453,6 +457,9 @@ export class GameScene {
 	}
 
 	protected update(dt: number): void {
+		this.totalFrames++;
+		if (dt > 1 / 60) this.slowFrames++;
+
 		this.updateBossState();
 		this.updateBombEffect(dt);
 
@@ -702,14 +709,28 @@ export class GameScene {
 
 	private saveCurrentUser(): void {
 		const currentUser = localStorage.getItem('loggedUser');
-		if (currentUser) SaveManager.save(currentUser);
+		if (currentUser) SaveManager.saveSettings(currentUser);
 	}
 
 	protected triggerGameOver(): void {
 		SoundManager.play(SFX.GAME_OVER);
 		const score = this.scoreManager.value;
-		const highScore = GameState.highScore;
-		GameState.highScore = score > highScore ? score : highScore;
+		GameState.highScore = Math.max(score, GameState.highScore);
+
+		const currentUser = localStorage.getItem('loggedUser');
+		if (!GameState.practiceMode && !GameState.spellcardMode && currentUser) {
+			const slow =
+				this.totalFrames > 0 ? (this.slowFrames / this.totalFrames) * 100 : 0;
+			const entry = {
+				score,
+				stage: this.currentStageIndex + 1,
+				date: Date.now(),
+				slow,
+			};
+			GameState.scores.push(entry);
+			SaveManager.saveScore(currentUser, entry);
+		}
+
 		this.saveCurrentUser();
 		this.gameOverMenu.show({
 			score: this.scoreManager.value,

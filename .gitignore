@@ -12,7 +12,7 @@ node_modules
 dist
 dist-ssr
 
-# SAVE DATA
+# DATA
 server/data/
 
 # TAURI BUILD ARTIFACTS

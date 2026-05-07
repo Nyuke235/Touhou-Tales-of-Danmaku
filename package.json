@@ -21,6 +21,8 @@
 	},
 	"devDependencies": {
 		"@tauri-apps/cli": "^2",
+		"@types/bcryptjs": "^2.4.6",
+		"@types/better-sqlite3": "^7.6.13",
 		"@types/express": "^5.0.6",
 		"@types/node": "^25.5.0",
 		"prettier": "^3.8.1",
@@ -29,6 +31,9 @@
 		"vite-plugin-static-copy": "^4.1.0"
 	},
 	"dependencies": {
-		"express": "^5.2.1"
+		"bcryptjs": "^3.0.3",
+		"better-sqlite3": "^12.9.0",
+		"express": "^5.2.1",
+		"express-rate-limit": "^8.5.1"
 	}
 }

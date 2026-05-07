@@ -1,39 +1,103 @@
-import { User } from '../utils/User';
+import { BackendAPI } from '../utils/BackendAPI';
+
+const SLOW_THRESHOLD = 5;
 
 export class LeaderboardManagement {
-	private static DISPLAY_LIMIT = 10;
+	static mode: 'global' | 'local' = 'global';
 
 	static generateLeaderboard = async (): Promise<void> => {
-		const board = document.querySelector('#board')!;
-		const users = await User.getAllUser();
-		let html = '';
+		const head = document.getElementById('board-head')!;
+		const board = document.getElementById('board')!;
 
-		if (users) {
-			users.sort(
-				(a, b) =>
-					b.data.highscore - a.data.highscore || a.data.date - b.data.date
-			);
-
-			const top10Users = users.slice(0, this.DISPLAY_LIMIT);
-
-			for (const [i, user] of top10Users.entries()) {
-				user.ranking = {
-					rank: i + 1,
-					highscore: user.data.highscore,
-					date: new Date(user.data.date).toLocaleDateString(),
-				};
-
-				if (user.data.highscore > 0) {
-					html += `<tr>
-							<td class="ranking">${user.ranking.rank}</td>
-							<td class="username">${user.username}</td>
-							<td class="highscore">${user.ranking.highscore}</td>
-							<td class="time">${user.ranking.date}</td>
-						</tr>`;
-				}
-			}
-
-			board.innerHTML = html;
+		if (this.mode === 'global') {
+			await this.renderGlobal(head, board);
+		} else {
+			await this.renderLocal(head, board);
 		}
+
+		this.updateTabs();
 	};
+
+	private static updateTabs(): void {
+		document.querySelectorAll<HTMLElement>('.lb-tab').forEach(tab => {
+			tab.classList.toggle('selected', tab.dataset.mode === this.mode);
+		});
+	}
+
+	private static async renderGlobal(
+		head: HTMLElement,
+		board: HTMLElement
+	): Promise<void> {
+		head.innerHTML = `<tr>
+			<th>NO</th><th>NAME</th><th>SCORE</th><th>DATE</th><th>SLOW</th>
+		</tr>`;
+
+		const entries = await BackendAPI.getLeaderboard();
+
+		if (!entries.length) {
+			board.innerHTML = `<tr><td colspan="5" class="lb-empty">NO VALID SCORES YET</td></tr>`;
+			return;
+		}
+
+		board.innerHTML = entries
+			.map(
+				({ username, score, stage, date, slow }, i) => `<tr>
+				<td class="lb-no">${i + 1}</td>
+				<td class="lb-name">${username}</td>
+				<td class="lb-score">${score}(${stage})</td>
+				<td class="lb-date">${new Date(date).toLocaleDateString('fr-CA')}</td>
+				<td class="lb-slow">${slow.toFixed(1)}%</td>
+			</tr>`
+			)
+			.join('');
+	}
+
+	private static async renderLocal(
+		head: HTMLElement,
+		board: HTMLElement
+	): Promise<void> {
+		head.innerHTML = `<tr>
+			<th>NO</th><th>SCORE</th><th>DATE</th><th>SLOW</th>
+		</tr>`;
+
+		const loggedUser = localStorage.getItem('loggedUser');
+		if (!loggedUser) {
+			board.innerHTML = `<tr><td colspan="4" class="lb-empty">PLEASE LOG IN</td></tr>`;
+			return;
+		}
+
+		const scores = await BackendAPI.getScores(loggedUser);
+
+		if (!scores.length) {
+			board.innerHTML = `<tr><td colspan="4" class="lb-empty">NO SCORES YET</td></tr>`;
+			return;
+		}
+
+		const valid = scores
+			.filter(e => e.slow <= SLOW_THRESHOLD)
+			.sort((a, b) => b.score - a.score);
+		const invalid = scores
+			.filter(e => e.slow > SLOW_THRESHOLD)
+			.sort((a, b) => b.score - a.score);
+
+		const validRows = valid.map(
+			(e, i) => `<tr>
+			<td class="lb-no">${i + 1}</td>
+			<td class="lb-score">${e.score}(${e.stage})</td>
+			<td class="lb-date">${new Date(e.date).toLocaleDateString('fr-CA')}</td>
+			<td class="lb-slow">${e.slow.toFixed(1)}%</td>
+		</tr>`
+		);
+
+		const invalidRows = invalid.map(
+			e => `<tr class="lb-invalid">
+			<td class="lb-no">-</td>
+			<td class="lb-score">${e.score}(${e.stage})</td>
+			<td class="lb-date">${new Date(e.date).toLocaleDateString('fr-CA')}</td>
+			<td class="lb-slow">${e.slow.toFixed(1)}%</td>
+		</tr>`
+		);
+
+		board.innerHTML = [...validRows, ...invalidRows].join('');
+	}
 }

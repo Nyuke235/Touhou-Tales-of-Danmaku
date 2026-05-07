@@ -10,11 +10,11 @@
 		<link rel="stylesheet" href="assets/styles/difficulty.css" />
 		<link rel="stylesheet" href="assets/styles/characters.css" />
 		<link rel="stylesheet" href="assets/styles/options.css" />
-			<link rel="stylesheet" href="assets/styles/game.css" />
+		<link rel="stylesheet" href="assets/styles/game.css" />
 		<link rel="stylesheet" href="assets/styles/keyconfig.css" />
-		<link rel="stylesheet" href="assets/styles/leaderboard.css">
-		<link rel="stylesheet" href="assets/styles/practice-stage.css">
-		<link rel="stylesheet" href="assets/styles/spellcard-practice.css">
+		<link rel="stylesheet" href="assets/styles/leaderboard.css" />
+		<link rel="stylesheet" href="assets/styles/practice-stage.css" />
+		<link rel="stylesheet" href="assets/styles/spellcard-practice.css" />
 		<link rel="stylesheet" href="assets/styles/styles.css" />
 		<!-- JS -->
 		<script type="module" src="src/main.ts" defer></script>
@@ -24,7 +24,10 @@
 			<div id="game-window">
 				<div id="splash">
 					<div id="splash-disclaimer">
-						<p>This fangame is based on Touhou Project.<br>Touhou Project and its characters are property of Team Shanghai Alice (ZUN)</p>
+						<p>
+							This fangame is based on Touhou Project.<br />Touhou Project and
+							its characters are property of Team Shanghai Alice (ZUN)
+						</p>
 					</div>
 					<div id="splash-credit">
 						<img src="assets/sprites/ui/nyuke.png" alt="nyuke logo" />
@@ -50,10 +53,14 @@
 					<div id="user-info">
 						<div id="user-login">
 							<input type="text" id="username-input" placeholder="USERNAME" />
-							<input type="password" id="password-input" placeholder="PASSWORD" />
+							<input
+								type="password"
+								id="password-input"
+								placeholder="PASSWORD"
+							/>
 							<button class="login-btn">LOGIN / REGISTER</button>
 						</div>
-						<div id="user-logged" style="display: none;">
+						<div id="user-logged" style="display: none">
 							<p class="rank"></p>
 							<p class="username"></p>
 							<p class="highscore"></p>
@@ -82,7 +89,7 @@
 					<p id="diff-description"></p>
 				</section>
 
-			<!---------------------- CHARACTERS ---------------------->
+				<!---------------------- CHARACTERS ---------------------->
 				<section id="characters">
 					<div id="char-layout">
 						<div id="char-info">
@@ -124,7 +131,6 @@
 					</div>
 				</section>
 
-
 				<!---------------------- SPELLCARD STAGE SELECT ---------------------->
 				<section id="spellcard-stage">
 					<p class="sc-section-title">SELECT STAGE</p>
@@ -165,7 +171,7 @@
 					<div class="menu">
 						<div class="option-line">
 							<button class="single-btn">Background music</button>
-								<div class="pixel-bar" id="bgm-bar">
+							<div class="pixel-bar" id="bgm-bar">
 								<div class="segment filled"></div>
 								<div class="segment filled"></div>
 								<div class="segment filled"></div>
@@ -176,7 +182,7 @@
 
 						<div class="option-line">
 							<button class="single-btn">Sounds effect</button>
-								<div class="pixel-bar" id="se-bar">
+							<div class="pixel-bar" id="se-bar">
 								<div class="segment filled"></div>
 								<div class="segment filled"></div>
 								<div class="segment filled"></div>
@@ -194,17 +200,16 @@
 				<!----------------------  leaderboard  ---------------------->
 				<section id="leaderboard">
 					<h1>RANKING</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>RANK</th>
-								<th>USERNAME</th>
-								<th>SCORE</th>
-								<th>DATE</th>
-							</tr>
+					<div id="lb-tabs">
+						<button class="lb-tab selected" data-mode="global">GLOBAL</button>
+						<button class="lb-tab" data-mode="local">LOCAL</button>
+					</div>
+					<div id="lb-table-wrapper">
+						<table>
+							<thead id="board-head"></thead>
 							<tbody id="board"></tbody>
-						</thead>
-					</table>
+						</table>
+					</div>
 				</section>
 
 				<!----------------------  keyconfig  ---------------------->
@@ -244,7 +249,6 @@
 						<button class="preset-btn" id="preset-wasd">WASD</button>
 						<button class="exit-btn" id="keyconfig-exit">Save & Exit</button>
 					</div>
-					
 				</section>
 
 				<!---------------------- GAME ---------------------->
@@ -295,52 +299,52 @@
 								</div>
 							</div>
 							<div id="stage-blackout"></div>
-						<div id="gameover-menu">
-							<p class="go-title">GAME OVER</p>
-							<div class="go-results">
-								<div class="go-row">
-									<span class="go-label">OBTAINED SCORE</span>
-									<span class="go-value" id="go-score"></span>
+							<div id="gameover-menu">
+								<p class="go-title">GAME OVER</p>
+								<div class="go-results">
+									<div class="go-row">
+										<span class="go-label">OBTAINED SCORE</span>
+										<span class="go-value" id="go-score"></span>
+									</div>
+									<div class="go-row">
+										<span class="go-label">DIFFICULTY</span>
+										<span class="go-value" id="go-difficulty"></span>
+									</div>
+									<div class="go-row">
+										<span class="go-label">PLAYING TIME</span>
+										<span class="go-value" id="go-time"></span>
+									</div>
+									<div class="go-row">
+										<span class="go-label">NO OF MISSES</span>
+										<span class="go-value" id="go-misses"></span>
+									</div>
+									<div class="go-row">
+										<span class="go-label">NO OF BOMBS USED</span>
+										<span class="go-value" id="go-bombs"></span>
+									</div>
+									<div class="go-row">
+										<span class="go-label">ENEMIES DEFEATED</span>
+										<span class="go-value" id="go-enemies"></span>
+									</div>
 								</div>
-								<div class="go-row">
-									<span class="go-label">DIFFICULTY</span>
-									<span class="go-value" id="go-difficulty"></span>
-								</div>
-								<div class="go-row">
-									<span class="go-label">PLAYING TIME</span>
-									<span class="go-value" id="go-time"></span>
-								</div>
-								<div class="go-row">
-									<span class="go-label">NO OF MISSES</span>
-									<span class="go-value" id="go-misses"></span>
-								</div>
-								<div class="go-row">
-									<span class="go-label">NO OF BOMBS USED</span>
-									<span class="go-value" id="go-bombs"></span>
-								</div>
-								<div class="go-row">
-									<span class="go-label">ENEMIES DEFEATED</span>
-									<span class="go-value" id="go-enemies"></span>
+								<div class="go-separator"></div>
+								<div class="go-buttons">
+									<button class="go-btn">BACK TO TITLE</button>
+									<button class="go-btn">RESTART</button>
 								</div>
 							</div>
-							<div class="go-separator"></div>
-							<div class="go-buttons">
-								<button class="go-btn">BACK TO TITLE</button>
-								<button class="go-btn">RESTART</button>
+							<div id="pause-menu">
+								<span class="pause-title">PAUSED</span>
+								<button class="pause-btn">RESUME</button>
+								<button class="pause-btn">BACK TO TITLE</button>
+								<button class="pause-btn">RESTART</button>
 							</div>
-						</div>
-						<div id="pause-menu">
-							<span class="pause-title">PAUSED</span>
-							<button class="pause-btn">RESUME</button>
-							<button class="pause-btn">BACK TO TITLE</button>
-							<button class="pause-btn">RESTART</button>
-						</div>
-						<div id="spellcard-clear-menu">
-							<span class="sc-clear-title">SPELL CLEAR!</span>
-							<button class="sc-clear-btn">BACK TO TITLE</button>
-							<button class="sc-clear-btn">RETRY</button>
-						</div>
-						<div class="game-overlay">
+							<div id="spellcard-clear-menu">
+								<span class="sc-clear-title">SPELL CLEAR!</span>
+								<button class="sc-clear-btn">BACK TO TITLE</button>
+								<button class="sc-clear-btn">RETRY</button>
+							</div>
+							<div class="game-overlay">
 								<div id="boss-health-bar"></div>
 								<div id="spell-card-name">Spell Card</div>
 								<div id="stage-card">

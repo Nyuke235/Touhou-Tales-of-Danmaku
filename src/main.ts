@@ -151,4 +151,16 @@ sceneManager.switchTo = (scene: Scene) => {
 			})
 		);
 	}
+	if (scene === Scene.LEADERBOARD) {
+		LeaderboardManagement.mode = 'global';
+		LeaderboardManagement.generateLeaderboard();
+		const el = document.getElementById('leaderboard')!;
+		el.classList.remove('outro');
+		el.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				el.classList.remove('entering');
+			})
+		);
+	}
 };

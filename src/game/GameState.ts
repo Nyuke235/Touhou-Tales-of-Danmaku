@@ -16,6 +16,8 @@ export type Character = (typeof Character)[keyof typeof Character];
 
 import { PLAYER } from './Constants';
 
+import { ScoreEntry } from '../utils/User';
+
 export const GameState = {
 	difficulty: Difficulty.NORMAL as Difficulty,
 	character: Character.REIMU as Character,
@@ -28,6 +30,7 @@ export const GameState = {
 	pointItems: 0,
 	highScore: 0,
 	date: Date.now(),
+	scores: [] as ScoreEntry[],
 	practiceMode: false,
 	spellcardMode: false,
 	spellcardGroupIndex: 0,

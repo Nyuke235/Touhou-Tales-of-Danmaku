@@ -5,7 +5,6 @@ import { MusicManager } from '../../systems/MusicManager';
 import { SoundManager, SFX } from '../../systems/SoundManager';
 import { SaveManager } from '../../systems/SaveManager';
 import { MenuScene } from './MenuScene';
-import { User } from '../../utils/User';
 
 const VOLUME_STEPS = 5;
 
@@ -49,17 +48,9 @@ export class OptionsScene extends MenuScene {
 		this.updateSelection();
 	}
 
-	private async syncFromManagers(): Promise<void> {
-		const username: string | null = localStorage.getItem('loggedUser');
-		const user = await User.getUser(username);
-
-		if (user) {
-			this.bgmVolume = Math.round(user.data.volumes.music * VOLUME_STEPS);
-			this.seVolume = Math.round(user.data.volumes.sfx * VOLUME_STEPS);
-		} else {
-			this.bgmVolume = Math.round(MusicManager.getVolume() * VOLUME_STEPS);
-			this.seVolume = Math.round(SoundManager.getVolume() * VOLUME_STEPS);
-		}
+	private syncFromManagers(): void {
+		this.bgmVolume = Math.round(MusicManager.getVolume() * VOLUME_STEPS);
+		this.seVolume = Math.round(SoundManager.getVolume() * VOLUME_STEPS);
 
 		this.updateBar('bgm-bar', this.bgmVolume);
 		this.updateBar('se-bar', this.seVolume);
@@ -122,7 +113,7 @@ export class OptionsScene extends MenuScene {
 		}
 		if (code === Controls.BACK) {
 			const currentUser = localStorage.getItem('loggedUser');
-			if (currentUser) SaveManager.save(currentUser);
+			if (currentUser) SaveManager.saveSettings(currentUser);
 
 			this.switchWithOutro(Scene.HOME);
 		}
@@ -191,7 +182,7 @@ export class OptionsScene extends MenuScene {
 				break;
 			case 4:
 				const currentUser = localStorage.getItem('loggedUser');
-				if (currentUser) SaveManager.save(currentUser);
+				if (currentUser) SaveManager.saveSettings(currentUser);
 				this.switchWithOutro(Scene.HOME);
 				break;
 		}
