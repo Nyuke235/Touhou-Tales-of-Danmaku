@@ -74,7 +74,6 @@ export class CharacterScene extends MenuScene {
 		});
 
 		this.update();
-		this.bindMouse();
 	}
 
 	protected onKeyDown(code: string): void {
@@ -107,30 +106,6 @@ export class CharacterScene extends MenuScene {
 			this.resetContext();
 			this.switchWithOutro(target);
 		}
-	}
-
-	private bindMouse(): void {
-		document
-			.querySelector('#characters .arrow-left')!
-			.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.CHARACTERS) return;
-				this.characterIndex =
-					(this.characterIndex - 1 + this.characters.length) %
-					this.characters.length;
-				this.colorIndex = 0;
-				SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.update();
-			});
-		document
-			.querySelector('#characters .arrow-right')!
-			.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.CHARACTERS) return;
-				this.characterIndex =
-					(this.characterIndex + 1) % this.characters.length;
-				this.colorIndex = 0;
-				SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.update();
-			});
 	}
 
 	private currentColors(): ColorOption[] {
@@ -181,12 +156,6 @@ export class CharacterScene extends MenuScene {
 			const dot = document.createElement('span');
 			dot.className = 'color-dot' + (i === selected ? ' selected' : '');
 			dot.style.background = c.css;
-			dot.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.CHARACTERS) return;
-				this.colorIndex = i;
-				SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.update();
-			});
 			this.charColors.appendChild(dot);
 		});
 	}

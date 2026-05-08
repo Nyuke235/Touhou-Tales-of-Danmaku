@@ -28,7 +28,8 @@ export async function initAuth() {
 		userLogin.style.display = 'none';
 		userLogged.style.display = 'block';
 
-		logoutBtn.addEventListener('click', async () => {
+		logoutBtn.addEventListener('keydown', async (e: KeyboardEvent) => {
+			if (e.key !== 'Enter' && e.key !== ' ') return;
 			await BackendAPI.logout();
 			localStorage.removeItem('loggedUser');
 			localStorage.removeItem('sessionToken');
@@ -38,7 +39,7 @@ export async function initAuth() {
 		return;
 	}
 
-	loginBtn.addEventListener('click', async () => {
+	const doLogin = async () => {
 		const username = usernameInput.value.trim();
 		const password = passwordInput.value.trim();
 		if (!username || !password) return;
@@ -58,5 +59,12 @@ export async function initAuth() {
 				'Unable to reach the server. Make sure it is running on port 9000.'
 			);
 		}
+	};
+
+	loginBtn.addEventListener('keydown', (e: KeyboardEvent) => {
+		if (e.key === 'Enter' || e.key === ' ') doLogin();
+	});
+	passwordInput.addEventListener('keydown', (e: KeyboardEvent) => {
+		if (e.key === 'Enter') doLogin();
 	});
 }

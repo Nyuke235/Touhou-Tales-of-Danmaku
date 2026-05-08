@@ -9,7 +9,6 @@ export function showTitleScreen(): Promise<void> {
 		const dismiss = (e: Event) => {
 			e.stopImmediatePropagation();
 			document.removeEventListener('keydown', dismiss, { capture: true });
-			document.removeEventListener('click', dismiss, { capture: true });
 
 			home.classList.remove('intro');
 			gameWindow.style.backgroundPosition = '50% center';
@@ -20,6 +19,5 @@ export function showTitleScreen(): Promise<void> {
 		};
 
 		document.addEventListener('keydown', dismiss, { capture: true });
-		document.addEventListener('click', dismiss, { capture: true });
 	});
 }

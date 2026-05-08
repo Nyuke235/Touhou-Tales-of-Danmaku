@@ -8,17 +8,6 @@ import { SoundManager, SFX } from '../../systems/SoundManager';
 export class LeaderboardScene extends MenuScene {
 	constructor(sceneManager: SceneManager, inputManager: InputManager) {
 		super(sceneManager, inputManager, Scene.LEADERBOARD);
-
-		document.querySelectorAll<HTMLElement>('.lb-tab').forEach(btn => {
-			btn.addEventListener('click', () => {
-				const mode = btn.dataset.mode as 'global' | 'local';
-				if (LeaderboardManagement.mode !== mode) {
-					LeaderboardManagement.mode = mode;
-					SoundManager.play(SFX.UI_HIGHLIGHT);
-					LeaderboardManagement.generateLeaderboard();
-				}
-			});
-		});
 	}
 
 	protected onKeyDown(code: string): void {

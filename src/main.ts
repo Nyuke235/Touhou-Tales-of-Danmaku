@@ -15,6 +15,9 @@ import { LeaderboardScene } from './scenes/menu/LeaderboardScene';
 import { PracticeStageScene } from './scenes/practice/PracticeStageScene';
 import { SpellcardStageScene } from './scenes/practice/SpellcardStageScene';
 import { SpellcardListScene } from './scenes/practice/SpellcardListScene';
+import { MusicRoomScene } from './scenes/menu/MusicRoomScene';
+import { SpecialScene } from './scenes/menu/SpecialScene';
+import { CreditsScene } from './scenes/menu/CreditsScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { User } from './utils/User';
 import { GameState } from './game/GameState';
@@ -44,16 +47,17 @@ new LeaderboardScene(sceneManager, inputManager);
 new PracticeStageScene(sceneManager, inputManager);
 const spellcardListScene = new SpellcardListScene(sceneManager, inputManager);
 new SpellcardStageScene(sceneManager, inputManager);
+const musicRoomScene = new MusicRoomScene(sceneManager, inputManager);
+new SpecialScene(sceneManager, inputManager);
+new CreditsScene(sceneManager, inputManager);
 
 await showSplash();
 
 const startMusic = () => {
 	MusicManager.play(Music.MENU);
 	document.removeEventListener('keydown', startMusic, { capture: true });
-	document.removeEventListener('click', startMusic, { capture: true });
 };
 document.addEventListener('keydown', startMusic, { capture: true });
-document.addEventListener('click', startMusic, { capture: true });
 
 await showTitleScreen();
 inputManager.enable();
@@ -68,7 +72,12 @@ sceneManager.switchTo = (scene: Scene) => {
 	} else {
 		gameScene.setActive(false);
 		gameScene.stop();
-		MusicManager.play(Music.MENU);
+		if (scene !== Scene.MUSIC_ROOM) {
+			MusicManager.play(Music.MENU);
+		}
+	}
+	if (scene === Scene.MUSIC_ROOM) {
+		musicRoomScene.onEnter();
 	}
 	if (scene === Scene.HOME) {
 		const home = document.getElementById('home')!;
@@ -77,6 +86,16 @@ sceneManager.switchTo = (scene: Scene) => {
 		requestAnimationFrame(() =>
 			requestAnimationFrame(() => {
 				home.classList.remove('entering');
+			})
+		);
+	}
+	if (scene === Scene.SPECIAL) {
+		const el = document.getElementById('special')!;
+		el.classList.remove('outro');
+		el.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				el.classList.remove('entering');
 			})
 		);
 	}
@@ -154,13 +173,5 @@ sceneManager.switchTo = (scene: Scene) => {
 	if (scene === Scene.LEADERBOARD) {
 		LeaderboardManagement.mode = 'global';
 		LeaderboardManagement.generateLeaderboard();
-		const el = document.getElementById('leaderboard')!;
-		el.classList.remove('outro');
-		el.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				el.classList.remove('entering');
-			})
-		);
 	}
 };

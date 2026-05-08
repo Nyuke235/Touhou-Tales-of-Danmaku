@@ -34,7 +34,6 @@ export class DifficultyScene extends MenuScene {
 		this.diffDesc = document.getElementById('diff-description')!;
 
 		this.update();
-		this.bindMouse();
 	}
 
 	protected onKeyDown(code: string): void {
@@ -57,22 +56,6 @@ export class DifficultyScene extends MenuScene {
 		if (code === Controls.BACK) {
 			this.switchWithOutro(Scene.HOME);
 		}
-	}
-
-	private bindMouse(): void {
-		document.querySelector('.arrow-left')!.addEventListener('click', () => {
-			if (this.sceneManager.getCurrentScene() !== Scene.DIFFICULTY) return;
-			this.difficultyIndex =
-				(this.difficultyIndex - 1 + DIFFICULTIES.length) % DIFFICULTIES.length;
-			SoundManager.play(SFX.UI_HIGHLIGHT);
-			this.update();
-		});
-		document.querySelector('.arrow-right')!.addEventListener('click', () => {
-			if (this.sceneManager.getCurrentScene() !== Scene.DIFFICULTY) return;
-			this.difficultyIndex = (this.difficultyIndex + 1) % DIFFICULTIES.length;
-			SoundManager.play(SFX.UI_HIGHLIGHT);
-			this.update();
-		});
 	}
 
 	private switchWithOutro(target: Scene): void {

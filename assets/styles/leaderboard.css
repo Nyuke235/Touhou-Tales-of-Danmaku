@@ -1,14 +1,3 @@
-#leaderboard #lb-tabs,
-#leaderboard #lb-table-wrapper {
-	transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#leaderboard.entering #lb-tabs,
-#leaderboard.entering #lb-table-wrapper {
-	opacity: 0;
-	transform: translateX(-30px);
-	transition-delay: 0s !important;
-}
 
 #leaderboard {
 	background: rgba(0, 0, 0, 0.7);
@@ -44,7 +33,6 @@
 		text-shadow: none;
 		letter-spacing: 1px;
 		padding: 4px 0;
-		cursor: pointer;
 
 		&:last-child {
 			border-right: none;

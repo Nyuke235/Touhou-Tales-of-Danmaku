@@ -44,7 +44,6 @@ export class OptionsScene extends MenuScene {
 		);
 
 		this.syncFromManagers();
-		this.bindMouse();
 		this.updateSelection();
 	}
 
@@ -54,41 +53,6 @@ export class OptionsScene extends MenuScene {
 
 		this.updateBar('bgm-bar', this.bgmVolume);
 		this.updateBar('se-bar', this.seVolume);
-	}
-
-	private bindMouse(): void {
-		this.optionLines.forEach((line, index) => {
-			line.addEventListener('mouseenter', () => {
-				if (this.selectedIndex !== index) SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.selectedIndex = index;
-				this.updateSelection();
-			});
-		});
-
-		document.querySelectorAll('#bgm-bar .segment').forEach((seg, i) => {
-			seg.addEventListener('click', () => {
-				this.selectedIndex = 0;
-				SoundManager.play(SFX.UI_SELECT);
-				this.setVolume(0, i + 1);
-			});
-		});
-		document.querySelectorAll('#se-bar .segment').forEach((seg, i) => {
-			seg.addEventListener('click', () => {
-				this.selectedIndex = 1;
-				SoundManager.play(SFX.UI_SELECT);
-				this.setVolume(1, i + 1);
-			});
-		});
-
-		this.singleBtns.forEach((btn, index) => {
-			btn.addEventListener('mouseenter', () => {
-				if (this.selectedIndex !== 2 + index)
-					SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.selectedIndex = 2 + index;
-				this.updateSelection();
-			});
-			btn.addEventListener('click', () => this.confirm());
-		});
 	}
 
 	protected onKeyDown(code: string): void {

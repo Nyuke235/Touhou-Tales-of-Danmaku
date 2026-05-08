@@ -23,7 +23,6 @@
 
         .arrow {
             image-rendering: pixelated;
-            cursor: pointer;
         }
 
         .arrow-left {

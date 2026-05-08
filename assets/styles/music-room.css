@@ -1,0 +1,91 @@
+
+#music-room {
+	background: rgba(0, 0, 0, 0.75);
+	border: 2px solid white;
+	color: white;
+	flex-direction: column;
+	align-items: stretch;
+	overflow: hidden;
+
+	.mr-heading {
+		text-align: center;
+		font-size: 0.9em;
+		letter-spacing: 3px;
+		padding: 7px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+		flex-shrink: 0;
+	}
+}
+
+#mr-content {
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+}
+
+#mr-track-list {
+	list-style: none;
+	flex: 1;
+	overflow-y: auto;
+	scrollbar-width: none;
+	padding: 4px 0;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.mr-track-item {
+	display: flex;
+	align-items: baseline;
+	gap: 7px;
+	padding: 4px 10px;
+	font-size: 10px;
+	color: rgba(255, 255, 255, 0.5);
+	transition: color 0.05s;
+
+	&.selected {
+		color: #ffd700;
+	}
+
+	.mr-item-no {
+		opacity: 0.45;
+		font-size: 0.85em;
+		flex-shrink: 0;
+	}
+
+	.mr-item-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+#mr-info {
+	width: 145px;
+	flex-shrink: 0;
+	border-left: 1px solid rgba(255, 255, 255, 0.25);
+	padding: 12px 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 8px;
+
+	#mr-track-no {
+		font-size: 0.55em;
+		color: rgba(255, 255, 255, 0.45);
+		letter-spacing: 2px;
+	}
+
+	#mr-track-title {
+		font-size: 0.55em;
+		color: white;
+		line-height: 1.6;
+	}
+
+	#mr-track-label {
+		font-size: 0.45em;
+		color: rgba(255, 200, 100, 0.75);
+		letter-spacing: 1px;
+	}
+}

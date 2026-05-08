@@ -9,6 +9,9 @@ export enum Scene {
 	GAME = 'game',
 	KEYCONFIG = 'keyconfig',
 	LEADERBOARD = 'leaderboard',
+	MUSIC_ROOM = 'music-room',
+	SPECIAL = 'special',
+	CREDITS = 'credits',
 }
 
 export class SceneManager {
@@ -28,6 +31,9 @@ export class SceneManager {
 			[Scene.GAME, this.getElem('game')],
 			[Scene.KEYCONFIG, this.getElem('keyconfig')],
 			[Scene.LEADERBOARD, this.getElem('leaderboard')],
+			[Scene.MUSIC_ROOM, this.getElem('music-room')],
+			[Scene.SPECIAL, this.getElem('special')],
+			[Scene.CREDITS, this.getElem('credits')],
 		]);
 		this.currentScene = Scene.HOME;
 		this.switchTo(Scene.HOME);

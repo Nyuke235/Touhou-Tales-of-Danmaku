@@ -33,11 +33,9 @@ export function showSplash(): Promise<void> {
 				};
 				const cleanup2 = () => {
 					document.removeEventListener('keydown', dismiss2);
-					document.removeEventListener('click', dismiss2);
 				};
 
 				document.addEventListener('keydown', dismiss2);
-				document.addEventListener('click', dismiss2);
 			}, 300);
 		};
 
@@ -54,10 +52,8 @@ export function showSplash(): Promise<void> {
 		};
 		const cleanup1 = () => {
 			document.removeEventListener('keydown', dismiss1);
-			document.removeEventListener('click', dismiss1);
 		};
 
 		document.addEventListener('keydown', dismiss1);
-		document.addEventListener('click', dismiss1);
 	});
 }

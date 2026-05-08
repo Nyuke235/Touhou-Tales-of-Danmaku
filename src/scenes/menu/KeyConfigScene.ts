@@ -76,7 +76,6 @@ export class KeyConfig extends MenuScene {
 		];
 		this.loadCurrentValues();
 		this.updateSelection();
-		this.bindMouse();
 	}
 
 	private loadCurrentValues(): void {
@@ -84,38 +83,6 @@ export class KeyConfig extends MenuScene {
 			if (this.valueSpans[i]) {
 				this.valueSpans[i].textContent = codeToDisplay(Controls[ctrl.action]);
 			}
-		});
-	}
-
-	private bindMouse(): void {
-		this.rows.forEach((row, i) => {
-			row.addEventListener('mouseenter', () => {
-				if (this.waiting) return;
-				if (this.panel !== 'keys' || this.index !== i)
-					SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.panel = 'keys';
-				this.index = i;
-				this.updateSelection();
-			});
-			row.addEventListener('click', () => {
-				this.panel = 'keys';
-				this.index = i;
-				this.waiting = true;
-				SoundManager.play(SFX.UI_SELECT);
-				this.updateSelection();
-			});
-		});
-
-		this.sidebarBtns.forEach((btn, i) => {
-			btn.addEventListener('mouseenter', () => {
-				if (this.waiting) return;
-				if (this.panel !== 'sidebar' || this.sidebarIndex !== i)
-					SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.panel = 'sidebar';
-				this.sidebarIndex = i;
-				this.updateSelection();
-			});
-			btn.addEventListener('click', () => this.confirmSidebar());
 		});
 	}
 

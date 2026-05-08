@@ -343,7 +343,6 @@
 		.go-btn {
 			background: none;
 			border: none;
-			cursor: pointer;
 			font-size: 0.7em;
 			color: white;
 			padding: 3px 0;
@@ -391,7 +390,6 @@
 		.pause-btn {
 			background: none;
 			border: none;
-			cursor: pointer;
 			font-size: 0.8em;
 			color: white;
 			padding: 3px 0;

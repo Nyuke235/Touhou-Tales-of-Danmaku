@@ -22,7 +22,6 @@ export class PracticeStageScene extends MenuScene {
 		this.psDescription = document.getElementById('ps-description')!;
 
 		this.update();
-		this.bindMouse();
 	}
 
 	protected onKeyDown(code: string): void {
@@ -44,27 +43,6 @@ export class PracticeStageScene extends MenuScene {
 		if (code === Controls.BACK) {
 			this.switchWithOutro(Scene.CHARACTERS);
 		}
-	}
-
-	private bindMouse(): void {
-		document
-			.querySelector('#practice-stage .arrow-left')!
-			.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.PRACTICE_STAGE)
-					return;
-				this.stageIndex = (this.stageIndex - 1 + STAGES.length) % STAGES.length;
-				SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.update();
-			});
-		document
-			.querySelector('#practice-stage .arrow-right')!
-			.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.PRACTICE_STAGE)
-					return;
-				this.stageIndex = (this.stageIndex + 1) % STAGES.length;
-				SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.update();
-			});
 	}
 
 	private switchWithOutro(target: Scene): void {

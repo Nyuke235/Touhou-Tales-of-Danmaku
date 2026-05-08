@@ -23,7 +23,6 @@ export class SpellcardStageScene extends MenuScene {
 		this.items = Array.from(list.querySelectorAll('.sc-list-item'));
 
 		this.updateSelection();
-		this.bindMouse();
 	}
 
 	protected onKeyDown(code: string): void {
@@ -46,23 +45,6 @@ export class SpellcardStageScene extends MenuScene {
 		if (code === Controls.BACK) {
 			this.switchWithOutro(Scene.CHARACTERS);
 		}
-	}
-
-	private bindMouse(): void {
-		this.items.forEach((item, i) => {
-			item.addEventListener('mouseenter', () => {
-				if (this.selectedIndex !== i) SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.selectedIndex = i;
-				this.updateSelection();
-			});
-			item.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.SPELLCARD_STAGE)
-					return;
-				SoundManager.play(SFX.UI_SELECT);
-				GameState.spellcardGroupIndex = i;
-				this.switchWithOutro(Scene.SPELLCARD_LIST);
-			});
-		});
 	}
 
 	private updateSelection(): void {

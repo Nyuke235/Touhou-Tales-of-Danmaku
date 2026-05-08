@@ -26,7 +26,6 @@ export class SpellcardClearMenu {
 		this.onBackToTitle = callbacks.onBackToTitle;
 		this.onRestart = callbacks.onRestart;
 
-		this.bindMouse();
 		this.bindKeyboard(inputManager, sceneManager);
 	}
 
@@ -64,17 +63,6 @@ export class SpellcardClearMenu {
 		this.btns.forEach((btn, i) =>
 			btn.classList.toggle('selected', i === this.index)
 		);
-	}
-
-	private bindMouse(): void {
-		this.btns.forEach((btn, i) => {
-			btn.addEventListener('mouseenter', () => {
-				if (this.index !== i) SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.index = i;
-				this.updateSelection();
-			});
-			btn.addEventListener('click', () => this.confirm());
-		});
 	}
 
 	private bindKeyboard(

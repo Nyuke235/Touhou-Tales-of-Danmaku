@@ -1,0 +1,58 @@
+#special {
+	.menu {
+		position: absolute;
+		width: 200px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		left: 15px;
+
+		button {
+			margin-bottom: 10px;
+			width: fit-content;
+			font-size: 1em;
+			transition: opacity 0.3s steps(12, end), transform 0.3s steps(12, end);
+		}
+
+		button:nth-child(1) { transition-delay: 0.08s; }
+		button:nth-child(2) { transition-delay: 0.16s; }
+		button:nth-child(3) { transition-delay: 0.24s; }
+		button:nth-child(4) { transition-delay: 0.32s; }
+
+		button:nth-child(2) { margin-left: 8px; }
+		button:nth-child(3) { margin-left: 16px; }
+		button:nth-child(4) { margin-left: 24px; }
+
+		button.inactive {
+			color: rgba(255, 255, 255, 0.3);
+		}
+
+		button.inactive.selected {
+			color: rgba(255, 215, 0, 0.55);
+			text-shadow:
+				-1px -1px 0 rgba(122, 62, 0, 0.55),
+				 1px -1px 0 rgba(122, 62, 0, 0.55),
+				-1px  1px 0 rgba(122, 62, 0, 0.55),
+				 1px  1px 0 rgba(122, 62, 0, 0.55);
+		}
+	}
+}
+
+#special.entering .menu button {
+	opacity: 0;
+	transform: translateX(-40px);
+	pointer-events: none;
+	transition-delay: 0s !important;
+}
+
+#special.outro .menu button {
+	opacity: 0;
+	transform: translateX(-40px);
+	pointer-events: none;
+}
+
+#special.outro .menu button:nth-child(1) { transition-delay: 0s; }
+#special.outro .menu button:nth-child(2) { transition-delay: 0.06s; }
+#special.outro .menu button:nth-child(3) { transition-delay: 0.12s; }
+#special.outro .menu button:nth-child(4) { transition-delay: 0.18s; }

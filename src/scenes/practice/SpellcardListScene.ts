@@ -70,24 +70,6 @@ export class SpellcardListScene extends MenuScene {
 
 		this.items = Array.from(this.list.querySelectorAll('.sc-list-item'));
 		this.updateSelection();
-		this.bindMouse();
-	}
-
-	private bindMouse(): void {
-		this.items.forEach((item, i) => {
-			item.addEventListener('mouseenter', () => {
-				if (this.selectedIndex !== i) SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.selectedIndex = i;
-				this.updateSelection();
-			});
-			item.addEventListener('click', () => {
-				if (this.sceneManager.getCurrentScene() !== Scene.SPELLCARD_LIST)
-					return;
-				SoundManager.play(SFX.UI_SELECT);
-				GameState.spellcardEntryIndex = i;
-				this.switchWithOutro(Scene.GAME);
-			});
-		});
 	}
 
 	private updateSelection(): void {

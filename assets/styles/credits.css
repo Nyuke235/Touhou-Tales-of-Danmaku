@@ -1,0 +1,71 @@
+#credits {
+	background: rgba(0, 0, 0, 0.7);
+	border: 2px solid white;
+	color: white;
+	flex-direction: column;
+	align-items: stretch;
+	overflow: hidden;
+
+	.cr-heading {
+		text-align: center;
+		font-size: 1em;
+		letter-spacing: 2px;
+		padding: 6px 0;
+		border-bottom: 1px solid white;
+		width: 100%;
+		flex-shrink: 0;
+	}
+}
+
+#cr-content {
+	flex: 1;
+	overflow-y: auto;
+	scrollbar-width: none;
+	padding: 10px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.cr-block {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	padding-bottom: 14px;
+
+	&.cr-last {
+		border-bottom: none;
+		align-items: center;
+		padding-top: 4px;
+	}
+}
+
+.cr-role {
+	font-size: 0.45em;
+	color: rgba(255, 200, 100, 0.75);
+	letter-spacing: 2px;
+	margin-bottom: 3px;
+}
+
+.cr-name {
+	font-size: 0.6em;
+	color: white;
+	letter-spacing: 1px;
+}
+
+.cr-item {
+	font-size: 0.5em;
+	color: rgba(255, 255, 255, 0.5);
+	padding-left: 8px;
+}
+
+.cr-last .cr-name {
+	font-size: 0.5em;
+	color: rgba(255, 255, 255, 0.4);
+	letter-spacing: 2px;
+}

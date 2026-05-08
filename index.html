@@ -15,6 +15,9 @@
 		<link rel="stylesheet" href="assets/styles/leaderboard.css" />
 		<link rel="stylesheet" href="assets/styles/practice-stage.css" />
 		<link rel="stylesheet" href="assets/styles/spellcard-practice.css" />
+		<link rel="stylesheet" href="assets/styles/music-room.css" />
+		<link rel="stylesheet" href="assets/styles/special.css" />
+		<link rel="stylesheet" href="assets/styles/credits.css" />
 		<link rel="stylesheet" href="assets/styles/styles.css" />
 		<!-- JS -->
 		<script type="module" src="src/main.ts" defer></script>
@@ -197,7 +200,64 @@
 					</div>
 				</section>
 
-				<!----------------------  leaderboard  ---------------------->
+				<!----------------------  SPECIAL  ---------------------->
+			<section id="special">
+				<nav class="menu">
+					<button class="inactive">Archives</button>
+					<button class="inactive">Achievements</button>
+					<button>Credits</button>
+					<button class="inactive">Ending</button>
+				</nav>
+			</section>
+
+			<!----------------------  CREDITS  ---------------------->
+			<section id="credits">
+				<h1 class="cr-heading">CREDITS</h1>
+				<div id="cr-content">
+					<div class="cr-block">
+						<p class="cr-role">GAME DESIGN · PROGRAMMING · ART</p>
+						<p class="cr-name">Nyuke235</p>
+					</div>
+					<div class="cr-block">
+						<p class="cr-role">MUSIC</p>
+						<p class="cr-name">TrojanHorse711</p>
+						<p class="cr-item">Apparitions Stalk the Night</p>
+						<p class="cr-item">Lunate Elf</p>
+						<p class="cr-name">ZahranW</p>
+						<p class="cr-item">A Soul as Red as a Ground Cherry</p>
+						<p class="cr-item">Tomboyish Girl in Love</p>
+						<p class="cr-item">Deaf to All But the Song</p>
+						<p class="cr-item">Shanghai Teahouse</p>
+					</div>
+					<div class="cr-block">
+						<p class="cr-role">ORIGINAL CHARACTERS & UNIVERSE</p>
+						<p class="cr-name">ZUN (Team Shanghai Alice)</p>
+					</div>
+					<div class="cr-block">
+						<p class="cr-role">BASED ON</p>
+						<p class="cr-name">Touhou Project</p>
+						<p class="cr-item">~ the Embodiment of Scarlet Devil</p>
+					</div>
+					<div class="cr-block cr-last">
+						<p class="cr-name">Thank you for playing.</p>
+					</div>
+				</div>
+			</section>
+
+			<!----------------------  MUSIC ROOM  ---------------------->
+			<section id="music-room">
+				<h1 class="mr-heading">MUSIC ROOM</h1>
+				<div id="mr-content">
+					<ul id="mr-track-list"></ul>
+					<div id="mr-info">
+						<p id="mr-track-no"></p>
+						<p id="mr-track-title"></p>
+						<p id="mr-track-label"></p>
+					</div>
+				</div>
+			</section>
+
+			<!----------------------  leaderboard  ---------------------->
 				<section id="leaderboard">
 					<h1>RANKING</h1>
 					<div id="lb-tabs">

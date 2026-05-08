@@ -32,7 +32,6 @@ export class PauseMenu {
 		this.onBackToTitle = callbacks.onBackToTitle;
 		this.onRestart = callbacks.onRestart;
 
-		this.bindMouse();
 		this.bindKeyboard(inputManager, sceneManager);
 	}
 
@@ -78,17 +77,6 @@ export class PauseMenu {
 		this.onResume = callbacks.onResume;
 		this.onBackToTitle = callbacks.onBackToTitle;
 		this.onRestart = callbacks.onRestart;
-	}
-
-	private bindMouse(): void {
-		this.btns.forEach((btn, i) => {
-			btn.addEventListener('mouseenter', () => {
-				if (this.index !== i) SoundManager.play(SFX.UI_HIGHLIGHT);
-				this.index = i;
-				this.updateSelection();
-			});
-			btn.addEventListener('click', () => this.confirm());
-		});
 	}
 
 	private bindKeyboard(
