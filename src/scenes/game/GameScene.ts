@@ -684,6 +684,8 @@ export class GameScene {
 		this.grazeEffect.render(ctx);
 		this.bulletManager.render(ctx);
 		this.blizzardManager.render(ctx);
+		this.activeBoss?.renderOverlay(ctx, FIELD.WIDTH, FIELD.HEIGHT);
+		if (focused) this.player.renderHitbox(ctx);
 		this.renderBombEffect(ctx);
 		this.dialogueBox.render(ctx);
 	}

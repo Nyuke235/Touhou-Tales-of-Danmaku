@@ -125,7 +125,7 @@ const PHASES: BossPhase[] = [
 	{
 		name: 'Cold Sign 「Frozen Eternity」',
 		isSpellCard: true,
-		hp: 400,
+		hp: 425,
 		timer: 45,
 		barWeight: 0.17,
 		drops: [

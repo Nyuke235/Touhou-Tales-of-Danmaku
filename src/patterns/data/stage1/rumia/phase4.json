@@ -1,147 +1,66 @@
 {
-  "RUMIA_BURST_SHADOW_1": {
+  "RUMIA_P4_LANTERN_SHOT_E": {
     "type": "circle",
-    "bullet": "burstshadow",
-    "count": 5,
-    "speed": 4,
-    "initSpeed": 40,
-    "accelTime": 3,
-    "startAngle": 0,
-    "rotStep": "PI/8",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 18,
-      "speed": 40
-    },
-    "difficulties": [
-      "EASY",
-      "NORMAL"
-    ]
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 13,
+    "speed": 40,
+    "difficulties": ["EASY"]
   },
-  "RUMIA_BURST_SHADOW_2": {
+  "RUMIA_P4_LANTERN_SHOT_N": {
     "type": "circle",
-    "bullet": "burstshadow",
-    "count": 5,
-    "speed": 4,
-    "initSpeed": 90,
-    "accelTime": 3,
-    "startAngle": "PI/8",
-    "rotStep": "PI/4",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 18,
-      "speed": 35
-    },
-    "difficulties": [
-      "NORMAL"
-    ]
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 15,
+    "speed": 40,
+    "difficulties": ["NORMAL"]
   },
-  "RUMIA_BURST_SHADOW_3": {
+  "RUMIA_P4_LANTERN_SHOT_H": {
     "type": "circle",
-    "bullet": "burstshadow",
-    "count": 5,
-    "speed": 4,
-    "initSpeed": 40,
-    "accelTime": 3,
-    "startAngle": 0,
-    "rotStep": "PI/8",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 22,
-      "speed": 35
-    },
-    "difficulties": [
-      "HARD"
-    ]
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 17,
+    "speed": 40,
+    "difficulties": ["HARD"]
   },
-  "RUMIA_BURST_SHADOW_4": {
+  "RUMIA_P4_LANTERN_SHOT_L": {
     "type": "circle",
-    "bullet": "burstshadow",
-    "count": 5,
-    "speed": 4,
-    "initSpeed": 90,
-    "accelTime": 3,
-    "startAngle": "PI/8",
-    "rotStep": "PI/4",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 22,
-      "speed": 35
-    },
-    "difficulties": [
-      "HARD"
-    ]
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 21,
+    "speed": 40,
+    "difficulties": ["LUNATIC"]
   },
-  "RUMIA_BURST_SHADOW_5": {
+  "RUMIA_P4_RISING_E": {
     "type": "circle",
-    "bullet": "burstshadow",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 5,
+    "speed": 18,
+    "difficulties": ["EASY"]
+  },
+  "RUMIA_P4_RISING_N": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
     "count": 6,
-    "speed": 4,
-    "initSpeed": 40,
-    "accelTime": 3,
-    "startAngle": 0,
-    "rotStep": "PI/8",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 28,
-      "speed": 35
-    },
-    "difficulties": [
-      "LUNATIC"
-    ]
+    "speed": 18,
+    "difficulties": ["NORMAL"]
   },
-  "RUMIA_BURST_SHADOW_6": {
+  "RUMIA_P4_RISING_H": {
     "type": "circle",
-    "bullet": "burstshadow",
-    "count": 6,
-    "speed": 4,
-    "initSpeed": 90,
-    "accelTime": 3,
-    "startAngle": "PI/8",
-    "rotStep": "PI/4",
-    "delay": 0.1,
-    "cooldown": 4.2,
-    "morphDelay": 3,
-    "morphDeactivate": true,
-    "morphConfig": {
-      "type": "circle",
-      "bullet": "rice",
-      "color": "purple",
-      "count": 28,
-      "speed": 35
-    },
-    "difficulties": [
-      "LUNATIC"
-    ]
+    "bullet": "ball",
+    "color": "purple",
+    "count": 7,
+    "speed": 18,
+    "difficulties": ["HARD"]
+  },
+  "RUMIA_P4_RISING_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 8,
+    "speed": 18,
+    "difficulties": ["LUNATIC"]
   }
 }

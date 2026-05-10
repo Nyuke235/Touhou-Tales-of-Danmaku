@@ -105,7 +105,12 @@ export class Player {
 	}
 
 	isVulnerable(): boolean {
-		return !this.invincible && !this.dying && this.deadTimer <= 0 && !GameState.debugInvincible;
+		return (
+			!this.invincible &&
+			!this.dying &&
+			this.deadTimer <= 0 &&
+			!GameState.debugInvincible
+		);
 	}
 
 	isDead(): boolean {
@@ -113,7 +118,13 @@ export class Player {
 	}
 
 	checkCollisions(enemyBullets: IBullet[]): boolean {
-		if (GameState.debugInvincible || this.invincible || this.dying || this.deadTimer > 0) return false;
+		if (
+			GameState.debugInvincible ||
+			this.invincible ||
+			this.dying ||
+			this.deadTimer > 0
+		)
+			return false;
 
 		for (const p of enemyBullets) {
 			if (!p.active || p.isShadow) continue;
@@ -131,7 +142,13 @@ export class Player {
 	}
 
 	checkGraze(enemyBullets: IBullet[]): number {
-		if (this.invincible || this.dying || this.deadTimer > 0 || GameState.debugInvincible) return 0;
+		if (
+			this.invincible ||
+			this.dying ||
+			this.deadTimer > 0 ||
+			GameState.debugInvincible
+		)
+			return 0;
 
 		let count = 0;
 		for (const p of enemyBullets) {
@@ -148,7 +165,13 @@ export class Player {
 	}
 
 	hit(): void {
-		if (GameState.debugInvincible || this.invincible || this.dying || this.deadTimer > 0) return;
+		if (
+			GameState.debugInvincible ||
+			this.invincible ||
+			this.dying ||
+			this.deadTimer > 0
+		)
+			return;
 		this.dying = true;
 		this.visible = false;
 		this.explSheet.reset();
@@ -171,12 +194,7 @@ export class Player {
 
 		if (this.getNearestEnemy) {
 			for (const option of this.options) {
-				option.shoot(
-					this.bulletManager,
-					this.getNearestEnemy,
-					this.x,
-					focused
-				);
+				option.shoot(this.bulletManager, this.getNearestEnemy, this.x, focused);
 			}
 		}
 
@@ -295,15 +313,22 @@ export class Player {
 			}
 			ctx.shadowBlur = 0;
 			ctx.restore();
-
-			ctx.beginPath();
-			ctx.arc(this.x, this.y, this.hitboxRadius, 0, Math.PI * 2);
-			ctx.shadowColor = 'rgba(0, 247, 255, 1)';
-			ctx.fillStyle = 'rgb(0, 129, 180)';
-			ctx.fill();
-			ctx.strokeStyle = 'rgb(255, 255, 255)';
-			ctx.lineWidth = 3;
-			ctx.stroke();
+			this.renderHitbox(ctx);
 		}
+	}
+
+	renderHitbox(ctx: CanvasRenderingContext2D): void {
+		if (this.dying || this.deadTimer > 0 || !this.visible) return;
+		ctx.save();
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.hitboxRadius, 0, Math.PI * 2);
+		ctx.shadowColor = 'rgba(0, 247, 255, 1)';
+		ctx.shadowBlur = 6;
+		ctx.fillStyle = 'rgb(0, 129, 180)';
+		ctx.fill();
+		ctx.strokeStyle = 'rgb(255, 255, 255)';
+		ctx.lineWidth = 3;
+		ctx.stroke();
+		ctx.restore();
 	}
 }

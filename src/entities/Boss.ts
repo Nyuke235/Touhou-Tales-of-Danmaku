@@ -586,6 +586,8 @@ export abstract class Boss extends Enemy {
 		}
 	}
 
+	renderOverlay(_ctx: CanvasRenderingContext2D, _w: number, _h: number): void {}
+
 	override render(ctx: CanvasRenderingContext2D): void {
 		const sw = 100;
 		ctx.save();
