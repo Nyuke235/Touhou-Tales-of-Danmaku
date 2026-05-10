@@ -34,16 +34,16 @@ export const STAGES: StageConfig[] = [
 		blizzard: STAGE_2_BLIZZARD,
 		number: 'STAGE 2',
 		name: 'Ripples on the Misty Lake',
-		description: '~ Where Darkness Meets Still Water ~',
+		description: "~ The Fairy's Chilly Playground ~",
 	},
 	{
 		backgroundSrc: 'assets/sprites/backgrounds/stage3_bg.png',
-		backgroundSpeed: 20,
+		backgroundSpeed: 25,
 		music: Music.STAGE3,
 		script: STAGE_3,
 		number: 'STAGE 3',
-		name: 'The Sleeping Dragon’s Courtyard',
-		description: '~ Where Thorns Protect the Gates ~',
+		name: 'Beyond the Sightless Path',
+		description: '~ A Rainbow Amidst the Shadows ~',
 	},
 	// Stages 4-6: scripts to be added
 ];

@@ -95,6 +95,7 @@ export const ENEMY_MOVEMENT = {
 	NENUPHAR_SPEED: 50,
 	NENUPHAR_STOP_Y: 110,
 	NENUPHAR_WAIT: 2.5,
+	MANDRAGORA_SPEED: 25,
 } as const;
 
 export const BOSS_ENTRY = {

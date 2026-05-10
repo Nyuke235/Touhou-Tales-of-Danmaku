@@ -44,12 +44,12 @@ export class BubbleFairy extends Enemy {
 			frameSpeed: 0.12,
 			looping: true,
 		});
-		super(x, y, 32, 32, 25, sheet, createExplosionSheet());
+		super(x, y, 32, 32, 10, sheet, createExplosionSheet());
 		this.scoreValue = 1000;
 		this.path = path;
 		this.drops = [
-			{ type: 'power', count: 1 },
-			{ type: 'point', count: 1 },
+			{ type: 'power', count: 3 },
+			{ type: 'point', count: 5 },
 		];
 		this.setPatterns(
 			patterns ?? [

@@ -7,7 +7,7 @@
     "spread": 0.3,
     "speed": 70,
     "delay": 0.7,
-    "cooldown": 2,
+    "cooldown": 1,
     "difficulties": [
       "EASY",
       "NORMAL"
@@ -21,7 +21,7 @@
     "spread": 0.25,
     "speed": 80,
     "delay": 0.6,
-    "cooldown": 1.8,
+    "cooldown": 1,
     "difficulties": [
       "HARD"
     ]
@@ -34,7 +34,172 @@
     "spread": 0.2,
     "speed": 90,
     "delay": 0.5,
-    "cooldown": 1.5,
+    "cooldown": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_MANDRAGORA_N": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 20,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S3_MANDRAGORA_H": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 26,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_MANDRAGORA_L": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 32,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_EN": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.35,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.5,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 6,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_H": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.35,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.5,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 10,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_L": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.35,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.2,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 10,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_EN": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "green",
+    "count": 10,
+    "speed": 100,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_H": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "green",
+    "count": 16,
+    "speed": 100,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "green",
+    "count": 16,
+    "speed": 100,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_EN": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 10,
+    "speed": 80,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_H": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 16,
+    "speed": 80,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 16,
+    "speed": 80,
+    "delay": 2,
+    "maxShots": 1,
     "difficulties": [
       "LUNATIC"
     ]

@@ -10,6 +10,7 @@ import { Rumia } from '../entities/enemies/bosses/Rumia';
 import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import { Nenuphar } from '../entities/enemies/Nenuphar';
+import { Mandragora } from '../entities/enemies/Mandragora';
 import { Cirno } from '../entities/enemies/bosses/Cirno';
 import { IceButterfly } from '../entities/enemies/IceButterfly';
 import type { IceButterflyPath } from '../entities/enemies/IceButterfly';
@@ -83,6 +84,7 @@ export type SpawnEventData =
 	| { time: number; type: 'rumiadark'; x: number; y: number }
 	| { time: number; type: 'daiyousei'; x: number; y: number }
 	| { time: number; type: 'nenuphar'; x: number; y: number }
+	| { time: number; type: 'mandragora'; x: number; y: number; patterns?: PatternConfig[] }
 	| { time: number; type: 'cirno'; x: number; y: number }
 	| {
 			time: number;
@@ -120,6 +122,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 					return new Daiyousei(d.x, d.y);
 				case 'nenuphar':
 					return new Nenuphar(d.x, d.y);
+				case 'mandragora':
+					return new Mandragora(d.x, d.y, d.patterns);
 				case 'cirno':
 					return new Cirno(d.x, d.y);
 				case 'icebutterfly':

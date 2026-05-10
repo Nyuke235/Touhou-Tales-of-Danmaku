@@ -4,15 +4,15 @@
 			"pre": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/darkrumia.png",
 					"name": "Rumia",
 					"text": "Is that so? Is that so?~"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
-					"text": "Who’s there? I can hear you fluttering around, but I can’t see a thing. Show yourself!"
+					"text": "Who's there? I can hear you fluttering around, but I can't see a thing. Show yourself!"
 				}
 			]
 		},
@@ -20,7 +20,7 @@
 			"pre": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia.png",
+					"portrait": "assets/sprites/portraits/rumia/darkrumia.png",
 					"name": "Rumia",
 					"text": "Is that so? Is that so?~"
 				},
@@ -28,7 +28,7 @@
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/marisa/marisa.png",
 					"name": "Marisa Kirisame",
-					"text": "Who’s there? Show yourself! It’s getting so dark I can’t even see the tip of my own broom."
+					"text": "Who's there? Show yourself! It's getting so dark I can’t even see the tip of my own broom."
 				}
 			]
 		}
@@ -40,25 +40,25 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
 					"name": "Rumia",
-					"text": "Darkness is more fun when you’re inside it, don’t you think?"
+					"text": "Darkness is more fun when you're inside it, don't you think?"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
-					"text": "Oh, it’s just a low-level youkai. Do you ever get tired of stretching your arms out like that?"
+					"text": "Oh, it's just a low-level youkai. Do you ever get tired of stretching your arms out like that?"
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
-					"text": "It’s a holy gesture! Also, I don’t get lost if I’m pointing in every direction."
+					"text": "It's a holy gesture! Also, I don't get lost if I'm pointing in every direction."
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
-					"text": "The only thing you’re pointing toward is a quick trip to the afterlife. Move, I have a real incident to solve."
+					"text": "The only thing you're pointing toward is a quick trip to the afterlife. Move, I have a real incident to solve."
 				},
 				{
 					"speaker": "boss",
@@ -69,7 +69,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
 					"name": "Reimu Hakurei",
 					"text": "Try a bite. I’m a lot harder to swallow than I look."
 				}
@@ -83,9 +83,9 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
-					"text": "That’s for getting in my way. Now, why is the mist so thick here?"
+					"text": "That's for getting in my way. Now, why is the mist so thick here?"
 				},
 				{
 					"speaker": "boss",
@@ -95,7 +95,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
 					"name": "Reimu Hakurei",
 					"text": "Useless as always. Go find a tree to haunt."
 				}
