@@ -12,7 +12,7 @@
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
-					"text": "Who's there? I can hear you fluttering around, but I can't see a thing. Show yourself!"
+					"text": "Who's there? Show yourself!"
 				}
 			]
 		},
@@ -26,9 +26,9 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_angry.png",
 					"name": "Marisa Kirisame",
-					"text": "Who's there? Show yourself! It's getting so dark I can’t even see the tip of my own broom."
+					"text": "Hey! Whoever's making it this dark, cut it out! I almost flew into a tree, ze!"
 				}
 			]
 		}
@@ -38,40 +38,88 @@
 			"pre": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
-					"name": "Rumia",
-					"text": "Darkness is more fun when you're inside it, don't you think?"
-				},
-				{
-					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
-					"name": "Reimu Hakurei",
-					"text": "Oh, it's just a low-level youkai. Do you ever get tired of stretching your arms out like that?"
-				},
-				{
-					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
-					"text": "It's a holy gesture! Also, I don't get lost if I'm pointing in every direction."
+					"text": "Ehehe~ Is someone there? I can't really see..."
 				},
 				{
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
-					"text": "The only thing you're pointing toward is a quick trip to the afterlife. Move, I have a real incident to solve."
+					"text": "That's because you're the one spreading the darkness. Don't play dumb."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
+					"name": "Rumia",
+					"text": "Oh, that's right! I forgot."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"name": "Reimu Hakurei",
+					"text": "...You forgot that you were doing it?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "I do that sometimes. Are you a human?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "I'm a shrine maiden. I'm here to ask about the red mist covering Gensokyo. You wouldn't happen to know anything about that, would you?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Hmm~ Red mist? That sounds yummy."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"name": "Reimu Hakurei",
+					"text": "That is not an answer."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "I don't really know! But you smell like a human. Are you going to fly past me?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "That's the plan, yes."
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
 					"name": "Rumia",
-					"text": "Too late! My stomach just growled. You look like a delicious red-and-white snack!",
+					"text": "Ehehe~ I don't think I'll let you.",
 					"music": "assets/audio/music/stage1/apparitions_stalk_the_night.ogg"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
-					"text": "Try a bite. I’m a lot harder to swallow than I look."
+					"text": "Of course. I don't have time for this, so I'll make it quick."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "That's okay! I'm not very strong anyway~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_worried.png",
+					"name": "Reimu Hakurei",
+					"text": "Then why are you... you know what, never mind. Let's just get this over with."
 				}
 			],
 			"post": [
@@ -83,21 +131,51 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
-					"text": "That's for getting in my way. Now, why is the mist so thick here?"
+					"text": "That's for getting in my way."
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
-					"text": "I don’t know! I just like it because it's dim. It’s perfect for napping."
+					"text": "Are you going to eat me?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_worried.png",
+					"name": "Reimu Hakurei",
+					"text": "What??? no. Why would I eat you?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "That's what I do when I win~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "I'm leaving now."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Ehehe~ Okay! Good luck with the mist, human!"
 				},
 				{
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
 					"name": "Reimu Hakurei",
-					"text": "Useless as always. Go find a tree to haunt."
+					"text": "Shrine maiden."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Ehehe~"
 				}
 			]
 		},
@@ -107,44 +185,50 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
 					"name": "Rumia",
-					"text": "The mist is nice, isn’t it? It makes everything feel like a midnight snack. And speaking of snacks... I haven’t had a human today."
+					"text": "You got through my darkness?"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
 					"name": "Marisa Kirisame",
-					"text": "Listen, kid, I don’t have time for the \"I’m gonna eat you\" routine. Go find a stray cat or somethin’. I’ve got a real incident to solve."
+					"text": "Barely! I'm a magician, not a bat. Whoa.. you're pretty small to be a youkai, aren't ya?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Ehehe~ I'm Rumia! I eat humans sometimes."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_worried.png",
+					"name": "Marisa Kirisame",
+					"text": "\"Sometimes.\" That's weirdly reassuring. Name's Marisa. I'm in kind of a hurry, so how about you drop the darkness act and let me through?"
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
 					"name": "Rumia",
-					"text": "Is \"solving an incident\" what humans call \"getting lost in the dark\"?"
+					"text": "Hmm~ No, I don't think so."
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
 					"name": "Marisa Kirisame",
-					"text": "It’s called \"investigating.\" And if you don’t move, I’m gonna \"investigate\" how many Master Sparks it takes to brighten up your attitude."
+					"text": "Yeah, figured. Look, I'd love to chat but I've got places to be, ze. So either move or we do this the fun way."
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
 					"name": "Rumia",
-					"text": "Darkness is more than just a lack of light, you know. It’s where the teeth are."
+					"text": "Ehehe~ Which one is the fun way?"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_playful.png",
 					"name": "Marisa Kirisame",
-					"text": "Then I guess I’ll just have to knock a few out! Move it or lose it, little darkness!",
+					"text": "The one where I blast you. Ready?",
 					"music": "assets/audio/music/stage1/apparitions_stalk_the_night.ogg"
-				},
-				{
-					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia_happy.png",
-					"name": "Rumia",
-					"text": "I think I’ll just take a bite out of your \"investigation\" instead!"
 				}
 			],
 			"post": [
@@ -156,33 +240,51 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
 					"name": "Marisa Kirisame",
-					"text": "Told ya. You’re all talk and no bite, Rumia. Now, tell me. Which way did that red mist get thicker?"
-				},
-				{
-					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/rumia_weak.png",
-					"name": "Rumia",
-					"text": "That way... I think. It smells like iron and fancy tea over there."
-				},
-				{
-					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
-					"name": "Marisa Kirisame",
-					"text": "Fancy tea, huh? Sounds like someone with too much time and too much magic on their hands."
+					"text": "Aw, don't be like that. You did great for a little youkai!"
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
 					"name": "Rumia",
-					"text": "Are you really going? If you get eaten by someone bigger than me, I’m going to be very disappointed that I missed out on lunch."
+					"text": "I'm not little!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
 					"name": "Marisa Kirisame",
-					"text": "If I find the person behind this, I’m gonna make them pay for my dry cleaning. This mist is stickier than it looks."
+					"text": "Right, right, sorry. You did great for a regular-sized youkai who eats people sometimes."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "...Thank you~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_playful.png",
+					"name": "Marisa Kirisame",
+					"text": "You're a weird kid. I kind of like you. Don't eat anyone while I'm gone, alright?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "I'll try~ But I'm hungry now because of you."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "There's probably some fairies around here somewhere. Knock yourself out."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "Bye bye~ ...Do fairies taste good, I wonder~"
 				}
 			]
 		}
@@ -192,7 +294,7 @@
 			"pre": [
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
 					"text": "Hmm, so this fairy is also affected..."
 				},
@@ -200,25 +302,25 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/daiyousei/daiyousei.png",
 					"name": "Daiyousei",
-					"text": "You shouldn’t be wandering around the lake right now. it’s becoming quite a lovely shade of red, don't you think?"
+					"text": "You shouldn't be wandering around the lake right now. it's becoming quite a lovely shade of red, don't you think?"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
-					"text": "I don’t have time to play tag with a Greater Fairy. Step aside"
+					"text": "I don't have time to play tag with a Greater Fairy. Step aside."
 				},
 				{
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/daiyousei/daiyousei.png",
 					"name": "Daiyousei",
-					"text": "Cirno said I shouldn’t let anyone pass. She’s busy being the 'strongest' today, and I have to help keep the perimeter clear!"
+					"text": "Cirno said I shouldn't let anyone pass. She's busy being the 'strongest' today, and I have to help keep the perimeter clear!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
 					"name": "Reimu Hakurei",
-					"text": "Cirno? That ice brat is behind this? No, she’s not smart enough to manage a mist this thick."
+					"text": "Cirno? That ice brat is behind this? No, she's not smart enough to manage a mist this thick."
 				}
 			]
 		},
@@ -226,7 +328,7 @@
 			"pre": [
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
 					"name": "Marisa Kirisame",
 					"text": "I thought only the big shots were feelin' the buzz, but you're lookin' pretty pumped for a commoner."
 				},
@@ -234,13 +336,13 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/daiyousei/daiyousei.png",
 					"name": "Daiyousei",
-					"text": "Are you here to steal the mist? It’s not for humans to take!"
+					"text": "Are you here to steal the mist? It's not for humans to take!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
 					"name": "Marisa Kirisame",
-					"text": "Steal it? Nah, I’ve got enough junk in my house. But it’s definitely boostin' your magic levels."
+					"text": "Steal it? Nah, I've got enough junk in my house. But it's definitely boostin' your magic levels."
 				}
 			]
 		}
@@ -249,90 +351,114 @@
 		"reimu": {
 			"pre": [
 				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/cirno/cirno_confident.png",
+					"name": "Cirno",
+					"text": "STOP RIGHT THERE!"
+				},
+				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
 					"name": "Reimu Hakurei",
-					"text": "Where there’s a cold mist and a lot of noise, there’s usually an idiot nearby."
+					"text": "Out of my way."
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_confident.png",
 					"name": "Cirno",
-					"text": "Are you here to cool off? Because I’m about to make you permanent ice!"
+					"text": "No way! I've been training since this mor—"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
 					"name": "Reimu Hakurei",
-					"text": "Actually, I’m here to find out who’s responsible for this red mist."
+					"text": "Since this morning, yes, you say that every time."
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_neutral.png",
 					"name": "Cirno",
-					"text": "Red mist? Who cares about that! Look at me! Can’t you feel the power?"
+					"text": "W-Well this time I really have!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
-					"text": "You’re making it colder, sure, but you aren't the one spreading the mist. You’re just a minor freezing hazard that's getting in my way."
+					"text": "Mhm. Have you seen anything suspicious around the lake? Anything related to the mist?"
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_confident.png",
 					"name": "Cirno",
-					"text": "Minor?! I'll show you minor! I'm so strong I could freeze the whole lake and your shrine along with it!"
+					"text": "Ha! I'm not telling you anything until you fight me!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
 					"name": "Reimu Hakurei",
-					"text": "Hah... why do I even bother talking to fairies?"
+					"text": "...So that's a no."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/cirno/cirno_neutral.png",
+					"name": "Cirno",
+					"text": "I didn't say that!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "You don't know anything, do you."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/cirno/cirno_confident.png",
+					"name": "Cirno",
+					"text": "I know PLENTY! I know that you're going to lose to me today!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "Same as always then. Don't cry when it's over."
 				}
 			]
 		},
 		"marisa": {
 			"pre": [
 				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/cirno/cirno_confident.png",
+					"name": "Cirno",
+					"text": "MARISA! Finally, I've been out here forever!"
+				},
+				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
 					"name": "Marisa Kirisame",
-					"text": "Let’s see... according to the map in my head, there oughta be a big estate right around here. This mist is a real pain for navigatin'"
+					"text": "Hm, Lake Misty... the mist is definitely coming from further ahead..."
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_neutral.png",
 					"name": "Cirno",
-					"text": "Hey! You! The human on the broom! Stop right there!"
+					"text": "Hey! I'm talking to you!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_angry.png",
 					"name": "Marisa Kirisame",
-					"text": "Huh. I wonder if the mist is thicker toward the center of the lake. If the water vapor is denser, the magic refraction would be off the charts."
+					"text": "Wind's blowing east too. Interesting, ze~"
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_angry.png",
 					"name": "Cirno",
-					"text": "Hey! Don't you 'huh' me! I'm talking to you! The Great Cirno is standing right in front of your face!"
+					"text": "I AM NOT THE WIND! I'm the strongest ice fairy in the world! I'm right here!"
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
-					"name": "Marisa Kirisame",
-					"text": "Man, it’s even gettin' noisy. Must be the wind howlin' through the trees."
-				},
-				{
-					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
-					"name": "Cirno",
-					"text": "I AM NOT THE WIND! I’m the strongest ice fairy in the world, and you’re totally ignoring me! I’m right here!"
-				},
-				{
-					"speaker": "player",
-					"portrait": "assets/sprites/portraits/marisa/marisa.png",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
 					"name": "Marisa Kirisame",
 					"text": "Oh, hey, it's you. When did you get here? You're blockin' my view."
 				},
@@ -340,7 +466,7 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/cirno/cirno.png",
 					"name": "Cirno",
-					"text": "I’VE BEEN HERE THE WHOLE TIME! Prepare to be turned into a popsicle, you blind magician!!"
+					"text": "I've been standing RIGHT HERE! Prepare to be turned into a popsicle, you blind magician!!"
 				}
 			]
 		}
