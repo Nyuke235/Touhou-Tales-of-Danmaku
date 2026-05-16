@@ -3,8 +3,8 @@
     "type": "aimed",
     "bullet": "giantsnowflake",
     "speed": 80,
-    "delay": 2.2,
-    "cooldown": 2.2,
+    "delay": 1.8,
+    "cooldown": 1.8,
     "maxShots": 2,
     "difficulties": [
       "EASY"
@@ -14,8 +14,8 @@
     "type": "aimed",
     "bullet": "giantsnowflake",
     "speed": 80,
-    "delay": 1.8,
-    "cooldown": 1.8,
+    "delay": 1.5,
+    "cooldown": 1.5,
     "maxShots": 3,
     "difficulties": [
       "NORMAL"
@@ -27,8 +27,8 @@
     "count": 2,
     "spread": 0.5,
     "speed": 80,
-    "delay": 1.8,
-    "cooldown": 1.8,
+    "delay": 1.5,
+    "cooldown": 1.5,
     "maxShots": 3,
     "difficulties": [
       "HARD",

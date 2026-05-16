@@ -10,7 +10,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
 					"text": "Who's there? Show yourself!"
 				}
@@ -56,7 +56,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
 					"name": "Reimu Hakurei",
 					"text": "...You forgot that you were doing it?"
 				},
@@ -80,7 +80,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
 					"text": "That is not an answer."
 				},
@@ -92,7 +92,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smile.png",
 					"name": "Reimu Hakurei",
 					"text": "That's the plan, yes."
 				},
@@ -117,7 +117,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_worried.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_deadinside.png",
 					"name": "Reimu Hakurei",
 					"text": "Then why are you... you know what, never mind. Let's just get this over with."
 				}
@@ -143,7 +143,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_worried.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
 					"text": "What??? no. Why would I eat you?"
 				},
@@ -167,7 +167,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
 					"name": "Reimu Hakurei",
 					"text": "Shrine maiden."
 				},
@@ -306,7 +306,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
 					"name": "Reimu Hakurei",
 					"text": "I don't have time to play tag with a Greater Fairy. Step aside."
 				},
@@ -358,7 +358,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
 					"name": "Reimu Hakurei",
 					"text": "Out of my way."
 				},
@@ -370,7 +370,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
 					"name": "Reimu Hakurei",
 					"text": "Since this morning, yes, you say that every time."
 				},
@@ -394,7 +394,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_averted.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
 					"name": "Reimu Hakurei",
 					"text": "...So that's a no."
 				},
@@ -418,7 +418,7 @@
 				},
 				{
 					"speaker": "player",
-					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smile.png",
 					"name": "Reimu Hakurei",
 					"text": "Same as always then. Don't cry when it's over."
 				}
@@ -466,7 +466,7 @@
 					"speaker": "boss",
 					"portrait": "assets/sprites/portraits/cirno/cirno.png",
 					"name": "Cirno",
-					"text": "I've been standing RIGHT HERE! Prepare to be turned into a popsicle, you blind magician!!"
+					"text": "I'VE BEEN STANDING RIGHT HERE THE WHOLE TIME! Prepare to be turned into a popsicle, you blind magician!!"
 				}
 			]
 		}

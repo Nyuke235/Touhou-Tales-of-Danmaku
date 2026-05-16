@@ -2,13 +2,13 @@
   "RUMIA_VOLLEY_HARD": {
     "type": "volley-spread",
     "color": "yellow",
-    "speed": 70,
-    "deltaSpeed": 15,
+    "speed": 90,
+    "deltaSpeed": 10,
     "delay": 1,
     "cooldown": 3.8,
     "maxShots": 3,
     "count": 1,
-    "streams": 5,
+    "streams": 3,
     "spread": 0.4,
     "difficulties": [
       "HARD"
@@ -17,8 +17,8 @@
   "RUMIA_VOLLEY_LUNATIC": {
     "type": "volley-spread",
     "color": "yellow",
-    "speed": 70,
-    "deltaSpeed": 15,
+    "speed": 90,
+    "deltaSpeed": 10,
     "delay": 1,
     "cooldown": 3.8,
     "maxShots": 3,
