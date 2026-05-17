@@ -53,7 +53,22 @@ const RAW_STAGE_3: SpawnEventData[] = [
 
 	{ time: 30.0, type: 'bubblefairy', x:  64, y: -16, path: 'zigzag-down' },
 	{ time: 32.0, type: 'bubblefairy', x: 128, y: -16, path: 'zigzag-down' },
-	{ time: 30.0, type: 'bubblefairy', x: 192, y: -16, path: 'zigzag-down' },
+	{ time: 34.0, type: 'bubblefairy', x: 192, y: -16, path: 'zigzag-down' },
+
+	{ time: 36.0, type: 'fairy', x:  48, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 36.0, type: 'fairy', x: 104, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 36.5, type: 'fairy', x: 152, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 36.5, type: 'fairy', x: 208, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 38.0, type: 'fairy', x:  48, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 38.0, type: 'fairy', x: 104, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 38.5, type: 'fairy', x: 152, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 38.5, type: 'fairy', x: 208, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_EN, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+
+	{ time: 40.1, type: 'mystia', x: -36, y: 60, path: 'passing-left', patterns: [P.S3_MYSTIA_GRAVITY_GREEN, P.S3_MYSTIA_GRAVITY_RED, P.S3_MYSTIA_ARROWHEAD_VOLLEY_EN, P.S3_MYSTIA_ARROWHEAD_VOLLEY_H, P.S3_MYSTIA_ARROWHEAD_VOLLEY_L] },
+	{ time: 44.0, type: 'spirit', x: -32, y: 52, variant: 'purple', path: 'passing-left',  patterns: [P.S3_CIRCLE_PURPLE_BALL_A, P.S3_CIRCLE_PURPLE_BALL_B, P.S3_CIRCLE_PURPLE_BALL_C] },
+	
+	{ time: 51.8, type: 'mystia', x: 288, y: 60, path: 'passing-right', patterns: [P.S3_MYSTIA_GRAVITY_GREEN, P.S3_MYSTIA_GRAVITY_RED, P.S3_MYSTIA_ARROWHEAD_VOLLEY_EN, P.S3_MYSTIA_ARROWHEAD_VOLLEY_H, P.S3_MYSTIA_ARROWHEAD_VOLLEY_L] },
+	{ time: 55.5, type: 'spirit', x: 288, y: 52, variant: 'purple', path: 'passing-right',  patterns: [P.S3_CIRCLE_PURPLE_BALL_A, P.S3_CIRCLE_PURPLE_BALL_B, P.S3_CIRCLE_PURPLE_BALL_C] },
 
 	{ time: 85.0, type: 'bubblefairy', x: -16, y: 60, path: 'pass-right' },
 ];
