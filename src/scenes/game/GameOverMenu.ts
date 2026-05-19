@@ -23,34 +23,43 @@ function formatTime(ms: number): string {
 	return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
 }
 
+interface Callbacks {
+	onBackToTitle: () => void;
+	onRestart: () => void;
+	onSaveScore: () => void;
+}
+
 export class GameOverMenu {
 	private el: HTMLElement;
 	private btns: HTMLButtonElement[];
+	private saveBtn: HTMLButtonElement;
+	private activeBtns: HTMLButtonElement[] = [];
 	private index: number = 0;
 	private visible: boolean = false;
 	private closing: boolean = false;
 
-	private onBackToTitle: () => void;
-	private onRestart: () => void;
+	private callbacks: Callbacks;
 
 	constructor(
 		inputManager: InputManager,
 		sceneManager: SceneManager,
-		callbacks: { onBackToTitle: () => void; onRestart: () => void }
+		callbacks: Callbacks
 	) {
 		this.el = document.getElementById('gameover-menu')!;
 		this.btns = Array.from(this.el.querySelectorAll('.go-btn'));
-		this.onBackToTitle = callbacks.onBackToTitle;
-		this.onRestart = callbacks.onRestart;
+		this.saveBtn = this.el.querySelector('.go-btn-save') as HTMLButtonElement;
+		this.callbacks = callbacks;
 
 		this.bindKeyboard(inputManager, sceneManager);
 	}
 
-	show(stats: GameOverStats): void {
+	show(stats: GameOverStats, saveEnabled: boolean): void {
 		if (this.visible) return;
 		this.visible = true;
 		this.closing = false;
 		this.index = 0;
+		this.saveBtn.classList.toggle('hidden', !saveEnabled);
+		this.activeBtns = this.btns.filter(b => !b.classList.contains('hidden'));
 		this.updateSelection();
 		this.populate(stats);
 		this.el.classList.remove('leaving');
@@ -80,12 +89,8 @@ export class GameOverMenu {
 		return this.visible;
 	}
 
-	setCallbacks(callbacks: {
-		onBackToTitle: () => void;
-		onRestart: () => void;
-	}): void {
-		this.onBackToTitle = callbacks.onBackToTitle;
-		this.onRestart = callbacks.onRestart;
+	setCallbacks(callbacks: Callbacks): void {
+		this.callbacks = callbacks;
 	}
 
 	private populate(stats: GameOverStats): void {
@@ -112,11 +117,12 @@ export class GameOverMenu {
 			if (sceneManager.getCurrentScene() !== Scene.GAME) return;
 
 			if (code === Controls.MOVE_UP) {
-				this.index = (this.index - 1 + this.btns.length) % this.btns.length;
+				this.index =
+					(this.index - 1 + this.activeBtns.length) % this.activeBtns.length;
 				SoundManager.play(SFX.UI_HIGHLIGHT);
 				this.updateSelection();
 			} else if (code === Controls.MOVE_DOWN) {
-				this.index = (this.index + 1) % this.btns.length;
+				this.index = (this.index + 1) % this.activeBtns.length;
 				SoundManager.play(SFX.UI_HIGHLIGHT);
 				this.updateSelection();
 			} else if (code === Controls.MENU_SELECT) {
@@ -126,14 +132,20 @@ export class GameOverMenu {
 	}
 
 	private updateSelection(): void {
-		this.btns.forEach((btn, i) =>
-			btn.classList.toggle('selected', i === this.index)
-		);
+		this.btns.forEach(btn => btn.classList.remove('selected'));
+		this.activeBtns[this.index]?.classList.add('selected');
 	}
 
 	private confirm(): void {
 		SoundManager.play(SFX.UI_SELECT);
-		if (this.index === 0) this.hide(() => this.onBackToTitle());
-		else this.hide(() => this.onRestart());
+		const selected = this.activeBtns[this.index];
+		if (!selected) return;
+		if (selected === this.saveBtn) {
+			this.hide(() => this.callbacks.onSaveScore());
+		} else if (this.index === 0) {
+			this.hide(() => this.callbacks.onBackToTitle());
+		} else {
+			this.hide(() => this.callbacks.onRestart());
+		}
 	}
 }

@@ -1,6 +1,6 @@
 import { Controls } from '../../systems/Controls';
 import { InputManager } from '../../systems/InputManager';
-import { SaveManager } from '../../systems/SaveManager';
+import { LocalSettings } from '../../systems/LocalSettings';
 import { Scene, SceneManager } from '../../systems/SceneManager';
 import { SFX, SoundManager } from '../../systems/SoundManager';
 import { MenuScene } from './MenuScene';
@@ -198,10 +198,7 @@ export class KeyConfig extends MenuScene {
 		this.sidebarIndex = 0;
 		this.updateSelection();
 
-		const currentUser = localStorage.getItem('loggedUser');
-		if (currentUser) {
-			SaveManager.saveSettings(currentUser);
-		}
+		LocalSettings.save();
 
 		const section = document.getElementById('keyconfig')!;
 		if (section.classList.contains('outro')) return;

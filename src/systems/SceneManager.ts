@@ -12,6 +12,7 @@ export enum Scene {
 	MUSIC_ROOM = 'music-room',
 	SPECIAL = 'special',
 	CREDITS = 'credits',
+	SAVE_SCORE = 'save-score',
 }
 
 export class SceneManager {
@@ -34,6 +35,7 @@ export class SceneManager {
 			[Scene.MUSIC_ROOM, this.getElem('music-room')],
 			[Scene.SPECIAL, this.getElem('special')],
 			[Scene.CREDITS, this.getElem('credits')],
+			[Scene.SAVE_SCORE, this.getElem('save-score')],
 		]);
 		this.currentScene = Scene.HOME;
 		this.switchTo(Scene.HOME);

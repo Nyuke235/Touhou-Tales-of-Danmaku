@@ -2,12 +2,8 @@ const MAX_STAGE = 7;
 const MAX_SCORE = 9_999_999_999;
 
 export const Validate = {
-	username(v: unknown): v is string {
-		return typeof v === 'string' && /^[a-zA-Z0-9_-]{3,20}$/.test(v);
-	},
-
-	password(v: unknown): v is string {
-		return typeof v === 'string' && v.length >= 6 && v.length <= 64;
+	name(v: unknown): v is string {
+		return typeof v === 'string' && /^[a-zA-Z0-9_-]{3,12}$/.test(v);
 	},
 
 	score(v: unknown): v is number {

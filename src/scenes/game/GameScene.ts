@@ -4,7 +4,7 @@ import { InputManager } from '../../systems/InputManager';
 import { ItemManager } from '../../systems/ItemManager';
 import { MusicManager } from '../../systems/MusicManager';
 import { BulletManager } from '../../systems/BulletManager';
-import { SaveManager } from '../../systems/SaveManager';
+import { LocalScores, ScoreEntry } from '../../systems/LocalScores';
 import { Scene, SceneManager } from '../../systems/SceneManager';
 import { ScoreManager } from '../../systems/ScoreManager';
 import { SFX, SoundManager } from '../../systems/SoundManager';
@@ -30,6 +30,7 @@ import { STAGES } from '../../stages/stages';
 import { DialogueRegistry } from '../../stages/DialogueRegistry';
 import { buildPlayer } from '../../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
+import { SaveScoreScene } from '../menu/SaveScoreScene';
 import {
 	SPELLCARD_REGISTRY,
 	SpellcardEntry,
@@ -112,7 +113,6 @@ export class GameScene {
 					this.scoreManager.value,
 					GameState.highScore
 				);
-				this.saveCurrentUser();
 				this.sceneManager.switchTo(Scene.HOME);
 			},
 			onRestart: () => {
@@ -120,7 +120,6 @@ export class GameScene {
 					this.scoreManager.value,
 					GameState.highScore
 				);
-				this.saveCurrentUser();
 				MusicManager.stop();
 				this.init(GameState.startingStage);
 			},
@@ -132,12 +131,15 @@ export class GameScene {
 					this.scoreManager.value,
 					GameState.highScore
 				);
-				this.saveCurrentUser();
 				this.sceneManager.switchTo(Scene.HOME);
 			},
 			onRestart: () => {
 				MusicManager.stop();
 				this.init(GameState.startingStage);
+			},
+			onSaveScore: () => {
+				MusicManager.stop();
+				this.sceneManager.switchTo(Scene.SAVE_SCORE);
 			},
 		});
 
@@ -154,8 +156,7 @@ export class GameScene {
 						this.scoreManager.value,
 						GameState.highScore
 					);
-					this.saveCurrentUser();
-					this.sceneManager.switchTo(Scene.HOME);
+						this.sceneManager.switchTo(Scene.HOME);
 				},
 				onRestart: () => {
 					MusicManager.stop();
@@ -423,7 +424,29 @@ export class GameScene {
 	protected triggerEnding(): void {
 		this.loop.stop();
 		MusicManager.stop();
-		this.sceneManager.switchTo(Scene.HOME); // TODO: ending screen
+
+		const score = this.scoreManager.value;
+		GameState.highScore = Math.max(score, GameState.highScore);
+
+		if (!GameState.practiceMode && !GameState.spellcardMode) {
+			const entry = this.buildScoreEntry(score);
+			LocalScores.add(entry);
+			SaveScoreScene.setPending(entry);
+			this.sceneManager.switchTo(Scene.SAVE_SCORE);
+		} else {
+			this.sceneManager.switchTo(Scene.HOME);
+		}
+	}
+
+	private buildScoreEntry(score: number): ScoreEntry {
+		const slow =
+			this.totalFrames > 0 ? (this.slowFrames / this.totalFrames) * 100 : 0;
+		return {
+			score,
+			stage: this.currentStageIndex + 1,
+			date: Date.now(),
+			slow,
+		};
 	}
 
 	protected showStageCard(): void {
@@ -709,38 +732,28 @@ export class GameScene {
 		ctx.restore();
 	}
 
-	private saveCurrentUser(): void {
-		const currentUser = localStorage.getItem('loggedUser');
-		if (currentUser) SaveManager.saveSettings(currentUser);
-	}
-
 	protected triggerGameOver(): void {
 		SoundManager.play(SFX.GAME_OVER);
 		const score = this.scoreManager.value;
 		GameState.highScore = Math.max(score, GameState.highScore);
 
-		const currentUser = localStorage.getItem('loggedUser');
-		if (!GameState.practiceMode && !GameState.spellcardMode && currentUser) {
-			const slow =
-				this.totalFrames > 0 ? (this.slowFrames / this.totalFrames) * 100 : 0;
-			const entry = {
-				score,
-				stage: this.currentStageIndex + 1,
-				date: Date.now(),
-				slow,
-			};
-			GameState.scores.push(entry);
-			SaveManager.saveScore(currentUser, entry);
+		const canSave = !GameState.practiceMode && !GameState.spellcardMode;
+		if (canSave) {
+			const entry = this.buildScoreEntry(score);
+			LocalScores.add(entry);
+			SaveScoreScene.setPending(entry);
 		}
 
-		this.saveCurrentUser();
-		this.gameOverMenu.show({
-			score: this.scoreManager.value,
-			difficulty: GameState.difficulty,
-			playingTime: Date.now() - this.startTime,
-			misses: this.misses,
-			bombsUsed: this.bombsUsed,
-			enemiesDefeated: this.enemyManager.killedCount,
-		});
+		this.gameOverMenu.show(
+			{
+				score: this.scoreManager.value,
+				difficulty: GameState.difficulty,
+				playingTime: Date.now() - this.startTime,
+				misses: this.misses,
+				bombsUsed: this.bombsUsed,
+				enemiesDefeated: this.enemyManager.killedCount,
+			},
+			canSave
+		);
 	}
 }

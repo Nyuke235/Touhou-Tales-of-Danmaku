@@ -351,6 +351,10 @@
 			&.selected {
 				color: #ffd700;
 			}
+
+			&.hidden {
+				display: none;
+			}
 		}
 	}
 

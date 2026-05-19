@@ -3,7 +3,7 @@ import { InputManager } from '../../systems/InputManager';
 import { Controls, setControls } from '../../systems/Controls';
 import { MusicManager } from '../../systems/MusicManager';
 import { SoundManager, SFX } from '../../systems/SoundManager';
-import { SaveManager } from '../../systems/SaveManager';
+import { LocalSettings } from '../../systems/LocalSettings';
 import { MenuScene } from './MenuScene';
 
 const VOLUME_STEPS = 5;
@@ -76,9 +76,7 @@ export class OptionsScene extends MenuScene {
 			this.confirm();
 		}
 		if (code === Controls.BACK) {
-			const currentUser = localStorage.getItem('loggedUser');
-			if (currentUser) SaveManager.saveSettings(currentUser);
-
+			LocalSettings.save();
 			this.switchWithOutro(Scene.HOME);
 		}
 	}
@@ -145,8 +143,7 @@ export class OptionsScene extends MenuScene {
 				this.resetDefaults();
 				break;
 			case 4:
-				const currentUser = localStorage.getItem('loggedUser');
-				if (currentUser) SaveManager.saveSettings(currentUser);
+				LocalSettings.save();
 				this.switchWithOutro(Scene.HOME);
 				break;
 		}

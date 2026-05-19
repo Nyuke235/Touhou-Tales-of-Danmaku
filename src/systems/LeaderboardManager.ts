@@ -1,4 +1,5 @@
 import { BackendAPI } from '../utils/BackendAPI';
+import { LocalScores } from './LocalScores';
 
 const SLOW_THRESHOLD = 5;
 
@@ -6,13 +7,14 @@ export class LeaderboardManagement {
 	static mode: 'global' | 'local' = 'global';
 
 	static generateLeaderboard = async (): Promise<void> => {
-		const head = document.getElementById('board-head')!;
-		const board = document.getElementById('board')!;
+		const head = document.getElementById('board-head');
+		const board = document.getElementById('board');
+		if (!head || !board) return;
 
 		if (this.mode === 'global') {
 			await this.renderGlobal(head, board);
 		} else {
-			await this.renderLocal(head, board);
+			this.renderLocal(head, board);
 		}
 
 		this.updateTabs();
@@ -41,9 +43,9 @@ export class LeaderboardManagement {
 
 		board.innerHTML = entries
 			.map(
-				({ username, score, stage, date, slow }, i) => `<tr>
+				({ name, score, stage, date, slow }, i) => `<tr>
 				<td class="lb-no">${i + 1}</td>
-				<td class="lb-name">${username}</td>
+				<td class="lb-name">${escapeHtml(name)}</td>
 				<td class="lb-score">${score}(${stage})</td>
 				<td class="lb-date">${new Date(date).toLocaleDateString('fr-CA')}</td>
 				<td class="lb-slow">${slow.toFixed(1)}%</td>
@@ -52,21 +54,12 @@ export class LeaderboardManagement {
 			.join('');
 	}
 
-	private static async renderLocal(
-		head: HTMLElement,
-		board: HTMLElement
-	): Promise<void> {
+	private static renderLocal(head: HTMLElement, board: HTMLElement): void {
 		head.innerHTML = `<tr>
 			<th>NO</th><th>SCORE</th><th>DATE</th><th>SLOW</th>
 		</tr>`;
 
-		const loggedUser = localStorage.getItem('loggedUser');
-		if (!loggedUser) {
-			board.innerHTML = `<tr><td colspan="4" class="lb-empty">PLEASE LOG IN</td></tr>`;
-			return;
-		}
-
-		const scores = await BackendAPI.getScores(loggedUser);
+		const scores = LocalScores.all();
 
 		if (!scores.length) {
 			board.innerHTML = `<tr><td colspan="4" class="lb-empty">NO SCORES YET</td></tr>`;
@@ -100,4 +93,20 @@ export class LeaderboardManagement {
 
 		board.innerHTML = [...validRows, ...invalidRows].join('');
 	}
+}
+
+function escapeHtml(s: string): string {
+	return s.replace(
+		/[&<>"']/g,
+		c =>
+			(
+				({
+					'&': '&amp;',
+					'<': '&lt;',
+					'>': '&gt;',
+					'"': '&quot;',
+					"'": '&#39;',
+				}) as Record<string, string>
+			)[c]
+	);
 }

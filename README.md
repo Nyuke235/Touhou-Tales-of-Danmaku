@@ -92,14 +92,15 @@ The game supports two backend modes that share the same TypeScript interface (`B
 | Browser | Express (Node) | SQLite `server/data/game.db`                            |
 | Desktop | Tauri (Rust)   | SQLite `~/.local/share/com.nyuke235.tales-of-danmaku/game.db` |
 
-Both modes expose the same operations: **auth**, **save settings**, **save score**, **load data**, and **get users** (for the leaderboard). The frontend detects the environment at runtime and routes calls accordingly.
+Both modes expose the same operations: **save score** and **get leaderboard**. The frontend detects the environment at runtime and routes calls accordingly. Scores are anonymous: each entry stores a player-chosen name (3-12 alphanumeric characters, `_` or `-`) — no accounts, passwords or sessions.
+
+Game settings (controls, volumes) and the player's personal run history are stored entirely in `localStorage` — the server never sees them.
 
 ### Security
 
-- Passwords are hashed with **bcrypt** (cost 10).
-- Web sessions use cryptographically random **Bearer tokens** stored in a `sessions` table with a 30-day TTL.
-- The Express API enforces **rate limiting** (20 req/15 min on auth, 120 req/min globally) and **input validation** on all endpoints.
-- Each user is limited to **200 saved scores**.
+- The Express API enforces **rate limiting** (30 req/15 min on save-score, 120 req/min globally) and **input validation** on all endpoints.
+- Names are validated against `^[a-zA-Z0-9_-]{3,12}$` and HTML-escaped on render to avoid XSS in the leaderboard.
+- The global scores table is capped at **10 000** entries (oldest evicted FIFO).
 
 ### Multiplayer
 

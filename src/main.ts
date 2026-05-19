@@ -3,13 +3,14 @@ import { showTitleScreen } from './utils/TitleScreen';
 import { scaleGameWindow } from './utils/ScaleWindow';
 import { SceneManager, Scene } from './systems/SceneManager';
 import { InputManager } from './systems/InputManager';
+import { LocalSettings } from './systems/LocalSettings';
+import { LocalScores } from './systems/LocalScores';
 import { HomeScene } from './scenes/menu/HomeScene';
 import { DifficultyScene } from './scenes/menu/DifficultyScene';
 import { CharacterScene } from './scenes/menu/CharacterScene';
 import { GameScene } from './scenes/game/GameScene';
 import { OptionsScene } from './scenes/menu/OptionsScene';
 import { MusicManager, Music } from './systems/MusicManager';
-import { initAuth } from './utils/Auth';
 import { KeyConfig } from './scenes/menu/KeyConfigScene';
 import { LeaderboardScene } from './scenes/menu/LeaderboardScene';
 import { PracticeStageScene } from './scenes/practice/PracticeStageScene';
@@ -18,21 +19,23 @@ import { SpellcardListScene } from './scenes/practice/SpellcardListScene';
 import { MusicRoomScene } from './scenes/menu/MusicRoomScene';
 import { SpecialScene } from './scenes/menu/SpecialScene';
 import { CreditsScene } from './scenes/menu/CreditsScene';
+import { SaveScoreScene } from './scenes/menu/SaveScoreScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
-import { User } from './utils/User';
 import { GameState } from './game/GameState';
 import { DialogueRegistry } from './stages/DialogueRegistry';
 
+localStorage.removeItem('loggedUser');
+localStorage.removeItem('sessionToken');
+
 scaleGameWindow();
-initAuth();
+LocalSettings.load();
+GameState.highScore = LocalScores.bestValidScore();
 await DialogueRegistry.load();
 await LeaderboardManagement.generateLeaderboard();
-await User.showUserInfo();
 
 setInterval(async () => {
 	await LeaderboardManagement.generateLeaderboard();
-	await User.showUserInfo();
-}, 1000);
+}, 5000);
 
 const sceneManager = new SceneManager();
 const inputManager = new InputManager();
@@ -50,6 +53,7 @@ new SpellcardStageScene(sceneManager, inputManager);
 const musicRoomScene = new MusicRoomScene(sceneManager, inputManager);
 new SpecialScene(sceneManager, inputManager);
 new CreditsScene(sceneManager, inputManager);
+new SaveScoreScene(sceneManager, inputManager);
 
 await showSplash();
 
@@ -173,5 +177,15 @@ sceneManager.switchTo = (scene: Scene) => {
 	if (scene === Scene.LEADERBOARD) {
 		LeaderboardManagement.mode = 'global';
 		LeaderboardManagement.generateLeaderboard();
+	}
+	if (scene === Scene.SAVE_SCORE) {
+		const el = document.getElementById('save-score')!;
+		el.classList.remove('outro');
+		el.classList.add('entering');
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				el.classList.remove('entering');
+			})
+		);
 	}
 };

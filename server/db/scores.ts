@@ -1,6 +1,6 @@
 import db from './index.ts';
 
-const MAX_SCORES_PER_USER = 200;
+const MAX_TOTAL_SCORES = 10_000;
 
 export interface ScoreRow {
 	score: number;
@@ -10,49 +10,46 @@ export interface ScoreRow {
 }
 
 export interface LeaderboardRow extends ScoreRow {
-	username: string;
+	name: string;
 }
 
 const stmt = {
-	insert: db.prepare<[number, number, number, number, number], void>(
-		'INSERT INTO scores (user_id, score, stage, date, slow) VALUES (?, ?, ?, ?, ?)'
+	insert: db.prepare<[string, number, number, number, number], void>(
+		'INSERT INTO scores (name, score, stage, date, slow) VALUES (?, ?, ?, ?, ?)'
 	),
-	count: db.prepare<[number], { count: number }>(
-		'SELECT COUNT(*) as count FROM scores WHERE user_id = ?'
+	count: db.prepare<[], { count: number }>(
+		'SELECT COUNT(*) as count FROM scores'
 	),
-	forUser: db.prepare<[number], ScoreRow>(
-		'SELECT score, stage, date, slow FROM scores WHERE user_id = ? ORDER BY score DESC'
+	deleteOldest: db.prepare<[number], void>(
+		'DELETE FROM scores WHERE id IN (SELECT id FROM scores ORDER BY id ASC LIMIT ?)'
 	),
 	leaderboard: db.prepare<[], LeaderboardRow>(`
-		SELECT u.username, s.score, s.stage, s.date, s.slow
-		FROM users u
-		JOIN scores s ON s.user_id = u.id
-		WHERE s.slow <= 5
-		  AND s.score = (
-				SELECT MAX(s2.score) FROM scores s2
-				WHERE s2.user_id = u.id AND s2.slow <= 5
+		SELECT name, score, stage, date, slow
+		FROM scores s
+		WHERE slow <= 5
+		  AND score = (
+				SELECT MAX(score) FROM scores s2
+				WHERE s2.name = s.name AND s2.slow <= 5
 		  )
-		ORDER BY s.score DESC
+		GROUP BY name
+		ORDER BY score DESC
 		LIMIT 10
 	`),
 };
 
 export const Scores = {
 	insert(
-		userId: number,
+		name: string,
 		score: number,
 		stage: number,
 		date: number,
 		slow: number
-	): boolean {
-		const { count } = stmt.count.get(userId)!;
-		if (count >= MAX_SCORES_PER_USER) return false;
-		stmt.insert.run(userId, score, stage, date, slow);
-		return true;
-	},
-
-	forUser(userId: number): ScoreRow[] {
-		return stmt.forUser.all(userId);
+	): void {
+		const { count } = stmt.count.get()!;
+		if (count >= MAX_TOTAL_SCORES) {
+			stmt.deleteOldest.run(count - MAX_TOTAL_SCORES + 1);
+		}
+		stmt.insert.run(name, score, stage, date, slow);
 	},
 
 	leaderboard(): LeaderboardRow[] {
