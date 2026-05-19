@@ -65,6 +65,7 @@
 #leaderboard table {
 	width: 100%;
 	border-collapse: collapse;
+	table-layout: fixed;
 }
 
 #board-head tr {
@@ -127,19 +128,27 @@
 }
 
 .lb-no {
-	width: 12%;
+	width: 10%;
 	color: rgba(255, 255, 255, 0.6);
 }
 
-.lb-score {
-	letter-spacing: 0.5px;
+.lb-name {
+	width: 26%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.lb-slow {
-	width: 14%;
+.lb-score {
+	width: 28%;
+	letter-spacing: 0.5px;
 }
 
 .lb-date {
 	width: 22%;
 	color: rgba(255, 255, 255, 0.7);
+}
+
+.lb-slow {
+	width: 14%;
 }

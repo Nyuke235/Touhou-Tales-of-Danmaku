@@ -1,6 +1,6 @@
 import { SceneManager, Scene } from '../../systems/SceneManager';
 import { InputManager } from '../../systems/InputManager';
-import { ScoreEntry } from '../../systems/LocalScores';
+import { LocalScores, ScoreEntry } from '../../systems/LocalScores';
 import { BackendAPI } from '../../utils/BackendAPI';
 import { SoundManager, SFX } from '../../systems/SoundManager';
 import { LeaderboardManagement } from '../../systems/LeaderboardManager';
@@ -121,6 +121,7 @@ export class SaveScoreScene {
 
 		if (result.ok) {
 			localStorage.setItem(NAME_KEY, this.name);
+			LocalScores.tagByDate(entry.date, this.name);
 			this.setStatus('SAVED!', 'ok');
 			SaveScoreScene.pending = null;
 			await LeaderboardManagement.generateLeaderboard();

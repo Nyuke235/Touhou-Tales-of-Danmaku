@@ -33,11 +33,18 @@ export interface SaveScoreResult {
 
 export const BackendAPI = {
 	async saveScore(name: string, entry: ScoreEntry): Promise<SaveScoreResult> {
+		const payload = {
+			name,
+			score: entry.score,
+			stage: entry.stage,
+			date: entry.date,
+			slow: entry.slow,
+		};
 		if (isTauri()) {
 			try {
 				const r = await invoke<{ ok: boolean; message?: string }>(
 					'save_score',
-					{ name, ...entry }
+					payload
 				);
 				return r;
 			} catch (e) {
@@ -48,7 +55,7 @@ export const BackendAPI = {
 			const res = await fetch(`${NETWORK.SAVE_API}/api/save-score`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name, ...entry }),
+				body: JSON.stringify(payload),
 			});
 			const r = await res.json();
 			return { ok: r.ok ?? res.ok, message: r.message };

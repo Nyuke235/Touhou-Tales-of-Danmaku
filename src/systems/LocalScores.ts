@@ -6,6 +6,7 @@ export interface ScoreEntry {
 	stage: number;
 	date: number;
 	slow: number;
+	name?: string;
 }
 
 function read(): ScoreEntry[] {
@@ -44,5 +45,13 @@ export const LocalScores = {
 	bestValidScore(): number {
 		const valid = read().filter(e => e.slow <= 5);
 		return valid.length ? Math.max(...valid.map(e => e.score)) : 0;
+	},
+
+	tagByDate(date: number, name: string): void {
+		const entries = read();
+		const target = entries.find(e => e.date === date);
+		if (!target) return;
+		target.name = name;
+		write(entries);
 	},
 };

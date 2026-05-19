@@ -441,11 +441,13 @@ export class GameScene {
 	private buildScoreEntry(score: number): ScoreEntry {
 		const slow =
 			this.totalFrames > 0 ? (this.slowFrames / this.totalFrames) * 100 : 0;
+		const lastName = localStorage.getItem('lastSubmitName') ?? undefined;
 		return {
 			score,
 			stage: this.currentStageIndex + 1,
 			date: Date.now(),
 			slow,
+			name: lastName,
 		};
 	}
 
