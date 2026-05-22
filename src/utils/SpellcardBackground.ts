@@ -26,11 +26,12 @@ export class SpellcardBackground {
 	}
 
 	show(src?: string): void {
-		if (src && src !== this.img.src) {
+		const nextSrc = src ?? SpellcardBackground.DEFAULT_SRC;
+		if (!this.img.src.endsWith(nextSrc)) {
 			this.loaded = false;
 			this.img = new Image();
 			this.img.onload = () => (this.loaded = true);
-			this.img.src = src;
+			this.img.src = nextSrc;
 		}
 		this.active = true;
 		this.fadingIn = true;
