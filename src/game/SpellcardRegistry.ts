@@ -139,7 +139,7 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				bossFactory: () => new RumiaLantern(BOSS.CENTER_X, -30),
 			},
 			{
-				name: 'Lantern Sign 「???」',
+				name: 'Dark Sign 「Boundary of Jet-Black」',
 				bossName: 'Rumia',
 				phaseIndex: 1,
 				stageIndex: 2,

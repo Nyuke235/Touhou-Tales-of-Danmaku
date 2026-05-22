@@ -32,10 +32,10 @@ export abstract class BaseBullet implements IBullet {
 	protected static readonly FIELD_H = FIELD.HEIGHT;
 
 	private accelAngle?: number;
-	private accelInitSpeed?: number;
-	private accelTargetSpeed?: number;
-	private accelDuration?: number;
-	private accelElapsed: number = 0;
+	private speedSegments?: { targetSpeed: number; duration: number }[];
+	private segmentIndex: number = 0;
+	private segmentElapsed: number = 0;
+	private segmentStartSpeed: number = 0;
 
 	pendingSpawns?: IBullet[];
 	private morphFn?: (x: number, y: number, shotIndex: number) => IBullet[];
@@ -71,13 +71,21 @@ export abstract class BaseBullet implements IBullet {
 		targetSpeed: number,
 		duration: number
 	): void {
+		this.setupSpeedProfile(angle, initSpeed, [{ targetSpeed, duration }]);
+	}
+
+	setupSpeedProfile(
+		angle: number,
+		initialSpeed: number,
+		segments: { targetSpeed: number; duration: number }[]
+	): void {
 		this.accelAngle = angle;
-		this.accelInitSpeed = initSpeed;
-		this.accelTargetSpeed = targetSpeed;
-		this.accelDuration = duration;
-		this.accelElapsed = 0;
-		this.vx = Math.cos(angle) * initSpeed;
-		this.vy = Math.sin(angle) * initSpeed;
+		this.speedSegments = segments;
+		this.segmentIndex = 0;
+		this.segmentElapsed = 0;
+		this.segmentStartSpeed = initialSpeed;
+		this.vx = Math.cos(angle) * initialSpeed;
+		this.vy = Math.sin(angle) * initialSpeed;
 	}
 
 	setupMorph(
@@ -100,16 +108,30 @@ export abstract class BaseBullet implements IBullet {
 
 	update(dt: number) {
 		if (
-			this.accelDuration !== undefined &&
-			this.accelElapsed < this.accelDuration
+			this.speedSegments !== undefined &&
+			this.segmentIndex < this.speedSegments.length
 		) {
-			this.accelElapsed += dt;
-			const t = Math.min(1, this.accelElapsed / this.accelDuration);
-			const speed =
-				this.accelInitSpeed! +
-				(this.accelTargetSpeed! - this.accelInitSpeed!) * t;
-			this.vx = Math.cos(this.accelAngle!) * speed;
-			this.vy = Math.sin(this.accelAngle!) * speed;
+			const seg = this.speedSegments[this.segmentIndex];
+			this.segmentElapsed += dt;
+			if (seg.duration <= 0) {
+				this.segmentStartSpeed = seg.targetSpeed;
+				this.segmentIndex++;
+				this.segmentElapsed = 0;
+				this.vx = Math.cos(this.accelAngle!) * seg.targetSpeed;
+				this.vy = Math.sin(this.accelAngle!) * seg.targetSpeed;
+			} else {
+				const t = Math.min(1, this.segmentElapsed / seg.duration);
+				const speed =
+					this.segmentStartSpeed +
+					(seg.targetSpeed - this.segmentStartSpeed) * t;
+				this.vx = Math.cos(this.accelAngle!) * speed;
+				this.vy = Math.sin(this.accelAngle!) * speed;
+				if (this.segmentElapsed >= seg.duration) {
+					this.segmentStartSpeed = seg.targetSpeed;
+					this.segmentIndex++;
+					this.segmentElapsed = 0;
+				}
+			}
 		}
 
 		if (this.morphFn !== undefined) {

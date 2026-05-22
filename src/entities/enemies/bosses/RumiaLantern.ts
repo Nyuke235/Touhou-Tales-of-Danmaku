@@ -14,10 +14,14 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 6 },
 			{ type: 'life', count: 1 },
 		],
-		patterns: [],
+		patterns: [
+			Patterns.RUMIALANTERN_CIRCLE_RIGHT_PAUSE,
+			Patterns.RUMIALANTERN_CIRCLE_LEFT_PAUSE,
+			Patterns.RUMIALANTERN_CIRCLE_SLOW,
+		],
 	},
 	{
-		name: 'Lantern Sign 「???」',
+		name: 'Dark Sign 「Boundary of Jet-Black」',
 		isSpellCard: true,
 		hp: 220,
 		timer: 40,
@@ -27,16 +31,23 @@ const PHASES: BossPhase[] = [
 			{ type: 'power', count: 6 },
 			{ type: 'bomb', count: 1 },
 		],
-		patterns: [],
+		patterns: [
+			Patterns.RUMIALANTERN_DARK_TENTACLES,
+			Patterns.RUMIALANTERN_DARK_STARS,
+		],
 	},
 ];
 
 const DRIFT_OFFSET_P1 = 50;
-const DRIFT_OFFSET_P2 = 70;
-const MOVE_INTERVAL_P2 = 7.0;
+
+const P2_CENTER_X = 128;
+const P2_CENTER_Y = 100;
+const P2_RADIUS_X = 80;
+const P2_RADIUS_Y = 40;
+const P2_ANGULAR_VEL = 0.7;
 
 export class RumiaLantern extends Boss {
-	private p2FireTimer: number = 0;
+	private p2Angle: number = -Math.PI / 2;
 
 	constructor(x: number, y: number) {
 		const sheet = new Spritesheet({
@@ -66,20 +77,22 @@ export class RumiaLantern extends Boss {
 	updateMovement(dt: number): void {
 		if (this.handleEntryAndCharge(dt)) return;
 
-		const driftOffset =
-			this.currentPhaseIndex === 0 ? DRIFT_OFFSET_P1 : DRIFT_OFFSET_P2;
+		if (this.currentPhaseIndex === 1 && this.state === BossState.ACTIVE) {
+			this.p2Angle += P2_ANGULAR_VEL * dt;
+			this.x = P2_CENTER_X + Math.cos(this.p2Angle) * P2_RADIUS_X;
+			this.y = P2_CENTER_Y + Math.sin(this.p2Angle) * P2_RADIUS_Y;
+			this.isMoving = true;
+			if (this.allPatternsDone()) this.resetPatternEngines();
+			return;
+		}
 
 		let shouldMove = false;
 		if (!this.ftmMoving && this.state === BossState.ACTIVE) {
-			shouldMove =
-				this.currentPhaseIndex === 1
-					? (this.p2FireTimer += dt) >= MOVE_INTERVAL_P2
-					: this.allPatternsDone();
+			shouldMove = this.allPatternsDone();
 		}
 
-		this.handleFtmMovement(dt, driftOffset, shouldMove, undefined, () => {
+		this.handleFtmMovement(dt, DRIFT_OFFSET_P1, shouldMove, undefined, () => {
 			this.resetPatternEngines();
-			this.p2FireTimer = 0;
 		});
 	}
 }

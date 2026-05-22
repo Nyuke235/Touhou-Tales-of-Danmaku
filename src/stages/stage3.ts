@@ -70,7 +70,7 @@ const RAW_STAGE_3: SpawnEventData[] = [
 	{ time: 51.8, type: 'mystia', x: 288, y: 60, path: 'passing-right', patterns: [P.S3_MYSTIA_GRAVITY_GREEN, P.S3_MYSTIA_GRAVITY_RED, P.S3_MYSTIA_ARROWHEAD_VOLLEY_EN, P.S3_MYSTIA_ARROWHEAD_VOLLEY_H, P.S3_MYSTIA_ARROWHEAD_VOLLEY_L] },
 	{ time: 55.5, type: 'spirit', x: 288, y: 52, variant: 'purple', path: 'passing-right',  patterns: [P.S3_CIRCLE_PURPLE_BALL_A, P.S3_CIRCLE_PURPLE_BALL_B, P.S3_CIRCLE_PURPLE_BALL_C] },
 
-	{ time: 62.0, type: 'rumialantern', x: 128, y: -16 },
+	{ time: 64.0, type: 'rumialantern', x: 128, y: -16 },
 
 	{ time: 85.0, type: 'bubblefairy', x: -16, y: 60, path: 'pass-right' },
 ];

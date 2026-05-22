@@ -21,7 +21,12 @@ import {
 	BubbleMediumBullet,
 	BubbleSmallBullet,
 } from '../entities/bullets/BubbleBullet';
-import { BulletColor } from '../entities/bullets/BulletSprites';
+import {
+	BulletColor,
+	BALL_SPRITES,
+	ORB_SPRITES,
+	STAR_SPRITES,
+} from '../entities/bullets/BulletSprites';
 import { Difficulty } from '../game/GameState';
 
 export type BulletType =
@@ -130,6 +135,13 @@ export interface PatternConfig {
 	// accelTime = seconds to linearly interpolate from initSpeed to speed
 	initSpeed?: number;
 	accelTime?: number;
+
+	// ------------ SPEED PROFILE (multi-segment) ------------
+	// Overrides initSpeed/accelTime if set. Each segment linearly interpolates from
+	// the previous segment's target (or pattern.speed for the first segment) to its
+	// own target over its duration. After all segments, velocity stays at the last
+	// target.
+	speedProfile?: { speed: number; duration: number }[];
 
 	// ------------ MORPH ------------
 	// morphDelay      = seconds before the bullet transforms
@@ -385,7 +397,19 @@ export class PatternEngine {
 			Math.sin(angle) * speed,
 			color
 		);
-		if (pattern.initSpeed !== undefined && pattern.accelTime !== undefined) {
+		if (pattern.speedProfile !== undefined && pattern.speedProfile.length > 0) {
+			b.setupSpeedProfile(
+				angle,
+				speed,
+				pattern.speedProfile.map(s => ({
+					targetSpeed: s.speed,
+					duration: s.duration,
+				}))
+			);
+		} else if (
+			pattern.initSpeed !== undefined &&
+			pattern.accelTime !== undefined
+		) {
 			b.setupAccel(angle, pattern.initSpeed, speed, pattern.accelTime);
 		}
 		if (pattern.morphDelay !== undefined && pattern.morphConfig !== undefined) {
@@ -577,6 +601,20 @@ export class PatternEngine {
 				const baseAngle =
 					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
 				const orbitColor = pattern.color ?? 'purple';
+
+				let spriteSrc: string;
+				let spriteSize = 12;
+				let spinSpeed = 0;
+				if (bullet === 'star') {
+					spriteSrc = STAR_SPRITES.yellow!;
+					spriteSize = 16;
+					spinSpeed = 3.0;
+				} else if (bullet === 'orb') {
+					spriteSrc = ORB_SPRITES[orbitColor] ?? ORB_SPRITES.purple!;
+				} else {
+					spriteSrc = BALL_SPRITES[orbitColor] ?? BALL_SPRITES.yellow!;
+				}
+
 				for (let i = 0; i < count; i++) {
 					const angle = baseAngle + (i / count) * Math.PI * 2;
 					if (bullet === 'lasertrail') {
@@ -598,7 +636,9 @@ export class PatternEngine {
 								angle,
 								angularVel,
 								radialVel,
-								orbitColor
+								spriteSrc,
+								spriteSize,
+								spinSpeed
 							)
 						);
 					}

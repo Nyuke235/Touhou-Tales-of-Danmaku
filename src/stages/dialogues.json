@@ -470,5 +470,141 @@
 				}
 			]
 		}
+	},
+	"rumialantern": {
+		"reimu": {
+			"pre": [
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "...You again?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Ehehe~ Oh! It's the shrine maiden!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "What are you doing all the way out here? You were back at the forest."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "I made a friend! She cooks lampreys. She has a cart and everything. The lampreys are really good~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "Where is this friend now?."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "She flew ahead! She got asked to organize a great banquet! A really big one~ So there's going to be lots and lots of things to eat!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "A banquet. Who ordered it?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Hmm~ I don't know! But she said it was going to be huge~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smile.png",
+					"name": "Reimu Hakurei",
+					"text": "...Interesting. Go back to the forest. Whatever is at the end of this road isn't a banquet you want to attend."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
+					"name": "Rumia",
+					"text": "Ehhhh? No way! I have to get the food! I'll beat you if I have to~"
+				}
+			]
+		},
+		"marisa": {
+			"pre": [
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "Oh hey, it's the little darkness youkai from before! Little far from home aren't ya?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "I made a friend! She cooks lampreys~ And she got asked to organize a really really big banquet!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_worried.png",
+					"name": "Marisa Kirisame",
+					"text": "A banquet? Out here?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_smile.png",
+					"name": "Rumia",
+					"text": "Mhm~! Lots and lots of food. I'm following her so I can eat some~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
+					"name": "Marisa Kirisame",
+					"text": "Who ordered it?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_neutral.png",
+					"name": "Rumia",
+					"text": "Hmm~ I don't know! But she seemed very serious about it! Are you going to come to the banquet too~?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "Oh I'm definitely going now. Mind if I follow your friend?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
+					"name": "Rumia",
+					"text": "Yes! She's MY friend! And MY banquet! Go find your own!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_playful.png",
+					"name": "Marisa Kirisame",
+					"text": "Ahaha, come on, there's plenty of food for everyone right?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/rumia_angry.png",
+					"name": "Rumia",
+					"text": "I don't want to share."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "You're unbelievable, ze. I'm going through anyway."
+				}
+			]
+		}
 	}
 }
