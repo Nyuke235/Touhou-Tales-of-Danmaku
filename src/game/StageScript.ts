@@ -8,6 +8,7 @@ import { BubbleFairy } from '../entities/enemies/BubbleFairy';
 import type { BubbleFairyPath } from '../entities/enemies/BubbleFairy';
 import { Rumia } from '../entities/enemies/bosses/Rumia';
 import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
+import { RumiaLantern } from '../entities/enemies/bosses/RumiaLantern';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import { Nenuphar } from '../entities/enemies/Nenuphar';
 import { Mandragora } from '../entities/enemies/Mandragora';
@@ -84,9 +85,16 @@ export type SpawnEventData =
 	  }
 	| { time: number; type: 'rumia'; x: number; y: number }
 	| { time: number; type: 'rumiadark'; x: number; y: number }
+	| { time: number; type: 'rumialantern'; x: number; y: number }
 	| { time: number; type: 'daiyousei'; x: number; y: number }
 	| { time: number; type: 'nenuphar'; x: number; y: number }
-	| { time: number; type: 'mandragora'; x: number; y: number; patterns?: PatternConfig[] }
+	| {
+			time: number;
+			type: 'mandragora';
+			x: number;
+			y: number;
+			patterns?: PatternConfig[];
+	  }
 	| {
 			time: number;
 			type: 'mystia';
@@ -128,6 +136,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 					return new Rumia(d.x, d.y);
 				case 'rumiadark':
 					return new RumiaDark(d.x, d.y);
+				case 'rumialantern':
+					return new RumiaLantern(d.x, d.y);
 				case 'daiyousei':
 					return new Daiyousei(d.x, d.y);
 				case 'nenuphar':

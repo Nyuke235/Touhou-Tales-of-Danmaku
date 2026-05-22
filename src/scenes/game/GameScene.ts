@@ -287,10 +287,12 @@ export class GameScene {
 					this.bossHUD.onPhaseChange(boss);
 				};
 				boss.onPhaseChange = () => {
-					this.bossHUD.onPhaseChange(boss);
 					if (boss.getNetPhase() > spellcardEntry.phaseIndex) {
 						boss.forceKill();
-					} else if (boss.isCurrentSpellCard()) {
+						return;
+					}
+					this.bossHUD.onPhaseChange(boss);
+					if (boss.isCurrentSpellCard()) {
 						this.spellcardBg.show(boss.spellcardBgSrc);
 					} else {
 						this.spellcardBg.hide();

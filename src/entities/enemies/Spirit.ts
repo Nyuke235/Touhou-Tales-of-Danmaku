@@ -4,12 +4,9 @@ import { PatternConfig } from '../../patterns/PatternEngine';
 import { Patterns } from '../../patterns/PatternLibrary';
 import { ItemType } from '../Item';
 import { ENEMY_MOVEMENT } from '../../game/Constants';
-import { type IBullet } from '../Bullet';
 
 export type SpiritVariant = 'normal' | 'red' | 'blue' | 'purple';
 export type SpiritPath = 'passing-left' | 'passing-right' | 'descend';
-
-const PURPLE_PHASE_DURATION = 1.5;
 
 type Phase = 'entering' | 'waiting' | 'leaving';
 
@@ -82,9 +79,6 @@ export class Spirit extends Enemy {
 	private phase: Phase = 'entering';
 	private waitTimer: number = 0;
 	private leavingSpeed: number = 0;
-	private variant: SpiritVariant;
-	private purpleInvincible: boolean = true;
-	private purplePhaseTimer: number = 0;
 
 	constructor(
 		x: number,
@@ -109,48 +103,9 @@ export class Spirit extends Enemy {
 		super(x, y, 32, 32, config.hp, sheet, explSheet);
 		this.scoreValue = 5000;
 		this.path = path;
-		this.variant = variant;
 
 		this.setPatterns(patterns ?? [config.defaultPattern]);
 		this.drops = config.drops;
-	}
-
-	override update(
-		dt: number,
-		px: number,
-		py: number,
-		enemyBullets: IBullet[]
-	): void {
-		if (this.variant === 'purple' && !this.isDying()) {
-			this.purplePhaseTimer += dt;
-			if (this.purplePhaseTimer >= PURPLE_PHASE_DURATION) {
-				this.purplePhaseTimer -= PURPLE_PHASE_DURATION;
-				this.purpleInvincible = !this.purpleInvincible;
-			}
-		}
-		super.update(dt, px, py, enemyBullets);
-	}
-
-	override checkCollisions(playerBullets: IBullet[]): {
-		hits: number;
-		killed: boolean;
-		damage: number;
-	} {
-		if (this.variant === 'purple' && this.purpleInvincible) {
-			return { hits: 0, killed: false, damage: 0 };
-		}
-		return super.checkCollisions(playerBullets);
-	}
-
-	override render(ctx: CanvasRenderingContext2D): void {
-		if (this.variant === 'purple' && this.purpleInvincible && !this.isDying()) {
-			ctx.save();
-			ctx.globalAlpha = 0.5;
-			super.render(ctx);
-			ctx.restore();
-		} else {
-			super.render(ctx);
-		}
 	}
 
 	updateMovement(dt: number): void {

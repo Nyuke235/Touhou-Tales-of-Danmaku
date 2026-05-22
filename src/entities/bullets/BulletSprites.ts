@@ -35,6 +35,7 @@ export const RICE_SPRITES: ColorMap = {
 	purple: 'assets/sprites/bullets/hostile/ricepurple.png',
 	cyan: 'assets/sprites/bullets/hostile/ricecyan.png',
 	yellow: 'assets/sprites/bullets/hostile/riceyellow.png',
+	blue: 'assets/sprites/bullets/hostile/riceblue.png',
 };
 
 export const ORB_SPRITES: ColorMap = {
