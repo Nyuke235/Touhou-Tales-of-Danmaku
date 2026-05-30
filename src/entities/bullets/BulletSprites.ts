@@ -56,6 +56,8 @@ export const JELLYBEAN_SPRITES: ColorMap = {
 	cyan: 'assets/sprites/bullets/hostile/jellybeancyan.png',
 	green: 'assets/sprites/bullets/hostile/jellybeangreen.png',
 	gray: 'assets/sprites/bullets/hostile/jellybeangray.png',
+	yellow: 'assets/sprites/bullets/hostile/jellybeanyellow.png',
+	orange: 'assets/sprites/bullets/hostile/jellybeanorange.png',
 };
 
 export function makeSheet(src: string, w: number, h: number): Spritesheet {

@@ -1,0 +1,44 @@
+{
+  "S3_MANDRAGORA_N": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 20,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S3_MANDRAGORA_H": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 26,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_MANDRAGORA_L": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "gray",
+    "count": 32,
+    "speed": 220,
+    "initSpeed": 80,
+    "accelTime": 1,
+    "delay": 2.3,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

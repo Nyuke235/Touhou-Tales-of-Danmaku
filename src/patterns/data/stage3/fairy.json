@@ -1,0 +1,137 @@
+{
+  "S3_FAIRY_AIMED_GREEN_EN": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.65,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.5,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_H": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.65,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.5,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_L": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "spread": 0.65,
+    "speed": 120,
+    "initSpeed": 50,
+    "accelTime": 1.2,
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 2,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_EN": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 10,
+    "streams": 3,
+    "speed": 80,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_H": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 16,
+    "streams": 3,
+    "speed": 80,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_CIRCLE_BALL_GREEN_L": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 16,
+    "streams": 3,
+    "speed": 80,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_EN": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "purple",
+    "count": 10,
+    "streams": 3,
+    "speed": 60,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_H": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "purple",
+    "count": 16,
+    "streams": 3,
+    "speed": 60,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_CIRCLE_BALL_PURPLE_L": {
+    "type": "volley-circle",
+    "bullet": "arrowhead",
+    "color": "purple",
+    "count": 16,
+    "streams": 3,
+    "speed": 60,
+    "deltaSpeed": 20,
+    "delay": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

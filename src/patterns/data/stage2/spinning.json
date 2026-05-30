@@ -1,0 +1,156 @@
+{
+  "S2_SPINNING_JELLY_CIRCLE_E": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 12,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_SPINNING_JELLY_CIRCLE_NH": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 22,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_SPINNING_JELLY_CIRCLE_L": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 28,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_SSPINNING_JELLY_CIRCLE_E": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "cyan",
+    "count": 12,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_SSPINNING_JELLY_CIRCLE_NH": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "cyan",
+    "count": 22,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_SSPINNING_JELLY_CIRCLE_L": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "cyan",
+    "count": 28,
+    "speed": 80,
+    "delay": 1.1,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_SPINNING_SPREAD": {
+    "type": "spread",
+    "color": "cyan",
+    "speed": 100,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 3,
+    "spread": 0.22,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S2_SSPINNING_SPREAD": {
+    "type": "spread",
+    "color": "blue",
+    "speed": 100,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 3,
+    "spread": 0.22,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S2_SPINNING_VOLLEY_1": {
+    "type": "volley-spread",
+    "color": "cyan",
+    "speed": 100,
+    "deltaSpeed": 10,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 3,
+    "streams": 5,
+    "spread": 0.25,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S2_SPINNING_VOLLEY_2": {
+    "type": "volley-spread",
+    "color": "cyan",
+    "speed": 120,
+    "deltaSpeed": 10,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 5,
+    "streams": 5,
+    "spread": 0.4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_SSPINNING_VOLLEY_1": {
+    "type": "volley-spread",
+    "color": "blue",
+    "speed": 100,
+    "deltaSpeed": 10,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 3,
+    "streams": 5,
+    "spread": 0.25,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S2_SSPINNING_VOLLEY_2": {
+    "type": "volley-spread",
+    "color": "blue",
+    "speed": 120,
+    "deltaSpeed": 10,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 5,
+    "streams": 5,
+    "spread": 0.4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "S3_MYSTIA_GRAVITY_GREEN": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "green",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 50,
+    "delay": 0.1,
+    "cooldown": 0.1
+  },
+  "S3_MYSTIA_GRAVITY_RED": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "red",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 50,
+    "delay": 0.15,
+    "cooldown": 0.1
+  },
+  "S3_MYSTIA_ARROWHEAD_VOLLEY_EN": {
+    "type": "volley-spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 5,
+    "streams": 5,
+    "spread": 0.35,
+    "speed": 80,
+    "deltaSpeed": 15,
+    "delay": 0.8,
+    "cooldown": 2.2,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S3_MYSTIA_ARROWHEAD_VOLLEY_H": {
+    "type": "volley-spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 5,
+    "streams": 8,
+    "spread": 0.4,
+    "speed": 90,
+    "deltaSpeed": 15,
+    "delay": 0.8,
+    "cooldown": 2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_MYSTIA_ARROWHEAD_VOLLEY_L": {
+    "type": "volley-spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 5,
+    "streams": 10,
+    "spread": 0.45,
+    "speed": 100,
+    "deltaSpeed": 18,
+    "delay": 0.8,
+    "cooldown": 1.8,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

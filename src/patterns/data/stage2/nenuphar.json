@@ -1,0 +1,46 @@
+{
+  "S2_NENUPHAR_ORBS_E": {
+    "type": "spread",
+    "bullet": "jellybean",
+    "color": "green",
+    "count": 5,
+    "speed": 110,
+    "delay": 1,
+    "maxShots": 1,
+    "spread": 0.5,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_NENUPHAR_ORBS_N": {
+    "type": "volley-spread",
+    "bullet": "jellybean",
+    "color": "green",
+    "speed": 110,
+    "deltaSpeed": 20,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 5,
+    "streams": 3,
+    "spread": 0.5,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S2_NENUPHAR_ORBS_H": {
+    "type": "volley-spread",
+    "bullet": "jellybean",
+    "color": "green",
+    "speed": 110,
+    "deltaSpeed": 20,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 5,
+    "streams": 6,
+    "spread": 0.5,
+    "difficulties": [
+      "HARD",
+      "LUNATIC"
+    ]
+  }
+}

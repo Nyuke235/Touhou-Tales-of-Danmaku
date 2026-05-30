@@ -1,0 +1,58 @@
+{
+  "S2_BLUESPIRIT_ORB_CIRCLE_EASY": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 8,
+    "speed": 80,
+    "delay": 2,
+    "cooldown": 0.2,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_BLUESPIRIT_ORB_CIRCLE_NORMAL": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 10,
+    "speed": 80,
+    "delay": 2,
+    "cooldown": 0.2,
+    "maxShots": 4,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD": {
+    "type": "volley-circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 10,
+    "streams": 6,
+    "speed": 70,
+    "deltaSpeed": 15,
+    "delay": 2,
+    "cooldown": 3.5,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA": {
+    "type": "volley-circle",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 12,
+    "streams": 6,
+    "speed": 70,
+    "deltaSpeed": 15,
+    "delay": 2,
+    "cooldown": 3,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

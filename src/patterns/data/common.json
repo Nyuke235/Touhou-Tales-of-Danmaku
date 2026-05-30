@@ -1,0 +1,9 @@
+{
+  "BLANK": {
+    "type": "aimed",
+    "color": "purple",
+    "speed": 50,
+    "delay": 1,
+    "maxShots": 1
+  }
+}

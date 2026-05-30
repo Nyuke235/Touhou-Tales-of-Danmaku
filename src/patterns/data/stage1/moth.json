@@ -1,0 +1,360 @@
+{
+  "S1_MOTH_ORB_EASY": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "orange",
+    "count": 12,
+    "speed": 70,
+    "delay": 3.5,
+    "cooldown": 0.5,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S1_MOTH_ORB_NORMAL": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "orange",
+    "count": 16,
+    "speed": 80,
+    "delay": 3.5,
+    "cooldown": 0.5,
+    "maxShots": 2,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_MOTH_ORB_HARD": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "orange",
+    "count": 26,
+    "speed": 80,
+    "delay": 3.5,
+    "cooldown": 0.3,
+    "maxShots": 3,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_MOTH_ORB_LUNA": {
+    "type": "circle",
+    "bullet": "jellybean",
+    "color": "orange",
+    "count": 32,
+    "speed": 90,
+    "delay": 3.5,
+    "cooldown": 0.3,
+    "maxShots": 4,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_1_N": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 12,
+      "speed": 120
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_1_H": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 20,
+      "speed": 120
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_1_L": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 30,
+      "speed": 120
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_1_N": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 12,
+      "speed": 120
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_1_H": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 20,
+      "speed": 120
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_1_L": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.15 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.65,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "ball",
+      "color": "purple",
+      "count": 30,
+      "speed": 120
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_2_N": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 12,
+      "speed": 120
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_2_H": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 20,
+      "speed": 120
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_MOTH_SIDE_LEFT_2_L": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": "PI",
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 30,
+      "speed": 120
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_2_N": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 12,
+      "speed": 120
+    },
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_2_H": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 20,
+      "speed": 120
+    },
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_MOTH_SIDE_RIGHT_2_L": {
+    "type": "fixed",
+    "bullet": "jellybean",
+    "color": "yellow",
+    "count": 1,
+    "startAngle": 0,
+    "speed": 50,
+    "speedProfile": [
+      { "speed": 50, "duration": 0.5 },
+      { "speed": 5, "duration": 0.05 }
+    ],
+    "delay": 3.7,
+    "maxShots": 1,
+    "morphDelay": 0.55,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "circle",
+      "bullet": "star",
+      "count": 30,
+      "speed": 120
+    },
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

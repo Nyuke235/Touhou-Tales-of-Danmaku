@@ -1,0 +1,34 @@
+{
+  "S3_CIRCLE_PURPLE_BALL_A": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 12,
+    "speed": 70,
+    "rotStep": "PI / 14",
+    "delay": 1.0,
+    "cooldown": 0.4
+  },
+  "S3_CIRCLE_PURPLE_BALL_B": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 12,
+    "speed": 85,
+    "rotStep": "-PI / 9",
+    "startAngle": "PI / 12",
+    "delay": 1.0,
+    "cooldown": 0.4
+  },
+  "S3_CIRCLE_PURPLE_BALL_C": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 12,
+    "speed": 100,
+    "rotStep": "PI / 6",
+    "startAngle": "PI / 6",
+    "delay": 1.0,
+    "cooldown": 0.4
+  }
+}

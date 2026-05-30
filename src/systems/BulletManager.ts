@@ -1,15 +1,14 @@
 import { IBullet } from '../entities/Bullet';
 
 function compactInPlace(arr: IBullet[]): void {
-	let i = 0;
-	while (i < arr.length) {
-		if (!arr[i].active) {
-			arr[i] = arr[arr.length - 1];
-			arr.pop();
-		} else {
-			i++;
+	let w = 0;
+	for (let r = 0; r < arr.length; r++) {
+		if (arr[r].active) {
+			if (w !== r) arr[w] = arr[r];
+			w++;
 		}
 	}
+	arr.length = w;
 }
 
 function compactParticles(arr: ClearParticle[]): void {

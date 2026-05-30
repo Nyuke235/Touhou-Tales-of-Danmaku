@@ -6,7 +6,7 @@
     "count": 3,
     "startAngle": 0,
     "sweepAngle": "PI*2.1",
-    "speed": 100,
+    "speed": 130,
     "cooldown": 0.04,
     "delay": 0.4,
     "maxShots": 40,
@@ -24,7 +24,7 @@
     "count": 3,
     "startAngle": "PI/4",
     "sweepAngle": "PI*2.1",
-    "speed": 100,
+    "speed": 130,
     "cooldown": 0.04,
     "delay": 0.6,
     "maxShots": 40,
@@ -41,7 +41,7 @@
     "count": 3,
     "startAngle": "PI*3/4",
     "sweepAngle": "PI*2.1",
-    "speed": 85,
+    "speed": 115,
     "cooldown": 0.03,
     "delay": 1.2,
     "maxShots": 40,
@@ -57,7 +57,7 @@
     "count": 3,
     "startAngle": "PI*3/4",
     "sweepAngle": "PI*2.1",
-    "speed": 85,
+    "speed": 115,
     "cooldown": 0.03,
     "delay": 1.3,
     "maxShots": 40,
@@ -65,32 +65,77 @@
       "LUNATIC"
     ]
   },
-  "RUMIA_ORB_RINGS_1": {
+  "RUMIA_ORB_RINGS_1_EN": {
     "type": "circle",
     "bullet": "orb",
     "color": "yellow",
     "count": 12,
-    "speed": 55,
+    "speed": 75,
     "startAngle": 0,
-    "rotStep": "PI/12",
     "cooldown": 0.45,
-    "delay": 1.4,
-    "maxShots": 4
+    "delay": 2.5,
+    "maxShots": 3
   },
-  "RUMIA_ORB_RINGS_2": {
+  "RUMIA_ORB_RINGS_2_EN": {
     "type": "circle",
     "bullet": "orb",
     "color": "orange",
     "count": 12,
-    "speed": 75,
-    "startAngle": "PI/2",
-    "rotStep": "PI/12",
+    "speed": 95,
+    "startAngle": "PI/32",
     "cooldown": 0.45,
-    "delay": 1.6,
-    "maxShots": 4,
+    "delay": 2.5,
+    "maxShots": 3,
     "difficulties": [
-      "HARD",
-      "LUNATIC"
+      "NORMAL"
     ]
+  },
+  "RUMIA_ORB_RINGS_1_H": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 18,
+    "speed": 75,
+    "startAngle": 0,
+    "cooldown": 0.45,
+    "delay": 2.5,
+    "maxShots": 3,
+    "difficulties": "HARD"
+  },
+  "RUMIA_ORB_RINGS_2_H": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "orange",
+    "count": 18,
+    "speed": 95,
+    "startAngle": "PI/32",
+    "cooldown": 0.45,
+    "delay": 2.5,
+    "maxShots": 3,
+    "difficulties": "HARD"
+  },
+  "RUMIA_ORB_RINGS_1_L": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 20,
+    "speed": 75,
+    "startAngle": 0,
+    "cooldown": 0.45,
+    "delay": 2.5,
+    "maxShots": 3,
+    "difficulties": "LUNATIC"
+  },
+  "RUMIA_ORB_RINGS_2_L": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "orange",
+    "count": 20,
+    "speed": 95,
+    "startAngle": "PI/32",
+    "cooldown": 0.45,
+    "delay": 2.5,
+    "maxShots": 3,
+    "difficulties": "LUNATIC"
   }
 }

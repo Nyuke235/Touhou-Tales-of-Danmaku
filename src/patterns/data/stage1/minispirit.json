@@ -1,0 +1,87 @@
+{
+  "S1_ACCEL_NORMAL": {
+    "type": "aimed",
+    "color": "yellow",
+    "speed": 100,
+    "initSpeed": 0,
+    "accelTime": 1.5,
+    "delay": 1.5,
+    "maxShots": 1,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S1_ACCEL_HARD": {
+    "type": "volley-spread",
+    "color": "yellow",
+    "speed": 100,
+    "initSpeed": 0,
+    "deltaSpeed": 4,
+    "accelTime": 1.5,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 1,
+    "streams": 2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S1_ACCEL_LUNA": {
+    "type": "volley-spread",
+    "color": "yellow",
+    "speed": 100,
+    "deltaSpeed": 4,
+    "initSpeed": 0,
+    "accelTime": 1.5,
+    "delay": 1,
+    "maxShots": 1,
+    "count": 1,
+    "streams": 3,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S1_SPREAD_ARROWHEAD_BLUE_1": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 2,
+    "spread": 0.5,
+    "speed": 80,
+    "delay": 0.4,
+    "cooldown": 1.2,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S1_SPREAD_ARROWHEAD_BLUE_2": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 3,
+    "spread": 0.5,
+    "speed": 90,
+    "delay": 0.4,
+    "cooldown": 1.2,
+    "maxShots": 2,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S1_SPREAD_ARROWHEAD_BLUE_3": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "blue",
+    "count": 5,
+    "spread": 0.3,
+    "speed": 90,
+    "delay": 0.4,
+    "cooldown": 1.2,
+    "maxShots": 2,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}

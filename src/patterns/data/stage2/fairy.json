@@ -1,0 +1,131 @@
+{
+  "S2_FAIRY_AIMED_CYAN_NORMAL": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 2,
+    "spread": 0.25,
+    "speed": 90,
+    "delay": 1,
+    "cooldown": 1,
+    "maxShots": 1,
+    "difficulties": [
+      "EASY",
+      "NORMAL"
+    ]
+  },
+  "S2_FAIRY_AIMED_CYAN_HARD": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 3,
+    "spread": 0.45,
+    "speed": 100,
+    "delay": 1,
+    "cooldown": 1,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S2_FAIRY_AIMED_CYAN_LUNA": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 3,
+    "spread": 0.4,
+    "speed": 110,
+    "delay": 1,
+    "cooldown": 1,
+    "maxShots": 1,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_GRAVITY_E": {
+    "type": "gravity",
+    "color": "cyan",
+    "speed": 10,
+    "spread": "PI",
+    "count": 1,
+    "gravity": 50,
+    "delay": 1,
+    "cooldown": 1.5,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_GRAVITY_NH": {
+    "type": "gravity",
+    "color": "cyan",
+    "speed": 10,
+    "spread": "PI",
+    "count": 2,
+    "gravity": 50,
+    "delay": 1,
+    "cooldown": 2,
+    "maxshots": 2,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_GRAVITY_L": {
+    "type": "gravity",
+    "color": "cyan",
+    "speed": 10,
+    "spread": "PI",
+    "count": 3,
+    "gravity": 50,
+    "delay": 1,
+    "cooldown": 2,
+    "maxShots": 3,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "S2_SGRAVITY_E": {
+    "type": "gravity",
+    "color": "blue",
+    "speed": 10,
+    "spread": "PI",
+    "count": 1,
+    "gravity": 80,
+    "delay": 0.5,
+    "cooldown": 1.5,
+    "maxShots": 2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_SGRAVITY_NH": {
+    "type": "gravity",
+    "color": "blue",
+    "speed": 10,
+    "spread": "PI",
+    "count": 2,
+    "gravity": 80,
+    "delay": 0.5,
+    "cooldown": 1.5,
+    "maxshots": 3,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_SGRAVITY_L": {
+    "type": "gravity",
+    "color": "blue",
+    "speed": 10,
+    "spread": "PI",
+    "count": 3,
+    "gravity": 80,
+    "delay": 0.5,
+    "cooldown": 1.5,
+    "maxShots": 3,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  }
+}
