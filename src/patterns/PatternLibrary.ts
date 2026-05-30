@@ -10,6 +10,8 @@ const ANGLE_FIELDS = new Set([
 	'ringAngleStep',
 	'angularVel',
 	'spread',
+	'starBaseAngle',
+	'starAngleStep',
 ]);
 
 function parseAngle(v: string | number): number {

@@ -3,11 +3,11 @@
     "type": "orbit",
     "color": "purple",
     "count": 16,
-    "angularVel": "PI*0.08",
-    "radialVel": 64,
+    "angularVel": "PI*0.06",
+    "radialVel": 54,
     "startAngle": 0,
-    "delay": 0.2,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "EASY"
     ]
@@ -16,11 +16,11 @@
     "type": "orbit",
     "color": "purple",
     "count": 16,
-    "angularVel": "-PI*0.08",
-    "radialVel": 64,
+    "angularVel": "-PI*0.06",
+    "radialVel": 54,
     "startAngle": "PI/14",
-    "delay": 0.2,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "EASY"
     ]
@@ -29,41 +29,39 @@
     "type": "orbit",
     "color": "purple",
     "count": 16,
-    "angularVel": "PI*0.14",
-    "radialVel": 64,
+    "angularVel": "PI*0.12",
+    "radialVel": 54,
     "startAngle": 0,
-    "delay": 0.2,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "NORMAL",
-      "HARD",
-      "LUNATIC"
+      "HARD"
     ]
   },
   "RUMIA_WHEEL_CCW": {
     "type": "orbit",
     "color": "purple",
     "count": 16,
-    "angularVel": "-PI*0.14",
-    "radialVel": 64,
+    "angularVel": "-PI*0.12",
+    "radialVel": 54,
     "startAngle": "PI/14",
-    "delay": 0.2,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "NORMAL",
-      "HARD",
-      "LUNATIC"
+      "HARD"
     ]
   },
   "RUMIA_WHEEL_CW_2": {
     "type": "orbit",
     "color": "purple",
-    "count": 16,
-    "angularVel": "PI*0.14",
-    "radialVel": 64,
+    "count": 24,
+    "angularVel": "PI*0.12",
+    "radialVel": 54,
     "startAngle": 0,
-    "delay": 0.8,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "LUNATIC"
     ]
@@ -71,28 +69,44 @@
   "RUMIA_WHEEL_CCW_2": {
     "type": "orbit",
     "color": "purple",
-    "count": 16,
-    "angularVel": "-PI*0.14",
-    "radialVel": 64,
+    "count": 24,
+    "angularVel": "-PI*0.12",
+    "radialVel": 54,
     "startAngle": "PI",
-    "delay": 0.8,
-    "cooldown": 1.8,
+    "delay": 0.6,
+    "cooldown": 1.0,
     "difficulties": [
       "LUNATIC"
     ]
   },
-  "RUMIA_ORB_RINGS_PURPLE": {
+  "RUMIA_ORB_RINGS_PURPLE_1": {
     "type": "circle",
     "bullet": "orb",
     "color": "purple",
-    "count": 8,
-    "speed": 40,
+    "count": 18,
+    "speed": 54,
     "startAngle": 0,
-    "rotStep": "PI/2",
-    "cooldown": 1.2,
-    "delay": 0.8,
-    "maxShots": 10,
-    "ringAngleStep": "PI/8",
+    "cooldown": 0.2,
+    "delay": 0.2,
+    "maxShots": 1,
+    "ringAngleStep": "PI/6",
+    "difficulties": [
+      "NORMAL",
+      "HARD",
+      "LUNATIC"
+    ]
+  },
+  "RUMIA_ORB_RINGS_PURPLE_2": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "purple",
+    "count": 18,
+    "speed": 54,
+    "startAngle": "PI/2",
+    "cooldown": 0.28,
+    "delay": 0.28,
+    "maxShots": 1,
+    "ringAngleStep": "PI/6",
     "difficulties": [
       "HARD",
       "LUNATIC"

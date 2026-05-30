@@ -258,7 +258,7 @@
     "color": "yellow",
     "count": 3,
     "spread": 0.5,
-    "speed": 60,
+    "speed": 55,
     "delay": 0.4,
     "maxShots": 1,
     "difficulties": ["HARD", "LUNATIC"]

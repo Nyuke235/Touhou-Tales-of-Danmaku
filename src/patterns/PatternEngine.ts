@@ -17,6 +17,10 @@ import { BouncingIceCubeBullet } from '../entities/bullets/BouncingIceCubeBullet
 import { GiantSnowflakeBullet } from '../entities/bullets/GiantSnowflakeBullet';
 import { CircleLaserBullet } from '../entities/bullets/CircleLaserBullet';
 import {
+	SheddingOrbBullet,
+	SweepSheddingOrbBullet,
+} from '../entities/bullets/SheddingOrbBullet';
+import {
 	BubbleBigBullet,
 	BubbleMediumBullet,
 	BubbleSmallBullet,
@@ -63,6 +67,8 @@ export interface PatternConfig {
 		| 'volley-circle'
 		| 'gravity'
 		| 'laser-circle'
+		| 'star-shed-orbit'
+		| 'sweep-shed-orbit'
 		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
@@ -168,6 +174,26 @@ export interface PatternConfig {
 	warnDuration?: number;
 	activeDuration?: number;
 	maxFireDelay?: number;
+
+	// ------------ STAR-SHED-ORBIT ------------
+	// angularVel        = orbit angular velocity (rad/s)
+	// radialVel         = orbit outward speed (px/s)
+	// startAngle        = orbit starting angle for shot 0
+	// rotStep           = angle offset added per successive shot (per orb)
+	// shedInterval      = seconds between star drops
+	// shedCount         = number of stars dropped per orb (despawns after)
+	// starActivationDelay = seconds a dropped star stays immobile before accelerating
+	// starSpeed         = final radial speed of stars after activation
+	// starAccelDuration = seconds to lerp from 0 to starSpeed (smooth acceleration)
+	// starBaseAngle     = (sweep variant) absolute direction of the first shed star (rad)
+	// starAngleStep     = (sweep variant) angle increment between successive shed stars (rad)
+	shedInterval?: number;
+	shedCount?: number;
+	starActivationDelay?: number;
+	starSpeed?: number;
+	starAccelDuration?: number;
+	starBaseAngle?: number;
+	starAngleStep?: number;
 
 	// ------------ BURST ------------
 	// count         = bullets per burst
@@ -761,6 +787,64 @@ export class PatternEngine {
 						this.spawnWithAccel(pattern, bullet, ex, ey, angle, s, color, out);
 					}
 				}
+				break;
+			}
+
+			case 'sweep-shed-orbit': {
+				const angularVel = pattern.angularVel ?? Math.PI;
+				const radialVel = pattern.radialVel ?? 40;
+				const angle =
+					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
+				const shedInterval = pattern.shedInterval ?? 0.25;
+				const shedCount = Math.max(1, pattern.shedCount ?? 8);
+				const starActivationDelay = pattern.starActivationDelay ?? 2.5;
+				const starSpeed = pattern.starSpeed ?? 120;
+				const starAccelDuration = pattern.starAccelDuration ?? 0.7;
+				const starBaseAngle = pattern.starBaseAngle ?? 0;
+				const starAngleStep = pattern.starAngleStep ?? Math.PI / 36;
+				out.push(
+					new SweepSheddingOrbBullet(
+						ex,
+						ey,
+						angle,
+						angularVel,
+						radialVel,
+						shedInterval,
+						shedCount,
+						starActivationDelay,
+						starSpeed,
+						starAccelDuration,
+						starBaseAngle,
+						starAngleStep
+					)
+				);
+				break;
+			}
+
+			case 'star-shed-orbit': {
+				const angularVel = pattern.angularVel ?? Math.PI;
+				const radialVel = pattern.radialVel ?? 40;
+				const angle =
+					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
+				const shedInterval = pattern.shedInterval ?? 0.25;
+				const shedCount = Math.max(1, pattern.shedCount ?? 8);
+				const starActivationDelay = pattern.starActivationDelay ?? 2.5;
+				const starSpeed = pattern.starSpeed ?? 120;
+				const starAccelDuration = pattern.starAccelDuration ?? 0.7;
+				out.push(
+					new SheddingOrbBullet(
+						ex,
+						ey,
+						angle,
+						angularVel,
+						radialVel,
+						shedInterval,
+						shedCount,
+						starActivationDelay,
+						starSpeed,
+						starAccelDuration
+					)
+				);
 				break;
 			}
 
