@@ -1,12 +1,5 @@
 # Touhou ～ Tales of Danmaku
 
-![HTML5](https://img.shields.io/badge/HTML5-Canvas-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tauri](https://img.shields.io/badge/Tauri-24C8D8?style=for-the-badge&logo=tauri&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
 <p align="center">
     <img src="assets/sprites/ui/maintitle.png">
 </p>
@@ -20,10 +13,8 @@ Originally a uni project, the goal was to build a 2D shoot'em up playable in bot
 The game is inspired by **Embodiment of Scarlet Devil (EoSD)** and uses a **pixel art style**. All sprites were hand-crafted by Nyuke235, with some still serving as placeholders.
 
 <p align="center">
-    <img src="docs/img/gameplay.gif" width=440>
+    <img src="docs/img/gameplay.gif">
 </p>
-
-> The game is missing a lot of content, may contain bugs and only stages 1 and 2 are currently playable.
 
 ## Notice
 
@@ -52,15 +43,21 @@ Controls can be remapped in-game via the **Key Config** menu.
 
 ## Stages
 
-| Stage       | Title                      | Mid-boss       | Boss                | Status |
-| ----------- | -------------------------- | -------------- | ------------------- | ------ |
-| Stage 1     | Black Ink Staining the Sky | Rumia (dark)   | Rumia               | ✅     |
-| Stage 2     | Ripples on the Misty Lake  | Daiyousei      | Cirno               | ✅     |
-| Stage 3     | ???                        | Mystia Lorelei | Hong Meiling        | ❌     |
-| Stage 4     | ???                        | Koakuma        | Patchouli Knowledge | ❌     |
-| Stage 5     | ???                        | Koakuma        | Sakuya Izayoi       | ❌     |
-| Stage 6     | ???                        | Sakuya Izayoi  | Remilia Scarlet     | ❌     |
-| Stage Extra | ???                        | Hong Meiling   | Scarlet sisters     | ❌     |
+
+|  **Stage**  |         **Title**          | **Mid-boss**  | **Mid-boss 2** |      **Boss**       | **Status** |
+| :---------: | :------------------------: | :-----------: | :------------: | :-----------------: | :--------: |
+|   Stage 1   | Black Ink Staining the Sky | Rumia (dark)  |       -        |        Rumia        |     ✅      |
+|   Stage 2   | Ripples on the Misty Lake  |   Daiyousei   |       -        |        Cirno        |     🟨     |
+|   Stage 3   | Beyond the Sightless Path  |     Rumia     |     Mystia     |    Hong Meiling     |     🔄     |
+|   Stage 4   |            ???             |    Koakuma    |       -        | Patchouli Knowledge |     🚫     |
+|   Stage 5   |            ???             |     Rika      |       -        |    Sakuya Izayoi    |     🚫     |
+|   Stage 6   |            ???             | Sakuya Izayoi |       -        |   Remilia Scarlet   |     🚫     |
+| Stage Extra |            ???             | Hong Meiling  | Sakuya Izayoi  |   Flandre Scarlet   |     🚫     |
+
+✅ (Completed)
+🟨 (Completed, but need rework)
+🔄 (In progress)
+🚫 (Not started)
 
 ## Running the game
 
@@ -83,32 +80,9 @@ docker build -f Dockerfile.tauri --output type=local,dest=./release .
 
 The `.deb` and `.AppImage` artifacts will be written to `./release/`.
 
-## Backend
-
-The game supports two backend modes that share the same TypeScript interface (`BackendAPI`):
-
-| Mode    | Backend        | Storage                                                   |
-| ------- | -------------- | --------------------------------------------------------- |
-| Browser | Express (Node) | SQLite `server/data/game.db`                            |
-| Desktop | Tauri (Rust)   | SQLite `~/.local/share/com.nyuke235.tales-of-danmaku/game.db` |
-
-Both modes expose the same operations: **save score** and **get leaderboard**. The frontend detects the environment at runtime and routes calls accordingly. Scores are anonymous: each entry stores a player-chosen name (3-12 alphanumeric characters, `_` or `-`) — no accounts, passwords or sessions.
-
-Game settings (controls, volumes) and the player's personal run history are stored entirely in `localStorage` — the server never sees them.
-
-### Security
-
-- The Express API enforces **rate limiting** (30 req/15 min on save-score, 120 req/min globally) and **input validation** on all endpoints.
-- Names are validated against `^[a-zA-Z0-9_-]{3,12}$` and HTML-escaped on render to avoid XSS in the leaderboard.
-- The global scores table is capped at **10 000** entries (oldest evicted FIFO).
-
 ### Multiplayer
 
 While the game is supposed to have a Multiplayer mode option, **online multiplayer is not currently in development**. It remains a planned feature for a later stage of the game.
-
-## Future plans
-
-[Trello](https://trello.com/b/4uOfHXhw/touhou-tales-of-danmaku)
 
 ## Credits
 
