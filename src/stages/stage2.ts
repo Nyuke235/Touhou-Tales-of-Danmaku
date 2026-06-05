@@ -108,31 +108,31 @@ const RAW_STAGE_2: SpawnEventData[] = [
 	{ time: 48.0, type: 'fairy',  x:  -16, y: 40, color: 'red', path: 'diagonal-left',  patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
 	{ time: 48.0, type: 'fairy',  x:  272, y: 40, color: 'blue',path: 'diagonal-right', patterns: [P.S2_GRAVITY_E, P.S2_GRAVITY_NH, P.S2_GRAVITY_L] },
 	
-	{ time: 52.0, type: 'icebutterfly', x: 128, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL] },
+	{ time: 52.0, type: 'icebutterfly', x: 128, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL, P.S2_ICEBUTTERFLY_GRAYBURST_E, P.S2_ICEBUTTERFLY_GRAYBURST_NH, P.S2_ICEBUTTERFLY_GRAYBURST_L] },
 
-	{ time: 58.5, type: 'daiyousei', x: 128, y: -16 },
+	{ time: 60.5, type: 'daiyousei', x: 128, y: -16 },
 
 	// post-boss fairies, straight down
-	{ time: 59.5, type: 'nenuphar', x: 196, y: -24 },
-	{ time: 60.0, type: 'fairy', x:  40, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 60.0, type: 'fairy', x: 216, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 60.5, type: 'fairy', x:  80, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 61.5, type: 'fairy', x: 176, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 62.0, type: 'fairy', x:  56, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 62.0, type: 'fairy', x: 200, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 62.5, type: 'nenuphar', x:  60, y: -24 },
-	{ time: 62.5, type: 'fairy', x: 100, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 62.5, type: 'fairy', x: 156, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 63.5, type: 'fairy', x:  40, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 63.5, type: 'fairy', x: 216, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 64.0, type: 'fairy', x:  70, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
-	{ time: 64.0, type: 'fairy', x: 186, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 64.5, type: 'fairy', x: 120, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
-	{ time: 64.5, type: 'fairy', x: 136, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 61.5, type: 'nenuphar', x: 196, y: -24 },
+	{ time: 61.0, type: 'fairy', x:  40, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 61.0, type: 'fairy', x: 216, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 61.5, type: 'fairy', x:  80, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 62.5, type: 'fairy', x: 176, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 63.0, type: 'fairy', x:  56, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 63.0, type: 'fairy', x: 200, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 63.5, type: 'nenuphar', x:  60, y: -24 },
+	{ time: 63.5, type: 'fairy', x: 100, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 63.5, type: 'fairy', x: 156, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 64.5, type: 'fairy', x:  40, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 64.5, type: 'fairy', x: 216, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 65.0, type: 'fairy', x:  70, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
+	{ time: 65.0, type: 'fairy', x: 186, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 65.5, type: 'fairy', x: 120, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_SGRAVITY_E, P.S2_SGRAVITY_NH, P.S2_SGRAVITY_L] },
+	{ time: 65.5, type: 'fairy', x: 136, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_GRAVITY_E,  P.S2_GRAVITY_NH,  P.S2_GRAVITY_L]  },
 
 	// nenuphar group
-	{ time: 65.0, type: 'nenuphar', x:  56, y: -24 },
-	{ time: 65.0, type: 'nenuphar', x: 200, y: -24 },
+	{ time: 66.0, type: 'nenuphar', x:  56, y: -24 },
+	{ time: 66.0, type: 'nenuphar', x: 200, y: -24 },
 
 	// blue spirit triangle
 	{ time: 71.0, type: 'spirit', x:  80, y: -32, variant: 'blue', path: 'descend', patterns: [P.S2_BLUESPIRIT_ORB_CIRCLE_EASY, P.S2_BLUESPIRIT_ORB_CIRCLE_NORMAL, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_HARD, P.S2_BLUESPIRIT_VOLLEY_CIRCLE_LUNA] },
@@ -214,7 +214,7 @@ const RAW_STAGE_2: SpawnEventData[] = [
 	{ time: 96.0, type: 'fairy', x:  64, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time: 96.3, type: 'fairy', x:  32, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	
-	{ time: 98.0, type: 'icebutterfly', x: 70, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL] },
+	{ time: 98.0, type: 'icebutterfly', x: 70, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL, P.S2_ICEBUTTERFLY_GRAYBURST_E, P.S2_ICEBUTTERFLY_GRAYBURST_NH, P.S2_ICEBUTTERFLY_GRAYBURST_L] },
 	{ time: 97.5, type: 'fairy', x: 224, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time: 97.8, type: 'fairy', x: 192, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time: 98.1, type: 'fairy', x: 160, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
@@ -222,9 +222,9 @@ const RAW_STAGE_2: SpawnEventData[] = [
 	{ time: 98.7, type: 'fairy', x:  96, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time: 99.0, type: 'fairy', x:  64, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
 	{ time: 99.3, type: 'fairy', x:  32, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S2_FAIRY_AIMED_CYAN_NORMAL, P.S2_FAIRY_AIMED_CYAN_HARD, P.S2_FAIRY_AIMED_CYAN_LUNA] },
-	{ time: 100.0, type: 'icebutterfly', x: 186, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL] },
+	{ time: 100.0, type: 'icebutterfly', x: 186, y: 310, path: 'flying-top', patterns: [P.S2_ICEBUTTERFLY_FIRSTCIRCLE_E, P.S2_ICEBUTTERFLY_SECONDCIRCLE_E, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_NH, P.S2_ICEBUTTERFLY_SECONDCIRCLE_NH, P.S2_ICEBUTTERFLY_FIRSTCIRCLE_L, P.S2_ICEBUTTERFLY_SECONDCIRCLE_L, P.S2_ICEBUTTERFLY_SNOWFLAKE_E, P.S2_ICEBUTTERFLY_SNOWFLAKE_N, P.S2_ICEBUTTERFLY_SNOWFLAKE_HL, P.S2_ICEBUTTERFLY_GRAYBURST_E, P.S2_ICEBUTTERFLY_GRAYBURST_NH, P.S2_ICEBUTTERFLY_GRAYBURST_L] },
 
-	{ time: 110.0, type: 'cirno', x: 128, y: -16 }
+	{ time: 112.0, type: 'cirno', x: 128, y: -16 }
 ];
 
 export const STAGE_2 = buildScript(RAW_STAGE_2);

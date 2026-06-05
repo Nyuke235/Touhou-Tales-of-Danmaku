@@ -4,6 +4,11 @@
     <img src="assets/sprites/ui/maintitle.png">
 </p>
 
+<p align="center">
+<a href=""><b>Play in Browser</b></a> •
+<a href="https://github.com/Nyuke235/Touhou-Tales-of-Danmaku/blob/main/CONTRIBUTING.md"><b>Contribute</b></a>
+</p>
+
 ---
 
 **東方弾幕譚 (Tales of Danmaku)** is a Touhou fan-made danmaku game playable in the browser or as a native desktop app, built from scratch in TypeScript using the HTML5 Canvas.

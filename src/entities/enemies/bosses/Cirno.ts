@@ -71,6 +71,7 @@ const PHASES: BossPhase[] = [
 			Patterns.CIRNO_BLUE_CIRCLE_H,
 			Patterns.CIRNO_GRAVITY_ICECUBES_L,
 			Patterns.CIRNO_BLUE_CIRCLE_L,
+			Patterns.CIRNO_SPECIAL_SPREAD_N,
 			Patterns.CIRNO_SPECIAL_SPREAD_H,
 			Patterns.CIRNO_SPECIAL_SPREAD_L,
 		],

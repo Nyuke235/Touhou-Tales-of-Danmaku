@@ -84,5 +84,69 @@
     "difficulties": [
       "LUNATIC"
     ]
+  },
+  "S2_ICEBUTTERFLY_GRAYBURST_E": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "gray",
+    "count": 8,
+    "speed": 200,
+    "speedProfile": [
+      { "speed": 200, "duration": 0.05 },
+      { "speed": 0, "duration": 0.05 },
+      { "speed": 0, "duration": 1.1 },
+      { "speed": 70, "duration": 0.5 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/24",
+    "delay": 0.1,
+    "cooldown": 0.4,
+    "maxshots": 6,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S2_ICEBUTTERFLY_GRAYBURST_NH": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "gray",
+    "count": 10,
+    "speed": 200,
+    "speedProfile": [
+      { "speed": 200, "duration": 0.05 },
+      { "speed": 0, "duration": 0.05 },
+      { "speed": 0, "duration": 1.1 },
+      { "speed": 70, "duration": 0.5 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/24",
+    "delay": 0.1,
+    "cooldown": 0.4,
+    "maxshots": 6,
+    "difficulties": [
+      "NORMAL",
+      "HARD"
+    ]
+  },
+  "S2_ICEBUTTERFLY_GRAYBURST_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "gray",
+    "count": 14,
+    "speed": 200,
+    "speedProfile": [
+      { "speed": 200, "duration": 0.05 },
+      { "speed": 0, "duration": 0.05 },
+      { "speed": 0, "duration": 1.1 },
+      { "speed": 70, "duration": 0.5 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/24",
+    "delay": 0.1,
+    "cooldown": 0.4,
+    "maxshots": 6,
+    "difficulties": [
+      "LUNATIC"
+    ]
   }
 }

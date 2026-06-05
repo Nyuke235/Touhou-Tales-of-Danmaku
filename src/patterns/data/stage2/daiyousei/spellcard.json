@@ -72,7 +72,7 @@
       "type": "aimed",
       "bullet": "orb",
       "color": "yellow",
-      "speed": 100,
+      "speed": 150,
       "initSpeed": 12,
       "accelTime": 2.1
     },
@@ -84,7 +84,7 @@
     "type": "circle",
     "bullet": "orb",
     "color": "yellow",
-    "count": 8,
+    "count": 12,
     "speed": 12,
     "startAngle": 0,
     "rotStep": "PI/8",

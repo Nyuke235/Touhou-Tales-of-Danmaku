@@ -111,27 +111,41 @@
       "LUNATIC"
     ]
   },
-  "CIRNO_SPECIAL_SPREAD_H": {
+  "CIRNO_SPECIAL_SPREAD_N": {
     "type": "spread",
-    "bullet": "ball",
+    "bullet": "arrowhead",
     "color": "cyan",
-    "count": 3,
-    "speed": 140,
-    "spread": 0.25,
+    "count": 5,
+    "speed": 130,
+    "spread": 0.35,
     "delay": 2,
     "cooldown": 2,
     "maxShots": 1,
     "difficulties": [
-      "LUNATIC"
+      "NORMAL"
+    ]
+  },
+  "CIRNO_SPECIAL_SPREAD_H": {
+    "type": "spread",
+    "bullet": "arrowhead",
+    "color": "cyan",
+    "count": 7,
+    "speed": 130,
+    "spread": 0.45,
+    "delay": 2,
+    "cooldown": 2,
+    "maxShots": 1,
+    "difficulties": [
+      "HARD"
     ]
   },
   "CIRNO_SPECIAL_SPREAD_L": {
     "type": "spread",
-    "bullet": "ball",
+    "bullet": "arrowhead",
     "color": "cyan",
-    "count": 3,
-    "speed": 140,
-    "spread": 0.25,
+    "count": 7,
+    "speed": 130,
+    "spread": 0.45,
     "delay": 2,
     "cooldown": 0.3,
     "maxShots": 3,

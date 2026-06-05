@@ -3,24 +3,26 @@
     "type": "circle",
     "bullet": "orb",
     "color": "blue",
-    "count": 8,
+    "count": 12,
     "speed": 80,
     "delay": 2,
     "cooldown": 0.2,
-    "maxShots": 2,
+    "maxShots": 4,
     "difficulties": [
       "EASY"
     ]
   },
   "S2_BLUESPIRIT_ORB_CIRCLE_NORMAL": {
-    "type": "circle",
+    "type": "volley-circle",
     "bullet": "orb",
     "color": "blue",
-    "count": 10,
-    "speed": 80,
+    "count": 12,
+    "streams": 4,
+    "speed": 70,
+    "deltaSpeed": 15,
     "delay": 2,
-    "cooldown": 0.2,
-    "maxShots": 4,
+    "cooldown": 3,
+    "maxShots": 1,
     "difficulties": [
       "NORMAL"
     ]
@@ -29,12 +31,12 @@
     "type": "volley-circle",
     "bullet": "orb",
     "color": "blue",
-    "count": 10,
+    "count": 15,
     "streams": 6,
     "speed": 70,
     "deltaSpeed": 15,
     "delay": 2,
-    "cooldown": 3.5,
+    "cooldown": 3,
     "maxShots": 1,
     "difficulties": [
       "HARD"
@@ -44,7 +46,7 @@
     "type": "volley-circle",
     "bullet": "orb",
     "color": "blue",
-    "count": 12,
+    "count": 20,
     "streams": 6,
     "speed": 70,
     "deltaSpeed": 15,

@@ -3,7 +3,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "blue",
-    "count": 12,
+    "count": 16,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -15,7 +15,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "blue",
-    "count": 22,
+    "count": 28,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -28,7 +28,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "blue",
-    "count": 28,
+    "count": 36,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -40,7 +40,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "cyan",
-    "count": 12,
+    "count": 16,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -52,7 +52,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "cyan",
-    "count": 22,
+    "count": 28,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -65,7 +65,7 @@
     "type": "circle",
     "bullet": "jellybean",
     "color": "cyan",
-    "count": 28,
+    "count": 36,
     "speed": 80,
     "delay": 1.1,
     "maxShots": 1,
@@ -80,7 +80,7 @@
     "delay": 1,
     "maxShots": 1,
     "count": 3,
-    "spread": 0.22,
+    "spread": 0.2,
     "difficulties": [
       "NORMAL"
     ]
@@ -92,7 +92,7 @@
     "delay": 1,
     "maxShots": 1,
     "count": 3,
-    "spread": 0.22,
+    "spread": 0.2,
     "difficulties": [
       "NORMAL"
     ]
@@ -101,7 +101,7 @@
     "type": "volley-spread",
     "color": "cyan",
     "speed": 100,
-    "deltaSpeed": 10,
+    "deltaSpeed": 5,
     "delay": 1,
     "maxShots": 1,
     "count": 3,
@@ -115,12 +115,12 @@
     "type": "volley-spread",
     "color": "cyan",
     "speed": 120,
-    "deltaSpeed": 10,
+    "deltaSpeed": 5,
     "delay": 1,
     "maxShots": 1,
     "count": 5,
     "streams": 5,
-    "spread": 0.4,
+    "spread": 0.35,
     "difficulties": [
       "LUNATIC"
     ]
@@ -129,7 +129,7 @@
     "type": "volley-spread",
     "color": "blue",
     "speed": 100,
-    "deltaSpeed": 10,
+    "deltaSpeed": 5,
     "delay": 1,
     "maxShots": 1,
     "count": 3,
@@ -143,12 +143,12 @@
     "type": "volley-spread",
     "color": "blue",
     "speed": 120,
-    "deltaSpeed": 10,
+    "deltaSpeed": 5,
     "delay": 1,
     "maxShots": 1,
     "count": 5,
     "streams": 5,
-    "spread": 0.4,
+    "spread": 0.35,
     "difficulties": [
       "LUNATIC"
     ]
