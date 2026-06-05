@@ -1,6 +1,6 @@
 import { IBullet } from '../Bullet';
 
-const MAX_RADIUS = 150;
+const MAX_RADIUS = 130;
 const EXPAND_DURATION = 0.7;
 const DURATION = 0.8;
 const RING_THICKNESS = 6;
@@ -16,10 +16,12 @@ export class ShockwaveBullet implements IBullet {
 
 	private elapsed: number = 0;
 	private currentRadius: number = 0;
+	private color: string;
 
-	constructor(x: number, y: number) {
+	constructor(x: number, y: number, color: string = 'white') {
 		this.x = x;
 		this.y = y;
+		this.color = color;
 	}
 
 	update(dt: number): void {
@@ -45,9 +47,9 @@ export class ShockwaveBullet implements IBullet {
 
 		ctx.save();
 		ctx.globalAlpha = alpha;
-		ctx.strokeStyle = 'white';
+		ctx.strokeStyle = this.color;
 		ctx.lineWidth = 3 + (1 - progress) * 4;
-		ctx.shadowColor = 'white';
+		ctx.shadowColor = this.color;
 		ctx.shadowBlur = 8;
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.currentRadius, 0, Math.PI * 2);

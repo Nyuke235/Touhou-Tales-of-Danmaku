@@ -12,6 +12,9 @@ const ANGLE_FIELDS = new Set([
 	'spread',
 	'starBaseAngle',
 	'starAngleStep',
+	'helixBaseAngle',
+	'helixAngleStep',
+	'laserAngleOffset',
 ]);
 
 function parseAngle(v: string | number): number {

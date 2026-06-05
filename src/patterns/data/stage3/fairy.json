@@ -1,30 +1,55 @@
 {
-  "S3_FAIRY_AIMED_GREEN_EN": {
-    "type": "spread",
+  "S3_FAIRY_AIMED_GREEN_E": {
+    "type": "volley",
     "bullet": "arrowhead",
     "color": "green",
-    "count": 3,
-    "spread": 0.65,
-    "speed": 120,
-    "initSpeed": 50,
-    "accelTime": 1.5,
+    "count": 6,
+    "speed": 100,
+    "deltaSpeed": 20,
+    "speedProfile": [
+      { "speed": 100, "duration": 0.5 },
+      { "speed": 250, "duration": 0.6 }
+    ],
     "delay": 0.2,
     "cooldown": 0.5,
     "maxShots": 2,
     "difficulties": [
-      "EASY",
+      "EASY"
+    ]
+  },
+  "S3_FAIRY_AIMED_GREEN_N": {
+    "type": "volley-spread",
+    "bullet": "arrowhead",
+    "color": "green",
+    "count": 3,
+    "speed": 100,
+    "streams": 8,
+    "deltaSpeed": 20,
+    "spread": 0.05,
+    "speedProfile": [
+      { "speed": 100, "duration": 0.5 },
+      { "speed": 250, "duration": 0.6 }
+    ],
+    "delay": 0.2,
+    "cooldown": 0.5,
+    "maxShots": 2,
+    "difficulties": [
       "NORMAL"
     ]
   },
   "S3_FAIRY_AIMED_GREEN_H": {
-    "type": "spread",
+    "type": "volley-spread",
     "bullet": "arrowhead",
     "color": "green",
     "count": 3,
-    "spread": 0.65,
-    "speed": 120,
-    "initSpeed": 50,
-    "accelTime": 1.5,
+    "speed": 100,
+    "streams": 9,
+    "deltaSpeed": 20,
+    "spread": 0.08,
+    "speedProfile": [
+      { "speed": 100, "duration": 0.5 },
+      { "speed": 250, "duration": 0.6 }
+    ],
     "delay": 0.2,
     "cooldown": 0.5,
     "maxShots": 2,
@@ -33,14 +58,18 @@
     ]
   },
   "S3_FAIRY_AIMED_GREEN_L": {
-    "type": "spread",
+    "type": "volley-spread",
     "bullet": "arrowhead",
     "color": "green",
     "count": 3,
-    "spread": 0.65,
-    "speed": 120,
-    "initSpeed": 50,
-    "accelTime": 1.2,
+    "speed": 100,
+    "streams": 11,
+    "deltaSpeed": 20,
+    "spread": 0.1,
+    "speedProfile": [
+      { "speed": 100, "duration": 0.5 },
+      { "speed": 250, "duration": 0.6 }
+    ],
     "delay": 0.2,
     "cooldown": 0.5,
     "maxShots": 2,
@@ -49,13 +78,13 @@
     ]
   },
   "S3_CIRCLE_BALL_GREEN_EN": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "green",
     "count": 10,
     "streams": 3,
     "speed": 80,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [
@@ -64,13 +93,13 @@
     ]
   },
   "S3_CIRCLE_BALL_GREEN_H": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "green",
-    "count": 16,
+    "count": 12,
     "streams": 3,
     "speed": 80,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [
@@ -78,13 +107,13 @@
     ]
   },
   "S3_CIRCLE_BALL_GREEN_L": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "green",
-    "count": 16,
+    "count": 14,
     "streams": 3,
     "speed": 80,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [
@@ -92,13 +121,13 @@
     ]
   },
   "S3_CIRCLE_BALL_PURPLE_EN": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "purple",
     "count": 10,
     "streams": 3,
     "speed": 60,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [
@@ -107,13 +136,13 @@
     ]
   },
   "S3_CIRCLE_BALL_PURPLE_H": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "purple",
-    "count": 16,
+    "count": 12,
     "streams": 3,
     "speed": 60,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [
@@ -121,13 +150,13 @@
     ]
   },
   "S3_CIRCLE_BALL_PURPLE_L": {
-    "type": "volley-circle",
+    "type": "circle-fan",
     "bullet": "arrowhead",
     "color": "purple",
-    "count": 16,
+    "count": 14,
     "streams": 3,
     "speed": 60,
-    "deltaSpeed": 20,
+    "spread": 0.2,
     "delay": 2,
     "maxShots": 1,
     "difficulties": [

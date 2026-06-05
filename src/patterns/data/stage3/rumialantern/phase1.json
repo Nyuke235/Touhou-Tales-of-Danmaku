@@ -1,5 +1,45 @@
 {
-  "RUMIALANTERN_CIRCLE_RIGHT_PAUSE": {
+  "RUMIALANTERN_CIRCLE_RIGHT_PAUSE_E": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/64",
+    "delay": 0.6,
+    "cooldown": 0.15,
+    "maxShots": 8,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_LEFT_PAUSE_E": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "-PI/64",
+    "delay": 2.36,
+    "cooldown": 0.15,
+    "maxShots": 8,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_RIGHT_PAUSE_N": {
     "type": "circle",
     "bullet": "ball",
     "color": "purple",
@@ -14,9 +54,12 @@
     "rotStep": "PI/64",
     "delay": 0.6,
     "cooldown": 0.08,
-    "maxShots": 8
+    "maxShots": 8,
+    "difficulties": [
+      "NORMAL"
+    ]
   },
-  "RUMIALANTERN_CIRCLE_LEFT_PAUSE": {
+  "RUMIALANTERN_CIRCLE_LEFT_PAUSE_N": {
     "type": "circle",
     "bullet": "ball",
     "color": "blue",
@@ -31,7 +74,90 @@
     "rotStep": "-PI/64",
     "delay": 1.8,
     "cooldown": 0.08,
-    "maxShots": 8
+    "maxShots": 8,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_RIGHT_PAUSE_H": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/64",
+    "delay": 0.6,
+    "cooldown": 0.05,
+    "maxShots": 8,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_LEFT_PAUSE_H": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "-PI/64",
+    "delay": 1.56,
+    "cooldown": 0.05,
+    "maxShots": 8,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_RIGHT_PAUSE_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "purple",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "PI/64",
+    "delay": 0.6,
+    "cooldown": 0.03,
+    "maxShots": 8,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIALANTERN_CIRCLE_LEFT_PAUSE_L": {
+    "type": "circle",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 18,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 0,   "duration": 0.9 },
+      { "speed": 0,   "duration": 0.4 },
+      { "speed": 170, "duration": 0.2 }
+    ],
+    "startAngle": 0,
+    "rotStep": "-PI/64",
+    "delay": 1.4,
+    "cooldown": 0.03,
+    "maxShots": 8,
+    "difficulties": [
+      "LUNATIC"
+    ]
   },
   "RUMIALANTERN_CIRCLE_SLOW": {
     "type": "volley-circle",

@@ -30,5 +30,65 @@
     "startAngle": "PI / 6",
     "delay": 1.0,
     "cooldown": 0.4
+  },
+  "S3_SPIRIT_FAN_E": {
+    "type": "circle-fan",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 5,
+    "streams": 5,
+    "speed": 80,
+    "spread": 0.2,
+    "rotStep": "PI/12",
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S3_SPIRIT_FAN_N": {
+    "type": "circle-fan",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 7,
+    "streams": 7,
+    "speed": 80,
+    "spread": 0.3,
+    "rotStep": "PI/12",
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S3_SPIRIT_FAN_H": {
+    "type": "circle-fan",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 9,
+    "streams": 7,
+    "speed": 80,
+    "spread": 0.3,
+    "rotStep": "PI/12",
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_SPIRIT_FAN_L": {
+    "type": "circle-fan",
+    "bullet": "jellybean",
+    "color": "blue",
+    "count": 11,
+    "streams": 9,
+    "speed": 80,
+    "spread": 0.4,
+    "rotStep": "PI/12",
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "LUNATIC"
+    ]
   }
 }

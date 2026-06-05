@@ -20,6 +20,7 @@ import {
 	SheddingOrbBullet,
 	SweepSheddingOrbBullet,
 } from '../entities/bullets/SheddingOrbBullet';
+import { CannonballBullet } from '../entities/bullets/CannonballBullet';
 import {
 	BubbleBigBullet,
 	BubbleMediumBullet,
@@ -65,10 +66,12 @@ export interface PatternConfig {
 		| 'volley'
 		| 'volley-spread'
 		| 'volley-circle'
+		| 'circle-fan'
 		| 'gravity'
 		| 'laser-circle'
 		| 'star-shed-orbit'
 		| 'sweep-shed-orbit'
+		| 'cannonball'
 		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
@@ -194,6 +197,33 @@ export interface PatternConfig {
 	starAccelDuration?: number;
 	starBaseAngle?: number;
 	starAngleStep?: number;
+
+	// ------------ CANNONBALL ------------
+	// lifetime             = seconds before the cannonball explodes
+	// speed                = velocity of the cannonball (aimed at player) (px/s)
+	// helixInterval        = seconds between each helix rice shot fired while traveling
+	// helixCount           = orange rice bullets per helix shot
+	// helixBaseAngle       = starting angle of the helix (rad)
+	// helixAngleStep       = angle increment per successive helix shot (rad)
+	// helixInitSpeed       = very slow initial speed of helix rice
+	// helixTargetSpeed     = speed after acceleration
+	// helixAccelDelay      = seconds the rice stays at initSpeed before accelerating
+	// helixAccelDuration   = seconds to lerp to targetSpeed
+	// laserCount           = number of orange oval lasers fired in a circle on explosion
+	// laserSpeed           = radial speed of each explosion laser
+	// laserAngleOffset     = starting angle offset for the laser circle (rad)
+	lifetime?: number;
+	helixInterval?: number;
+	helixCount?: number;
+	helixBaseAngle?: number;
+	helixAngleStep?: number;
+	helixInitSpeed?: number;
+	helixTargetSpeed?: number;
+	helixAccelDelay?: number;
+	helixAccelDuration?: number;
+	laserCount?: number;
+	laserSpeed?: number;
+	laserAngleOffset?: number;
 
 	// ------------ BURST ------------
 	// count         = bullets per burst
@@ -785,6 +815,48 @@ export class PatternEngine {
 					for (let i = 0; i < depth; i++) {
 						const s = speed + i * deltaSpeed;
 						this.spawnWithAccel(pattern, bullet, ex, ey, angle, s, color, out);
+					}
+				}
+				break;
+			}
+
+			case 'cannonball': {
+				const angle = Math.atan2(py - ey, px - ex);
+				out.push(
+					new CannonballBullet(ex, ey, {
+						angle,
+						lifetime: pattern.lifetime ?? 2.0,
+						speed: speed,
+						helixInterval: pattern.helixInterval ?? 0.15,
+						helixBaseAngle: pattern.helixBaseAngle ?? 0,
+						helixAngleStep: pattern.helixAngleStep ?? Math.PI / 12,
+						helixCount: Math.max(1, pattern.helixCount ?? 6),
+						helixInitSpeed: pattern.helixInitSpeed ?? 8,
+						helixTargetSpeed: pattern.helixTargetSpeed ?? 40,
+						helixAccelDelay: pattern.helixAccelDelay ?? 1.5,
+						helixAccelDuration: pattern.helixAccelDuration ?? 0.5,
+						laserCount: pattern.laserCount ?? 8,
+						laserSpeed: pattern.laserSpeed ?? 80,
+						laserAngleOffset: pattern.laserAngleOffset ?? 0,
+					})
+				);
+				break;
+			}
+
+			case 'circle-fan': {
+				const lines = Math.max(1, pattern.count ?? 8);
+				const fan = Math.max(1, pattern.streams ?? 3);
+				const spreadArc = pattern.spread ?? 0.2;
+				const baseAngle =
+					(pattern.startAngle ?? 0) + shotCount * (pattern.rotStep ?? 0);
+				for (let l = 0; l < lines; l++) {
+					const center = baseAngle + (l / lines) * Math.PI * 2;
+					for (let i = 0; i < fan; i++) {
+						const angle =
+							fan > 1
+								? center - spreadArc / 2 + (spreadArc / (fan - 1)) * i
+								: center;
+						this.spawnWithAccel(pattern, bullet, ex, ey, angle, speed, color, out);
 					}
 				}
 				break;

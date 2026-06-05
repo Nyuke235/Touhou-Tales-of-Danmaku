@@ -12,6 +12,7 @@ import { RumiaLantern } from '../entities/enemies/bosses/RumiaLantern';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import { Nenuphar } from '../entities/enemies/Nenuphar';
 import { Mandragora } from '../entities/enemies/Mandragora';
+import { FairyCannon } from '../entities/enemies/FairyCannon';
 import { Mystia } from '../entities/enemies/Mystia';
 import type { MystiaPath } from '../entities/enemies/Mystia';
 import { Cirno } from '../entities/enemies/bosses/Cirno';
@@ -97,6 +98,13 @@ export type SpawnEventData =
 	  }
 	| {
 			time: number;
+			type: 'fairycannon';
+			x: number;
+			y: number;
+			patterns?: PatternConfig[];
+	  }
+	| {
+			time: number;
 			type: 'mystia';
 			x: number;
 			y: number;
@@ -144,6 +152,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 					return new Nenuphar(d.x, d.y);
 				case 'mandragora':
 					return new Mandragora(d.x, d.y, d.patterns);
+				case 'fairycannon':
+					return new FairyCannon(d.x, d.y, d.patterns);
 				case 'mystia':
 					return new Mystia(d.x, d.y, d.path, d.patterns);
 				case 'cirno':

@@ -1,5 +1,89 @@
 {
-  "S3_MYSTIA_GRAVITY_GREEN": {
+  "S3_MYSTIA_GRAVITY_GREEN_E": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "green",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 35,
+    "delay": 0.1,
+    "cooldown": 0.25,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_RED_E": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "red",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 35,
+    "delay": 0.25,
+    "cooldown": 0.25,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_GREEN_N": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "green",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 40,
+    "delay": 0.1,
+    "cooldown": 0.2,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_RED_N": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "red",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 40,
+    "delay": 0.2,
+    "cooldown": 0.2,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_GREEN_H": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "green",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 45,
+    "delay": 0.1,
+    "cooldown": 0.15,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_RED_H": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "red",
+    "count": 1,
+    "speed": 20,
+    "spread": 0.6,
+    "gravity": 45,
+    "delay": 0.175,
+    "cooldown": 0.15,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "S3_MYSTIA_GRAVITY_GREEN_L": {
     "type": "gravity",
     "bullet": "ball",
     "color": "green",
@@ -8,9 +92,12 @@
     "spread": 0.6,
     "gravity": 50,
     "delay": 0.1,
-    "cooldown": 0.1
+    "cooldown": 0.12,
+    "difficulties": [
+      "LUNATIC"
+    ]
   },
-  "S3_MYSTIA_GRAVITY_RED": {
+  "S3_MYSTIA_GRAVITY_RED_L": {
     "type": "gravity",
     "bullet": "ball",
     "color": "red",
@@ -19,7 +106,10 @@
     "spread": 0.6,
     "gravity": 50,
     "delay": 0.15,
-    "cooldown": 0.1
+    "cooldown": 0.12,
+    "difficulties": [
+      "LUNATIC"
+    ]
   },
   "S3_MYSTIA_ARROWHEAD_VOLLEY_EN": {
     "type": "volley-spread",

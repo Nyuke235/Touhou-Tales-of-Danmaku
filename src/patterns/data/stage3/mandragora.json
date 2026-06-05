@@ -9,7 +9,9 @@
     "accelTime": 1,
     "delay": 2.3,
     "maxShots": 1,
+    "cooldown": 0.4,
     "difficulties": [
+      "EASY",
       "NORMAL"
     ]
   },
@@ -23,6 +25,7 @@
     "accelTime": 1,
     "delay": 2.3,
     "maxShots": 1,
+    "cooldown": 0.4,
     "difficulties": [
       "HARD"
     ]
@@ -36,7 +39,8 @@
     "initSpeed": 80,
     "accelTime": 1,
     "delay": 2.3,
-    "maxShots": 1,
+    "maxShots": 2,
+    "cooldown": 0.2,
     "difficulties": [
       "LUNATIC"
     ]

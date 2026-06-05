@@ -20,5 +20,58 @@
     "startAngle": "PI/8",
     "delay": 1.8,
     "cooldown": 1.8
+  },
+  "RUMIALANTERN_DARK_STARS_L_CCW": {
+    "type": "orbit",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 10,
+    "angularVel": "PI/5",
+    "radialVel": 150,
+    "startAngle": "-PI/8",
+    "delay": 2.7,
+    "cooldown": 1.8,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIALANTERN_RICE_CIRCLE_N": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 24,
+    "speed": 50,
+    "rotStep": "PI/12",
+    "delay": 2.5,
+    "cooldown": 2.5,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "RUMIALANTERN_RICE_CIRCLE_H": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 36,
+    "speed": 50,
+    "rotStep": "PI/12",
+    "delay": 2.5,
+    "cooldown": 2.5,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIALANTERN_RICE_CIRCLE_L": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 42,
+    "speed": 50,
+    "rotStep": "PI/12",
+    "delay": 2.5,
+    "cooldown": 2.5,
+    "difficulties": [
+      "LUNATIC"
+    ]
   }
 }

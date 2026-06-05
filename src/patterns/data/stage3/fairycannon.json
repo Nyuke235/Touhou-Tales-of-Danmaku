@@ -1,0 +1,21 @@
+{
+  "S3_FAIRYCANNON_FIRE": {
+    "type": "cannonball",
+    "speed": 75,
+    "lifetime": 2,
+    "helixInterval": 0.07,
+    "helixCount": 2,
+    "helixBaseAngle": 0,
+    "helixAngleStep": "PI/12",
+    "helixInitSpeed": 20,
+    "helixTargetSpeed": 70,
+    "helixAccelDelay": 1.2,
+    "helixAccelDuration": 0.8,
+    "laserCount": 17,
+    "laserSpeed": 120,
+    "laserAngleOffset": "PI/12",
+    "delay": 1.0,
+    "cooldown": 4.0,
+    "maxShots": 1
+  }
+}
