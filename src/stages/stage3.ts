@@ -74,11 +74,25 @@ const RAW_STAGE_3: SpawnEventData[] = [
 	{ time: 51.8, type: 'mystia', x: 288, y: 60, path: 'passing-right', patterns: [P.S3_MYSTIA_GRAVITY_GREEN_E, P.S3_MYSTIA_GRAVITY_RED_E, P.S3_MYSTIA_GRAVITY_GREEN_N, P.S3_MYSTIA_GRAVITY_RED_N, P.S3_MYSTIA_GRAVITY_GREEN_H, P.S3_MYSTIA_GRAVITY_RED_H, P.S3_MYSTIA_GRAVITY_GREEN_L, P.S3_MYSTIA_GRAVITY_RED_L, P.S3_MYSTIA_ARROWHEAD_VOLLEY_EN, P.S3_MYSTIA_ARROWHEAD_VOLLEY_H, P.S3_MYSTIA_ARROWHEAD_VOLLEY_L] },
 	{ time: 55.5, type: 'spirit', x: 288, y: 52, variant: 'purple', path: 'passing-right',  patterns: [P.S3_CIRCLE_PURPLE_BALL_A, P.S3_CIRCLE_PURPLE_BALL_B, P.S3_CIRCLE_PURPLE_BALL_C, P.S3_SPIRIT_FAN_E, P.S3_SPIRIT_FAN_N, P.S3_SPIRIT_FAN_H, P.S3_SPIRIT_FAN_L] },
 
-	{ time: 64.0, type: 'rumialantern', x: 128, y: -16 },
+	{ time: 63.5, type: 'rumialantern', x: 128, y: -16 },
 
-	{ time: 66.0, type: 'fairycannon', x: 128, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE] },
+	{ time: 66.0, type: 'fairycannon', x: 128, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
 
-	{ time: 90.0, type: 'fairycannon', x: 128, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE] },
+	{ time: 70.0, type: 'fairy', x:  40, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 70.0, type: 'fairy', x:  92, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 70.0, type: 'fairy', x: 164, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 70.0, type: 'fairy', x: 216, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 71.5, type: 'fairy', x:  64, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 71.5, type: 'fairy', x: 128, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 71.5, type: 'fairy', x: 192, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+
+	{ time: 73.5, type: 'bubblefairy', x:  16, y: -16, path: 'descend-slow' },
+	{ time: 73.5, type: 'bubblefairy', x: 240, y: -16, path: 'descend-slow' },
+	{ time: 75.0, type: 'fairycannon', x:  48, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
+	{ time: 79.0, type: 'fairycannon', x: 208, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
+	{ time: 78.5, type: 'bubblefairy', x: 128, y: -16, path: 'zigzag-down' },
+	{ time: 80.0, type: 'bubblefairy', x:  80, y: -16, path: 'descend-slow' },
+	{ time: 80.0, type: 'bubblefairy', x: 176, y: -16, path: 'descend-slow' },
 ];
 
 export const STAGE_3 = buildScript(RAW_STAGE_3);
