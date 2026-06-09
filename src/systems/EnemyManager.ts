@@ -186,10 +186,15 @@ export class EnemyManager {
 	}
 
 	getNearestEnemy(x: number, y: number): { x: number; y: number } | null {
+		const e = this.getNearestActiveEnemy(x, y);
+		return e ? { x: e.x, y: e.y } : null;
+	}
+
+	getNearestActiveEnemy(x: number, y: number): Enemy | null {
 		let nearest: Enemy | null = null;
 		let minDist = Infinity;
 		for (const e of this.enemies) {
-			if (!e.active) continue;
+			if (!e.active || e.isDying()) continue;
 			const dx = e.x - x;
 			const dy = e.y - y;
 			const dist = dx * dx + dy * dy;
@@ -198,7 +203,20 @@ export class EnemyManager {
 				nearest = e;
 			}
 		}
-		return nearest ? { x: nearest.x, y: nearest.y } : null;
+		return nearest;
+	}
+
+	dealDirectDamage(target: Enemy, damage: number): void {
+		if (!target.active || target.isDying()) return;
+		if (target instanceof Boss) {
+			target.receiveBombDamage(damage);
+			return;
+		}
+		const killed = target.applyDirectDamage(damage);
+		if (killed) {
+			this.onScore(target.scoreValue);
+			this.killedCount++;
+		}
 	}
 
 	applyBomb(damage: number): void {

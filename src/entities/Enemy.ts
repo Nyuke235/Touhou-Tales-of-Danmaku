@@ -175,6 +175,18 @@ export abstract class Enemy {
 		if (!this.exploding) this.explode();
 	}
 
+	applyDirectDamage(damage: number): boolean {
+		if (this.exploding) return false;
+		this.health -= damage;
+		this.hitFlash = true;
+		if (this.health <= 0) {
+			this.explode();
+			return true;
+		}
+		SoundManager.play(SFX.ENEMY_HIT);
+		return false;
+	}
+
 	protected shotSFX(): string {
 		return SFX.ENEMY_SHOT;
 	}

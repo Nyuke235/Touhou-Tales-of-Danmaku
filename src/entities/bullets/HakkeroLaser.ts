@@ -15,9 +15,9 @@ export class HakkeroLaser extends BaseBullet {
 
 	render(ctx: CanvasRenderingContext2D): void {
 		ctx.save();
-		ctx.shadowColor = '#ffcc00';
+		ctx.shadowColor = '#aaddff';
 		ctx.shadowBlur = 10;
-		ctx.fillStyle = '#ff9900';
+		ctx.fillStyle = '#4ab8ff';
 		ctx.fillRect(
 			this.x - this.width / 2,
 			this.y - this.height / 2,

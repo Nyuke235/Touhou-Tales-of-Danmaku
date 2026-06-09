@@ -44,6 +44,8 @@ export class Player {
 	private visible: boolean = true;
 
 	private frozenTimer: number = 0;
+	private slowMult: number = 1;
+	private slowTimer: number = 0;
 
 	private options: IOption[] = [];
 	getNearestEnemy:
@@ -164,6 +166,18 @@ export class Player {
 		return count;
 	}
 
+	setSlowMult(mult: number, duration: number): void {
+		this.slowMult = mult;
+		this.slowTimer = duration;
+	}
+
+	setInvincible(duration: number): void {
+		this.invincible = true;
+		this.invincibleTimer = Math.max(this.invincibleTimer, duration);
+		this.blinkTimer = PLAYER.BLINK_INTERVAL;
+		this.visible = true;
+	}
+
 	hit(): void {
 		if (
 			GameState.debugInvincible ||
@@ -211,9 +225,15 @@ export class Player {
 
 	private handleMovement(dt: number, focused: boolean): void {
 		if (this.frozenTimer > 0) this.frozenTimer -= dt;
+		if (this.slowTimer > 0) {
+			this.slowTimer -= dt;
+			if (this.slowTimer <= 0) this.slowMult = 1;
+		}
 		const freezeMult = this.frozenTimer > 0 ? 0.32 : 1.0;
 		this.speed =
-			(focused ? this.config.focusSpeed : this.config.speed) * freezeMult;
+			(focused ? this.config.focusSpeed : this.config.speed) *
+			freezeMult *
+			this.slowMult;
 
 		let dx = 0;
 		let dy = 0;

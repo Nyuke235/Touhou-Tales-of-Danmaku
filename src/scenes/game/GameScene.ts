@@ -10,7 +10,15 @@ import { ScoreManager } from '../../systems/ScoreManager';
 import { SFX, SoundManager } from '../../systems/SoundManager';
 
 import { GameLoop } from '../../game/GameLoop';
-import { GameState } from '../../game/GameState';
+import { Character, GameState } from '../../game/GameState';
+import {
+	FantasySealBomb,
+	FANTASY_SEAL_DURATION,
+} from '../../game/FantasySealBomb';
+import {
+	MasterSparkBomb,
+	MASTER_SPARK_DURATION,
+} from '../../game/MasterSparkBomb';
 
 import { BossHUD } from './BossHUD';
 import { DialogueBox } from './DialogueBox';
@@ -65,6 +73,8 @@ export class GameScene {
 	protected misses: number = 0;
 	protected bombsUsed: number = 0;
 	protected bombEffect: { x: number; y: number; t: number } | null = null;
+	protected sealBomb: FantasySealBomb | null = null;
+	protected sparkBomb: MasterSparkBomb | null = null;
 	protected slowFrames: number = 0;
 	protected totalFrames: number = 0;
 
@@ -156,7 +166,7 @@ export class GameScene {
 						this.scoreManager.value,
 						GameState.highScore
 					);
-						this.sceneManager.switchTo(Scene.HOME);
+					this.sceneManager.switchTo(Scene.HOME);
 				},
 				onRestart: () => {
 					MusicManager.stop();
@@ -227,6 +237,8 @@ export class GameScene {
 		this.misses = 0;
 		this.bombsUsed = 0;
 		this.bombEffect = null;
+		this.sealBomb = null;
+		this.sparkBomb = null;
 		this.slowFrames = 0;
 		this.totalFrames = 0;
 		this.startTime = Date.now();
@@ -552,9 +564,23 @@ export class GameScene {
 	}
 
 	protected updateBombEffect(dt: number): void {
-		if (!this.bombEffect) return;
-		this.bombEffect.t += dt;
-		if (this.bombEffect.t >= GAME.BOMB_DURATION) this.bombEffect = null;
+		if (this.bombEffect) {
+			this.bombEffect.t += dt;
+			if (this.bombEffect.t >= GAME.BOMB_DURATION) this.bombEffect = null;
+		}
+		if (this.sealBomb) {
+			this.sealBomb.update(dt, this.player.x, this.player.y, this.enemyManager);
+			if (this.sealBomb.isDone()) this.sealBomb = null;
+		}
+		if (this.sparkBomb) {
+			this.sparkBomb.update(
+				dt,
+				this.player.x,
+				this.player.y,
+				this.enemyManager
+			);
+			if (this.sparkBomb.isDone()) this.sparkBomb = null;
+		}
 	}
 
 	protected processCollectedItems(
@@ -688,13 +714,29 @@ export class GameScene {
 
 	protected useBomb(): void {
 		if (this.bombs < GAME.THIRDS_PER_GEM) return;
+		if (this.sealBomb || this.sparkBomb) return;
 		this.bombs -= GAME.THIRDS_PER_GEM;
 		this.bombsUsed++;
 		this.hud.setBombs(this.bombs);
 		SoundManager.play(SFX.PLAYER_BOMB);
 		this.activeBoss?.failSpellCapture();
-		this.enemyManager.applyBomb(GAME.BOMB_DAMAGE);
 		this.bulletManager.clearWithEffect();
+
+		if (GameState.character === Character.REIMU) {
+			this.sealBomb = new FantasySealBomb();
+			this.player.setInvincible(FANTASY_SEAL_DURATION);
+			return;
+		}
+
+		if (GameState.character === Character.MARISA) {
+			this.sparkBomb = new MasterSparkBomb();
+			this.player.setInvincible(MASTER_SPARK_DURATION);
+			this.player.setSlowMult(0.3, MASTER_SPARK_DURATION);
+			SoundManager.play(SFX.PLAYER_MASTERSPARK);
+			return;
+		}
+
+		this.enemyManager.applyBomb(GAME.BOMB_DAMAGE);
 		this.bombEffect = { x: this.player.x, y: this.player.y, t: 0 };
 	}
 
@@ -714,6 +756,8 @@ export class GameScene {
 		this.activeBoss?.renderOverlay(ctx, FIELD.WIDTH, FIELD.HEIGHT);
 		if (focused) this.player.renderHitbox(ctx);
 		this.renderBombEffect(ctx);
+		this.sealBomb?.render(ctx);
+		this.sparkBomb?.render(ctx);
 		this.dialogueBox.render(ctx);
 	}
 
