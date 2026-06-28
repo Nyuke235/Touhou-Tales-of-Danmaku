@@ -3,10 +3,12 @@ import { RotatedBullet } from './RotatedBullet';
 const SPEED = 260;
 const W = 4;
 const H = 6;
+const LIFETIME = 4;
 const SPRITE = 'assets/sprites/bullets/player/homingamulet.png';
 
 export class HomingAmulet extends RotatedBullet {
 	private turnRate: number;
+	private age: number = 0;
 	private getNearestEnemy: (
 		x: number,
 		y: number
@@ -26,6 +28,12 @@ export class HomingAmulet extends RotatedBullet {
 	}
 
 	override update(dt: number): void {
+		this.age += dt;
+		if (this.age >= LIFETIME) {
+			this.active = false;
+			return;
+		}
+
 		const target = this.getNearestEnemy(this.x, this.y);
 		if (target) {
 			const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
