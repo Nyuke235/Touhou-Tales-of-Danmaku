@@ -4,6 +4,7 @@ import { RumiaDark } from '../entities/enemies/bosses/RumiaDark';
 import { RumiaLantern } from '../entities/enemies/bosses/RumiaLantern';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import { Cirno } from '../entities/enemies/bosses/Cirno';
+import { MystiaBoss } from '../entities/enemies/bosses/Mystia';
 import { BOSS } from './Constants';
 
 export interface SpellcardEntry {
@@ -144,6 +145,34 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				phaseIndex: 1,
 				stageIndex: 2,
 				bossFactory: () => new RumiaLantern(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Non-spell 1',
+				bossName: 'Mystia',
+				phaseIndex: 0,
+				stageIndex: 2,
+				bossFactory: () => new MystiaBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Vocal Sign 「Hooting in the Night」',
+				bossName: 'Mystia',
+				phaseIndex: 1,
+				stageIndex: 2,
+				bossFactory: () => new MystiaBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Non-spell 2',
+				bossName: 'Mystia',
+				phaseIndex: 2,
+				stageIndex: 2,
+				bossFactory: () => new MystiaBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Song Sign 「Mystia Lullaby」',
+				bossName: 'Mystia',
+				phaseIndex: 3,
+				stageIndex: 2,
+				bossFactory: () => new MystiaBoss(BOSS.CENTER_X, -30),
 			},
 		],
 	},

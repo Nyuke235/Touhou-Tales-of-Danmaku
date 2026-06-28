@@ -1,0 +1,132 @@
+{
+  "S3_MYSTIA_BOSS_RAIN_BALL_GREEN_E": {
+    "type": "rain",
+    "bullet": "ball",
+    "color": "blue",
+    "speed": 65,
+    "count": 1,
+    "cooldown": 0.18,
+    "rainDriftMax": 18,
+    "delay": 0.1,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_BALL_GREEN_N": {
+    "type": "rain",
+    "bullet": "ball",
+    "color": "blue",
+    "speed": 66,
+    "count": 1,
+    "cooldown": 0.15,
+    "rainDriftMax": 22,
+    "delay": 0.1,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_BALL_GREEN_H": {
+    "type": "rain",
+    "bullet": "ball",
+    "color": "blue",
+    "speed": 67,
+    "count": 2,
+    "cooldown": 0.12,
+    "rainDriftMax": 26,
+    "delay": 0.1,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_BALL_GREEN_L": {
+    "type": "rain",
+    "bullet": "ball",
+    "color": "blue",
+    "speed": 70,
+    "count": 2,
+    "cooldown": 0.1,
+    "rainDriftMax": 30,
+    "delay": 0.1,
+    "difficulties": ["LUNATIC"]
+  },
+
+  "S3_MYSTIA_BOSS_RAIN_ORB_PURPLE_E": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "speed": 90,
+    "count": 1,
+    "cooldown": 0.30,
+    "rainDriftMax": 20,
+    "delay": 1.5,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_ORB_PURPLE_N": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "speed": 90,
+    "count": 1,
+    "cooldown": 0.25,
+    "rainDriftMax": 25,
+    "delay": 1.5,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_ORB_PURPLE_H": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "speed": 100,
+    "count": 1,
+    "cooldown": 0.25,
+    "rainDriftMax": 30,
+    "delay": 1.5,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_RAIN_ORB_PURPLE_L": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "speed": 100,
+    "count": 2,
+    "cooldown": 0.22,
+    "rainDriftMax": 35,
+    "delay": 1.5,
+    "difficulties": ["LUNATIC"]
+  },
+
+  "S3_MYSTIA_BOSS_FEATHER_CIRCLE_E": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 28,
+    "speed": 90,
+    "rotStep": "PI/24",
+    "cooldown": 1.0,
+    "delay": 0.1,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_FEATHER_CIRCLE_N": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 32,
+    "speed": 90,
+    "rotStep": "PI/24",
+    "cooldown": 1.0,
+    "delay": 0.1,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_FEATHER_CIRCLE_H": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 38,
+    "speed": 95,
+    "rotStep": "PI/24",
+    "cooldown": 1.0,
+    "delay": 0.1,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_FEATHER_CIRCLE_L": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 45,
+    "speed": 100,
+    "rotStep": "PI/24",
+    "cooldown": 1.0,
+    "delay": 0.1,
+    "difficulties": ["LUNATIC"]
+  }
+}

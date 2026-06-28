@@ -606,5 +606,135 @@
 				}
 			]
 		}
+	},
+	"mystia": {
+		"reimu": {
+			"pre": [
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smile.png",
+					"name": "Reimu Hakurei",
+					"text": "Hey, you there. I just ran into a small youkai who wouldn't stop talking about your lampreys."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "She's been following me all day! Isn't that sweet~ ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "Sure. Where are you headed with all that food?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Delivery~! ♪ All the way to the Scarlet Devil Mansion~ Hm hm~ ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "...The Scarlet Devil Mansion?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Big fancy place by the lake. Very important client!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_smug.png",
+					"name": "Reimu Hakurei",
+					"text": "I'm afraid this delivery is going to have to be cancelled."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Huh?"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "Whatever is happening at that mansion, I'm putting a stop to it. A banquet can wait."
+				}
+			]
+		},
+		"marisa": {
+			"pre": [
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "Hey! Something smells incredible out here, ze!"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "♪~ Hm? Oh my, a human~! Are you lost? ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "Nope! Just following my nose. Are those mushrooms?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Roasted~ ♪ But it's not for sale I'm afraid~ Hm hm~ ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
+					"name": "Marisa Kirisame",
+					"text": "Aw come on, just one? I've been flying forever, ze."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "♪~ Nope nope~ Every single one is accounted for~"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "How about this. Just one, and I won't slow you down."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Are you trying to bribe me~?! ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_playful.png",
+					"name": "Marisa Kirisame",
+					"text": "Absolutely!"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/mystia/mystia_happy.png",
+					"name": "Mystia",
+					"text": "Ehehe~ I like you! But still no~ ♪"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "Worth a shot. I'm going through anyway, ze!"
+				}
+			]
+		}
 	}
 }

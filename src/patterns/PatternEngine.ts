@@ -21,6 +21,11 @@ import {
 	SweepSheddingOrbBullet,
 } from '../entities/bullets/SheddingOrbBullet';
 import { CannonballBullet } from '../entities/bullets/CannonballBullet';
+import { FeatherBullet } from '../entities/bullets/FeatherBullet';
+import { SpiralArrowheadBullet } from '../entities/bullets/SpiralArrowheadBullet';
+import { MusicNoteBullet } from '../entities/bullets/MusicNoteBullet';
+import { LullabyLaserBullet } from '../entities/bullets/LullabyLaserBullet';
+import { PurpleFlowerBullet } from '../entities/bullets/PurpleFlowerBullet';
 import {
 	BubbleBigBullet,
 	BubbleMediumBullet,
@@ -33,6 +38,7 @@ import {
 	STAR_SPRITES,
 } from '../entities/bullets/BulletSprites';
 import { Difficulty } from '../game/GameState';
+import { FIELD } from '../game/Constants';
 
 export type BulletType =
 	| 'ball'
@@ -51,7 +57,10 @@ export type BulletType =
 	| 'giantsnowflake'
 	| 'bubble-big'
 	| 'bubble-medium'
-	| 'bubble-small';
+	| 'bubble-small'
+	| 'feather'
+	| 'musicnote'
+	| 'purpleflower';
 
 export interface PatternConfig {
 	type:
@@ -72,6 +81,9 @@ export interface PatternConfig {
 		| 'star-shed-orbit'
 		| 'sweep-shed-orbit'
 		| 'cannonball'
+		| 'rain'
+		| 'orbiting-spiral'
+		| 'lullaby-laser'
 		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
@@ -225,6 +237,64 @@ export interface PatternConfig {
 	laserSpeed?: number;
 	laserAngleOffset?: number;
 
+	// ------------ ORBITING-SPIRAL ------------
+	// Multi-arm spiral firing SpiralArrowheadBullet (purple arrowheads).
+	// Each shot fires `count` bullets at the current spiral angle. After firing,
+	// each bullet decelerates from `speed` to 0 over `decelDuration`, holds still
+	// for `holdDuration`, then orbits around (boss + orbitBiasX, boss + orbitBiasY)
+	// at `orbitAngularVel` rad/s for `orbitDuration` seconds before vanishing.
+	// On orbit start the sprite color flips from `color` to `finalColor`.
+	// count       = number of arms in the spiral
+	// maxShots    = shots per arm
+	// startAngle  = starting angle of arm 0 (rad)
+	// angleStep   = angle increment per shot (signed: positive=CW, negative=CCW)
+	// decelDuration, holdDuration, orbitDuration: bullet lifecycle (seconds)
+	// orbitBiasX, orbitBiasY: orbit center offset from boss position
+	// orbitAngularVel (via angularVel field): rad/s (signed)
+	// orbitRadialVel: outward radial speed in px/s; bullets spiral outward
+	// orbitGravityDecayTau: time constant for centripetal gravity decay (seconds).
+	//   The bullet's velocity is blended toward the ideal orbital velocity with
+	//   weight g(t) = exp(-t / tau). Smaller tau = faster release (slingshot).
+	// finalColor: bullet color when orbit starts
+	decelDuration?: number;
+	holdDuration?: number;
+	orbitDuration?: number;
+	orbitBiasX?: number;
+	orbitBiasY?: number;
+	orbitRadialVel?: number;
+	orbitGravityDecayTau?: number;
+	finalColor?: BulletColor;
+
+	// ------------ RAIN ------------
+	// Bullets spawn at random x within [rainXMin, rainXMax] at y = rainYSpawn.
+	// If rainAngle is set, velocity = (cos(angle), sin(angle)) * speed (allows
+	// diagonal rain). Otherwise vy = speed (down), vx = random ±rainDriftMax.
+	// Ignores enemy position.
+	// count    = bullets spawned per tick
+	// cooldown = seconds between ticks
+	rainXMin?: number;
+	rainXMax?: number;
+	rainYSpawn?: number;
+	rainDriftMax?: number;
+	rainAngle?: number;
+	// If true, bullets are evenly spaced across [rainXMin, rainXMax] instead of
+	// random x. Each bullet at ((i + 0.5) / count) of the range.
+	rainEven?: boolean;
+
+	// ------------ LULLABY-LASER ------------
+	// Spawns a LullabyLaserBullet at boss position. Lifecycle:
+	//   aimDuration: thin laser tracks player
+	//   lockDuration: laser locks at last aim, blinks
+	//   fireDuration: laser disappears, fires feathers in locked direction at
+	//                 featherRate per second, with random ±featherSpread/2 spread,
+	//                 at featherSpeed px/s
+	aimDuration?: number;
+	lockDuration?: number;
+	fireDuration?: number;
+	featherRate?: number;
+	featherSpeed?: number;
+	featherSpread?: number;
+
 	// ------------ BURST ------------
 	// count         = bullets per burst
 	// burstInterval = seconds between each bullet within the burst
@@ -238,7 +308,7 @@ export interface PatternConfig {
 }
 
 export interface MorphConfig {
-	type: 'circle' | 'fixed' | 'helix' | 'aimed';
+	type: 'circle' | 'fixed' | 'helix' | 'aimed' | 'random';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -419,6 +489,9 @@ export class PatternEngine {
 		'bubble-big': (x, y, vx, vy) => new BubbleBigBullet(x, y, vx, vy),
 		'bubble-medium': (x, y, vx, vy) => new BubbleMediumBullet(x, y, vx, vy),
 		'bubble-small': (x, y, vx, vy) => new BubbleSmallBullet(x, y, vx, vy),
+		feather: (x, y, vx, vy) => new FeatherBullet(x, y, vx, vy),
+		musicnote: (x, y, vx, vy) => new MusicNoteBullet(x, y, vx, vy),
+		purpleflower: () => new PurpleFlowerBullet(),
 	};
 
 	private spawn(
@@ -532,6 +605,10 @@ export class PatternEngine {
 			} else if (mc.type === 'aimed') {
 				const angle = Math.atan2(this.lastPy - y, this.lastPx - x);
 				out.push(spawnB(angle));
+			} else if (mc.type === 'random') {
+				for (let i = 0; i < count; i++) {
+					out.push(spawnB(Math.random() * Math.PI * 2));
+				}
 			}
 			return out;
 		};
@@ -820,6 +897,84 @@ export class PatternEngine {
 				break;
 			}
 
+			case 'orbiting-spiral': {
+				const arms = Math.max(1, pattern.count ?? 4);
+				const totalShots = Math.max(1, pattern.maxShots ?? 12);
+				const step = pattern.angleStep ?? Math.PI / 2 / totalShots;
+				const baseAngle = (pattern.startAngle ?? 0) + shotCount * step;
+				const decelDuration = pattern.decelDuration ?? 0.6;
+				const holdDuration = pattern.holdDuration ?? 1.0;
+				const orbitDuration = pattern.orbitDuration ?? 8.0;
+				const orbitAngularVel = pattern.angularVel ?? 1.0;
+				const orbitRadialVel = pattern.orbitRadialVel ?? 0;
+				const gravityDecayTau = pattern.orbitGravityDecayTau ?? 3.0;
+				const orbitCenterX = ex + (pattern.orbitBiasX ?? 0);
+				const orbitCenterY = ey + (pattern.orbitBiasY ?? 0);
+				const finalColor = pattern.finalColor ?? 'blue';
+				for (let i = 0; i < arms; i++) {
+					const angle = baseAngle + (i / arms) * Math.PI * 2;
+					out.push(
+						new SpiralArrowheadBullet(
+							ex,
+							ey,
+							angle,
+							speed,
+							decelDuration,
+							holdDuration,
+							orbitCenterX,
+							orbitCenterY,
+							orbitAngularVel,
+							orbitRadialVel,
+							orbitDuration,
+							gravityDecayTau,
+							color,
+							finalColor
+						)
+					);
+				}
+				break;
+			}
+
+			case 'lullaby-laser': {
+				out.push(
+					new LullabyLaserBullet(ex, ey, {
+						aimDuration: pattern.aimDuration ?? 2.0,
+						lockDuration: pattern.lockDuration ?? 0.5,
+						fireDuration: pattern.fireDuration ?? 1.0,
+						featherRate: pattern.featherRate ?? 18,
+						featherSpeed: pattern.featherSpeed ?? 130,
+						featherSpread: pattern.featherSpread ?? 0.35,
+					}) as IBullet
+				);
+				break;
+			}
+
+			case 'rain': {
+				const count = Math.max(1, pattern.count ?? 1);
+				const xMin = pattern.rainXMin ?? 0;
+				const xMax = pattern.rainXMax ?? FIELD.WIDTH;
+				const ySpawn = pattern.rainYSpawn ?? -10;
+				const driftMax = pattern.rainDriftMax ?? 0;
+				const hasAngle = pattern.rainAngle !== undefined;
+				const even = pattern.rainEven ?? false;
+				for (let i = 0; i < count; i++) {
+					const x = even
+						? xMin + ((i + 0.5) / count) * (xMax - xMin)
+						: xMin + Math.random() * (xMax - xMin);
+					let vx: number;
+					let vy: number;
+					if (hasAngle) {
+						vx = Math.cos(pattern.rainAngle!) * speed;
+						vy = Math.sin(pattern.rainAngle!) * speed;
+					} else {
+						vx = (Math.random() * 2 - 1) * driftMax;
+						vy = speed;
+					}
+					out.push(this.spawn(bullet, x, ySpawn, vx, vy, color));
+				}
+				break;
+			}
+
 			case 'cannonball': {
 				const angle = Math.atan2(py - ey, px - ex);
 				out.push(
@@ -856,7 +1011,16 @@ export class PatternEngine {
 							fan > 1
 								? center - spreadArc / 2 + (spreadArc / (fan - 1)) * i
 								: center;
-						this.spawnWithAccel(pattern, bullet, ex, ey, angle, speed, color, out);
+						this.spawnWithAccel(
+							pattern,
+							bullet,
+							ex,
+							ey,
+							angle,
+							speed,
+							color,
+							out
+						);
 					}
 				}
 				break;

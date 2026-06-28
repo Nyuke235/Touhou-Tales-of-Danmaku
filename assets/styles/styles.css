@@ -92,7 +92,8 @@ section {
 	transition: opacity 0.5s steps(12, end);
 
 	#splash-disclaimer,
-	#splash-credit {
+	#splash-credit,
+	#splash-music {
 		position: absolute;
 		inset: 0;
 		display: flex;
@@ -103,7 +104,8 @@ section {
 		transition: opacity 0.3s steps(12, end);
 	}
 
-	#splash-credit {
+	#splash-credit,
+	#splash-music {
 		opacity: 0;
 	}
 

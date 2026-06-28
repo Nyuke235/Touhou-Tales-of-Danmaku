@@ -1,0 +1,143 @@
+{
+  "S3_MYSTIA_BOSS_P3_FEATHER_E": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 28,
+    "speed": 95,
+    "rotStep": "PI/24",
+    "cooldown": 0.25,
+    "delay": 0.2,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_P3_FEATHER_N": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 32,
+    "speed": 95,
+    "rotStep": "PI/24",
+    "cooldown": 0.25,
+    "delay": 0.2,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_P3_FEATHER_H": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 38,
+    "speed": 95,
+    "rotStep": "PI/24",
+    "cooldown": 0.25,
+    "delay": 0.2,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_P3_FEATHER_L": {
+    "type": "circle",
+    "bullet": "feather",
+    "count": 45,
+    "speed": 95,
+    "rotStep": "PI/24",
+    "cooldown": 0.25,
+    "delay": 0.2,
+    "difficulties": ["LUNATIC"]
+  },
+
+  "S3_MYSTIA_BOSS_P3_ORB_VOLLEY_E": {
+    "type": "volley-spread",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 7,
+    "streams": 6,
+    "spread": "PI*0.5",
+    "speed": 110,
+    "deltaSpeed": 20,
+    "speedProfile": [{ "speed": 0, "duration": 1.5 }],
+    "morphDelay": 3,
+    "morphConfig": {
+      "type": "random",
+      "bullet": "orb",
+      "color": "blue",
+      "speed": 60,
+      "initSpeed": 0,
+      "accelTime": 1.5,
+      "count": 1
+    },
+    "delay": 0.2,
+    "cooldown": 0.9,
+    "maxShots": 1,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_P3_ORB_VOLLEY_N": {
+    "type": "volley-spread",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 7,
+    "streams": 6,
+    "spread": "PI*0.55",
+    "speed": 110,
+    "deltaSpeed": 20,
+    "speedProfile": [{ "speed": 0, "duration": 1.5 }],
+    "morphDelay": 3,
+    "morphConfig": {
+      "type": "random",
+      "bullet": "orb",
+      "color": "blue",
+      "speed": 60,
+      "initSpeed": 0,
+      "accelTime": 1.5,
+      "count": 1
+    },
+    "delay": 0.2,
+    "cooldown": 0.85,
+    "maxShots": 1,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_P3_ORB_VOLLEY_H": {
+    "type": "volley-spread",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 9,
+    "streams": 6,
+    "spread": "PI*0.6",
+    "speed": 110,
+    "deltaSpeed": 18,
+    "speedProfile": [{ "speed": 0, "duration": 1.5 }],
+    "morphDelay": 3,
+    "morphConfig": {
+      "type": "random",
+      "bullet": "orb",
+      "color": "blue",
+      "speed": 60,
+      "initSpeed": 0,
+      "accelTime": 1.5,
+      "count": 1
+    },
+    "delay": 0.2,
+    "cooldown": 0.8,
+    "maxShots": 1,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_P3_ORB_VOLLEY_L": {
+    "type": "volley-spread",
+    "bullet": "orb",
+    "color": "blue",
+    "count": 9,
+    "streams": 7,
+    "spread": "PI*0.65",
+    "speed": 110,
+    "deltaSpeed": 18,
+    "speedProfile": [{ "speed": 0, "duration": 1.5 }],
+    "morphDelay": 3,
+    "morphConfig": {
+      "type": "random",
+      "bullet": "orb",
+      "color": "blue",
+      "speed": 60,
+      "initSpeed": 0,
+      "accelTime": 1.5,
+      "count": 1
+    },
+    "delay": 0.2,
+    "cooldown": 0.75,
+    "maxShots": 1,
+    "difficulties": ["LUNATIC"]
+  }
+}

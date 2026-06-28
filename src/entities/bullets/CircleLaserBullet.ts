@@ -3,7 +3,7 @@ import { BulletColor } from './BulletSprites';
 import { FIELD } from '../../game/Constants';
 import { SoundManager, SFX } from '../../systems/SoundManager';
 
-function computeEndPoint(
+export function computeEndPoint(
 	ox: number,
 	oy: number,
 	angle: number

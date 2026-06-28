@@ -7,6 +7,7 @@ export interface IBullet {
 	hitRadius: number;
 	damage: number;
 	isShadow?: boolean;
+	isTopLayer?: boolean;
 	grazed?: boolean;
 	freezeRadius?: number;
 	pendingSpawns?: IBullet[];

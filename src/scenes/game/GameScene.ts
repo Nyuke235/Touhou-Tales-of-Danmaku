@@ -11,6 +11,7 @@ import { SFX, SoundManager } from '../../systems/SoundManager';
 
 import { GameLoop } from '../../game/GameLoop';
 import { Character, GameState } from '../../game/GameState';
+import { PlayerPosition } from '../../game/PlayerPosition';
 import {
 	FantasySealBomb,
 	FANTASY_SEAL_DURATION,
@@ -521,6 +522,8 @@ export class GameScene {
 			}
 		}
 
+		PlayerPosition.x = this.player.x;
+		PlayerPosition.y = this.player.y;
 		this.bulletManager.update(dt);
 		this.enemyManager.update(
 			dt,
@@ -580,6 +583,9 @@ export class GameScene {
 				this.enemyManager
 			);
 			if (this.sparkBomb.isDone()) this.sparkBomb = null;
+		}
+		if (this.bombEffect || this.sealBomb || this.sparkBomb) {
+			this.bulletManager.clearEnemyProjectiles();
 		}
 	}
 

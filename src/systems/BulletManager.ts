@@ -35,6 +35,7 @@ export class BulletManager {
 	enemyBullets: IBullet[] = [];
 
 	private shadowBuf: IBullet[] = [];
+	private topLayerBuf: IBullet[] = [];
 
 	private clearParticles: ClearParticle[] = [];
 
@@ -87,11 +88,14 @@ export class BulletManager {
 		for (const p of this.playerBullets) p.render(ctx);
 
 		this.shadowBuf.length = 0;
+		this.topLayerBuf.length = 0;
 		for (const p of this.enemyBullets) {
 			if (p.isShadow) this.shadowBuf.push(p);
+			else if (p.isTopLayer) this.topLayerBuf.push(p);
 			else p.render(ctx);
 		}
 		for (const p of this.shadowBuf) p.render(ctx);
+		for (const p of this.topLayerBuf) p.render(ctx);
 
 		for (const cp of this.clearParticles) {
 			const r = cp.size * (1 + (1 - cp.life) * 1.5);

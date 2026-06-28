@@ -15,6 +15,8 @@ export const SFX = {
 	MANDRAGORA_SCREAM: 'assets/audio/sfx/enemies/mandragora.wav',
 	CANNON_FIRE: 'assets/audio/sfx/enemies/cannon.wav',
 	CANNONBALL_EXPLODE: 'assets/audio/sfx/enemies/cannonball.wav',
+	MYSTIA_THROW: 'assets/audio/sfx/enemies/mystiathrow.wav',
+	MYSTIA_SWEEP: 'assets/audio/sfx/enemies/mystiasweep.wav',
 	ENEMY_HIT: 'assets/audio/sfx/enemies/hit.wav',
 	ENEMY_DEATH: 'assets/audio/sfx/enemies/destruction.wav',
 	ENEMY_SHOT: 'assets/audio/sfx/enemies/enemyshot.wav',

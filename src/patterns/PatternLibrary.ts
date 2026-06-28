@@ -15,6 +15,8 @@ const ANGLE_FIELDS = new Set([
 	'helixBaseAngle',
 	'helixAngleStep',
 	'laserAngleOffset',
+	'featherSpread',
+	'rainAngle',
 ]);
 
 function parseAngle(v: string | number): number {

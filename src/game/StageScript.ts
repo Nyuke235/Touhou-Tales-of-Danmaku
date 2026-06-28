@@ -16,6 +16,7 @@ import { FairyCannon } from '../entities/enemies/FairyCannon';
 import { Mystia } from '../entities/enemies/Mystia';
 import type { MystiaPath } from '../entities/enemies/Mystia';
 import { Cirno } from '../entities/enemies/bosses/Cirno';
+import { MystiaBoss } from '../entities/enemies/bosses/Mystia';
 import { IceButterfly } from '../entities/enemies/IceButterfly';
 import type { IceButterflyPath } from '../entities/enemies/IceButterfly';
 import type { FairyColor, FairyPath } from '../entities/enemies/Fairy';
@@ -112,6 +113,7 @@ export type SpawnEventData =
 			patterns?: PatternConfig[];
 	  }
 	| { time: number; type: 'cirno'; x: number; y: number }
+	| { time: number; type: 'mystiaboss'; x: number; y: number }
 	| {
 			time: number;
 			type: 'icebutterfly';
@@ -158,6 +160,8 @@ export function buildScript(data: SpawnEventData[]): SpawnEvent[] {
 					return new Mystia(d.x, d.y, d.path, d.patterns);
 				case 'cirno':
 					return new Cirno(d.x, d.y);
+				case 'mystiaboss':
+					return new MystiaBoss(d.x, d.y);
 				case 'icebutterfly':
 					return new IceButterfly(d.x, d.y, d.path, d.patterns);
 			}

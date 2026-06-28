@@ -1,0 +1,127 @@
+{
+  "S3_MYSTIA_BOSS_P4_NOTE_E": {
+    "type": "rain",
+    "bullet": "musicnote",
+    "count": 5,
+    "speed": 65,
+    "rainAngle": "PI*5/12",
+    "rainEven": true,
+    "cooldown": 1.0,
+    "delay": 0.5,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_P4_NOTE_N": {
+    "type": "rain",
+    "bullet": "musicnote",
+    "count": 6,
+    "speed": 70,
+    "rainAngle": "PI*5/12",
+    "rainEven": true,
+    "cooldown": 0.95,
+    "delay": 0.5,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_P4_NOTE_H": {
+    "type": "rain",
+    "bullet": "musicnote",
+    "count": 6,
+    "speed": 75,
+    "rainAngle": "PI*5/12",
+    "rainEven": true,
+    "cooldown": 0.95,
+    "delay": 0.5,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_P4_NOTE_L": {
+    "type": "rain",
+    "bullet": "musicnote",
+    "count": 7,
+    "speed": 80,
+    "rainAngle": "PI*5/12",
+    "rainEven": true,
+    "cooldown": 0.85,
+    "delay": 0.5,
+    "difficulties": ["LUNATIC"]
+  },
+
+  "S3_MYSTIA_BOSS_P4_LASER_E": {
+    "type": "lullaby-laser",
+    "aimDuration": 1.5,
+    "lockDuration": 0.3,
+    "fireDuration": 1.0,
+    "featherRate": 12,
+    "featherSpeed": 130,
+    "featherSpread": "PI/8",
+    "cooldown": 4.0,
+    "delay": 1.5,
+    "difficulties": ["EASY"]
+  },
+  "S3_MYSTIA_BOSS_P4_LASER_N": {
+    "type": "lullaby-laser",
+    "aimDuration": 1.4,
+    "lockDuration": 0.3,
+    "fireDuration": 1.0,
+    "featherRate": 16,
+    "featherSpeed": 135,
+    "featherSpread": "PI/7",
+    "cooldown": 4.0,
+    "delay": 1.5,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MYSTIA_BOSS_P4_LASER_H": {
+    "type": "lullaby-laser",
+    "aimDuration": 1.2,
+    "lockDuration": 0.3,
+    "fireDuration": 1.0,
+    "featherRate": 20,
+    "featherSpeed": 140,
+    "featherSpread": "PI/6",
+    "cooldown": 4.0,
+    "delay": 1.5,
+    "difficulties": ["HARD"]
+  },
+  "S3_MYSTIA_BOSS_P4_LASER_L": {
+    "type": "lullaby-laser",
+    "aimDuration": 1.2,
+    "lockDuration": 0.3,
+    "fireDuration": 1.0,
+    "featherRate": 24,
+    "featherSpeed": 145,
+    "featherSpread": "PI/5",
+    "cooldown": 4.0,
+    "delay": 1.5,
+    "difficulties": ["LUNATIC"]
+  },
+  "S3_MYSTIA_BOSS_P4_PURPLEFLOWER": {
+    "type": "fixed",
+    "bullet": "purpleflower",
+    "count": 1,
+    "speed": 0,
+    "maxShots": 1,
+    "delay": 0.8,
+    "difficulties": ["HARD", "LUNATIC"]
+  },
+
+  "S3_MYSTIA_BOSS_P4_ORB_SIDE_LEFT": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "count": 1,
+    "speed": 55,
+    "rainXMin": 4,
+    "rainXMax": 22,
+    "cooldown": 0.45,
+    "delay": 0.2
+  },
+  "S3_MYSTIA_BOSS_P4_ORB_SIDE_RIGHT": {
+    "type": "rain",
+    "bullet": "orb",
+    "color": "purple",
+    "count": 1,
+    "speed": 55,
+    "rainXMin": 234,
+    "rainXMax": 252,
+    "cooldown": 0.45,
+    "delay": 0.2
+  }
+}

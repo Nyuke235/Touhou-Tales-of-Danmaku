@@ -93,6 +93,8 @@ const RAW_STAGE_3: SpawnEventData[] = [
 	{ time: 78.5, type: 'bubblefairy', x: 128, y: -16, path: 'zigzag-down' },
 	{ time: 80.0, type: 'bubblefairy', x:  80, y: -16, path: 'descend-slow' },
 	{ time: 80.0, type: 'bubblefairy', x: 176, y: -16, path: 'descend-slow' },
+
+	{ time: 86.0, type: 'mystiaboss', x: 128, y: -16 },
 ];
 
 export const STAGE_3 = buildScript(RAW_STAGE_3);
