@@ -181,8 +181,36 @@
     "speed": 110,
     "sweepAngle": "PI*9",
     "delay": 3.9,
-    "cooldown": 0.04,
-    "maxShots": 90,
+    "cooldown": 0.03,
+    "maxShots": 120,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "DAIYOUSEI_JELLYBEAN_HELIX_H_REV": {
+    "type": "helix",
+    "bullet": "jellybean",
+    "color": "green",
+    "count": 3,
+    "speed": 110,
+    "sweepAngle": "-PI*9",
+    "delay": 3.9,
+    "cooldown": 0.06,
+    "maxShots": 70,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "DAIYOUSEI_JELLYBEAN_HELIX_L_REV": {
+    "type": "helix",
+    "bullet": "jellybean",
+    "color": "green",
+    "count": 3,
+    "speed": 110,
+    "sweepAngle": "-PI*9",
+    "delay": 3.9,
+    "cooldown": 0.03,
+    "maxShots": 120,
     "difficulties": [
       "LUNATIC"
     ]

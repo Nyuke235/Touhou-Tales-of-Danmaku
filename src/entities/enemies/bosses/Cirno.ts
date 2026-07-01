@@ -48,7 +48,8 @@ const PHASES: BossPhase[] = [
 			Patterns.CIRNO_AIMED_ICECUBES_L,
 			Patterns.CIRNO_CIRCLE_CRISTALS_L,
 			Patterns.CIRNO_SIMPLE_CIRCLE_EN,
-			Patterns.CIRNO_SIMPLE_CIRCLE_HL,
+			Patterns.CIRNO_SIMPLE_CIRCLE_H,
+			Patterns.CIRNO_SIMPLE_CIRCLE_L,
 		],
 	},
 	{
@@ -121,6 +122,10 @@ const PHASES: BossPhase[] = [
 			Patterns.CIRNO_ORB_EXPLOSION_CYAN_H,
 			Patterns.CIRNO_ORB_EXPLOSION_BLUE_L,
 			Patterns.CIRNO_ORB_EXPLOSION_CYAN_L,
+			Patterns.CIRNO_P5_RICE_RAIN_E,
+			Patterns.CIRNO_P5_SNOWFLAKE_RAIN_N,
+			Patterns.CIRNO_P5_SNOWFLAKE_RAIN_H,
+			Patterns.CIRNO_P5_SNOWFLAKE_RAIN_L,
 		],
 	},
 	{

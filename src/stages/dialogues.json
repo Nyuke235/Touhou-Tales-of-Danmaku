@@ -819,6 +819,26 @@
 					"name": "Hong Meiling",
 					"text": "Nor me. Come, shrine maiden. I'll make sure it's a good fight at least."
 				}
+			],
+			"post": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/meiling_sleep.png",
+					"name": "Hong Meiling",
+					"text": "A good fight deserves a good nap."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "That's a pretty convenient philosophy."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/meiling_sleep.png",
+					"name": "Hong Meiling",
+					"text": "It's worked for me so far."
+				}
 			]
 		},
 		"marisa": {
@@ -895,6 +915,32 @@
 					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
 					"name": "Marisa Kirisame",
 					"text": "First time for everything!"
+				}
+			],
+			"post": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/meiling_worried.png",
+					"name": "Hong Meiling",
+					"text": "Well, I'll head back to sleep. The gate's yours."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "A mansion this big must have one heck of a library, ze~"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/rumia/meiling_angry.png",
+					"name": "Hong Meiling",
+					"text": "Don't even think about it."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "If a few books happen to find their way into my bag while I'm solving the incident, I wouldn't say no, ze~"
 				}
 			]
 		}

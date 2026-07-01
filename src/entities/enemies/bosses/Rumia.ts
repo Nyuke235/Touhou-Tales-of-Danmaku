@@ -3,7 +3,7 @@ import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { Music } from '../../../systems/MusicManager';
 import { Patterns } from '../../../patterns/PatternLibrary';
 import { IBullet } from '../../Bullet';
-import { LanternBullet } from '../../bullets/LanternBullet';
+import { LanternBullet, LanternVolleyConfig } from '../../bullets/LanternBullet';
 import { BallBullet } from '../../bullets/BallBullet';
 import { GameState, Difficulty } from '../../../game/GameState';
 import { FIELD } from '../../../game/Constants';
@@ -254,13 +254,36 @@ export class Rumia extends Boss {
 
 	private spawnLanterns(enemyBullets: IBullet[]): void {
 		const cfg = this.getLanternConfig();
+		const volley = this.getLanternVolleyConfig();
 		const count = 1;
 		for (let i = 0; i < count; i++) {
 			const x = 20 + Math.random() * (FIELD.WIDTH - 40);
-			const lantern = new LanternBullet(x, -24, cfg.count, cfg.speed);
+			const lantern = new LanternBullet(
+				x,
+				-24,
+				cfg.count,
+				cfg.speed,
+				volley
+			);
 			enemyBullets.push(lantern);
 			this.activeLanterns.push(lantern);
 		}
+	}
+
+	private getLanternVolleyConfig(): LanternVolleyConfig | null {
+		const src =
+			GameState.difficulty === Difficulty.LUNATIC
+				? Patterns.RUMIA_P4_LANTERN_VOLLEY_L
+				: GameState.difficulty === Difficulty.HARD
+					? Patterns.RUMIA_P4_LANTERN_VOLLEY_H
+					: null;
+		if (!src) return null;
+		return {
+			streams: src.streams ?? 0,
+			count: src.count ?? 8,
+			speed: src.speed ?? 30,
+			deltaSpeed: src.deltaSpeed ?? 8,
+		};
 	}
 
 	private spawnRisingBalls(enemyBullets: IBullet[]): void {

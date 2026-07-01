@@ -17,13 +17,13 @@
   "DAIYOUSEI_SUNFLOWER_BOUNCE_H": {
     "type": "circle",
     "bullet": "sunflower_bounce",
-    "count": 13,
+    "count": 10,
     "speed": 55,
     "startAngle": "PI/2",
     "rotStep": "PI/6",
     "delay": 0.5,
-    "cooldown": 7,
-    "maxShots": 1,
+    "cooldown": 3,
+    "maxShots": 2,
     "difficulties": [
       "HARD"
     ]
@@ -31,7 +31,7 @@
   "DAIYOUSEI_SUNFLOWER_BOUNCE_L": {
     "type": "circle",
     "bullet": "sunflower_bounce",
-    "count": 10,
+    "count": 16,
     "speed": 55,
     "startAngle": "PI/2",
     "rotStep": "PI/6",
@@ -85,7 +85,7 @@
     "bullet": "orb",
     "color": "yellow",
     "count": 12,
-    "speed": 12,
+    "speed": 18,
     "startAngle": 0,
     "rotStep": "PI/8",
     "delay": 2.8,
@@ -103,7 +103,32 @@
       "accelTime": 1.5
     },
     "difficulties": [
-      "HARD",
+      "HARD"
+    ]
+  },
+  "DAIYOUSEI_CIRCLE_AIMED_3": {
+    "type": "circle",
+    "bullet": "orb",
+    "color": "yellow",
+    "count": 12,
+    "speed": 24,
+    "startAngle": 0,
+    "rotStep": "PI/8",
+    "delay": 2.8,
+    "cooldown": 3.5,
+    "initSpeed": 40,
+    "accelTime": 1.6,
+    "morphDelay": 2.2,
+    "morphDeactivate": true,
+    "morphConfig": {
+      "type": "aimed",
+      "bullet": "orb",
+      "color": "yellow",
+      "speed": 150,
+      "initSpeed": 12,
+      "accelTime": 1.5
+    },
+    "difficulties": [
       "LUNATIC"
     ]
   }

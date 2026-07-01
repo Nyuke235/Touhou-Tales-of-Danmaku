@@ -16,6 +16,7 @@ export class SunflowerBullet extends StaticBullet {
 			SIZE,
 			'assets/sprites/bullets/hostile/sunflower.png'
 		);
+		this.hitRadius -= 4;
 		this.spinAngle = Math.random() * Math.PI * 2;
 	}
 

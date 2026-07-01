@@ -16,9 +16,9 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "cyan",
-      "speed": 80,
+      "speed": 110,
       "initSpeed": 0,
-      "accelTime": 3,
+      "accelTime": 2,
       "startAngle": "PI/2"
     },
     "difficulties": [
@@ -42,9 +42,9 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "gray",
-      "speed": 80,
+      "speed": 110,
       "initSpeed": 0,
-      "accelTime": 3,
+      "accelTime": 2,
       "startAngle": "PI/2"
     },
     "difficulties": [
@@ -68,9 +68,9 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "cyan",
-      "speed": 80,
+      "speed": 110,
       "initSpeed": 0,
-      "accelTime": 2.4,
+      "accelTime": 2,
       "startAngle": -23.4292036732051
     },
     "difficulties": [
@@ -94,9 +94,9 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "gray",
-      "speed": 80,
+      "speed": 110,
       "initSpeed": 0,
-      "accelTime": 2.4,
+      "accelTime": 2,
       "startAngle": 26.5707963267949
     },
     "difficulties": [
@@ -120,7 +120,7 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "cyan",
-      "speed": 100,
+      "speed": 115,
       "initSpeed": 0,
       "accelTime": 2,
       "startAngle": -23.4292036732051
@@ -146,7 +146,7 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "gray",
-      "speed": 100,
+      "speed": 115,
       "initSpeed": 0,
       "accelTime": 2,
       "startAngle": 26.5707963267949
@@ -172,7 +172,7 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "cyan",
-      "speed": 100,
+      "speed": 120,
       "initSpeed": 0,
       "accelTime": 1.9,
       "startAngle": -23.4292036732051
@@ -198,7 +198,7 @@
       "type": "fixed",
       "bullet": "ball",
       "color": "gray",
-      "speed": 100,
+      "speed": 120,
       "initSpeed": 0,
       "accelTime": 1.9,
       "startAngle": 26.5707963267949

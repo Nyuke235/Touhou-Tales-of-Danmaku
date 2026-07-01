@@ -31,6 +31,27 @@
     "speed": 40,
     "difficulties": ["LUNATIC"]
   },
+  "RUMIA_P4_LANTERN_VOLLEY_H": {
+    "type": "volley-circle",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 9,
+    "streams": 3,
+    "speed": 30,
+    "deltaSpeed": 4,
+    "difficulties": ["HARD"]
+  },
+  "RUMIA_P4_LANTERN_VOLLEY_L": {
+    "type": "volley-circle",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 15,
+    "streams": 6,
+    "speed": 30,
+    "deltaSpeed": 4,
+    "difficulties": ["LUNATIC"]
+  },
+
   "RUMIA_P4_RISING_E": {
     "type": "circle",
     "bullet": "ball",

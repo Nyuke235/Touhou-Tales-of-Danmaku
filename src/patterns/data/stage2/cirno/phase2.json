@@ -226,7 +226,7 @@
       "NORMAL"
     ]
   },
-  "CIRNO_SIMPLE_CIRCLE_HL": {
+  "CIRNO_SIMPLE_CIRCLE_H": {
     "type": "circle",
     "color": "gray",
     "count": 18,
@@ -237,7 +237,20 @@
     "cooldown": 0.6,
     "maxShots": 15,
     "difficulties": [
-      "HARD",
+      "HARD"
+    ]
+  },
+  "CIRNO_SIMPLE_CIRCLE_L": {
+    "type": "circle",
+    "color": "gray",
+    "count": 28,
+    "speed": 50,
+    "startAngle": 0,
+    "rotStep": "PI/4",
+    "delay": 0.4,
+    "cooldown": 0.6,
+    "maxShots": 15,
+    "difficulties": [
       "LUNATIC"
     ]
   }

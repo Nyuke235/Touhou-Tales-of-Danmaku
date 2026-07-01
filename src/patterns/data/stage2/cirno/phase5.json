@@ -266,5 +266,58 @@
     "difficulties": [
       "LUNATIC"
     ]
+  },
+  "CIRNO_P5_RICE_RAIN_E": {
+    "type": "rain",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 1,
+    "speed": 60,
+    "rainYSpawn": -6,
+    "rainDriftMax": 0,
+    "delay": 0.2,
+    "cooldown": 0.2,
+    "difficulties": [
+      "EASY"
+    ]
+  },
+  "CIRNO_P5_SNOWFLAKE_RAIN_N": {
+    "type": "rain",
+    "bullet": "giantsnowflake",
+    "count": 1,
+    "speed": 60,
+    "rainYSpawn": -20,
+    "rainDriftMax": 15,
+    "delay": 1.5,
+    "cooldown": 1.5,
+    "difficulties": [
+      "NORMAL"
+    ]
+  },
+  "CIRNO_P5_SNOWFLAKE_RAIN_H": {
+    "type": "rain",
+    "bullet": "giantsnowflake",
+    "count": 1,
+    "speed": 60,
+    "rainYSpawn": -20,
+    "rainDriftMax": 15,
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "CIRNO_P5_SNOWFLAKE_RAIN_L": {
+    "type": "rain",
+    "bullet": "giantsnowflake",
+    "count": 1,
+    "speed": 60,
+    "rainYSpawn": -20,
+    "rainDriftMax": 15,
+    "delay": 0.9,
+    "cooldown": 0.9,
+    "difficulties": [
+      "LUNATIC"
+    ]
   }
 }

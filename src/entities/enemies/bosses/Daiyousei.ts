@@ -28,6 +28,8 @@ const PHASES: BossPhase[] = [
 			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_N,
 			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_H,
 			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_L,
+			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_H_REV,
+			Patterns.DAIYOUSEI_JELLYBEAN_HELIX_L_REV,
 		],
 	},
 	{
@@ -48,6 +50,7 @@ const PHASES: BossPhase[] = [
 			Patterns.DAIYOUSEI_CIRCLE_ARROWHEAD,
 			Patterns.DAIYOUSEI_CIRCLE_AIMED_1,
 			Patterns.DAIYOUSEI_CIRCLE_AIMED_2,
+			Patterns.DAIYOUSEI_CIRCLE_AIMED_3,
 		],
 	},
 ];
