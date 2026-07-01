@@ -22,6 +22,9 @@ import {
 } from '../entities/bullets/SheddingOrbBullet';
 import { CannonballBullet } from '../entities/bullets/CannonballBullet';
 import { FeatherBullet } from '../entities/bullets/FeatherBullet';
+import { ChiBullet, CHI_VARIANT_COUNT } from '../entities/bullets/ChiBullet';
+import { FountainRiceBullet } from '../entities/bullets/FountainRiceBullet';
+import { SoundManager, SFX } from '../systems/SoundManager';
 import { SpiralArrowheadBullet } from '../entities/bullets/SpiralArrowheadBullet';
 import { MusicNoteBullet } from '../entities/bullets/MusicNoteBullet';
 import { LullabyLaserBullet } from '../entities/bullets/LullabyLaserBullet';
@@ -84,6 +87,8 @@ export interface PatternConfig {
 		| 'rain'
 		| 'orbiting-spiral'
 		| 'lullaby-laser'
+		| 'qi-wall'
+		| 'rice-thread-spray'
 		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
@@ -163,6 +168,12 @@ export interface PatternConfig {
 	// own target over its duration. After all segments, velocity stays at the last
 	// target.
 	speedProfile?: { speed: number; duration: number }[];
+
+	// ------------ NO-BOUNDS GRACE ------------
+	// Seconds after spawn during which the bullet ignores screen bounds (it
+	// stays alive even when off-screen). Useful for patterns where bullets fly
+	// out then return (e.g. velocity reversal via speedProfile).
+	noBoundsTime?: number;
 
 	// ------------ MORPH ------------
 	// morphDelay      = seconds before the bullet transforms
@@ -302,9 +313,49 @@ export interface PatternConfig {
 	// spread        = random angular spread around player aim (radians)
 	burstInterval?: number;
 
+	// ------------ RICE-THREAD-SPRAY ------------
+	// Each shot spawns one fountain rice. Shots interleave across threads so all
+	// threads grow in parallel: shot N -> thread (N % threadCount), rice position
+	// floor(N / threadCount) in that thread. The rice color cycles every
+	// ricePerColor consecutive rice in a thread, walking through threadColors.
+	// To complete the pattern: set maxShots = threadCount * ricePerColor * threadColors.length.
+	// startAngle    = first thread direction (rad). Default -PI (left).
+	// spreadAngle   = total fan width (rad). Default PI (upper hemisphere).
+	// threadCount   = number of threads radiating in the fan
+	// ricePerColor  = rice per color band within a thread
+	// threadColors  = ordered colors used along a thread (red→purple→blue→...)
+	// decelTime     = seconds before gravity takes over (linear decay to 0)
+	// gravity       = downward acceleration after decel (px/s^2)
+	// vyMax         = terminal fall speed cap (px/s)
+	threadCount?: number;
+	ricePerColor?: number;
+	threadColors?: BulletColor[];
+	spreadAngle?: number;
+	decelTime?: number;
+	decelFloor?: number;
+	vyMax?: number;
+
+	// ------------ QI-WALL ------------
+	// One fire() spawns a single wall: a perpendicular line of bullets that crosses
+	// the field along a random angle. Walls have a few gaps so the player can slip
+	// through. Speed varies per wall. The chi sprite cycles per bullet so adjacent
+	// bullets show different symbols.
+	// speed         = base wall travel speed
+	// speedVariance = half-range of per-wall speed variation
+	// wallSpacing   = distance (px) between bullet centers along the wall
+	// wallGapCount  = number of gaps per wall
+	// wallGapSize   = width (px) of each gap
+	// noBoundsTime  = seconds a wall bullet ignores screen bounds (must cover crossing)
+	wallSpacing?: number;
+	wallGapCount?: number;
+	wallGapSize?: number;
+
 	// Optional difficulty filter. If omitted, the pattern fires on all difficulties.
 	// If specified, the pattern only fires when the current difficulty is in the list.
 	difficulties?: Difficulty[];
+
+	// Optional per-difficulty override of count.
+	countByDifficulty?: Partial<Record<Difficulty, number>>;
 }
 
 export interface MorphConfig {
@@ -431,6 +482,11 @@ export class PatternEngine {
 		}
 	}
 
+	private resolveCount(pattern: PatternConfig): number | undefined {
+		const override = pattern.countByDifficulty?.[this.difficulty];
+		return override ?? pattern.count;
+	}
+
 	private spawnRing(
 		pattern: PatternConfig,
 		out: IBullet[],
@@ -540,6 +596,9 @@ export class PatternEngine {
 			pattern.accelTime !== undefined
 		) {
 			b.setupAccel(angle, pattern.initSpeed, speed, pattern.accelTime);
+		}
+		if (pattern.noBoundsTime !== undefined && pattern.noBoundsTime > 0) {
+			b.setupNoBounds(pattern.noBoundsTime);
 		}
 		if (pattern.morphDelay !== undefined && pattern.morphConfig !== undefined) {
 			const mc = pattern.morphConfig;
@@ -999,7 +1058,7 @@ export class PatternEngine {
 			}
 
 			case 'circle-fan': {
-				const lines = Math.max(1, pattern.count ?? 8);
+				const lines = Math.max(1, this.resolveCount(pattern) ?? 8);
 				const fan = Math.max(1, pattern.streams ?? 3);
 				const spreadArc = pattern.spread ?? 0.2;
 				const baseAngle =
@@ -1081,6 +1140,119 @@ export class PatternEngine {
 						starAccelDuration
 					)
 				);
+				break;
+			}
+
+			case 'rice-thread-spray': {
+				const threadCount = Math.max(1, pattern.threadCount ?? 10);
+				const ricePerColor = Math.max(1, pattern.ricePerColor ?? 3);
+				const colorList: BulletColor[] = pattern.threadColors ?? [
+					'red',
+					'purple',
+					'blue',
+					'cyan',
+					'green',
+					'yellow',
+					'orange',
+				];
+				const ricePerThread = ricePerColor * colorList.length;
+				const totalShots = threadCount * ricePerThread;
+				if (shotCount >= totalShots) break;
+
+				const indexInThread = Math.floor(shotCount / threadCount);
+				const threadIndex = shotCount % threadCount;
+				const colorIndex = Math.floor(indexInThread / ricePerColor);
+				const riceColor = colorList[colorIndex];
+
+				const baseAngle = pattern.startAngle ?? -Math.PI;
+				const spread = pattern.spreadAngle ?? Math.PI;
+				const angleStep = threadCount > 1 ? spread / (threadCount - 1) : 0;
+				const angle = baseAngle + threadIndex * angleStep;
+
+				const vx = Math.cos(angle) * speed;
+				const vy = Math.sin(angle) * speed;
+				const decelTime = pattern.decelTime ?? 1.0;
+				const decelFloor = pattern.decelFloor ?? 0;
+				const gravityAccel = pattern.gravity ?? 400;
+				const vyMax = pattern.vyMax ?? 120;
+
+				const fb = new FountainRiceBullet(
+					ex,
+					ey,
+					vx,
+					vy,
+					riceColor,
+					decelTime,
+					decelFloor,
+					gravityAccel,
+					vyMax
+				);
+				if (pattern.noBoundsTime !== undefined && pattern.noBoundsTime > 0) {
+					fb.setupNoBounds(pattern.noBoundsTime);
+				}
+				out.push(fb);
+				break;
+			}
+
+			case 'qi-wall': {
+				const angle = Math.random() * Math.PI * 2;
+				const variance = pattern.speedVariance ?? 0;
+				const wallSpeed = speed + (Math.random() * 2 - 1) * variance;
+				const spacing = pattern.wallSpacing ?? 18;
+				const gapCount = Math.max(0, pattern.wallGapCount ?? 2);
+				const gapSize = pattern.wallGapSize ?? 70;
+
+				const dx = Math.cos(angle);
+				const dy = Math.sin(angle);
+				const perpX = -dy;
+				const perpY = dx;
+
+				const cx = FIELD.WIDTH / 2;
+				const cy = FIELD.HEIGHT / 2;
+				const fieldRadius = Math.sqrt(cx * cx + cy * cy);
+				const margin = 24;
+
+				const entryX = cx - dx * (fieldRadius + margin);
+				const entryY = cy - dy * (fieldRadius + margin);
+
+				const halfLen = fieldRadius + margin;
+				const numBullets = Math.max(2, Math.floor((halfLen * 2) / spacing));
+				const gapHalf = Math.max(1, Math.ceil(gapSize / spacing / 2));
+				const gapCenters: number[] = [];
+				// Divide the wall into equal segments, pick one gap center per segment
+				// constrained to the inner portion. This guarantees adjacent gaps are
+				// separated by at least `2 * gapHalf` solid bullets — they never touch.
+				const usable = numBullets - 2 * gapHalf;
+				const segLen = usable / Math.max(1, gapCount);
+				for (let g = 0; g < gapCount; g++) {
+					const segStart = gapHalf + g * segLen;
+					const segEnd = gapHalf + (g + 1) * segLen;
+					const innerStart = segStart + gapHalf;
+					const innerEnd = segEnd - gapHalf;
+					const center =
+						innerEnd > innerStart
+							? innerStart + Math.random() * (innerEnd - innerStart)
+							: (segStart + segEnd) / 2;
+					gapCenters.push(Math.floor(center));
+				}
+				const inGap = (i: number) =>
+					gapCenters.some(c => Math.abs(i - c) <= gapHalf);
+
+				const vx = dx * wallSpeed;
+				const vy = dy * wallSpeed;
+				const variant = Math.floor(Math.random() * CHI_VARIANT_COUNT);
+				SoundManager.play(SFX.QI_WALL);
+				for (let i = 0; i < numBullets; i++) {
+					if (inGap(i)) continue;
+					const offset = (i - (numBullets - 1) / 2) * spacing;
+					const bx = entryX + perpX * offset;
+					const by = entryY + perpY * offset;
+					const b = new ChiBullet(bx, by, vx, vy, variant);
+					if (pattern.noBoundsTime !== undefined && pattern.noBoundsTime > 0) {
+						b.setupNoBounds(pattern.noBoundsTime);
+					}
+					out.push(b);
+				}
 				break;
 			}
 

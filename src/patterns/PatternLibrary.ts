@@ -17,6 +17,7 @@ const ANGLE_FIELDS = new Set([
 	'laserAngleOffset',
 	'featherSpread',
 	'rainAngle',
+	'spreadAngle',
 ]);
 
 function parseAngle(v: string | number): number {

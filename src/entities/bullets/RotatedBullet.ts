@@ -20,6 +20,15 @@ export abstract class RotatedBullet extends BaseBullet {
 		this.angle = Math.atan2(vy, vx) + Math.PI / 2;
 	}
 
+	override setupSpeedProfile(
+		angle: number,
+		initialSpeed: number,
+		segments: { targetSpeed: number; duration: number }[]
+	): void {
+		super.setupSpeedProfile(angle, initialSpeed, segments);
+		this.angle = angle + Math.PI / 2;
+	}
+
 	render(ctx: CanvasRenderingContext2D): void {
 		ctx.save();
 		ctx.translate(this.x, this.y);

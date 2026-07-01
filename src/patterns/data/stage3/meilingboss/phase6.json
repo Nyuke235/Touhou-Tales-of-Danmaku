@@ -1,0 +1,19 @@
+{
+  "S3_MEILING_BOSS_P6_FOUNTAIN": {
+    "type": "rice-thread-spray",
+    "threadCount": 12,
+    "ricePerColor": 3,
+    "threadColors": ["red", "purple", "blue", "cyan", "green", "yellow", "orange"],
+    "maxShots": 252,
+    "cooldown": 0.005,
+    "delay": 0.4,
+    "startAngle": "-3*PI/4",
+    "spreadAngle": "PI/2",
+    "speed": 320,
+    "decelTime": 0.9,
+    "decelFloor": 0.25,
+    "gravity": 280,
+    "vyMax": 120,
+    "noBoundsTime": 9.0
+  }
+}

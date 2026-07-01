@@ -38,6 +38,9 @@ export abstract class BaseBullet implements IBullet {
 	private segmentElapsed: number = 0;
 	private segmentStartSpeed: number = 0;
 
+	private noBoundsTime: number = 0;
+	private noBoundsElapsed: number = 0;
+
 	pendingSpawns?: IBullet[];
 	private morphFn?: (x: number, y: number, shotIndex: number) => IBullet[];
 	private morphDelay?: number;
@@ -87,6 +90,11 @@ export abstract class BaseBullet implements IBullet {
 		this.segmentStartSpeed = initialSpeed;
 		this.vx = Math.cos(angle) * initialSpeed;
 		this.vy = Math.sin(angle) * initialSpeed;
+	}
+
+	setupNoBounds(time: number): void {
+		this.noBoundsTime = time;
+		this.noBoundsElapsed = 0;
 	}
 
 	setupMorph(
@@ -174,7 +182,11 @@ export abstract class BaseBullet implements IBullet {
 
 		this.x += this.vx * dt;
 		this.y += this.vy * dt;
-		this.checkBounds();
+		if (this.noBoundsTime > 0 && this.noBoundsElapsed < this.noBoundsTime) {
+			this.noBoundsElapsed += dt;
+		} else {
+			this.checkBounds();
+		}
 	}
 
 	private pushMorphSpawns(spawns: IBullet[]): void {

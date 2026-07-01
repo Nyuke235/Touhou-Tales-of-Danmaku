@@ -1,0 +1,72 @@
+{
+  "S3_MEILING_BOSS_P5_RING_RED": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "red",
+    "count": 24,
+    "speed": 100,
+    "startAngle": 0,
+    "cooldown": 1.5,
+    "delay": 0.0
+  },
+  "S3_MEILING_BOSS_P5_RING_PURPLE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "purple",
+    "count": 24,
+    "speed": 115,
+    "startAngle": 0.056,
+    "cooldown": 1.5,
+    "delay": 0.05
+  },
+  "S3_MEILING_BOSS_P5_RING_BLUE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "blue",
+    "count": 24,
+    "speed": 130,
+    "startAngle": 0.112,
+    "cooldown": 1.5,
+    "delay": 0.1
+  },
+  "S3_MEILING_BOSS_P5_RING_CYAN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 24,
+    "speed": 145,
+    "startAngle": 0.168,
+    "cooldown": 1.5,
+    "delay": 0.15
+  },
+  "S3_MEILING_BOSS_P5_RING_GREEN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "green",
+    "count": 24,
+    "speed": 160,
+    "startAngle": 0.224,
+    "cooldown": 1.5,
+    "delay": 0.2
+  },
+  "S3_MEILING_BOSS_P5_RING_YELLOW": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 24,
+    "speed": 175,
+    "startAngle": 0.28,
+    "cooldown": 1.5,
+    "delay": 0.25
+  },
+  "S3_MEILING_BOSS_P5_RING_ORANGE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "orange",
+    "count": 24,
+    "speed": 190,
+    "startAngle": 0.336,
+    "cooldown": 1.5,
+    "delay": 0.3
+  }
+}

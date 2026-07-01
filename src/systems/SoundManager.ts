@@ -21,6 +21,7 @@ export const SFX = {
 	ENEMY_DEATH: 'assets/audio/sfx/enemies/destruction.wav',
 	ENEMY_SHOT: 'assets/audio/sfx/enemies/enemyshot.wav',
 	BOSS_SHOT: 'assets/audio/sfx/enemies/bossshot.wav',
+	QI_WALL: 'assets/audio/sfx/enemies/wall.wav',
 	BOSS_CHARGE: 'assets/audio/sfx/enemies/charge.wav',
 	BOSS_DEFEATED: 'assets/audio/sfx/enemies/bossdefeated.wav',
 	PHASE_DEFEATED: 'assets/audio/sfx/enemies/phasedefeated.wav',

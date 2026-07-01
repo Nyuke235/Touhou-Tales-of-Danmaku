@@ -78,23 +78,44 @@ const RAW_STAGE_3: SpawnEventData[] = [
 
 	{ time: 66.0, type: 'fairycannon', x: 128, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
 
-	{ time: 70.0, type: 'fairy', x:  40, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
-	{ time: 70.0, type: 'fairy', x:  92, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
-	{ time: 70.0, type: 'fairy', x: 164, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
-	{ time: 70.0, type: 'fairy', x: 216, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
-	{ time: 71.5, type: 'fairy', x:  64, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
-	{ time: 71.5, type: 'fairy', x: 128, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
-	{ time: 71.5, type: 'fairy', x: 192, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 68.0, type: 'fairy', x:  40, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 68.0, type: 'fairy', x:  92, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 68.0, type: 'fairy', x: 164, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 68.0, type: 'fairy', x: 216, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 69.5, type: 'fairy', x:  64, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
+	{ time: 69.5, type: 'fairy', x: 128, y: -16, color: 'blue',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E,    P.S3_FAIRY_AIMED_GREEN_N,    P.S3_FAIRY_AIMED_GREEN_H,    P.S3_FAIRY_AIMED_GREEN_L]    },
+	{ time: 69.5, type: 'fairy', x: 192, y: -16, color: 'red',   path: 'straight-down', patterns: [P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_EN, P.S3_CIRCLE_BALL_PURPLE_H,  P.S3_CIRCLE_BALL_PURPLE_L]  },
 
-	{ time: 73.5, type: 'bubblefairy', x:  16, y: -16, path: 'descend-slow' },
-	{ time: 73.5, type: 'bubblefairy', x: 240, y: -16, path: 'descend-slow' },
-	{ time: 75.0, type: 'fairycannon', x:  48, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
-	{ time: 79.0, type: 'fairycannon', x: 208, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
-	{ time: 78.5, type: 'bubblefairy', x: 128, y: -16, path: 'zigzag-down' },
-	{ time: 80.0, type: 'bubblefairy', x:  80, y: -16, path: 'descend-slow' },
-	{ time: 80.0, type: 'bubblefairy', x: 176, y: -16, path: 'descend-slow' },
+	{ time: 70.5, type: 'bubblefairy', x:  16, y: -16, path: 'descend-slow' },
+	{ time: 70.5, type: 'bubblefairy', x: 240, y: -16, path: 'descend-slow' },
+	{ time: 71.0, type: 'mandragora', x: 128, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 72.0, type: 'fairycannon', x:  48, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
+	{ time: 76.0, type: 'fairycannon', x: 208, y: -20, patterns: [P.S3_FAIRYCANNON_FIRE_E, P.S3_FAIRYCANNON_FIRE_N, P.S3_FAIRYCANNON_FIRE_H, P.S3_FAIRYCANNON_FIRE_L] },
+	{ time: 75.5, type: 'bubblefairy', x: 128, y: -16, path: 'zigzag-down' },
+	{ time: 78.0, type: 'bubblefairy', x:  80, y: -16, path: 'descend-slow' },
+	{ time: 78.0, type: 'bubblefairy', x: 176, y: -16, path: 'descend-slow' },
 
-	{ time: 86.0, type: 'mystiaboss', x: 128, y: -16 },
+	{ time: 82.0, type: 'mystiaboss', x: 128, y: -16 },
+
+	// post-Mystia: heavy mandragora swarm + a few fairies, then Meiling
+	{ time: 83.0, type: 'mandragora', x:  64, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 83.0, type: 'mandragora', x: 192, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 83.8, type: 'mandragora', x: 128, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 84.5, type: 'mandragora', x:  32, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 84.5, type: 'mandragora', x: 224, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+
+	{ time: 85.5, type: 'fairy', x:  48, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E, P.S3_FAIRY_AIMED_GREEN_N, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+	{ time: 85.5, type: 'fairy', x: 208, y: -16, color: 'red',  path: 'straight-down', patterns: [P.S3_FAIRY_AIMED_GREEN_E, P.S3_FAIRY_AIMED_GREEN_N, P.S3_FAIRY_AIMED_GREEN_H, P.S3_FAIRY_AIMED_GREEN_L] },
+
+	{ time: 86.0, type: 'mandragora', x:  96, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 86.0, type: 'mandragora', x: 160, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 86.8, type: 'mandragora', x:  16, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 86.8, type: 'mandragora', x: 240, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 87.5, type: 'mandragora', x:  72, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 87.5, type: 'mandragora', x: 184, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+	{ time: 88.0, type: 'mandragora', x: 128, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
+
+	{ time: 92.0, type: 'meilingboss', x: 128, y: -16 },
 ];
 
 export const STAGE_3 = buildScript(RAW_STAGE_3);

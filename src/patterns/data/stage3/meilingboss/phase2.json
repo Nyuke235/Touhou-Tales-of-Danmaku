@@ -1,0 +1,340 @@
+{
+  "S3_MEILING_BOSS_P2_FWD_RED": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "red",
+    "count": 42,
+    "speed": 70,
+    "speedProfile": [
+      { "speed": 70, "duration": 1.0 },
+      { "speed": -70, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_PURPLE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "purple",
+    "count": 42,
+    "speed": 80,
+    "speedProfile": [
+      { "speed": 80, "duration": 1.0 },
+      { "speed": -80, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI/80",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_BLUE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "blue",
+    "count": 42,
+    "speed": 90,
+    "speedProfile": [
+      { "speed": 90, "duration": 1.0 },
+      { "speed": -90, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI/40",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_CYAN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 42,
+    "speed": 100,
+    "speedProfile": [
+      { "speed": 100, "duration": 1.0 },
+      { "speed": -100, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI*3/80",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_GREEN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "green",
+    "count": 42,
+    "speed": 110,
+    "speedProfile": [
+      { "speed": 110, "duration": 1.0 },
+      { "speed": -110, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI/20",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_YELLOW": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 42,
+    "speed": 120,
+    "speedProfile": [
+      { "speed": 120, "duration": 1.0 },
+      { "speed": -120, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI/16",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FWD_ORANGE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "orange",
+    "count": 42,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 130, "duration": 1.0 },
+      { "speed": -130, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "PI*3/40",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+
+  "S3_MEILING_BOSS_P2_REV_RED": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "red",
+    "count": 42,
+    "speed": 70,
+    "speedProfile": [
+      { "speed": 70, "duration": 1.0 },
+      { "speed": -70, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_PURPLE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "purple",
+    "count": 42,
+    "speed": 80,
+    "speedProfile": [
+      { "speed": 80, "duration": 1.0 },
+      { "speed": -80, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI/80",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_BLUE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "blue",
+    "count": 42,
+    "speed": 90,
+    "speedProfile": [
+      { "speed": 90, "duration": 1.0 },
+      { "speed": -90, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI/40",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_CYAN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 42,
+    "speed": 100,
+    "speedProfile": [
+      { "speed": 100, "duration": 1.0 },
+      { "speed": -100, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI*3/80",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_GREEN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "green",
+    "count": 42,
+    "speed": 110,
+    "speedProfile": [
+      { "speed": 110, "duration": 1.0 },
+      { "speed": -110, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI/20",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_YELLOW": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 42,
+    "speed": 120,
+    "speedProfile": [
+      { "speed": 120, "duration": 1.0 },
+      { "speed": -120, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI/16",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_REV_ORANGE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "orange",
+    "count": 42,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 130, "duration": 1.0 },
+      { "speed": -130, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": "-PI*3/40",
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+
+  "S3_MEILING_BOSS_P2_FLAT_RED": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "red",
+    "count": 42,
+    "speed": 70,
+    "speedProfile": [
+      { "speed": 70, "duration": 1.0 },
+      { "speed": -70, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_PURPLE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "purple",
+    "count": 42,
+    "speed": 80,
+    "speedProfile": [
+      { "speed": 80, "duration": 1.0 },
+      { "speed": -80, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_BLUE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "blue",
+    "count": 42,
+    "speed": 90,
+    "speedProfile": [
+      { "speed": 90, "duration": 1.0 },
+      { "speed": -90, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_CYAN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 42,
+    "speed": 100,
+    "speedProfile": [
+      { "speed": 100, "duration": 1.0 },
+      { "speed": -100, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_GREEN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "green",
+    "count": 42,
+    "speed": 110,
+    "speedProfile": [
+      { "speed": 110, "duration": 1.0 },
+      { "speed": -110, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_YELLOW": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 42,
+    "speed": 120,
+    "speedProfile": [
+      { "speed": 120, "duration": 1.0 },
+      { "speed": -120, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  },
+  "S3_MEILING_BOSS_P2_FLAT_ORANGE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "orange",
+    "count": 42,
+    "speed": 130,
+    "speedProfile": [
+      { "speed": 130, "duration": 1.0 },
+      { "speed": -130, "duration": 0 }
+    ],
+    "noBoundsTime": 2.0,
+    "startAngle": 0,
+    "cooldown": 5.0,
+    "delay": 0.1,
+    "maxShots": 1
+  }
+}

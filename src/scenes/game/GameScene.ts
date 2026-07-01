@@ -35,6 +35,9 @@ import { GrazeEffect } from '../../utils/GrazeEffect';
 import { BlizzardManager } from '../../systems/BlizzardManager';
 import { ScrollingBackground } from '../../utils/ScrollingBackground';
 import { SpellcardBackground } from '../../utils/SpellcardBackground';
+import { GateBackground } from '../../utils/GateBackground';
+import { FireParticle } from '../../utils/FireParticle';
+import { MeilingBoss } from '../../entities/enemies/bosses/Meiling';
 import { STAGES } from '../../stages/stages';
 import { DialogueRegistry } from '../../stages/DialogueRegistry';
 import { buildPlayer } from '../../game/PlayerBuilder';
@@ -84,6 +87,8 @@ export class GameScene {
 		STAGES[0].backgroundSpeed
 	);
 	protected spellcardBg: SpellcardBackground = new SpellcardBackground();
+	protected gateBg: GateBackground | null = null;
+	protected meilingParticles: FireParticle | null = null;
 	protected scoreManager: ScoreManager = new ScoreManager(GameState.difficulty);
 	protected grazeEffect: GrazeEffect = new GrazeEffect();
 	protected blizzardManager: BlizzardManager = new BlizzardManager();
@@ -254,6 +259,8 @@ export class GameScene {
 		if (spellcardEntry) this.hud.setPower(GameState.power, GameState.maxPower);
 
 		this.spellcardBg.reset();
+		this.gateBg = null;
+		this.meilingParticles = null;
 		this.bulletManager.clear();
 		this.itemManager.clear();
 
@@ -285,6 +292,15 @@ export class GameScene {
 		this.enemyManager.onBossSpawn = boss => {
 			this.activeBoss = boss;
 			this.bossHUD.show(boss);
+
+			if (boss instanceof MeilingBoss) {
+				this.gateBg = new GateBackground(
+					'assets/sprites/backgrounds/stage3_gate_bg.png',
+					25
+				);
+				this.meilingParticles = new FireParticle();
+				this.meilingParticles.start();
+			}
 
 			boss.onSpellCapture = bonus => {
 				this.scoreManager.add(bonus);
@@ -423,6 +439,8 @@ export class GameScene {
 			this.activeBoss = null;
 			this.bossHUD.hide();
 			this.spellcardBg.reset();
+			this.gateBg = null;
+			this.meilingParticles = null;
 			this.loadStage(this.currentStageIndex);
 			this.showStageCard();
 			this.loop.start();
@@ -504,6 +522,8 @@ export class GameScene {
 		this.updateBombEffect(dt);
 
 		this.background.update(dt);
+		this.gateBg?.update(dt);
+		this.meilingParticles?.update(dt, FIELD.WIDTH, FIELD.HEIGHT);
 		this.spellcardBg.update(dt);
 		this.blizzardManager.update(dt, this.activeBoss !== null);
 		this.dialogueBox.update(dt);
@@ -552,6 +572,9 @@ export class GameScene {
 		if (!this.activeBoss.active) {
 			this.bossHUD.hide();
 			this.spellcardBg.hide();
+			this.gateBg = null;
+			this.meilingParticles?.stop();
+			this.meilingParticles = null;
 			this.activeBoss = null;
 			if (GameState.spellcardMode) {
 				this.triggerSpellcardClear();
@@ -750,6 +773,8 @@ export class GameScene {
 		const ctx = this.ctx;
 		ctx.clearRect(0, 0, FIELD.WIDTH, FIELD.HEIGHT);
 		this.background.render(ctx, FIELD.WIDTH, FIELD.HEIGHT);
+		this.gateBg?.render(ctx, FIELD.WIDTH, FIELD.HEIGHT);
+		this.meilingParticles?.render(ctx);
 		this.spellcardBg.render(ctx, FIELD.WIDTH, FIELD.HEIGHT);
 
 		const focused = this.inputManager.isHeld(Controls.FOCUS);

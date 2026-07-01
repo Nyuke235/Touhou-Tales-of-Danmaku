@@ -736,5 +736,167 @@
 				}
 			]
 		}
+	},
+	"meiling": {
+		"reimu": {
+			"pre": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_neutral.png",
+					"name": "Hong Meiling",
+					"text": "...You're not the one I was waiting for."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_neutral.png",
+					"name": "Reimu Hakurei",
+					"text": "No."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_worried.png",
+					"name": "Hong Meiling",
+					"text": "Did you come from the forest road? You should've crossed paths with our delivery on the way here..."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
+					"name": "Reimu Hakurei",
+					"text": "Your delivery got held up. I'm Reimu Hakurei. Shrine maiden. I'm here about the red mist."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_smile.png",
+					"name": "Hong Meiling",
+					"text": "And I'm the gatekeeper. And I was only ordered to let one person through today. That person isn't you."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "I just need to speak with whoever is responsible for the mist."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_smile.png",
+					"name": "Hong Meiling",
+					"text": "Nobody enters without permission. Orders are orders."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_angry.png",
+					"name": "Reimu Hakurei",
+					"text": "I just need to speak with whoever is responsible for the mist."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_neutral.png",
+					"name": "Hong Meiling",
+					"text": "I understand. But my job is this gate, and this gate stays closed. I don't make exceptions, not even for shrine maidens."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_pissed.png",
+					"name": "Reimu Hakurei",
+					"text": "Even if Gensokyo is at stake?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_worried.png",
+					"name": "Hong Meiling",
+					"text": "...Even then. I'm sorry.",
+					"music": "assets/audio/music/stage3/shanghai_teahouse.ogg"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/reimu/reimu_deadinside.png",
+					"name": "Reimu Hakurei",
+					"text": "Then you leave me no choice."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_smile.png",
+					"name": "Hong Meiling",
+					"text": "Nor me. Come, shrine maiden. I'll make sure it's a good fight at least."
+				}
+			]
+		},
+		"marisa": {
+			"pre": [
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_angry.png",
+					"name": "Hong Meiling",
+					"text": "Halt! State your business!"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_worried.png",
+					"name": "Marisa Kirisame",
+					"text": "Just a passing magician, ze. I'm the person nobody invited."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_neutral.png",
+					"name": "Hong Meiling",
+					"text": "That much is obvious. This is private property, turn back."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_neutral.png",
+					"name": "Marisa Kirisame",
+					"text": "Private property in the middle of Gensokyo? Since when?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_neutral.png",
+					"name": "Hong Meiling",
+					"text": "Since my mistress decided so. And that's all you need to know."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_angry.png",
+					"name": "Marisa Kirisame",
+					"text": "Your mistress, huh. Is she the one behind the red mist?"
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_worried.png",
+					"name": "Hong Meiling",
+					"text": "I wouldn't know anything about that."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_happy.png",
+					"name": "Marisa Kirisame",
+					"text": "Then let me through so I can ask someone who does, ze."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_neutral.png",
+					"name": "Hong Meiling",
+					"text": "No uninvited guests. Those are my orders and I intend to keep them.",
+					"music": "assets/audio/music/stage3/shanghai_teahouse.ogg"
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_playful.png",
+					"name": "Marisa Kirisame",
+					"text": "Ahaha! Alright, I can respect that ze. But I'm getting through that gate one way or another."
+				},
+				{
+					"speaker": "boss",
+					"portrait": "assets/sprites/portraits/meiling/meiling_smile.png",
+					"name": "Hong Meiling",
+					"text": "Then you'll have to go through me first. And I warn you, nobody has managed that yet."
+				},
+				{
+					"speaker": "player",
+					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
+					"name": "Marisa Kirisame",
+					"text": "First time for everything!"
+				}
+			]
+		}
 	}
 }

@@ -5,6 +5,7 @@ import { RumiaLantern } from '../entities/enemies/bosses/RumiaLantern';
 import { Daiyousei } from '../entities/enemies/bosses/Daiyousei';
 import { Cirno } from '../entities/enemies/bosses/Cirno';
 import { MystiaBoss } from '../entities/enemies/bosses/Mystia';
+import { MeilingBoss } from '../entities/enemies/bosses/Meiling';
 import { BOSS } from './Constants';
 
 export interface SpellcardEntry {
@@ -173,6 +174,48 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				phaseIndex: 3,
 				stageIndex: 2,
 				bossFactory: () => new MystiaBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Non-spell 1',
+				bossName: 'Meiling',
+				phaseIndex: 0,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Gate Sign 「Vibrant Flower」',
+				bossName: 'Meiling',
+				phaseIndex: 1,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Non-spell 2',
+				bossName: 'Meiling',
+				phaseIndex: 2,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Color Sign 「Seven-Colored Qi Wall」',
+				bossName: 'Meiling',
+				phaseIndex: 3,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Non-spell 3',
+				bossName: 'Meiling',
+				phaseIndex: 4,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
+			{
+				name: 'Color Sign 「Aromatic Flowing Clouds」',
+				bossName: 'Meiling',
+				phaseIndex: 5,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
 			},
 		],
 	},
