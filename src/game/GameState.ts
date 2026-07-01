@@ -34,6 +34,9 @@ export const GameState = {
 	spellcardEntryIndex: 0,
 	startingStage: 0,
 
+	// -------------------- GRAPHICS --------------------
+	lowDetails: false,
+
 	// -------------------- DEBUG --------------------
 	debugInvincible: false,
 };

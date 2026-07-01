@@ -68,5 +68,111 @@
     "startAngle": 0.336,
     "cooldown": 1.5,
     "delay": 0.3
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_RED": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "red",
+    "count": 24,
+    "speed": 100,
+    "startAngle": 0,
+    "cooldown": 1.5,
+    "delay": 0.0
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_PURPLE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "purple",
+    "count": 24,
+    "speed": 115,
+    "startAngle": -0.056,
+    "cooldown": 1.5,
+    "delay": 0.05
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_BLUE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "blue",
+    "count": 24,
+    "speed": 130,
+    "startAngle": -0.112,
+    "cooldown": 1.5,
+    "delay": 0.1
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_CYAN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "cyan",
+    "count": 24,
+    "speed": 145,
+    "startAngle": -0.168,
+    "cooldown": 1.5,
+    "delay": 0.15
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_GREEN": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "green",
+    "count": 24,
+    "speed": 160,
+    "startAngle": -0.224,
+    "cooldown": 1.5,
+    "delay": 0.2
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_YELLOW": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "yellow",
+    "count": 24,
+    "speed": 175,
+    "startAngle": -0.28,
+    "cooldown": 1.5,
+    "delay": 0.25
+  },
+  "S3_MEILING_BOSS_P5_RING_REV_ORANGE": {
+    "type": "circle",
+    "bullet": "rice",
+    "color": "orange",
+    "count": 24,
+    "speed": 190,
+    "startAngle": -0.336,
+    "cooldown": 1.5,
+    "delay": 0.3
+  },
+  "S3_MEILING_BOSS_P5_BALL_N": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 20,
+    "speed": 50,
+    "spread": "PI",
+    "gravity": 35,
+    "cooldown": 0.6,
+    "delay": 0.4,
+    "difficulties": ["NORMAL"]
+  },
+  "S3_MEILING_BOSS_P5_BALL_H": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 25,
+    "speed": 50,
+    "spread": "PI",
+    "gravity": 35,
+    "cooldown": 0.6,
+    "delay": 0.2,
+    "difficulties": ["HARD"]
+  },
+  "S3_MEILING_BOSS_P5_BALL_L": {
+    "type": "gravity",
+    "bullet": "ball",
+    "color": "blue",
+    "count": 30,
+    "speed": 50,
+    "spread": "PI",
+    "gravity": 35,
+    "cooldown": 0.5,
+    "delay": 0.1,
+    "difficulties": ["LUNATIC"]
   }
 }

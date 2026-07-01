@@ -4,7 +4,11 @@ import { Controls, setControls } from '../../systems/Controls';
 import { MusicManager } from '../../systems/MusicManager';
 import { SoundManager, SFX } from '../../systems/SoundManager';
 import { LocalSettings } from '../../systems/LocalSettings';
+import { GameState } from '../../game/GameState';
 import { MenuScene } from './MenuScene';
+
+const OPTION_COUNT = 6;
+const LOW_DETAILS_INDEX = 2;
 
 const VOLUME_STEPS = 5;
 
@@ -31,6 +35,7 @@ export class OptionsScene extends MenuScene {
 
 	private optionLines: HTMLElement[];
 	private singleBtns: HTMLButtonElement[];
+	private lowDetailsBtn: HTMLButtonElement | null;
 
 	constructor(sceneManager: SceneManager, inputManager: InputManager) {
 		super(sceneManager, inputManager, Scene.OPTIONS);
@@ -42,6 +47,9 @@ export class OptionsScene extends MenuScene {
 				'#options .menu > button.single-btn'
 			)
 		);
+		this.lowDetailsBtn = document.getElementById(
+			'low-details-btn'
+		) as HTMLButtonElement | null;
 
 		this.syncFromManagers();
 		this.updateSelection();
@@ -53,24 +61,28 @@ export class OptionsScene extends MenuScene {
 
 		this.updateBar('bgm-bar', this.bgmVolume);
 		this.updateBar('se-bar', this.seVolume);
+		this.updateLowDetailsLabel();
 	}
 
 	protected onKeyDown(code: string): void {
 		if (code === Controls.MOVE_UP) {
-			this.selectedIndex = (this.selectedIndex - 1 + 5) % 5;
+			this.selectedIndex =
+				(this.selectedIndex - 1 + OPTION_COUNT) % OPTION_COUNT;
 			SoundManager.play(SFX.UI_HIGHLIGHT);
 			this.updateSelection();
 		}
 		if (code === Controls.MOVE_DOWN) {
-			this.selectedIndex = (this.selectedIndex + 1) % 5;
+			this.selectedIndex = (this.selectedIndex + 1) % OPTION_COUNT;
 			SoundManager.play(SFX.UI_HIGHLIGHT);
 			this.updateSelection();
 		}
-		if (code === Controls.MOVE_LEFT && this.selectedIndex < 2) {
-			this.changeVolume(this.selectedIndex, -1);
-		}
-		if (code === Controls.MOVE_RIGHT && this.selectedIndex < 2) {
-			this.changeVolume(this.selectedIndex, +1);
+		if (code === Controls.MOVE_LEFT || code === Controls.MOVE_RIGHT) {
+			if (this.selectedIndex < 2) {
+				const delta = code === Controls.MOVE_LEFT ? -1 : +1;
+				this.changeVolume(this.selectedIndex, delta);
+			} else if (this.selectedIndex === LOW_DETAILS_INDEX) {
+				this.toggleLowDetails();
+			}
 		}
 		if (code === Controls.MENU_SELECT) {
 			this.confirm();
@@ -137,15 +149,29 @@ export class OptionsScene extends MenuScene {
 				this.toggleMute(1);
 				break;
 			case 2:
-				this.switchWithOutro(Scene.KEYCONFIG);
+				this.toggleLowDetails();
 				break;
 			case 3:
-				this.resetDefaults();
+				this.switchWithOutro(Scene.KEYCONFIG);
 				break;
 			case 4:
+				this.resetDefaults();
+				break;
+			case 5:
 				LocalSettings.save();
 				this.switchWithOutro(Scene.HOME);
 				break;
+		}
+	}
+
+	private toggleLowDetails(): void {
+		GameState.lowDetails = !GameState.lowDetails;
+		this.updateLowDetailsLabel();
+	}
+
+	private updateLowDetailsLabel(): void {
+		if (this.lowDetailsBtn) {
+			this.lowDetailsBtn.textContent = `Low details: ${GameState.lowDetails ? 'ON' : 'OFF'}`;
 		}
 	}
 
@@ -160,5 +186,7 @@ export class OptionsScene extends MenuScene {
 		setControls(DEFAULT_CONTROLS);
 		this.setVolume(0, Math.round(DEFAULT_BGM_VOLUME * VOLUME_STEPS));
 		this.setVolume(1, Math.round(DEFAULT_SE_VOLUME * VOLUME_STEPS));
+		GameState.lowDetails = false;
+		this.updateLowDetailsLabel();
 	}
 }

@@ -319,8 +319,10 @@ export class Player {
 			const W = 1.2;
 			ctx.save();
 			ctx.translate(this.x, this.y);
-			ctx.shadowColor = 'rgba(0, 247, 255, 1)';
-			ctx.shadowBlur = 4;
+			if (!GameState.lowDetails) {
+				ctx.shadowColor = 'rgba(0, 247, 255, 1)';
+				ctx.shadowBlur = 4;
+			}
 			ctx.fillStyle = 'rgba(0, 247, 255, 1)';
 			for (let i = 0; i < 4; i++) {
 				ctx.rotate(Math.PI / 2);
@@ -342,8 +344,10 @@ export class Player {
 		ctx.save();
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.hitboxRadius, 0, Math.PI * 2);
-		ctx.shadowColor = 'rgba(0, 247, 255, 1)';
-		ctx.shadowBlur = 6;
+		if (!GameState.lowDetails) {
+			ctx.shadowColor = 'rgba(0, 247, 255, 1)';
+			ctx.shadowBlur = 6;
+		}
 		ctx.fillStyle = 'rgb(0, 129, 180)';
 		ctx.fill();
 		ctx.strokeStyle = 'rgb(255, 255, 255)';

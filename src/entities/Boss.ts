@@ -5,6 +5,7 @@ import { Enemy } from './Enemy';
 import { ItemType } from './Item';
 import { SoundManager, SFX } from '../systems/SoundManager';
 import { BOSS as B, BOSS_ENTRY, FIELD } from '../game/Constants';
+import { GameState } from '../game/GameState';
 
 export interface BossPhase {
 	name: string;
@@ -589,11 +590,13 @@ export abstract class Boss extends Enemy {
 	renderOverlay(_ctx: CanvasRenderingContext2D, _w: number, _h: number): void {}
 
 	override render(ctx: CanvasRenderingContext2D): void {
-		const sw = 100;
-		ctx.save();
-		ctx.globalAlpha = 0.5;
-		ctx.drawImage(Boss.shadowImg, this.x - sw / 2, this.y - sw / 2, sw, sw);
-		ctx.restore();
+		if (!GameState.lowDetails) {
+			const sw = 100;
+			ctx.save();
+			ctx.globalAlpha = 0.5;
+			ctx.drawImage(Boss.shadowImg, this.x - sw / 2, this.y - sw / 2, sw, sw);
+			ctx.restore();
+		}
 
 		ctx.save();
 		if (this.facingLeft) {

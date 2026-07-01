@@ -1,4 +1,5 @@
 import { AUDIO } from '../game/Constants';
+import { GameState } from '../game/GameState';
 import { Controls, setControls } from './Controls';
 import { MusicManager } from './MusicManager';
 import { SoundManager } from './SoundManager';
@@ -9,6 +10,7 @@ interface StoredSettings {
 	controls?: Partial<typeof Controls>;
 	music_vol?: number;
 	sfx_vol?: number;
+	low_details?: boolean;
 }
 
 function read(): StoredSettings {
@@ -36,6 +38,10 @@ export const LocalSettings = {
 
 		MusicManager.setVolume(clamp01(data.music_vol, AUDIO.MUSIC_VOLUME));
 		SoundManager.setVolume(clamp01(data.sfx_vol, AUDIO.SFX_VOLUME));
+
+		if (typeof data.low_details === 'boolean') {
+			GameState.lowDetails = data.low_details;
+		}
 	},
 
 	save(): void {
@@ -43,6 +49,7 @@ export const LocalSettings = {
 			controls: { ...Controls },
 			music_vol: MusicManager.getVolume(),
 			sfx_vol: SoundManager.getVolume(),
+			low_details: GameState.lowDetails,
 		};
 		try {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));

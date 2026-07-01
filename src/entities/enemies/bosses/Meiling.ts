@@ -1,32 +1,13 @@
 import { Boss, BossPhase, BossState } from '../../Boss';
 import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { Patterns } from '../../../patterns/PatternLibrary';
-import { PatternConfig } from '../../../patterns/PatternEngine';
+import { PatternConfig, PatternEngine } from '../../../patterns/PatternEngine';
 import { GameState, Difficulty } from '../../../game/GameState';
 import { Music } from '../../../systems/MusicManager';
 import { PlayerPosition } from '../../../game/PlayerPosition';
 import { FIELD } from '../../../game/Constants';
 
-const P2_COLORS = [
-	'RED',
-	'PURPLE',
-	'BLUE',
-	'CYAN',
-	'GREEN',
-	'YELLOW',
-	'ORANGE',
-];
-const P2_FWD_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_FWD_${c}`);
-const P2_REV_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_REV_${c}`);
-const P2_FLAT_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_FLAT_${c}`);
-
-const P2_STATE_DURATION: Record<Difficulty, number> = {
-	EASY: 1.8,
-	NORMAL: 1.4,
-	HARD: 1.1,
-	LUNATIC: 0.8,
-};
-
+// ---------- Phases ----------
 const PHASES: BossPhase[] = [
 	{
 		name: '',
@@ -108,7 +89,12 @@ const PHASES: BossPhase[] = [
 	},
 ];
 
-const SWIRL_FWD_PATTERNS = [
+// ---------- Global movement ----------
+const DRIFT_OFFSET = 60;
+const MOVE_INTERVAL = 3.2;
+
+// ---------- Phase 1 (swirl / variance) ----------
+const P1_SWIRL_FWD_PATTERNS = [
 	'S3_MEILING_BOSS_SWIRL_FWD_RED_PRE',
 	'S3_MEILING_BOSS_SWIRL_FWD_RED',
 	'S3_MEILING_BOSS_SWIRL_FWD_PURPLE',
@@ -119,7 +105,7 @@ const SWIRL_FWD_PATTERNS = [
 	'S3_MEILING_BOSS_SWIRL_FWD_ORANGE',
 	'S3_MEILING_BOSS_SWIRL_FWD_ORANGE_POST',
 ];
-const SWIRL_REV_PATTERNS = [
+const P1_SWIRL_REV_PATTERNS = [
 	'S3_MEILING_BOSS_SWIRL_REV_RED_PRE',
 	'S3_MEILING_BOSS_SWIRL_REV_RED',
 	'S3_MEILING_BOSS_SWIRL_REV_PURPLE',
@@ -130,7 +116,7 @@ const SWIRL_REV_PATTERNS = [
 	'S3_MEILING_BOSS_SWIRL_REV_ORANGE',
 	'S3_MEILING_BOSS_SWIRL_REV_ORANGE_POST',
 ];
-const VARIANCE_PATTERNS: Record<Difficulty, string[]> = {
+const P1_VARIANCE_PATTERNS: Record<Difficulty, string[]> = {
 	EASY: ['S3_MEILING_BOSS_VAR_RED_E', 'S3_MEILING_BOSS_VAR_BLUE_E'],
 	NORMAL: [
 		'S3_MEILING_BOSS_VAR_RED_N',
@@ -151,14 +137,35 @@ const VARIANCE_PATTERNS: Record<Difficulty, string[]> = {
 		'S3_MEILING_BOSS_VAR_YELLOW_L',
 	],
 };
+const P1_SWIRL_FWD_DURATION = 1.8;
+const P1_SWIRL_REV_DURATION = 1.8;
+const P1_VARIANCE_DURATION = 1.6;
 
-const SWIRL_FWD_DURATION = 1.8;
-const SWIRL_REV_DURATION = 1.8;
-const VARIANCE_DURATION = 1.6;
+type P1State = 'swirl_fwd' | 'swirl_rev' | 'variance';
 
-const DRIFT_OFFSET = 60;
-const MOVE_INTERVAL = 3.2;
+// ---------- Phase 2 (vibrant flower) ----------
+const P2_COLORS = [
+	'RED',
+	'PURPLE',
+	'BLUE',
+	'CYAN',
+	'GREEN',
+	'YELLOW',
+	'ORANGE',
+];
+const P2_FWD_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_FWD_${c}`);
+const P2_REV_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_REV_${c}`);
+const P2_FLAT_PATTERNS = P2_COLORS.map(c => `S3_MEILING_BOSS_P2_FLAT_${c}`);
+const P2_STATE_DURATION: Record<Difficulty, number> = {
+	EASY: 1.8,
+	NORMAL: 1.4,
+	HARD: 1.1,
+	LUNATIC: 0.8,
+};
 
+type P2State = 'fwd' | 'rev' | 'flat';
+
+// ---------- Phase 3 (player-tracking rings) ----------
 const P3_PATTERNS = [
 	'S3_MEILING_BOSS_P3_RING_RED',
 	'S3_MEILING_BOSS_P3_RING_PURPLE',
@@ -180,13 +187,15 @@ const P3_PATTERNS = [
 	'S3_MEILING_BOSS_P3_NOISE_YELLOW_H',
 	'S3_MEILING_BOSS_P3_NOISE_YELLOW_L',
 ];
-
 const P3_MOVE_SPEED = 200;
 const P3_PAUSE_DURATION = 1.0;
 const P3_TARGET_Y_MIN = 24;
 const P3_TARGET_Y_MAX = FIELD.HEIGHT - 28;
 const P3_TARGET_X_MARGIN = 24;
 
+type P3State = 'moving' | 'firing' | 'paused';
+
+// ---------- Phase 4 (qi wall spellcard) ----------
 const P4_PATTERNS = [
 	'S3_MEILING_BOSS_P4_QI_WALL_EN',
 	'S3_MEILING_BOSS_P4_QI_WALL_H',
@@ -199,7 +208,13 @@ const P4_TARGET_X = FIELD.WIDTH / 2;
 const P4_TARGET_Y = 40;
 const P4_MOVE_SPEED = 160;
 
-const P5_PATTERNS = [
+// ---------- Phase 5 (alternating rings + gravity balls) ----------
+const P5_BALL_PATTERNS = [
+	'S3_MEILING_BOSS_P5_BALL_N',
+	'S3_MEILING_BOSS_P5_BALL_H',
+	'S3_MEILING_BOSS_P5_BALL_L',
+];
+const P5_FWD_PATTERNS = [
 	'S3_MEILING_BOSS_P5_RING_RED',
 	'S3_MEILING_BOSS_P5_RING_PURPLE',
 	'S3_MEILING_BOSS_P5_RING_BLUE',
@@ -207,40 +222,80 @@ const P5_PATTERNS = [
 	'S3_MEILING_BOSS_P5_RING_GREEN',
 	'S3_MEILING_BOSS_P5_RING_YELLOW',
 	'S3_MEILING_BOSS_P5_RING_ORANGE',
+	...P5_BALL_PATTERNS,
 ];
+const P5_REV_PATTERNS = [
+	'S3_MEILING_BOSS_P5_RING_REV_RED',
+	'S3_MEILING_BOSS_P5_RING_REV_PURPLE',
+	'S3_MEILING_BOSS_P5_RING_REV_BLUE',
+	'S3_MEILING_BOSS_P5_RING_REV_CYAN',
+	'S3_MEILING_BOSS_P5_RING_REV_GREEN',
+	'S3_MEILING_BOSS_P5_RING_REV_YELLOW',
+	'S3_MEILING_BOSS_P5_RING_REV_ORANGE',
+	...P5_BALL_PATTERNS,
+];
+const P5_STATE_DURATION: Record<Difficulty, number> = {
+	EASY: 1.4,
+	NORMAL: 1.4,
+	HARD: 1.2,
+	LUNATIC: 1.0,
+};
 
-const P6_PATTERN_NAME = 'S3_MEILING_BOSS_P6_FOUNTAIN';
+type P5State = 'fwd' | 'rev';
+
+// ---------- Phase 6 (aromatic flowing clouds spellcard) ----------
+const P6_FOUNTAIN_NAMES: Record<Difficulty, string> = {
+	EASY: 'S3_MEILING_BOSS_P6_FOUNTAIN_E',
+	NORMAL: 'S3_MEILING_BOSS_P6_FOUNTAIN_N',
+	HARD: 'S3_MEILING_BOSS_P6_FOUNTAIN_H',
+	LUNATIC: 'S3_MEILING_BOSS_P6_FOUNTAIN_L',
+};
+const P6_EDGE_SWARM_NAME = 'S3_MEILING_BOSS_P6_EDGE_SWARM';
+const P6_ORB_NAMES: Record<Difficulty, string[]> = {
+	EASY: [],
+	NORMAL: [],
+	HARD: ['S3_MEILING_BOSS_P6_ORBS_H'],
+	LUNATIC: [
+		'S3_MEILING_BOSS_P6_ORBS_L1',
+		'S3_MEILING_BOSS_P6_ORBS_L2',
+		'S3_MEILING_BOSS_P6_ORBS_L3',
+	],
+};
 const P6_TARGET_Y = 50;
 const P6_MOVE_SPEED = 130;
 const P6_POSITIONS_X = [
-	FIELD.WIDTH / 2, // center
-	FIELD.WIDTH * 0.33, // left
-	FIELD.WIDTH / 2, // center
-	FIELD.WIDTH * 0.67, // right
+	FIELD.WIDTH / 2,
+	FIELD.WIDTH * 0.33,
+	FIELD.WIDTH / 2,
+	FIELD.WIDTH * 0.67,
 ];
 
-type P1State = 'swirl_fwd' | 'swirl_rev' | 'variance';
-type P2State = 'fwd' | 'rev' | 'flat';
-type P3State = 'moving' | 'firing' | 'paused';
+type P6State = 'moving' | 'firing';
 
 export class MeilingBoss extends Boss {
+	private lastPhaseIndex: number = -1;
+
 	private p1State: P1State = 'swirl_fwd';
 	private p1StateTimer: number = 0;
-	private p1Initialized: boolean = false;
+
 	private p2State: P2State = 'fwd';
 	private p2StateTimer: number = 0;
-	private p2Initialized: boolean = false;
+
 	private p3State: P3State = 'moving';
 	private p3StateTimer: number = 0;
 	private p3TargetX: number = 0;
 	private p3TargetY: number = 0;
-	private p3Initialized: boolean = false;
-	private p4Initialized: boolean = false;
+
 	private p4PatternsArmed: boolean = false;
-	private p5Initialized: boolean = false;
-	private p6Initialized: boolean = false;
+
+	private p5State: P5State = 'fwd';
+	private p5StateTimer: number = 0;
+
+	private p6State: P6State = 'moving';
 	private p6PositionIndex: number = 0;
-	private p6Firing: boolean = false;
+	private p6EdgeEngine: PatternEngine | null = null;
+	private p6OrbEngines: PatternEngine[] = [];
+
 	private moveTimer: number = 0;
 
 	constructor(x: number, y: number) {
@@ -273,132 +328,151 @@ export class MeilingBoss extends Boss {
 
 	updateMovement(dt: number): void {
 		if (this.handleEntryAndCharge(dt)) return;
+		if (this.state !== BossState.ACTIVE) return;
 
-		if (this.currentPhaseIndex === 0 && this.state === BossState.ACTIVE) {
-			if (!this.p1Initialized) {
-				this.p1Initialized = true;
-				this.enterState('swirl_fwd');
-			}
-			this.updateP1(dt);
+		if (this.currentPhaseIndex !== this.lastPhaseIndex) {
+			this.lastPhaseIndex = this.currentPhaseIndex;
+			this.enterCurrentPhase();
 		}
 
-		if (this.currentPhaseIndex === 1 && this.state === BossState.ACTIVE) {
-			if (!this.p2Initialized) {
-				this.p2Initialized = true;
-				this.enterP2State('fwd');
-			}
-			this.updateP2(dt);
+		switch (this.currentPhaseIndex) {
+			case 0:
+				this.updateP1(dt);
+				this.driftFtm(dt);
+				return;
+			case 1:
+				this.updateP2(dt);
+				this.driftFtm(dt);
+				return;
+			case 2:
+				this.updateP3(dt);
+				return;
+			case 3:
+				this.updateP4(dt);
+				return;
+			case 4:
+				this.updateP5(dt);
+				this.driftFtm(dt);
+				return;
+			case 5:
+				this.updateP6(dt);
+				return;
 		}
+	}
 
-		if (this.currentPhaseIndex === 2 && this.state === BossState.ACTIVE) {
-			if (!this.p3Initialized) {
-				this.p3Initialized = true;
-				this.recordP3Target();
-				this.enterP3State('moving');
-			}
-			this.updateP3(dt);
-			return;
+	private enterCurrentPhase(): void {
+		switch (this.currentPhaseIndex) {
+			case 0:
+				return this.p1EnterState('swirl_fwd');
+			case 1:
+				return this.p2EnterState('fwd');
+			case 2:
+				return this.p3Enter();
+			case 3:
+				return this.p4Enter();
+			case 4:
+				return this.p5EnterState('fwd');
+			case 5:
+				return this.p6Enter();
 		}
+	}
 
-		if (this.currentPhaseIndex === 3 && this.state === BossState.ACTIVE) {
-			if (!this.p4Initialized) {
-				this.p4Initialized = true;
-				this.p4PatternsArmed = false;
-				this.setPatterns([]);
-			}
-			this.updateP4(dt);
-			return;
-		}
+	// ---------- Helpers ----------
 
-		if (this.currentPhaseIndex === 4 && this.state === BossState.ACTIVE) {
-			if (!this.p5Initialized) {
-				this.p5Initialized = true;
-				this.setPatterns(P5_PATTERNS.map(n => Patterns[n]));
-			}
+	private moveToward(
+		dt: number,
+		tx: number,
+		ty: number,
+		speed: number
+	): boolean {
+		const dx = tx - this.x;
+		const dy = ty - this.y;
+		const dist = Math.sqrt(dx * dx + dy * dy);
+		const step = speed * dt;
+		if (dist <= step) {
+			this.x = tx;
+			this.y = ty;
+			this.isMoving = false;
+			return true;
 		}
+		this.x += (dx / dist) * step;
+		this.y += (dy / dist) * step;
+		this.isMoving = true;
+		return false;
+	}
 
-		if (this.currentPhaseIndex === 5 && this.state === BossState.ACTIVE) {
-			if (!this.p6Initialized) {
-				this.p6Initialized = true;
-				this.p6PositionIndex = 0;
-				this.p6Firing = false;
-				this.setPatterns([]);
-			}
-			this.updateP6(dt);
-			return;
-		}
-
-		if (!this.ftmMoving && this.state === BossState.ACTIVE) {
-			this.moveTimer += dt;
-		}
+	private driftFtm(dt: number): void {
+		if (!this.ftmMoving) this.moveTimer += dt;
 		const shouldMove = this.moveTimer >= MOVE_INTERVAL;
 		this.handleFtmMovement(dt, DRIFT_OFFSET, shouldMove, () => {
 			this.moveTimer = 0;
 		});
 	}
 
+	private setPatternsByName(names: string[]): void {
+		this.setPatterns(names.map(n => Patterns[n]!));
+	}
+
+	// ---------- Phase 1 ----------
+
 	private updateP1(dt: number): void {
 		this.p1StateTimer += dt;
-		const duration = this.stateDuration(this.p1State);
-		if (this.p1StateTimer >= duration) {
-			this.enterState(this.nextState(this.p1State));
+		if (this.p1StateTimer >= this.p1StateDuration(this.p1State)) {
+			this.p1EnterState(this.p1NextState(this.p1State));
 		}
 	}
 
-	private nextState(s: P1State): P1State {
+	private p1NextState(s: P1State): P1State {
 		if (s === 'swirl_fwd') {
 			const diff = GameState.difficulty;
-			if (diff === 'HARD' || diff === 'LUNATIC') return 'swirl_rev';
-			return 'variance';
+			return diff === 'HARD' || diff === 'LUNATIC' ? 'swirl_rev' : 'variance';
 		}
 		if (s === 'swirl_rev') return 'variance';
 		return 'swirl_fwd';
 	}
 
-	private stateDuration(s: P1State): number {
+	private p1StateDuration(s: P1State): number {
 		switch (s) {
 			case 'swirl_fwd':
-				return SWIRL_FWD_DURATION;
+				return P1_SWIRL_FWD_DURATION;
 			case 'swirl_rev':
-				return SWIRL_REV_DURATION;
+				return P1_SWIRL_REV_DURATION;
 			case 'variance':
-				return VARIANCE_DURATION;
+				return P1_VARIANCE_DURATION;
 		}
 	}
 
-	private enterState(s: P1State): void {
+	private p1EnterState(s: P1State): void {
 		this.p1State = s;
 		this.p1StateTimer = 0;
-		const names = this.patternNamesForState(s);
-		const configs: PatternConfig[] = names.map(n => Patterns[n]);
-		this.setPatterns(configs);
-	}
-
-	private patternNamesForState(s: P1State): string[] {
 		switch (s) {
 			case 'swirl_fwd':
-				return SWIRL_FWD_PATTERNS;
+				return this.setPatternsByName(P1_SWIRL_FWD_PATTERNS);
 			case 'swirl_rev':
-				return SWIRL_REV_PATTERNS;
+				return this.setPatternsByName(P1_SWIRL_REV_PATTERNS);
 			case 'variance':
-				return VARIANCE_PATTERNS[GameState.difficulty];
+				return this.setPatternsByName(
+					P1_VARIANCE_PATTERNS[GameState.difficulty]
+				);
 		}
 	}
+
+	// ---------- Phase 2 ----------
 
 	private updateP2(dt: number): void {
 		this.p2StateTimer += dt;
 		if (this.p2StateTimer >= P2_STATE_DURATION[GameState.difficulty]) {
-			this.enterP2State(this.nextP2State(this.p2State));
+			this.p2EnterState(this.p2NextState(this.p2State));
 		}
 	}
 
-	private nextP2State(s: P2State): P2State {
+	private p2NextState(s: P2State): P2State {
 		if (s === 'fwd') return 'rev';
 		if (s === 'rev') return 'flat';
 		return 'fwd';
 	}
 
-	private enterP2State(s: P2State): void {
+	private p2EnterState(s: P2State): void {
 		this.p2State = s;
 		this.p2StateTimer = 0;
 		const names =
@@ -407,10 +481,17 @@ export class MeilingBoss extends Boss {
 				: s === 'rev'
 					? P2_REV_PATTERNS
 					: P2_FLAT_PATTERNS;
-		this.setPatterns(names.map(n => Patterns[n]));
+		this.setPatternsByName(names);
 	}
 
-	private recordP3Target(): void {
+	// ---------- Phase 3 ----------
+
+	private p3Enter(): void {
+		this.p3RecordTarget();
+		this.p3EnterState('moving');
+	}
+
+	private p3RecordTarget(): void {
 		this.p3TargetX = Math.max(
 			P3_TARGET_X_MARGIN,
 			Math.min(FIELD.WIDTH - P3_TARGET_X_MARGIN, PlayerPosition.x)
@@ -423,97 +504,109 @@ export class MeilingBoss extends Boss {
 
 	private updateP3(dt: number): void {
 		switch (this.p3State) {
-			case 'moving': {
-				const dx = this.p3TargetX - this.x;
-				const dy = this.p3TargetY - this.y;
-				const dist = Math.sqrt(dx * dx + dy * dy);
-				const step = P3_MOVE_SPEED * dt;
-				this.isMoving = dist > 1;
-				if (dist <= step) {
-					this.x = this.p3TargetX;
-					this.y = this.p3TargetY;
-					this.isMoving = false;
-					this.enterP3State('firing');
-				} else {
-					this.x += (dx / dist) * step;
-					this.y += (dy / dist) * step;
+			case 'moving':
+				if (
+					this.moveToward(dt, this.p3TargetX, this.p3TargetY, P3_MOVE_SPEED)
+				) {
+					this.p3EnterState('firing');
 				}
 				break;
-			}
-			case 'firing': {
+			case 'firing':
 				this.isMoving = false;
-				if (this.allPatternsDone()) {
-					this.enterP3State('paused');
-				}
+				if (this.allPatternsDone()) this.p3EnterState('paused');
 				break;
-			}
-			case 'paused': {
+			case 'paused':
 				this.isMoving = false;
 				this.p3StateTimer += dt;
 				if (this.p3StateTimer >= P3_PAUSE_DURATION) {
-					this.recordP3Target();
-					this.enterP3State('moving');
+					this.p3RecordTarget();
+					this.p3EnterState('moving');
 				}
 				break;
-			}
 		}
 	}
 
-	private enterP3State(s: P3State): void {
+	private p3EnterState(s: P3State): void {
 		this.p3State = s;
 		this.p3StateTimer = 0;
-		if (s === 'firing') {
-			this.setPatterns(P3_PATTERNS.map(n => Patterns[n]));
-		} else if (s === 'moving' || s === 'paused') {
-			this.setPatterns([]);
-		}
+		if (s === 'firing') this.setPatternsByName(P3_PATTERNS);
+		else this.setPatterns([]);
+	}
+
+	// ---------- Phase 4 ----------
+
+	private p4Enter(): void {
+		this.p4PatternsArmed = false;
+		this.setPatterns([]);
 	}
 
 	private updateP4(dt: number): void {
-		const dx = P4_TARGET_X - this.x;
-		const dy = P4_TARGET_Y - this.y;
-		const dist = Math.sqrt(dx * dx + dy * dy);
-		const step = P4_MOVE_SPEED * dt;
-		if (dist > step) {
-			this.x += (dx / dist) * step;
-			this.y += (dy / dist) * step;
-			this.isMoving = true;
-		} else {
-			this.x = P4_TARGET_X;
-			this.y = P4_TARGET_Y;
-			this.isMoving = false;
+		if (this.moveToward(dt, P4_TARGET_X, P4_TARGET_Y, P4_MOVE_SPEED)) {
 			if (!this.p4PatternsArmed) {
 				this.p4PatternsArmed = true;
-				this.setPatterns(P4_PATTERNS.map(n => Patterns[n]));
+				this.setPatternsByName(P4_PATTERNS);
 			}
 		}
 	}
 
+	// ---------- Phase 5 ----------
+
+	private updateP5(dt: number): void {
+		this.p5StateTimer += dt;
+		if (this.p5StateTimer >= P5_STATE_DURATION[GameState.difficulty]) {
+			this.p5EnterState(this.p5State === 'fwd' ? 'rev' : 'fwd');
+		}
+	}
+
+	private p5EnterState(s: P5State): void {
+		this.p5State = s;
+		this.p5StateTimer = 0;
+		this.setPatternsByName(s === 'fwd' ? P5_FWD_PATTERNS : P5_REV_PATTERNS);
+	}
+
+	// ---------- Phase 6 ----------
+
+	private p6Enter(): void {
+		this.p6PositionIndex = 0;
+		this.p6State = 'moving';
+		this.p6EdgeEngine = new PatternEngine(GameState.difficulty);
+		this.p6OrbEngines = P6_ORB_NAMES[GameState.difficulty].map(
+			() => new PatternEngine(GameState.difficulty)
+		);
+		this.p6ApplyPatterns(null);
+	}
+
 	private updateP6(dt: number): void {
-		const targetX = P6_POSITIONS_X[this.p6PositionIndex];
-		const targetY = P6_TARGET_Y;
-		const dx = targetX - this.x;
-		const dy = targetY - this.y;
-		const dist = Math.sqrt(dx * dx + dy * dy);
-		if (!this.p6Firing) {
-			const step = P6_MOVE_SPEED * dt;
-			if (dist > step) {
-				this.x += (dx / dist) * step;
-				this.y += (dy / dist) * step;
-				this.isMoving = true;
-				return;
+		if (this.p6State === 'moving') {
+			const targetX = P6_POSITIONS_X[this.p6PositionIndex]!;
+			if (this.moveToward(dt, targetX, P6_TARGET_Y, P6_MOVE_SPEED)) {
+				this.p6State = 'firing';
+				this.p6ApplyPatterns(new PatternEngine(GameState.difficulty));
 			}
-			this.x = targetX;
-			this.y = targetY;
-			this.isMoving = false;
-			this.p6Firing = true;
-			this.setPatterns([Patterns[P6_PATTERN_NAME]]);
 			return;
 		}
-		if (this.allPatternsDone()) {
-			this.p6Firing = false;
-			this.setPatterns([]);
+
+		const fountainIdx = this.patterns.length - 1;
+		if (this.engines[fountainIdx]!.isDone(this.patterns[fountainIdx]!)) {
+			this.p6State = 'moving';
 			this.p6PositionIndex = (this.p6PositionIndex + 1) % P6_POSITIONS_X.length;
+			this.p6ApplyPatterns(null);
 		}
+	}
+
+	private p6ApplyPatterns(fountainEngine: PatternEngine | null): void {
+		const patterns: PatternConfig[] = [Patterns[P6_EDGE_SWARM_NAME]!];
+		const engines: PatternEngine[] = [this.p6EdgeEngine!];
+		const orbNames = P6_ORB_NAMES[GameState.difficulty];
+		for (let i = 0; i < orbNames.length; i++) {
+			patterns.push(Patterns[orbNames[i]!]!);
+			engines.push(this.p6OrbEngines[i]!);
+		}
+		if (fountainEngine) {
+			patterns.push(Patterns[P6_FOUNTAIN_NAMES[GameState.difficulty]]!);
+			engines.push(fountainEngine);
+		}
+		this.patterns = patterns;
+		this.engines = engines;
 	}
 }

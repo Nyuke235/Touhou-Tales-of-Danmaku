@@ -60,6 +60,7 @@
 		& > *:nth-child(3) { margin-left: 16px; transition-delay: 0.24s; }
 		& > *:nth-child(4) { margin-left: 24px; transition-delay: 0.32s; }
 		& > *:nth-child(5) { margin-left: 32px; transition-delay: 0.40s; }
+		& > *:nth-child(6) { margin-left: 40px; transition-delay: 0.48s; }
 	}
 }
 
@@ -79,3 +80,4 @@
 #options.outro .menu > *:nth-child(3) { transition-delay: 0.12s; }
 #options.outro .menu > *:nth-child(4) { transition-delay: 0.18s; }
 #options.outro .menu > *:nth-child(5) { transition-delay: 0.24s; }
+#options.outro .menu > *:nth-child(6) { transition-delay: 0.30s; }

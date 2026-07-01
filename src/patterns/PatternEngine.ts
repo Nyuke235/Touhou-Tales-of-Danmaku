@@ -89,6 +89,7 @@ export interface PatternConfig {
 		| 'lullaby-laser'
 		| 'qi-wall'
 		| 'rice-thread-spray'
+		| 'edge-swarm'
 		| 'burst';
 	bullet?: BulletType;
 	color?: BulletColor;
@@ -334,6 +335,16 @@ export interface PatternConfig {
 	decelTime?: number;
 	decelFloor?: number;
 	vyMax?: number;
+
+	// ------------ EDGE-SWARM ------------
+	// count         = balls per wave; they tile the rotStep interval uniformly
+	// speed         = uniform speed for every ball (capped at 80)
+	// startAngle    = base angle of the first wave's first ball
+	// rotStep       = angular step per wave. Successive waves keep tiling forward.
+	// cooldown      = seconds between waves
+	// threadColors  = colors cycled across balls (index = shot*count + ball)
+	// spawnMargin   = extra distance (px) beyond the canvas diagonal for spawn ring
+	spawnMargin?: number;
 
 	// ------------ QI-WALL ------------
 	// One fire() spawns a single wall: a perpendicular line of bullets that crosses
@@ -1261,6 +1272,43 @@ export class PatternEngine {
 				const angle =
 					Math.atan2(py - ey, px - ex) + (Math.random() - 0.5) * spread;
 				this.spawnWithAccel(pattern, bullet, ex, ey, angle, speed, color, out);
+				break;
+			}
+
+			case 'edge-swarm': {
+				const count = Math.max(1, this.resolveCount(pattern) ?? 1);
+				const colors = pattern.threadColors ?? [
+					'red',
+					'purple',
+					'blue',
+					'cyan',
+					'green',
+					'yellow',
+					'orange',
+				];
+				const ballSpeed = Math.min(80, pattern.speed ?? 60);
+				const margin = pattern.spawnMargin ?? 12;
+				const rotStep = pattern.rotStep ?? Math.PI / 2;
+				const startAngle = pattern.startAngle ?? 0;
+				const cx = FIELD.WIDTH / 2;
+				const cy = FIELD.HEIGHT / 2;
+				const radius =
+					Math.hypot(FIELD.WIDTH / 2, FIELD.HEIGHT / 2) + margin;
+				const nb = pattern.noBoundsTime ?? 2.5;
+				const baseAngle = startAngle + shotCount * rotStep;
+				for (let i = 0; i < count; i++) {
+					const colorIdx = (shotCount * count + i) % colors.length;
+					const ballColor = colors[colorIdx]!;
+					const theta = baseAngle + (i / count) * rotStep;
+					const sx = cx + radius * Math.cos(theta);
+					const sy = cy + radius * Math.sin(theta);
+					const aim = Math.atan2(cy - sy, cx - sx);
+					const vx = Math.cos(aim) * ballSpeed;
+					const vy = Math.sin(aim) * ballSpeed;
+					const b = this.spawn(bullet, sx, sy, vx, vy, ballColor);
+					if (nb > 0) b.setupNoBounds(nb);
+					out.push(b);
+				}
 				break;
 			}
 

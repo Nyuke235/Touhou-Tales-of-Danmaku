@@ -298,8 +298,10 @@ export class GameScene {
 					'assets/sprites/backgrounds/stage3_gate_bg.png',
 					25
 				);
-				this.meilingParticles = new FireParticle();
-				this.meilingParticles.start();
+				if (!GameState.lowDetails) {
+					this.meilingParticles = new FireParticle();
+					this.meilingParticles.start();
+				}
 			}
 
 			boss.onSpellCapture = bonus => {
@@ -709,7 +711,9 @@ export class GameScene {
 				if (this.scoreManager.value > GameState.highScore)
 					GameState.highScore = this.scoreManager.value;
 				SoundManager.play(SFX.PLAYER_GRAZE);
-				this.grazeEffect.spawn(this.player.x, this.player.y);
+				if (!GameState.lowDetails) {
+					this.grazeEffect.spawn(this.player.x, this.player.y);
+				}
 			}
 			return;
 		}
