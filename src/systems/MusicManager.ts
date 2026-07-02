@@ -9,13 +9,14 @@ export const Music = {
 	BOSS2: 'assets/audio/music/stage2/tomboyish_girl_in_love.ogg',
 	STAGE3: 'assets/audio/music/stage3/deaf_to_all_but_the_song.ogg',
 	BOSS3: 'assets/audio/music/stage3/shanghai_teahouse.ogg',
+	ENDING: 'assets/audio/music/menu/crimson_belvedere_eastern_dream.ogg',
 } as const;
 
 export class MusicManager {
 	private static volume: number = AUDIO.MUSIC_VOLUME;
 	private static currentSrc: string = '';
 
-	// ── Web Audio (browser) ──────────────────────────────────────────────────
+	// WEB AUDIO (BROWSER)
 	private static ctx: AudioContext | null = null;
 	private static audio: HTMLAudioElement | null = null;
 	private static sourceNode: MediaElementAudioSourceNode | null = null;
@@ -31,7 +32,7 @@ export class MusicManager {
 		return this.ctx;
 	}
 
-	// ── Public API ───────────────────────────────────────────────────────────
+	// PUBLIC API
 
 	static play(src: string): void {
 		if (this.currentSrc === src) return;
@@ -110,7 +111,9 @@ export class MusicManager {
 	static setVolume(volume: number): void {
 		this.volume = Math.max(0, Math.min(1, volume));
 		if (isTauri()) {
-			invoke('set_music_volume', { volume: this.volume }).catch(e => console.error('[Music]', e));
+			invoke('set_music_volume', { volume: this.volume }).catch(e =>
+				console.error('[Music]', e)
+			);
 			return;
 		}
 		if (this.gainNode) this.gainNode.gain.value = this.volume;

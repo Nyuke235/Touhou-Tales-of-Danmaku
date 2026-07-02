@@ -13,6 +13,7 @@ export enum Scene {
 	SPECIAL = 'special',
 	CREDITS = 'credits',
 	SAVE_SCORE = 'save-score',
+	ENDING = 'ending',
 }
 
 export class SceneManager {
@@ -36,6 +37,7 @@ export class SceneManager {
 			[Scene.SPECIAL, this.getElem('special')],
 			[Scene.CREDITS, this.getElem('credits')],
 			[Scene.SAVE_SCORE, this.getElem('save-score')],
+			[Scene.ENDING, this.getElem('ending')],
 		]);
 		this.currentScene = Scene.HOME;
 		this.switchTo(Scene.HOME);

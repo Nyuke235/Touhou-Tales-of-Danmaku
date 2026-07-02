@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="assets/styles/music-room.css" />
 		<link rel="stylesheet" href="assets/styles/special.css" />
 		<link rel="stylesheet" href="assets/styles/credits.css" />
+		<link rel="stylesheet" href="assets/styles/ending.css" />
 		<link rel="stylesheet" href="assets/styles/styles.css" />
 		<!-- JS -->
 		<script type="module" src="src/main.ts" defer></script>
@@ -186,6 +187,7 @@
 						<button class="single-btn" id="low-details-btn">Low details: OFF</button>
 						<button class="single-btn">Keyconfig</button>
 						<button class="single-btn">Default settings</button>
+						<button class="single-btn" id="erase-data-btn">Erase data</button>
 						<button class="single-btn">Save & Exit</button>
 					</div>
 				</section>
@@ -218,6 +220,7 @@
 							<p class="cr-item">Tomboyish Girl in Love</p>
 							<p class="cr-item">Deaf to All But the Song</p>
 							<p class="cr-item">Shanghai Teahouse</p>
+							<p class="cr-item">Crimson Belvedere ~ Eastern Dream</p>
 						</div>
 						<div class="cr-block">
 							<p class="cr-role">ORIGINAL CHARACTERS & UNIVERSE</p>
@@ -230,6 +233,46 @@
 						</div>
 						<div class="cr-block cr-last">
 							<p class="cr-name">Thank you for playing.</p>
+						</div>
+					</div>
+				</section>
+
+				<!----------------------  ENDING  ---------------------->
+				<section id="ending">
+					<div id="end-inner">
+						<img class="end-logo" src="assets/sprites/ui/maintitle.png" alt="logo" />
+						<p class="end-text end-demo">You have reached the end of the demo</p>
+						<p class="end-text end-thanks">Thank you for playing</p>
+						<div class="end-spacer"></div>
+						<div id="end-credits">
+							<div class="end-block">
+								<p class="end-role">GAME DESIGN &middot; PROGRAMMING &middot; ART</p>
+								<p class="end-name">Nyuke235</p>
+							</div>
+							<div class="end-block">
+								<p class="end-role">MUSIC</p>
+								<p class="end-name">TrojanHorse711</p>
+								<p class="end-item">Apparitions Stalk the Night</p>
+								<p class="end-item">Lunate Elf</p>
+								<p class="end-name">ZahranW</p>
+								<p class="end-item">A Soul as Red as a Ground Cherry</p>
+								<p class="end-item">Tomboyish Girl in Love</p>
+								<p class="end-item">Deaf to All But the Song</p>
+								<p class="end-item">Shanghai Teahouse</p>
+								<p class="end-item">Crimson Belvedere ~ Eastern Dream</p>
+							</div>
+							<div class="end-block">
+								<p class="end-role">ORIGINAL CHARACTERS &amp; UNIVERSE</p>
+								<p class="end-name">ZUN (Team Shanghai Alice)</p>
+							</div>
+							<div class="end-block">
+								<p class="end-role">BASED ON</p>
+								<p class="end-name">Touhou Project</p>
+								<p class="end-item">~ the Embodiment of Scarlet Devil</p>
+							</div>
+							<div class="end-block end-last">
+								<p class="end-name">Thank you for playing.</p>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -377,10 +420,6 @@
 										<span class="sc-label">NO OF BOMBS USED</span>
 										<span class="sc-value" id="sc-bombs"></span>
 									</div>
-									<div class="sc-row">
-										<span class="sc-label">ENEMIES DEFEATED</span>
-										<span class="sc-value" id="sc-enemies"></span>
-									</div>
 								</div>
 							</div>
 							<div id="stage-blackout"></div>
@@ -406,10 +445,6 @@
 									<div class="go-row">
 										<span class="go-label">NO OF BOMBS USED</span>
 										<span class="go-value" id="go-bombs"></span>
-									</div>
-									<div class="go-row">
-										<span class="go-label">ENEMIES DEFEATED</span>
-										<span class="go-value" id="go-enemies"></span>
 									</div>
 								</div>
 								<div class="go-separator"></div>

@@ -464,7 +464,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/cirno/cirno.png",
+					"portrait": "assets/sprites/portraits/cirno/cirno_angry.png",
 					"name": "Cirno",
 					"text": "I'VE BEEN STANDING RIGHT HERE THE WHOLE TIME! Prepare to be turned into a popsicle, you blind magician!!"
 				}
@@ -602,7 +602,7 @@
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
 					"name": "Marisa Kirisame",
-					"text": "You're unbelievable, ze. I'm going through anyway."
+					"text": "Heh, fine. Let's settle it with danmaku, ze!"
 				}
 			]
 		}
@@ -732,7 +732,7 @@
 					"speaker": "player",
 					"portrait": "assets/sprites/portraits/marisa/marisa_tuff.png",
 					"name": "Marisa Kirisame",
-					"text": "Worth a shot. I'm going through anyway, ze!"
+					"text": "Can't blame me for trying. Time for Plan B, ze!"
 				}
 			]
 		}
@@ -920,7 +920,7 @@
 			"post": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/meiling_worried.png",
+					"portrait": "assets/sprites/portraits/meiling/meiling_worried.png",
 					"name": "Hong Meiling",
 					"text": "Well, I'll head back to sleep. The gate's yours."
 				},
@@ -932,7 +932,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/meiling_angry.png",
+					"portrait": "assets/sprites/portraits/meiling/meiling_angry.png",
 					"name": "Hong Meiling",
 					"text": "Don't even think about it."
 				},

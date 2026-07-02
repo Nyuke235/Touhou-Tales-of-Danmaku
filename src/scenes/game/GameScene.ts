@@ -43,6 +43,7 @@ import { DialogueRegistry } from '../../stages/DialogueRegistry';
 import { buildPlayer } from '../../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
 import { SaveScoreScene } from '../menu/SaveScoreScene';
+import { EndingScene } from '../menu/EndingScene';
 import {
 	SPELLCARD_REGISTRY,
 	SpellcardEntry,
@@ -76,6 +77,7 @@ export class GameScene {
 	protected startTime: number = 0;
 	protected misses: number = 0;
 	protected bombsUsed: number = 0;
+	protected isFinalStageEnding: boolean = false;
 	protected bombEffect: { x: number; y: number; t: number } | null = null;
 	protected sealBomb: FantasySealBomb | null = null;
 	protected sparkBomb: MasterSparkBomb | null = null;
@@ -160,7 +162,13 @@ export class GameScene {
 		});
 
 		this.stageClearMenu = new StageClearMenu({
-			onContinue: () => this.advanceToNextStage(),
+			onContinue: () => {
+				if (this.isFinalStageEnding) {
+					this.triggerEnding();
+				} else {
+					this.advanceToNextStage();
+				}
+			},
 		});
 
 		this.spellcardClearMenu = new SpellcardClearMenu(
@@ -247,6 +255,7 @@ export class GameScene {
 		this.sparkBomb = null;
 		this.slowFrames = 0;
 		this.totalFrames = 0;
+		this.isFinalStageEnding = false;
 		this.startTime = Date.now();
 		GameState.power = spellcardEntry
 			? GameState.maxPower
@@ -417,18 +426,14 @@ export class GameScene {
 	}
 
 	protected nextStage(): void {
-		if (this.currentStageIndex + 1 < STAGES.length) {
-			this.stageClearMenu.show({
-				score: this.scoreManager.value,
-				difficulty: GameState.difficulty,
-				playingTime: Date.now() - this.startTime,
-				misses: this.misses,
-				bombsUsed: this.bombsUsed,
-				enemiesDefeated: this.enemyManager.killedCount,
-			});
-		} else {
-			this.triggerEnding();
-		}
+		this.isFinalStageEnding = this.currentStageIndex + 1 >= STAGES.length;
+		this.stageClearMenu.show({
+			score: this.scoreManager.value,
+			difficulty: GameState.difficulty,
+			playingTime: Date.now() - this.startTime,
+			misses: this.misses,
+			bombsUsed: this.bombsUsed,
+		});
 	}
 
 	protected advanceToNextStage(): void {
@@ -465,9 +470,8 @@ export class GameScene {
 
 		if (!GameState.practiceMode && !GameState.spellcardMode) {
 			const entry = this.buildScoreEntry(score);
-			LocalScores.add(entry);
-			SaveScoreScene.setPending(entry);
-			this.sceneManager.switchTo(Scene.SAVE_SCORE);
+			EndingScene.setPendingEntry(entry);
+			this.sceneManager.switchTo(Scene.ENDING);
 		} else {
 			this.sceneManager.switchTo(Scene.HOME);
 		}
@@ -572,11 +576,14 @@ export class GameScene {
 		if (!this.activeBoss) return;
 
 		if (!this.activeBoss.active) {
+			const wasMeiling = this.activeBoss instanceof MeilingBoss;
 			this.bossHUD.hide();
 			this.spellcardBg.hide();
-			this.gateBg = null;
-			this.meilingParticles?.stop();
-			this.meilingParticles = null;
+			if (!wasMeiling) {
+				this.gateBg = null;
+				this.meilingParticles?.stop();
+				this.meilingParticles = null;
+			}
 			this.activeBoss = null;
 			if (GameState.spellcardMode) {
 				this.triggerSpellcardClear();
@@ -834,7 +841,6 @@ export class GameScene {
 				playingTime: Date.now() - this.startTime,
 				misses: this.misses,
 				bombsUsed: this.bombsUsed,
-				enemiesDefeated: this.enemyManager.killedCount,
 			},
 			canSave
 		);

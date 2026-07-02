@@ -11,14 +11,16 @@ interface TrackEntry {
 	label: string;
 }
 
+//prettier-ignore
 const TRACKS: TrackEntry[] = [
-	{ src: Music.MENU,   title: 'A Dream More Scarlet Than Red',    label: 'Menu Theme' },
-	{ src: Music.STAGE1, title: 'A Soul as Red as a Ground Cherry', label: 'Stage 1 Theme' },
-	{ src: Music.BOSS,   title: 'Apparitions Stalk the Night',      label: 'Stage 1 Boss Theme' },
+	{ src: Music.MENU,   title: 'A Dream More Scarlet Than Red',     label: 'Menu Theme' },
+	{ src: Music.STAGE1, title: 'A Soul as Red as a Ground Cherry',  label: 'Stage 1 Theme' },
+	{ src: Music.BOSS,   title: 'Apparitions Stalk the Night',       label: 'Stage 1 Boss Theme' },
 	{ src: Music.STAGE2, title: 'Lunate Elf',                        label: 'Stage 2 Theme' },
 	{ src: Music.BOSS2,  title: 'Tomboyish Girl in Love',            label: 'Stage 2 Boss Theme' },
 	{ src: Music.STAGE3, title: 'Deaf to All But the Song',          label: 'Stage 3 Theme' },
 	{ src: Music.BOSS3,  title: 'Shanghai Teahouse',                 label: 'Stage 3 Boss Theme' },
+	{ src: Music.ENDING, title: 'Crimson Belvedere ~ Eastern Dream', label: 'Ending Theme' },
 ];
 
 export class MusicRoomScene extends MenuScene {
@@ -46,7 +48,8 @@ export class MusicRoomScene extends MenuScene {
 
 	protected onKeyDown(code: string): void {
 		if (code === Controls.MOVE_UP) {
-			this.selectedIndex = (this.selectedIndex - 1 + TRACKS.length) % TRACKS.length;
+			this.selectedIndex =
+				(this.selectedIndex - 1 + TRACKS.length) % TRACKS.length;
 			SoundManager.play(SFX.UI_HIGHLIGHT);
 			this.updateSelection();
 			MusicManager.play(TRACKS[this.selectedIndex].src);

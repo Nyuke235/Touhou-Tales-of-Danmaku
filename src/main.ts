@@ -20,6 +20,7 @@ import { MusicRoomScene } from './scenes/menu/MusicRoomScene';
 import { SpecialScene } from './scenes/menu/SpecialScene';
 import { CreditsScene } from './scenes/menu/CreditsScene';
 import { SaveScoreScene } from './scenes/menu/SaveScoreScene';
+import { EndingScene } from './scenes/menu/EndingScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { GameState } from './game/GameState';
 import { DialogueRegistry } from './stages/DialogueRegistry';
@@ -54,6 +55,7 @@ const musicRoomScene = new MusicRoomScene(sceneManager, inputManager);
 new SpecialScene(sceneManager, inputManager);
 new CreditsScene(sceneManager, inputManager);
 new SaveScoreScene(sceneManager, inputManager);
+const endingScene = new EndingScene(sceneManager, inputManager);
 
 await showSplash();
 
@@ -177,6 +179,9 @@ sceneManager.switchTo = (scene: Scene) => {
 	if (scene === Scene.LEADERBOARD) {
 		LeaderboardManagement.mode = 'global';
 		LeaderboardManagement.generateLeaderboard();
+	}
+	if (scene === Scene.ENDING) {
+		endingScene.onEnter();
 	}
 	if (scene === Scene.SAVE_SCORE) {
 		const el = document.getElementById('save-score')!;

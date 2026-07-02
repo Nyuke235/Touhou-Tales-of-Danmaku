@@ -5,10 +5,10 @@
     "color": "purple",
     "count": 7,
     "angularVel": "PI/5",
-    "radialVel": 70,
+    "radialVel": 75,
     "startAngle": 0,
     "delay": 0.1,
-    "cooldown": 0.12
+    "cooldown": 0.1
   },
   "RUMIALANTERN_DARK_STARS": {
     "type": "orbit",

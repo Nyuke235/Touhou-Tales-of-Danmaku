@@ -13,7 +13,6 @@ export interface GameOverStats {
 	playingTime: number;
 	misses: number;
 	bombsUsed: number;
-	enemiesDefeated: number;
 }
 
 function formatTime(ms: number): string {
@@ -104,8 +103,6 @@ export class GameOverMenu {
 		document.getElementById('go-misses')!.textContent = stats.misses.toString();
 		document.getElementById('go-bombs')!.textContent =
 			stats.bombsUsed.toString();
-		document.getElementById('go-enemies')!.textContent =
-			stats.enemiesDefeated.toString();
 	}
 
 	private bindKeyboard(

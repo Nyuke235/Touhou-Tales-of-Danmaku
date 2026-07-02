@@ -7,8 +7,9 @@ import { LocalSettings } from '../../systems/LocalSettings';
 import { GameState } from '../../game/GameState';
 import { MenuScene } from './MenuScene';
 
-const OPTION_COUNT = 6;
+const OPTION_COUNT = 7;
 const LOW_DETAILS_INDEX = 2;
+const ERASE_DATA_INDEX = 5;
 
 const VOLUME_STEPS = 5;
 
@@ -36,6 +37,8 @@ export class OptionsScene extends MenuScene {
 	private optionLines: HTMLElement[];
 	private singleBtns: HTMLButtonElement[];
 	private lowDetailsBtn: HTMLButtonElement | null;
+	private eraseDataBtn: HTMLButtonElement | null;
+	private confirmingErase: boolean = false;
 
 	constructor(sceneManager: SceneManager, inputManager: InputManager) {
 		super(sceneManager, inputManager, Scene.OPTIONS);
@@ -50,6 +53,9 @@ export class OptionsScene extends MenuScene {
 		this.lowDetailsBtn = document.getElementById(
 			'low-details-btn'
 		) as HTMLButtonElement | null;
+		this.eraseDataBtn = document.getElementById(
+			'erase-data-btn'
+		) as HTMLButtonElement | null;
 
 		this.syncFromManagers();
 		this.updateSelection();
@@ -62,16 +68,19 @@ export class OptionsScene extends MenuScene {
 		this.updateBar('bgm-bar', this.bgmVolume);
 		this.updateBar('se-bar', this.seVolume);
 		this.updateLowDetailsLabel();
+		this.updateEraseDataLabel();
 	}
 
 	protected onKeyDown(code: string): void {
 		if (code === Controls.MOVE_UP) {
+			this.cancelEraseConfirm();
 			this.selectedIndex =
 				(this.selectedIndex - 1 + OPTION_COUNT) % OPTION_COUNT;
 			SoundManager.play(SFX.UI_HIGHLIGHT);
 			this.updateSelection();
 		}
 		if (code === Controls.MOVE_DOWN) {
+			this.cancelEraseConfirm();
 			this.selectedIndex = (this.selectedIndex + 1) % OPTION_COUNT;
 			SoundManager.play(SFX.UI_HIGHLIGHT);
 			this.updateSelection();
@@ -88,6 +97,10 @@ export class OptionsScene extends MenuScene {
 			this.confirm();
 		}
 		if (code === Controls.BACK) {
+			if (this.confirmingErase) {
+				this.cancelEraseConfirm();
+				return;
+			}
 			LocalSettings.save();
 			this.switchWithOutro(Scene.HOME);
 		}
@@ -157,11 +170,37 @@ export class OptionsScene extends MenuScene {
 			case 4:
 				this.resetDefaults();
 				break;
-			case 5:
+			case ERASE_DATA_INDEX:
+				this.handleEraseData();
+				break;
+			case 6:
 				LocalSettings.save();
 				this.switchWithOutro(Scene.HOME);
 				break;
 		}
+	}
+
+	private handleEraseData(): void {
+		if (!this.confirmingErase) {
+			this.confirmingErase = true;
+			this.updateEraseDataLabel();
+			return;
+		}
+		localStorage.clear();
+		location.reload();
+	}
+
+	private cancelEraseConfirm(): void {
+		if (!this.confirmingErase) return;
+		this.confirmingErase = false;
+		this.updateEraseDataLabel();
+	}
+
+	private updateEraseDataLabel(): void {
+		if (!this.eraseDataBtn) return;
+		this.eraseDataBtn.textContent = this.confirmingErase
+			? 'Are you sure?'
+			: 'Erase data';
 	}
 
 	private toggleLowDetails(): void {

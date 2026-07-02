@@ -9,7 +9,6 @@ export interface StageClearStats {
 	playingTime: number;
 	misses: number;
 	bombsUsed: number;
-	enemiesDefeated: number;
 }
 
 function formatTime(ms: number): string {
@@ -67,7 +66,5 @@ export class StageClearMenu {
 		document.getElementById('sc-misses')!.textContent = stats.misses.toString();
 		document.getElementById('sc-bombs')!.textContent =
 			stats.bombsUsed.toString();
-		document.getElementById('sc-enemies')!.textContent =
-			stats.enemiesDefeated.toString();
 	}
 }
