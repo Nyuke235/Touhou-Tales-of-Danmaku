@@ -141,10 +141,10 @@ export class CharacterScene extends MenuScene {
 
 		this.activeSpritesheet = new Spritesheet({
 			src: spriteSrc,
-			frameX: 104,
-			frameY: 104,
-			frameCount: 10,
-			frameSpeed: 75,
+			frameX: 32,
+			frameY: 32,
+			frameCount: 1,
+			frameSpeed: 1,
 		});
 
 		this.renderColorDots(colors, this.colorIndex);

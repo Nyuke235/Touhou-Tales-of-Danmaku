@@ -9,6 +9,18 @@ export class ItemManager {
 		this.items.push(new Item(x, y, type));
 	}
 
+	spawnLaunched(
+		x: number,
+		y: number,
+		type: ItemType,
+		vx: number,
+		vy: number
+	): void {
+		const item = new Item(x, y, type);
+		item.launch(vx, vy);
+		this.items.push(item);
+	}
+
 	dropFromEnemy(
 		x: number,
 		y: number,

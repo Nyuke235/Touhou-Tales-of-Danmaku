@@ -43,7 +43,6 @@ import { DialogueRegistry } from '../../stages/DialogueRegistry';
 import { buildPlayer } from '../../game/PlayerBuilder';
 import { SpellcardClearMenu } from './SpellcardClearMenu';
 import { SaveScoreScene } from '../menu/SaveScoreScene';
-import { EndingScene } from '../menu/EndingScene';
 import {
 	SPELLCARD_REGISTRY,
 	SpellcardEntry,
@@ -470,8 +469,10 @@ export class GameScene {
 
 		if (!GameState.practiceMode && !GameState.spellcardMode) {
 			const entry = this.buildScoreEntry(score);
-			EndingScene.setPendingEntry(entry);
-			this.sceneManager.switchTo(Scene.ENDING);
+			LocalScores.add(entry);
+			SaveScoreScene.setPending(entry);
+			SaveScoreScene.setNextScene(Scene.ENDING);
+			this.sceneManager.switchTo(Scene.SAVE_SCORE);
 		} else {
 			this.sceneManager.switchTo(Scene.HOME);
 		}
@@ -736,9 +737,9 @@ export class GameScene {
 		const powerBefore = GameState.power;
 		GameState.power = Math.max(0.0, GameState.power - GAME.POWER_LOST_ON_DEATH);
 		if (powerBefore >= 1.0) {
-			this.itemManager.dropFromEnemy(deathX, deathY, [
-				{ type: 'bigpower', count: 1 },
-			]);
+			const vx = (Math.random() - 0.5) * 60;
+			const vy = -(180 + Math.random() * 60);
+			this.itemManager.spawnLaunched(deathX, deathY, 'bigpower', vx, vy);
 		}
 
 		this.hud.setLives(this.lives);

@@ -12,9 +12,14 @@ const VALID_CHAR = /^[a-zA-Z0-9_-]$/;
 
 export class SaveScoreScene {
 	private static pending: ScoreEntry | null = null;
+	private static nextScene: Scene = Scene.HOME;
 
 	static setPending(entry: ScoreEntry): void {
 		this.pending = entry;
+	}
+
+	static setNextScene(scene: Scene): void {
+		this.nextScene = scene;
 	}
 
 	private sceneManager: SceneManager;
@@ -67,7 +72,7 @@ export class SaveScoreScene {
 		if (e.key === 'Escape') {
 			e.preventDefault();
 			SoundManager.play(SFX.UI_SELECT);
-			this.exitToHome();
+			this.exit();
 			return;
 		}
 		if (e.key === 'Enter') {
@@ -105,7 +110,7 @@ export class SaveScoreScene {
 	private async submit(): Promise<void> {
 		const entry = SaveScoreScene.pending;
 		if (!entry) {
-			this.exitToHome();
+			this.exit();
 			return;
 		}
 		if (this.name.length < MIN_LEN) {
@@ -125,17 +130,19 @@ export class SaveScoreScene {
 			this.setStatus('SAVED!', 'ok');
 			SaveScoreScene.pending = null;
 			await LeaderboardManagement.generateLeaderboard();
-			setTimeout(() => this.exitToHome(), 700);
+			setTimeout(() => this.exit(), 700);
 		} else {
 			this.submitting = false;
 			this.setStatus(result.message ?? 'SAVE FAILED', 'err');
 		}
 	}
 
-	private exitToHome(): void {
+	private exit(): void {
 		const section = document.getElementById('save-score')!;
 		if (section.classList.contains('outro')) return;
 		section.classList.add('outro');
-		setTimeout(() => this.sceneManager.switchTo(Scene.HOME), 400);
+		const target = SaveScoreScene.nextScene;
+		SaveScoreScene.nextScene = Scene.HOME;
+		setTimeout(() => this.sceneManager.switchTo(target), 400);
 	}
 }

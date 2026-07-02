@@ -823,7 +823,7 @@
 			"post": [
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/meiling_sleep.png",
+					"portrait": "assets/sprites/portraits/meiling/meiling_sleep.png",
 					"name": "Hong Meiling",
 					"text": "A good fight deserves a good nap."
 				},
@@ -835,7 +835,7 @@
 				},
 				{
 					"speaker": "boss",
-					"portrait": "assets/sprites/portraits/rumia/meiling_sleep.png",
+					"portrait": "assets/sprites/portraits/meiling/meiling_sleep.png",
 					"name": "Hong Meiling",
 					"text": "It's worked for me so far."
 				}

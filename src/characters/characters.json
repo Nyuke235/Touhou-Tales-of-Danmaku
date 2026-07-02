@@ -9,8 +9,9 @@
 		"spellcardFull": "Divine Spirit 'Fantasy Seal'",
 		"sprite": [
 			"",
-			"../../assets/sprites/entities/player/reimu/reimustanding_spritesheet.png"
-		]
+			"assets/sprites/entities/player/reimu/reimu_spritesheet.png"
+		],
+		"frameCount": 19
 	},
 	{
 		"id": "marisa",
@@ -22,7 +23,8 @@
 		"spellcardFull": "Love Sign 'Master Spark'",
 		"sprite": [
 			"",
-			"../../assets/sprites/entities/player/marisa/marisastanding_spritesheet.png"
-		]
+			"assets/sprites/entities/player/marisa/marisa_spritesheet.png"
+		],
+		"frameCount": 6
 	}
 ]

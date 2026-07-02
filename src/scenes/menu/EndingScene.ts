@@ -3,21 +3,11 @@ import { InputManager } from '../../systems/InputManager';
 import { Controls } from '../../systems/Controls';
 import { MusicManager, Music } from '../../systems/MusicManager';
 import { MenuScene } from './MenuScene';
-import { LocalScores, ScoreEntry } from '../../systems/LocalScores';
-import { BackendAPI } from '../../utils/BackendAPI';
-import { LeaderboardManagement } from '../../systems/LeaderboardManager';
 
 const HOLD_BEFORE_SCROLL_MS = 4000;
 const SCROLL_DURATION_MS = 50000;
-const NAME_KEY = 'lastSubmitName';
 
 export class EndingScene extends MenuScene {
-	private static pendingEntry: ScoreEntry | null = null;
-
-	static setPendingEntry(entry: ScoreEntry): void {
-		this.pendingEntry = entry;
-	}
-
 	private section: HTMLElement;
 	private active: boolean = false;
 	private timers: number[] = [];
@@ -32,7 +22,6 @@ export class EndingScene extends MenuScene {
 		this.active = true;
 
 		MusicManager.play(Music.ENDING);
-		this.saveScoreSilently();
 
 		this.section.classList.remove('active', 'scrolling');
 		void this.section.offsetWidth;
@@ -65,22 +54,5 @@ export class EndingScene extends MenuScene {
 		this.section.classList.remove('active', 'scrolling');
 		MusicManager.stop();
 		this.sceneManager.switchTo(Scene.HOME);
-	}
-
-	private async saveScoreSilently(): Promise<void> {
-		const entry = EndingScene.pendingEntry;
-		if (!entry) return;
-		EndingScene.pendingEntry = null;
-
-		LocalScores.add(entry);
-
-		const lastName = localStorage.getItem(NAME_KEY);
-		if (!lastName) return;
-
-		const result = await BackendAPI.saveScore(lastName, entry);
-		if (result.ok) {
-			LocalScores.tagByDate(entry.date, lastName);
-			await LeaderboardManagement.generateLeaderboard();
-		}
 	}
 }

@@ -95,7 +95,7 @@ const RAW_STAGE_3: SpawnEventData[] = [
 	{ time: 78.0, type: 'bubblefairy', x:  80, y: -16, path: 'descend-slow' },
 	{ time: 78.0, type: 'bubblefairy', x: 176, y: -16, path: 'descend-slow' },
 
-	{ time: 82.0, type: 'mystiaboss', x: 128, y: -16 },
+	{ time: 82.5, type: 'mystiaboss', x: 128, y: -16 },
 
 	// post-Mystia: heavy mandragora swarm + a few fairies, then Meiling
 	{ time: 83.0, type: 'mandragora', x:  64, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
@@ -115,7 +115,7 @@ const RAW_STAGE_3: SpawnEventData[] = [
 	{ time: 87.5, type: 'mandragora', x: 184, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
 	{ time: 88.0, type: 'mandragora', x: 128, y: -16, patterns: [P.S3_MANDRAGORA_N, P.S3_MANDRAGORA_H, P.S3_MANDRAGORA_L] },
 
-	{ time: 92.0, type: 'meilingboss', x: 128, y: -16 },
+	{ time: 95.0, type: 'meilingboss', x: 128, y: -16 },
 ];
 
 export const STAGE_3 = buildScript(RAW_STAGE_3);

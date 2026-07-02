@@ -9,6 +9,7 @@ export interface CharacterData {
 	spellcard: string;
 	spellcardFull: string;
 	sprite: string[];
+	frameCount: number;
 }
 
 export const loadCharacters = async (): Promise<CharacterData[]> =>
