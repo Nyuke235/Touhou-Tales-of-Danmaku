@@ -87,13 +87,24 @@ const PHASES: BossPhase[] = [
 		],
 		patterns: [],
 	},
+	{
+		name: 'Gate Sign 「Five Elements Eight Trigrams Palm」',
+		isSpellCard: true,
+		hp: 500,
+		timer: 60,
+		barWeight: 1.0,
+		drops: [
+			{ type: 'bigpoint', count: 6 },
+			{ type: 'power', count: 8 },
+			{ type: 'bomb', count: 1 },
+		],
+		patterns: [],
+	},
 ];
 
-// ---------- Global movement ----------
 const DRIFT_OFFSET = 60;
 const MOVE_INTERVAL = 3.2;
 
-// ---------- Phase 1 (swirl / variance) ----------
 const P1_SWIRL_FWD_PATTERNS = [
 	'S3_MEILING_BOSS_SWIRL_FWD_RED_PRE',
 	'S3_MEILING_BOSS_SWIRL_FWD_RED',
@@ -143,7 +154,6 @@ const P1_VARIANCE_DURATION = 1.6;
 
 type P1State = 'swirl_fwd' | 'swirl_rev' | 'variance';
 
-// ---------- Phase 2 (vibrant flower) ----------
 const P2_COLORS = [
 	'RED',
 	'PURPLE',
@@ -165,7 +175,6 @@ const P2_STATE_DURATION: Record<Difficulty, number> = {
 
 type P2State = 'fwd' | 'rev' | 'flat';
 
-// ---------- Phase 3 (player-tracking rings) ----------
 const P3_PATTERNS = [
 	'S3_MEILING_BOSS_P3_RING_RED',
 	'S3_MEILING_BOSS_P3_RING_PURPLE',
@@ -195,7 +204,6 @@ const P3_TARGET_X_MARGIN = 24;
 
 type P3State = 'moving' | 'firing' | 'paused';
 
-// ---------- Phase 4 (qi wall spellcard) ----------
 const P4_PATTERNS = [
 	'S3_MEILING_BOSS_P4_QI_WALL_EN',
 	'S3_MEILING_BOSS_P4_QI_WALL_H',
@@ -208,7 +216,6 @@ const P4_TARGET_X = FIELD.WIDTH / 2;
 const P4_TARGET_Y = 40;
 const P4_MOVE_SPEED = 160;
 
-// ---------- Phase 5 (alternating rings + gravity balls) ----------
 const P5_BALL_PATTERNS = [
 	'S3_MEILING_BOSS_P5_BALL_N',
 	'S3_MEILING_BOSS_P5_BALL_H',
@@ -243,7 +250,6 @@ const P5_STATE_DURATION: Record<Difficulty, number> = {
 
 type P5State = 'fwd' | 'rev';
 
-// ---------- Phase 6 (aromatic flowing clouds spellcard) ----------
 const P6_FOUNTAIN_NAMES: Record<Difficulty, string> = {
 	EASY: 'S3_MEILING_BOSS_P6_FOUNTAIN_E',
 	NORMAL: 'S3_MEILING_BOSS_P6_FOUNTAIN_N',
@@ -272,6 +278,21 @@ const P6_POSITIONS_X = [
 
 type P6State = 'moving' | 'firing';
 
+const P7_PATTERNS = [
+	'S3_MEILING_BOSS_P7_BUBBLES_EN',
+	'S3_MEILING_BOSS_P7_BUBBLES_HL',
+	'S3_MEILING_BOSS_P7_HELIX_RICE_E',
+	'S3_MEILING_BOSS_P7_HELIX_RICE_NH',
+	'S3_MEILING_BOSS_P7_HELIX_RICE_L',
+	'S3_MEILING_BOSS_P7_HELIX_ROCK_E',
+	'S3_MEILING_BOSS_P7_HELIX_ROCK_N',
+	'S3_MEILING_BOSS_P7_HELIX_ROCK_H',
+	'S3_MEILING_BOSS_P7_HELIX_ROCK_L',
+];
+const P7_TARGET_X = FIELD.WIDTH / 2;
+const P7_TARGET_Y = 60;
+const P7_MOVE_SPEED = 160;
+
 export class MeilingBoss extends Boss {
 	private lastPhaseIndex: number = -1;
 
@@ -295,6 +316,8 @@ export class MeilingBoss extends Boss {
 	private p6PositionIndex: number = 0;
 	private p6EdgeEngine: PatternEngine | null = null;
 	private p6OrbEngines: PatternEngine[] = [];
+
+	private p7PatternsArmed: boolean = false;
 
 	private moveTimer: number = 0;
 
@@ -357,6 +380,9 @@ export class MeilingBoss extends Boss {
 			case 5:
 				this.updateP6(dt);
 				return;
+			case 6:
+				this.updateP7(dt);
+				return;
 		}
 	}
 
@@ -374,6 +400,8 @@ export class MeilingBoss extends Boss {
 				return this.p5EnterState('fwd');
 			case 5:
 				return this.p6Enter();
+			case 6:
+				return this.p7Enter();
 		}
 	}
 
@@ -608,5 +636,21 @@ export class MeilingBoss extends Boss {
 		}
 		this.patterns = patterns;
 		this.engines = engines;
+	}
+
+	// ---------- Phase 7 ----------
+
+	private p7Enter(): void {
+		this.p7PatternsArmed = false;
+		this.setPatterns([]);
+	}
+
+	private updateP7(dt: number): void {
+		if (this.moveToward(dt, P7_TARGET_X, P7_TARGET_Y, P7_MOVE_SPEED)) {
+			if (!this.p7PatternsArmed) {
+				this.p7PatternsArmed = true;
+				this.setPatternsByName(P7_PATTERNS);
+			}
+		}
 	}
 }

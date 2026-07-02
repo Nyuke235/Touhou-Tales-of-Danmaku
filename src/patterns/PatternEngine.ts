@@ -34,6 +34,8 @@ import {
 	BubbleMediumBullet,
 	BubbleSmallBullet,
 } from '../entities/bullets/BubbleBullet';
+import { RockBullet } from '../entities/bullets/RockBullet';
+import { InvisibleBullet } from '../entities/bullets/InvisibleBullet';
 import {
 	BulletColor,
 	BALL_SPRITES,
@@ -63,7 +65,9 @@ export type BulletType =
 	| 'bubble-small'
 	| 'feather'
 	| 'musicnote'
-	| 'purpleflower';
+	| 'purpleflower'
+	| 'rock'
+	| 'invisible';
 
 export interface PatternConfig {
 	type:
@@ -370,7 +374,7 @@ export interface PatternConfig {
 }
 
 export interface MorphConfig {
-	type: 'circle' | 'fixed' | 'helix' | 'aimed' | 'random';
+	type: 'circle' | 'fixed' | 'helix' | 'aimed' | 'random' | 'volley-circle';
 	bullet?: BulletType;
 	color?: BulletColor;
 	count?: number;
@@ -384,6 +388,13 @@ export interface MorphConfig {
 	// aimed only
 	initSpeed?: number;
 	accelTime?: number;
+	// volley-circle only
+	streams?: number;
+	deltaSpeed?: number;
+	// circle / volley-circle: rotates baseAngle by rotStep for each successive
+	// parent shot (useful when the carrier is a helix so consecutive morphs are
+	// slightly rotated relative to each other).
+	rotStep?: number;
 }
 
 export class PatternEngine {
@@ -396,6 +407,7 @@ export class PatternEngine {
 	private inBurst: boolean = false;
 	private burstCount: number = 0;
 	private burstTimer: number = 0;
+	private currentFireShot: number = 0;
 
 	constructor(difficulty: Difficulty) {
 		this.difficulty = difficulty;
@@ -559,6 +571,8 @@ export class PatternEngine {
 		feather: (x, y, vx, vy) => new FeatherBullet(x, y, vx, vy),
 		musicnote: (x, y, vx, vy) => new MusicNoteBullet(x, y, vx, vy),
 		purpleflower: () => new PurpleFlowerBullet(),
+		rock: (x, y, vx, vy) => new RockBullet(x, y, vx, vy),
+		invisible: (x, y, vx, vy) => new InvisibleBullet(x, y, vx, vy),
 	};
 
 	private spawn(
@@ -628,6 +642,7 @@ export class PatternEngine {
 	private buildMorphFn(
 		mc: MorphConfig
 	): (x: number, y: number, shotIndex: number) => IBullet[] {
+		const parentShotIndex = this.currentFireShot;
 		return (x, y, shotIndex) => {
 			const out: IBullet[] = [];
 			const bullet = mc.bullet ?? 'ball';
@@ -635,23 +650,34 @@ export class PatternEngine {
 			const speed = mc.speed ?? 80;
 			const count = Math.max(1, mc.count ?? 8);
 
-			const spawnB = (angle: number) => {
+			const spawnB = (angle: number, useSpeed: number = speed) => {
 				const b = this.spawn(
 					bullet,
 					x,
 					y,
-					Math.cos(angle) * speed,
-					Math.sin(angle) * speed,
+					Math.cos(angle) * useSpeed,
+					Math.sin(angle) * useSpeed,
 					color
 				);
 				if (mc.initSpeed !== undefined && mc.accelTime !== undefined) {
-					b.setupAccel(angle, mc.initSpeed, speed, mc.accelTime);
+					b.setupAccel(angle, mc.initSpeed, useSpeed, mc.accelTime);
 				}
 				return b;
 			};
 
-			if (mc.type === 'circle') {
-				const baseAngle = mc.startAngle ?? 0;
+			const rotOffset = (mc.rotStep ?? 0) * parentShotIndex;
+			if (mc.type === 'volley-circle') {
+				const streams = Math.max(1, mc.streams ?? 3);
+				const deltaSpeed = mc.deltaSpeed ?? 20;
+				const baseAngle = (mc.startAngle ?? 0) + rotOffset;
+				for (let l = 0; l < count; l++) {
+					const angle = baseAngle + (l / count) * Math.PI * 2;
+					for (let i = 0; i < streams; i++) {
+						out.push(spawnB(angle, speed + i * deltaSpeed));
+					}
+				}
+			} else if (mc.type === 'circle') {
+				const baseAngle = (mc.startAngle ?? 0) + rotOffset;
 				for (let i = 0; i < count; i++) {
 					out.push(spawnB(baseAngle + (i / count) * Math.PI * 2));
 				}
@@ -693,6 +719,7 @@ export class PatternEngine {
 		out: IBullet[],
 		shotCount: number
 	): void {
+		this.currentFireShot = shotCount;
 		const speed = pattern.speed ?? 80;
 		const color = pattern.color ?? 'blue';
 		const bullet = pattern.bullet ?? 'ball';

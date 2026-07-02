@@ -83,7 +83,7 @@
     "type": "spread",
     "bullet": "rice",
     "color": "purple",
-    "count": 3,
+    "count": 5,
     "spread": 0.1,
     "speed": 95,
     "delay": 1.2,

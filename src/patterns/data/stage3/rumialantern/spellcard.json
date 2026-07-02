@@ -10,7 +10,7 @@
     "delay": 0.1,
     "cooldown": 0.1
   },
-  "RUMIALANTERN_DARK_STARS": {
+  "RUMIALANTERN_DARK_STARS_ENH": {
     "type": "orbit",
     "bullet": "star",
     "color": "yellow",
@@ -19,9 +19,14 @@
     "radialVel": 150,
     "startAngle": "PI/8",
     "delay": 1.8,
-    "cooldown": 1.8
+    "cooldown": 1.8,
+    "difficulties": [
+      "EASY",
+      "NORMAL",
+      "HARD"
+    ]
   },
-  "RUMIALANTERN_DARK_STARS_L_CCW": {
+  "RUMIALANTERN_DARK_STARS_INV_H": {
     "type": "orbit",
     "bullet": "star",
     "color": "yellow",
@@ -31,6 +36,34 @@
     "startAngle": "-PI/8",
     "delay": 2.7,
     "cooldown": 1.8,
+    "difficulties": [
+      "HARD"
+    ]
+  },
+  "RUMIALANTERN_DARK_STARS_L": {
+    "type": "orbit",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 10,
+    "angularVel": "-PI/5",
+    "radialVel": 150,
+    "startAngle": "PI/8",
+    "delay": 1.2,
+    "cooldown": 1.2,
+    "difficulties": [
+      "LUNATIC"
+    ]
+  },
+  "RUMIALANTERN_DARK_STARS_INV_L": {
+    "type": "orbit",
+    "bullet": "star",
+    "color": "yellow",
+    "count": 10,
+    "angularVel": "PI/5",
+    "radialVel": 150,
+    "startAngle": "-PI/8",
+    "delay": 1.8,
+    "cooldown": 1.2,
     "difficulties": [
       "LUNATIC"
     ]

@@ -1,0 +1,177 @@
+{
+	"S3_MEILING_BOSS_P7_BUBBLES_EN": {
+		"type": "circle",
+		"bullet": "bubble-big",
+		"count": 15,
+		"speed": 80,
+		"startAngle": 0,
+		"rotStep": "PI/12",
+		"delay": 0.5,
+		"cooldown": 2.5,
+		"difficulties": ["EASY", "NORMAL"]
+	},
+	"S3_MEILING_BOSS_P7_BUBBLES_HL": {
+		"type": "circle",
+		"bullet": "bubble-big",
+		"count": 15,
+		"speed": 80,
+		"startAngle": 0,
+		"rotStep": "PI/12",
+		"delay": 0.5,
+		"cooldown": 1.8,
+		"difficulties": ["HARD", "LUNATIC"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_RICE_E": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": 0,
+		"angleStep": 0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "circle",
+			"bullet": "rice",
+			"color": "orange",
+			"count": 22,
+			"speed": 130,
+			"rotStep": "PI/32"
+		},
+		"difficulties": ["EASY"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_RICE_NH": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": 0,
+		"angleStep": 0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "circle",
+			"bullet": "rice",
+			"color": "orange",
+			"count": 30,
+			"speed": 130,
+			"rotStep": "PI/32"
+		},
+		"difficulties": ["NORMAL", "HARD"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_RICE_L": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": 0,
+		"angleStep": 0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "circle",
+			"bullet": "rice",
+			"color": "orange",
+			"count": 40,
+			"speed": 130,
+			"rotStep": "PI/32"
+		},
+		"difficulties": ["LUNATIC"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_ROCK_E": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": "PI",
+		"angleStep": -0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "circle",
+			"bullet": "rock",
+			"count": 9,
+			"speed": 130,
+			"startAngle": 0,
+			"rotStep": "-PI/32"
+		},
+		"difficulties": ["EASY"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_ROCK_N": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": "PI",
+		"angleStep": -0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "volley-circle",
+			"bullet": "rock",
+			"count": 11,
+			"streams": 3,
+			"speed": 130,
+			"deltaSpeed": 20,
+			"startAngle": 0,
+			"rotStep": "-PI/32"
+		},
+		"difficulties": ["NORMAL"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_ROCK_H": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": "PI",
+		"angleStep": -0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "volley-circle",
+			"bullet": "rock",
+			"count": 11,
+			"streams": 4,
+			"speed": 130,
+			"deltaSpeed": 15,
+			"startAngle": 0,
+			"rotStep": "-PI/32"
+		},
+		"difficulties": ["HARD"]
+	},
+	"S3_MEILING_BOSS_P7_HELIX_ROCK_L": {
+		"type": "helix",
+		"bullet": "invisible",
+		"count": 1,
+		"speed": 150,
+		"startAngle": "PI",
+		"angleStep": -0.32,
+		"delay": 0.5,
+		"cooldown": 0.6,
+		"morphDelay": 0.2,
+		"morphDeactivate": true,
+		"morphConfig": {
+			"type": "volley-circle",
+			"bullet": "rock",
+			"count": 15,
+			"streams": 4,
+			"speed": 130,
+			"deltaSpeed": 15,
+			"startAngle": 0,
+			"rotStep": "-PI/32"
+		},
+		"difficulties": ["LUNATIC"]
+	}
+}

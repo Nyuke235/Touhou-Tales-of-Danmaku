@@ -159,7 +159,7 @@
       "LUNATIC"
     ]
   },
-  "RUMIALANTERN_CIRCLE_SLOW": {
+  "RUMIALANTERN_CIRCLE_SLOW_EN": {
     "type": "volley-circle",
     "bullet": "ball",
     "color": "yellow",
@@ -175,6 +175,45 @@
     "startAngle": 0,
     "delay": 1.0,
     "cooldown": 1.0,
-    "maxShots": 1
+    "maxShots": 1,
+    "difficulties": ["EASY", "NORMAL"]
+  },
+  "RUMIALANTERN_CIRCLE_SLOW_H": {
+    "type": "volley-circle",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 15,
+    "streams": 5,
+    "deltaSpeed": 60,
+    "speed": 170,
+    "speedProfile": [
+      { "speed": 0,  "duration": 1.1 },
+      { "speed": 0,  "duration": 0.5 },
+      { "speed": 60, "duration": 0.5 }
+    ],
+    "startAngle": 0,
+    "delay": 1.0,
+    "cooldown": 1.0,
+    "maxShots": 1,
+    "difficulties": ["HARD"]
+  },
+  "RUMIALANTERN_CIRCLE_SLOW_L": {
+    "type": "volley-circle",
+    "bullet": "ball",
+    "color": "yellow",
+    "count": 20,
+    "streams": 7,
+    "deltaSpeed": 45,
+    "speed": 170,
+    "speedProfile": [
+      { "speed": 0,  "duration": 1.1 },
+      { "speed": 0,  "duration": 0.5 },
+      { "speed": 60, "duration": 0.5 }
+    ],
+    "startAngle": 0,
+    "delay": 1.0,
+    "cooldown": 1.0,
+    "maxShots": 1,
+    "difficulties": ["LUNATIC"]
   }
 }

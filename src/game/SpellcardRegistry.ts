@@ -217,6 +217,13 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				stageIndex: 2,
 				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
 			},
+			{
+				name: 'Gate Sign 「Five Elements Eight Trigrams Palm」',
+				bossName: 'Meiling',
+				phaseIndex: 6,
+				stageIndex: 2,
+				bossFactory: () => new MeilingBoss(BOSS.CENTER_X, -30),
+			},
 		],
 	},
 ];
