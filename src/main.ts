@@ -24,6 +24,9 @@ import { EndingScene } from './scenes/menu/EndingScene';
 import { LeaderboardManagement } from './systems/LeaderboardManager';
 import { GameState } from './game/GameState';
 import { DialogueRegistry } from './stages/DialogueRegistry';
+import { preloadAssets } from './utils/Preloader';
+import { SPRITE_MANIFEST } from './generated/spriteManifest';
+import { isTauri } from './utils/BackendAPI';
 
 localStorage.removeItem('loggedUser');
 localStorage.removeItem('sessionToken');
@@ -57,7 +60,27 @@ new CreditsScene(sceneManager, inputManager);
 new SaveScoreScene(sceneManager, inputManager);
 const endingScene = new EndingScene(sceneManager, inputManager);
 
+const splashBar = document.getElementById('splash-loading-bar');
+const splashText = document.getElementById('splash-loading-text');
+const splashLoading = document.getElementById('splash-loading');
+const preloadPromise = preloadAssets(
+	SPRITE_MANIFEST,
+	isTauri() ? [] : [Music.MENU],
+	(loaded, total) => {
+		const pct = total === 0 ? 100 : Math.round((loaded / total) * 100);
+		if (splashBar) splashBar.style.width = `${pct}%`;
+		if (splashText)
+			splashText.textContent =
+				pct >= 100 ? 'resources loaded' : `loading… ${pct}%`;
+	}
+);
+
 await showSplash();
+await Promise.race([
+	preloadPromise,
+	new Promise(resolve => setTimeout(resolve, 20000)),
+]);
+splashLoading?.classList.add('done');
 
 const startMusic = () => {
 	MusicManager.play(Music.MENU);

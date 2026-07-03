@@ -122,6 +122,42 @@ section {
 		text-align: center;
 		line-height: 2;
 	}
+
+	#splash-loading {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 24px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		transition: opacity 0.3s steps(12, end);
+
+		#splash-loading-track {
+			width: 160px;
+			height: 4px;
+			background: rgba(255, 255, 255, 0.15);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+		}
+
+		#splash-loading-bar {
+			height: 100%;
+			width: 0%;
+			background: #c92a2a;
+			transition: width 0.15s linear;
+		}
+
+		#splash-loading-text {
+			font-size: 0.35em;
+			color: rgba(255, 255, 255, 0.7);
+			line-height: 1;
+		}
+
+		&.done {
+			opacity: 0;
+		}
+	}
 }
 
 @keyframes slide {

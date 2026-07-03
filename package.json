@@ -9,7 +9,10 @@
 	"homepage": "https://github.com/Nyuke235/Touhou-Tales-of-Danmaku",
 	"license": "MIT License",
 	"scripts": {
+		"generate:manifest": "node scripts/generate-sprite-manifest.mjs",
+		"prestart": "node scripts/generate-sprite-manifest.mjs",
 		"start": "vite --port=8000",
+		"prebuild": "node scripts/generate-sprite-manifest.mjs",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"express": "node server/express.ts",
