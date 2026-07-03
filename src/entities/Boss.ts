@@ -5,14 +5,13 @@ import { Enemy } from './Enemy';
 import { ItemType } from './Item';
 import { SoundManager, SFX } from '../systems/SoundManager';
 import { BOSS as B, BOSS_ENTRY, FIELD } from '../game/Constants';
-import { GameState } from '../game/GameState';
+import { GameState, DIFFICULTY_LEVEL } from '../game/GameState';
 
 export interface BossPhase {
 	name: string;
 	isSpellCard: boolean;
 	hp: number;
 	timer: number;
-	barWeight: number;
 	patterns: PatternConfig[];
 	drops?: { type: ItemType; count: number }[];
 }
@@ -88,8 +87,15 @@ export abstract class Boss extends Enemy {
 
 	private spellBonus: number = 0;
 	private spellCaptureFailed: boolean = false;
-	private static readonly SPELL_BONUS_INITIAL = B.SPELL_BONUS_INITIAL;
 	private static readonly SPELL_BONUS_DECAY = B.SPELL_BONUS_DECAY;
+
+	private static computeSpellBonus(): number {
+		return (
+			5_000_000 +
+			1_000_000 *
+				((GameState.currentStage + DIFFICULTY_LEVEL[GameState.difficulty]) * 2)
+		);
+	}
 
 	startCharge(): void {
 		this.charging = true;
@@ -177,7 +183,7 @@ export abstract class Boss extends Enemy {
 		this.lastTimeoutTick = 10;
 		this.setPatterns(phase.patterns);
 		if (phase.isSpellCard) {
-			this.spellBonus = Boss.SPELL_BONUS_INITIAL;
+			this.spellBonus = Boss.computeSpellBonus();
 			this.spellCaptureFailed = false;
 		} else {
 			this.spellBonus = 0;
@@ -356,7 +362,7 @@ export abstract class Boss extends Enemy {
 		this.nextPhaseIsSpellCard = nextPhaseData.isSpellCard;
 
 		if (nextPhaseData.isSpellCard) {
-			this.spellBonus = Boss.SPELL_BONUS_INITIAL;
+			this.spellBonus = Boss.computeSpellBonus();
 			this.spellCaptureFailed = false;
 		} else {
 			this.spellBonus = 0;

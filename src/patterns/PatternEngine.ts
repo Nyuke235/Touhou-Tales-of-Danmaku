@@ -1257,9 +1257,6 @@ export class PatternEngine {
 				const numBullets = Math.max(2, Math.floor((halfLen * 2) / spacing));
 				const gapHalf = Math.max(1, Math.ceil(gapSize / spacing / 2));
 				const gapCenters: number[] = [];
-				// Divide the wall into equal segments, pick one gap center per segment
-				// constrained to the inner portion. This guarantees adjacent gaps are
-				// separated by at least `2 * gapHalf` solid bullets — they never touch.
 				const usable = numBullets - 2 * gapHalf;
 				const segLen = usable / Math.max(1, gapCount);
 				for (let g = 0; g < gapCount; g++) {
@@ -1319,8 +1316,7 @@ export class PatternEngine {
 				const startAngle = pattern.startAngle ?? 0;
 				const cx = FIELD.WIDTH / 2;
 				const cy = FIELD.HEIGHT / 2;
-				const radius =
-					Math.hypot(FIELD.WIDTH / 2, FIELD.HEIGHT / 2) + margin;
+				const radius = Math.hypot(FIELD.WIDTH / 2, FIELD.HEIGHT / 2) + margin;
 				const nb = pattern.noBoundsTime ?? 2.5;
 				const baseAngle = startAngle + shotCount * rotStep;
 				for (let i = 0; i < count; i++) {

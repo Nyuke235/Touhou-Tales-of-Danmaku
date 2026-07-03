@@ -7,14 +7,12 @@ import { Music } from '../../../systems/MusicManager';
 import { PlayerPosition } from '../../../game/PlayerPosition';
 import { FIELD } from '../../../game/Constants';
 
-// ---------- Phases ----------
 const PHASES: BossPhase[] = [
 	{
 		name: '',
 		isSpellCard: false,
 		hp: 300,
-		timer: 40,
-		barWeight: 1.0,
+		timer: 35,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -26,8 +24,7 @@ const PHASES: BossPhase[] = [
 		name: 'Gate Sign 「Vibrant Flower」',
 		isSpellCard: true,
 		hp: 380,
-		timer: 50,
-		barWeight: 1.0,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 5 },
 			{ type: 'power', count: 8 },
@@ -39,8 +36,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 280,
-		timer: 38,
-		barWeight: 1.0,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 3 },
 			{ type: 'power', count: 6 },
@@ -52,8 +48,7 @@ const PHASES: BossPhase[] = [
 		name: 'Color Sign 「Seven-Colored Qi Wall」',
 		isSpellCard: true,
 		hp: 420,
-		timer: 55,
-		barWeight: 1.0,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 6 },
 			{ type: 'power', count: 8 },
@@ -65,8 +60,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 200,
-		timer: 25,
-		barWeight: 1.0,
+		timer: 35,
 		drops: [
 			{ type: 'bigpoint', count: 3 },
 			{ type: 'power', count: 6 },
@@ -78,8 +72,7 @@ const PHASES: BossPhase[] = [
 		name: 'Color Sign 「Aromatic Flowing Clouds」',
 		isSpellCard: true,
 		hp: 450,
-		timer: 60,
-		barWeight: 1.0,
+		timer: 45,
 		drops: [
 			{ type: 'bigpoint', count: 6 },
 			{ type: 'power', count: 8 },
@@ -91,8 +84,7 @@ const PHASES: BossPhase[] = [
 		name: 'Gate Sign 「Five Elements Eight Trigrams Palm」',
 		isSpellCard: true,
 		hp: 500,
-		timer: 60,
-		barWeight: 1.0,
+		timer: 50,
 		drops: [
 			{ type: 'bigpoint', count: 6 },
 			{ type: 'power', count: 8 },
@@ -278,6 +270,11 @@ const P6_POSITIONS_X = [
 
 type P6State = 'moving' | 'firing';
 
+interface PhaseHandler {
+	enter: () => void;
+	update: (dt: number) => void;
+}
+
 const P7_PATTERNS = [
 	'S3_MEILING_BOSS_P7_BUBBLES_EN',
 	'S3_MEILING_BOSS_P7_BUBBLES_HL',
@@ -321,6 +318,34 @@ export class MeilingBoss extends Boss {
 
 	private moveTimer: number = 0;
 
+	private readonly phaseHandlers: PhaseHandler[] = [
+		{
+			enter: () => this.p1EnterState('swirl_fwd'),
+			update: dt => {
+				this.updateP1(dt);
+				this.driftFtm(dt);
+			},
+		},
+		{
+			enter: () => this.p2EnterState('fwd'),
+			update: dt => {
+				this.updateP2(dt);
+				this.driftFtm(dt);
+			},
+		},
+		{ enter: () => this.p3Enter(), update: dt => this.updateP3(dt) },
+		{ enter: () => this.p4Enter(), update: dt => this.updateP4(dt) },
+		{
+			enter: () => this.p5EnterState('fwd'),
+			update: dt => {
+				this.updateP5(dt);
+				this.driftFtm(dt);
+			},
+		},
+		{ enter: () => this.p6Enter(), update: dt => this.updateP6(dt) },
+		{ enter: () => this.p7Enter(), update: dt => this.updateP7(dt) },
+	];
+
 	constructor(x: number, y: number) {
 		const idleSheet = new Spritesheet({
 			src: 'assets/sprites/entities/enemies/bosses/meiling/meiling_spritesheet.png',
@@ -353,56 +378,14 @@ export class MeilingBoss extends Boss {
 		if (this.handleEntryAndCharge(dt)) return;
 		if (this.state !== BossState.ACTIVE) return;
 
+		const handler = this.phaseHandlers[this.currentPhaseIndex];
+		if (!handler) return;
+
 		if (this.currentPhaseIndex !== this.lastPhaseIndex) {
 			this.lastPhaseIndex = this.currentPhaseIndex;
-			this.enterCurrentPhase();
+			handler.enter();
 		}
-
-		switch (this.currentPhaseIndex) {
-			case 0:
-				this.updateP1(dt);
-				this.driftFtm(dt);
-				return;
-			case 1:
-				this.updateP2(dt);
-				this.driftFtm(dt);
-				return;
-			case 2:
-				this.updateP3(dt);
-				return;
-			case 3:
-				this.updateP4(dt);
-				return;
-			case 4:
-				this.updateP5(dt);
-				this.driftFtm(dt);
-				return;
-			case 5:
-				this.updateP6(dt);
-				return;
-			case 6:
-				this.updateP7(dt);
-				return;
-		}
-	}
-
-	private enterCurrentPhase(): void {
-		switch (this.currentPhaseIndex) {
-			case 0:
-				return this.p1EnterState('swirl_fwd');
-			case 1:
-				return this.p2EnterState('fwd');
-			case 2:
-				return this.p3Enter();
-			case 3:
-				return this.p4Enter();
-			case 4:
-				return this.p5EnterState('fwd');
-			case 5:
-				return this.p6Enter();
-			case 6:
-				return this.p7Enter();
-		}
+		handler.update(dt);
 	}
 
 	// ---------- Helpers ----------

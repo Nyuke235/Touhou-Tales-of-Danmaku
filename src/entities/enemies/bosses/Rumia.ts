@@ -3,7 +3,10 @@ import { Spritesheet, createExplosionSheet } from '../../../utils/Spritesheet';
 import { Music } from '../../../systems/MusicManager';
 import { Patterns } from '../../../patterns/PatternLibrary';
 import { IBullet } from '../../Bullet';
-import { LanternBullet, LanternVolleyConfig } from '../../bullets/LanternBullet';
+import {
+	LanternBullet,
+	LanternVolleyConfig,
+} from '../../bullets/LanternBullet';
 import { BallBullet } from '../../bullets/BallBullet';
 import { GameState, Difficulty } from '../../../game/GameState';
 import { FIELD } from '../../../game/Constants';
@@ -13,8 +16,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 300,
-		timer: 35,
-		barWeight: 0.3,
+		timer: 30,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -36,8 +38,7 @@ const PHASES: BossPhase[] = [
 		name: 'Dark Sign 「Demarcation」',
 		isSpellCard: true,
 		hp: 300,
-		timer: 40,
-		barWeight: 0.2,
+		timer: 35,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -60,7 +61,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 300,
 		timer: 35,
-		barWeight: 0.25,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -86,11 +86,10 @@ const PHASES: BossPhase[] = [
 		],
 	},
 	{
-		name: 'Night Sign 「Abyss Mandala」',
+		name: 'Night Sign 「Abyssal Veil」',
 		isSpellCard: true,
 		hp: 425,
-		timer: 45,
-		barWeight: 0.25,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 4 },
 			{ type: 'power', count: 10 },
@@ -258,13 +257,7 @@ export class Rumia extends Boss {
 		const count = 1;
 		for (let i = 0; i < count; i++) {
 			const x = 20 + Math.random() * (FIELD.WIDTH - 40);
-			const lantern = new LanternBullet(
-				x,
-				-24,
-				cfg.count,
-				cfg.speed,
-				volley
-			);
+			const lantern = new LanternBullet(x, -24, cfg.count, cfg.speed, volley);
 			enemyBullets.push(lantern);
 			this.activeLanterns.push(lantern);
 		}

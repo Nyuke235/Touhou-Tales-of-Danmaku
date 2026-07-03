@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-<a href=""><b>Play in Browser</b></a> •
+<a href="https://talesofdanmaku.pages.dev"><b>Play in Browser</b></a> •
 <a href="https://github.com/Nyuke235/Touhou-Tales-of-Danmaku/blob/main/CONTRIBUTING.md"><b>Contribute</b></a>
 </p>
 
@@ -51,12 +51,12 @@ Controls can be remapped in-game via the **Key Config** menu.
 
 |  **Stage**  |         **Title**          | **Mid-boss**  | **Mid-boss 2** |      **Boss**       | **Status** |
 | :---------: | :------------------------: | :-----------: | :------------: | :-----------------: | :--------: |
-|   Stage 1   | Black Ink Staining the Sky | Rumia (dark)  |       -        |        Rumia        |     ✅      |
-|   Stage 2   | Ripples on the Misty Lake  |   Daiyousei   |       -        |        Cirno        |     🟨     |
-|   Stage 3   | Beyond the Sightless Path  |     Rumia     |     Mystia     |    Hong Meiling     |     🔄     |
+|   Stage 1   | Black Ink Staining the Sky | Rumia (dark)  |       -        |        Rumia        |     ✅     |
+|   Stage 2   | Ripples on the Misty Lake  |   Daiyousei   |       -        |        Cirno        |     ✅     |
+|   Stage 3   | Beyond the Sightless Path  |     Rumia     |     Mystia     |    Hong Meiling     |     🟨     |
 |   Stage 4   |            ???             |    Koakuma    |       -        | Patchouli Knowledge |     🚫     |
 |   Stage 5   |            ???             |     Rika      |       -        |    Sakuya Izayoi    |     🚫     |
-|   Stage 6   |            ???             | Sakuya Izayoi |       -        |   Remilia Scarlet   |     🚫     |
+|   Stage 6   |            ???             |      ???      |       -        |   Remilia Scarlet   |     🚫     |
 | Stage Extra |            ???             | Hong Meiling  | Sakuya Izayoi  |   Flandre Scarlet   |     🚫     |
 
 ✅ (Completed)

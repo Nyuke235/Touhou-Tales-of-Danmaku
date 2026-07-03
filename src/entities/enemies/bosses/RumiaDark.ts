@@ -7,8 +7,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 200,
-		timer: 35,
-		barWeight: 0.7,
+		timer: 25,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -31,8 +30,7 @@ const PHASES: BossPhase[] = [
 		name: 'Dark Sign 「Night Fog Miasma」',
 		isSpellCard: true,
 		hp: 200,
-		timer: 40,
-		barWeight: 0.3,
+		timer: 30,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },

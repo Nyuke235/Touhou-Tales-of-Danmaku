@@ -7,11 +7,10 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 220,
-		timer: 35,
-		barWeight: 0.5,
+		timer: 30,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
-			{ type: 'power', count: 6 },
+			{ type: 'power', count: 8 },
 			{ type: 'life', count: 1 },
 		],
 		patterns: [
@@ -33,10 +32,9 @@ const PHASES: BossPhase[] = [
 		isSpellCard: true,
 		hp: 220,
 		timer: 40,
-		barWeight: 0.5,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
-			{ type: 'power', count: 6 },
+			{ type: 'power', count: 10 },
 			{ type: 'bomb', count: 1 },
 		],
 		patterns: [

@@ -43,7 +43,7 @@ export type SFXKey = keyof typeof SFX;
 export class SoundManager {
 	private static volume: number = AUDIO.SFX_VOLUME;
 
-	// Web Audio (browser)
+	// WEB AUDIO (BROWSER)
 	private static ctx: AudioContext | null = null;
 	private static buffers = new Map<string, AudioBuffer>();
 	private static ambientNodes = new Map<
@@ -69,8 +69,7 @@ export class SoundManager {
 		}
 	}
 
-	// Public API
-
+	// PUBLIC API
 	static play(src: string): void {
 		if (isTauri()) {
 			invoke('play_sfx', { src }).catch(e => console.error('[SFX]', src, e));

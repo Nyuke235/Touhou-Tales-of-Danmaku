@@ -244,6 +244,7 @@ export class GameScene {
 		this.loop.stop();
 
 		this.currentStageIndex = stageIndex;
+		GameState.currentStage = stageIndex + 1;
 		this.scoreManager = new ScoreManager(GameState.difficulty);
 		this.lives = spellcardEntry ? GAME.THIRDS_PER_GEM : GAME.INITIAL_LIVES;
 		this.bombs = spellcardEntry ? 0 : GAME.INITIAL_BOMBS;
@@ -440,6 +441,7 @@ export class GameScene {
 		blackout.classList.add('fading-in');
 		setTimeout(() => {
 			this.currentStageIndex++;
+			GameState.currentStage = this.currentStageIndex + 1;
 			this.bulletManager.clear();
 			this.itemManager.clear();
 			this.activeBoss = null;

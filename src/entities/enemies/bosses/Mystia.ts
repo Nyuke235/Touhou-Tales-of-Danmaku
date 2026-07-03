@@ -9,7 +9,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 260,
 		timer: 35,
-		barWeight: 1.0,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -34,8 +33,7 @@ const PHASES: BossPhase[] = [
 		name: 'Vocal Sign 「Hooting in the Night」',
 		isSpellCard: true,
 		hp: 320,
-		timer: 45,
-		barWeight: 1.0,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 4 },
 			{ type: 'power', count: 8 },
@@ -65,7 +63,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 280,
 		timer: 35,
-		barWeight: 1.0,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -82,8 +79,7 @@ const PHASES: BossPhase[] = [
 		name: 'Song Sign 「Mystia Lullaby」',
 		isSpellCard: true,
 		hp: 400,
-		timer: 50,
-		barWeight: 1.0,
+		timer: 45,
 		drops: [
 			{ type: 'bigpoint', count: 5 },
 			{ type: 'power', count: 10 },

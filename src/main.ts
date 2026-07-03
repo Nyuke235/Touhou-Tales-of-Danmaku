@@ -68,10 +68,34 @@ document.addEventListener('keydown', startMusic, { capture: true });
 await showTitleScreen();
 inputManager.enable();
 
+const ENTERING_SCENES = new Set<Scene>([
+	Scene.HOME,
+	Scene.SPECIAL,
+	Scene.OPTIONS,
+	Scene.CHARACTERS,
+	Scene.KEYCONFIG,
+	Scene.DIFFICULTY,
+	Scene.PRACTICE_STAGE,
+	Scene.SPELLCARD_STAGE,
+	Scene.SPELLCARD_LIST,
+	Scene.SAVE_SCORE,
+]);
+
+const playEnteringAnimation = (id: string): void => {
+	const el = document.getElementById(id);
+	if (!el) return;
+	el.classList.remove('outro');
+	el.classList.add('entering');
+	requestAnimationFrame(() =>
+		requestAnimationFrame(() => el.classList.remove('entering'))
+	);
+};
+
 const originalSwitchTo = sceneManager.switchTo.bind(sceneManager);
 
 sceneManager.switchTo = (scene: Scene) => {
 	originalSwitchTo(scene);
+
 	if (scene === Scene.GAME) {
 		gameScene.setActive(true);
 		gameScene.init(GameState.startingStage);
@@ -82,115 +106,14 @@ sceneManager.switchTo = (scene: Scene) => {
 			MusicManager.play(Music.MENU);
 		}
 	}
-	if (scene === Scene.MUSIC_ROOM) {
-		musicRoomScene.onEnter();
-	}
-	if (scene === Scene.HOME) {
-		const home = document.getElementById('home')!;
-		home.classList.remove('outro');
-		home.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				home.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.SPECIAL) {
-		const el = document.getElementById('special')!;
-		el.classList.remove('outro');
-		el.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				el.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.OPTIONS) {
-		const options = document.getElementById('options')!;
-		options.classList.remove('outro');
-		options.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				options.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.CHARACTERS) {
-		const characters = document.getElementById('characters')!;
-		characters.classList.remove('outro');
-		characters.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				characters.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.KEYCONFIG) {
-		const keyconfig = document.getElementById('keyconfig')!;
-		keyconfig.classList.remove('outro');
-		keyconfig.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				keyconfig.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.DIFFICULTY) {
-		const difficulty = document.getElementById('difficulty')!;
-		difficulty.classList.remove('outro');
-		difficulty.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				difficulty.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.PRACTICE_STAGE) {
-		const practiceStage = document.getElementById('practice-stage')!;
-		practiceStage.classList.remove('outro');
-		practiceStage.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				practiceStage.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.SPELLCARD_STAGE) {
-		const el = document.getElementById('spellcard-stage')!;
-		el.classList.remove('outro');
-		el.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				el.classList.remove('entering');
-			})
-		);
-	}
-	if (scene === Scene.SPELLCARD_LIST) {
-		spellcardListScene.onEnter();
-		const el = document.getElementById('spellcard-list')!;
-		el.classList.remove('outro');
-		el.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				el.classList.remove('entering');
-			})
-		);
-	}
+
+	if (scene === Scene.MUSIC_ROOM) musicRoomScene.onEnter();
+	if (scene === Scene.SPELLCARD_LIST) spellcardListScene.onEnter();
+	if (scene === Scene.ENDING) endingScene.onEnter();
 	if (scene === Scene.LEADERBOARD) {
 		LeaderboardManagement.mode = 'global';
 		LeaderboardManagement.generateLeaderboard();
 	}
-	if (scene === Scene.ENDING) {
-		endingScene.onEnter();
-	}
-	if (scene === Scene.SAVE_SCORE) {
-		const el = document.getElementById('save-score')!;
-		el.classList.remove('outro');
-		el.classList.add('entering');
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				el.classList.remove('entering');
-			})
-		);
-	}
+
+	if (ENTERING_SCENES.has(scene)) playEnteringAnimation(scene);
 };

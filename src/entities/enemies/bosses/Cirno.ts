@@ -10,7 +10,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 325,
 		timer: 30,
-		barWeight: 0.15,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 6 },
@@ -32,10 +31,9 @@ const PHASES: BossPhase[] = [
 		isSpellCard: true,
 		hp: 325,
 		timer: 40,
-		barWeight: 0.18,
 		drops: [
 			{ type: 'bigpoint', count: 3 },
-			{ type: 'power', count: 6 },
+			{ type: 'power', count: 9 },
 			{ type: 'bomb', count: 1 },
 		],
 		patterns: [
@@ -57,7 +55,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: false,
 		hp: 325,
 		timer: 35,
-		barWeight: 0.16,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 5 },
@@ -82,7 +79,6 @@ const PHASES: BossPhase[] = [
 		isSpellCard: true,
 		hp: 325,
 		timer: 40,
-		barWeight: 0.18,
 		drops: [
 			{ type: 'bigpoint', count: 4 },
 			{ type: 'power', count: 8 },
@@ -102,8 +98,7 @@ const PHASES: BossPhase[] = [
 		name: '',
 		isSpellCard: false,
 		hp: 325,
-		timer: 40,
-		barWeight: 0.16,
+		timer: 35,
 		drops: [
 			{ type: 'bigpoint', count: 2 },
 			{ type: 'power', count: 5 },
@@ -132,8 +127,7 @@ const PHASES: BossPhase[] = [
 		name: 'Cold Sign 「Frozen Eternity」',
 		isSpellCard: true,
 		hp: 425,
-		timer: 45,
-		barWeight: 0.17,
+		timer: 40,
 		drops: [
 			{ type: 'bigpoint', count: 6 },
 			{ type: 'power', count: 12 },

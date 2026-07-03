@@ -61,7 +61,7 @@ export const SPELLCARD_REGISTRY: StageSpellcardGroup[] = [
 				bossFactory: () => new Rumia(BOSS.CENTER_X, -30),
 			},
 			{
-				name: 'Night Sign 「Abyss Mandala」',
+				name: 'Night Sign 「Abyssal Veil」',
 				bossName: 'Rumia',
 				phaseIndex: 3,
 				stageIndex: 0,

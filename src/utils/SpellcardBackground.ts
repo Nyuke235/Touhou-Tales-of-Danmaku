@@ -17,7 +17,8 @@ export class SpellcardBackground {
 	private static ROT_SPEED_2 = -0.38;
 	private static FLASH_DECAY = 3.0;
 
-	private static readonly DEFAULT_SRC = 'assets/sprites/backgrounds/stage1_spellcard.png';
+	private static readonly DEFAULT_SRC =
+		'assets/sprites/backgrounds/stage1_spellcard.png';
 
 	constructor() {
 		this.img = new Image();
@@ -141,7 +142,6 @@ export class SpellcardBackground {
 			ctx.restore();
 		}
 
-		// Flash blanc d'activation
 		if (this.flashAlpha > 0) {
 			ctx.save();
 			ctx.globalAlpha = this.flashAlpha;

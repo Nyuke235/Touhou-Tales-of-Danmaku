@@ -7,6 +7,13 @@ export const Difficulty = {
 
 export type Difficulty = (typeof Difficulty)[keyof typeof Difficulty];
 
+export const DIFFICULTY_LEVEL: Record<Difficulty, number> = {
+	EASY: 1,
+	NORMAL: 2,
+	HARD: 3,
+	LUNATIC: 4,
+};
+
 export const Character = {
 	REIMU: 'reimu',
 	MARISA: 'marisa',
@@ -33,6 +40,7 @@ export const GameState = {
 	spellcardGroupIndex: 0,
 	spellcardEntryIndex: 0,
 	startingStage: 0,
+	currentStage: 1,
 
 	// -------------------- GRAPHICS --------------------
 	lowDetails: false,
