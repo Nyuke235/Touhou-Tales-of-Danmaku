@@ -1,0 +1,11 @@
+dist/
+build/
+assets/styles/
+
+src/systems/Controls.ts
+
+src/game/patterns/PatternLibrary.ts
+
+src/stages/stage1.ts
+src/stages/stage2.ts
+src/stages/stage3.ts

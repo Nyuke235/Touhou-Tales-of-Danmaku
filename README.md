@@ -5,8 +5,9 @@
 </p>
 
 <p align="center">
-<a href="https://talesofdanmaku.pages.dev"><b>Play in Browser</b></a> •
-<a href="https://github.com/Nyuke235/Touhou-Tales-of-Danmaku/blob/main/CONTRIBUTING.md"><b>Contribute</b></a>
+<a href="https://talesofdanmaku.pages.dev" target="_blank" rel="noopener noreferrer"><b>Play in Browser</b></a> •
+<a href="https://nyuke235.itch.io/touhou-tales-of-danmaku" target="_blank" rel="noopener noreferrer"><b>itch.io</b></a> •
+<a href="https://github.com/Nyuke235/Touhou-Tales-of-Danmaku/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"><b>Contribute</b></a>
 </p>
 
 ---
@@ -23,7 +24,6 @@ The game is inspired by **Embodiment of Scarlet Devil (EoSD)** and uses a **pixe
 
 ## Notice
 
-- As this is a learning project, you may encounter some "scaffolded" or messy code. Refactoring is an ongoing part of the roadmap.
 - This project is built strictly for educational purposes and personal enjoyment.
 
 ## Characters
@@ -64,7 +64,19 @@ Controls can be remapped in-game via the **Key Config** menu.
 🔄 (In progress)
 🚫 (Not started)
 
-## Running the game
+## Running the game locally
+
+### Browser (npm)
+
+```bash
+git clone https://github.com/Nyuke235/Touhou-Tales-of-Danmaku
+cd Touhou-Tales-of-Danmaku
+
+npm install
+npm start
+```
+
+The game will be available at `http://localhost:8000`.
 
 ### Browser (Docker Compose)
 
@@ -75,7 +87,7 @@ cd Touhou-Tales-of-Danmaku
 docker compose up --build
 ```
 
-The game will be available at `http://localhost:8000`. The Express save server runs on port `9000`.
+The game will be available at `http://localhost:8000`.
 
 ### Desktop app (Tauri)
 

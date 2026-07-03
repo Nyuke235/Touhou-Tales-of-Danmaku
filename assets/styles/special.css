@@ -19,10 +19,14 @@
 		button:nth-child(2) { transition-delay: 0.16s; }
 		button:nth-child(3) { transition-delay: 0.24s; }
 		button:nth-child(4) { transition-delay: 0.32s; }
+		button:nth-child(5) { transition-delay: 0.40s; }
+		button:nth-child(6) { transition-delay: 0.48s; }
 
 		button:nth-child(2) { margin-left: 8px; }
 		button:nth-child(3) { margin-left: 16px; }
 		button:nth-child(4) { margin-left: 24px; }
+		button:nth-child(5) { margin-left: 32px; }
+		button:nth-child(6) { margin-left: 40px; }
 
 		button.inactive {
 			color: rgba(255, 255, 255, 0.3);
@@ -56,3 +60,5 @@
 #special.outro .menu button:nth-child(2) { transition-delay: 0.06s; }
 #special.outro .menu button:nth-child(3) { transition-delay: 0.12s; }
 #special.outro .menu button:nth-child(4) { transition-delay: 0.18s; }
+#special.outro .menu button:nth-child(5) { transition-delay: 0.24s; }
+#special.outro .menu button:nth-child(6) { transition-delay: 0.30s; }

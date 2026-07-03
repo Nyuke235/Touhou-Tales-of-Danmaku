@@ -4,11 +4,15 @@ import { Controls } from '../../systems/Controls';
 import { SoundManager, SFX } from '../../systems/SoundManager';
 import { MenuScene } from './MenuScene';
 
-const BUTTON_SCENES: (Scene | undefined)[] = [
-	undefined,      // Archives
-	undefined,      // Achievements
-	Scene.CREDITS,  // Credits
-	undefined,      // Ending
+type ButtonTarget = Scene | { url: string } | undefined;
+
+const BUTTON_TARGETS: ButtonTarget[] = [
+	undefined, // Archives
+	undefined, // Achievements
+	Scene.CREDITS, // Credits
+	undefined, // Ending
+	{ url: 'https://github.com/Nyuke235/Touhou-Tales-of-Danmaku' },
+	{ url: 'https://nyuke235.itch.io/touhou-tales-of-danmaku' },
 ];
 
 export class SpecialScene extends MenuScene {
@@ -50,9 +54,13 @@ export class SpecialScene extends MenuScene {
 	}
 
 	private confirm(): void {
-		const target = BUTTON_SCENES[this.selectedIndex];
+		const target = BUTTON_TARGETS[this.selectedIndex];
 		if (!target) return;
 		SoundManager.play(SFX.UI_SELECT);
+		if (typeof target === 'object' && 'url' in target) {
+			window.open(target.url, '_blank', 'noopener,noreferrer');
+			return;
+		}
 		this.switchWithOutro(target);
 	}
 
