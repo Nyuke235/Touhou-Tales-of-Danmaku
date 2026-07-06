@@ -54,6 +54,16 @@
         pointer-events: none;
     }
 
+    #version {
+        position: absolute;
+        bottom: 6px;
+        right: 8px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.5em;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
 }
 
 #home.intro img {

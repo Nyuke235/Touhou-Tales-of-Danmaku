@@ -19,6 +19,7 @@ server/data/
 src-tauri/target/
 src-tauri/gen/
 release/
+release-win/
 
 # IDE/OS
 .idea

@@ -91,11 +91,21 @@ The game will be available at `http://localhost:8000`.
 
 ### Desktop app (Tauri)
 
+Linux (`.deb` + `.AppImage`):
+
 ```bash
-docker build -f Dockerfile.tauri --output type=local,dest=./release .
+docker build -f docker/Dockerfile.linux --output type=local,dest=./release .
 ```
 
-The `.deb` and `.AppImage` artifacts will be written to `./release/`.
+Artifacts land in `./release/deb/` and `./release/appimage/`.
+
+Windows (portable `.exe` zipped):
+
+```bash
+docker build -f docker/Dockerfile.windows --output type=local,dest=./release-win .
+```
+
+The ZIP containing the `.exe` lands in `./release-win/`.
 
 ### Multiplayer
 

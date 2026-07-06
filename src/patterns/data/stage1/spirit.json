@@ -13,19 +13,6 @@
       "NORMAL"
     ]
   },
-  "S1_SPIRIT_CIRCLE_NORMAL_2": {
-    "type": "circle",
-    "bullet": "arrowhead",
-    "color": "purple",
-    "count": 20,
-    "speed": 90,
-    "delay": 0.8,
-    "cooldown": 2.5,
-    "maxShots": 2,
-    "difficulties": [
-      "NORMAL"
-    ]
-  },
   "S1_SPIRIT_CIRCLE_HARD": {
     "type": "circle",
     "bullet": "arrowhead",
@@ -33,19 +20,6 @@
     "count": 28,
     "speed": 100,
     "delay": 0.5,
-    "cooldown": 2.5,
-    "maxShots": 2,
-    "difficulties": [
-      "HARD"
-    ]
-  },
-  "S1_SPIRIT_CIRCLE_HARD_2": {
-    "type": "circle",
-    "bullet": "arrowhead",
-    "color": "purple",
-    "count": 28,
-    "speed": 100,
-    "delay": 0.8,
     "cooldown": 2.5,
     "maxShots": 2,
     "difficulties": [

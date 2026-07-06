@@ -81,8 +81,6 @@ const PHASES: BossPhase[] = [
 			Patterns.RUMIA_SPECTRAL_COMET,
 			Patterns.RUMIA_SPECTRAL_COMET_CCW,
 			Patterns.RUMIA_SPECTRAL_COMET_EASY,
-			Patterns.RUMIA_ORB_RINGS_YELLOW_1,
-			Patterns.RUMIA_ORB_RINGS_YELLOW_2,
 		],
 	},
 	{

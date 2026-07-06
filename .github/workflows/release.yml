@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: ubuntu-22.04 # -> .deb, .AppImage, .rpm
-            args: ''
-          - platform: windows-latest # -> -setup.exe (NSIS), .msi
-            args: ''
+          - platform: ubuntu-22.04 # -> .deb + .AppImage
+            args: '--bundles deb,appimage'
+          - platform: windows-latest # -> portable .exe (zipped in a later step)
+            args: '--no-bundle'
 
     runs-on: ${{ matrix.platform }}
 
@@ -69,6 +69,24 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
 
+      - name: Package Windows .exe as ZIP
+        if: matrix.platform == 'windows-latest'
+        shell: pwsh
+        run: |
+          $releaseDir = "src-tauri/target/release"
+          $exe = Get-ChildItem -Path $releaseDir -Filter *.exe | Select-Object -First 1
+          if (-not $exe) { throw "No .exe found in $releaseDir" }
+          $zipPath = Join-Path $releaseDir "$($exe.BaseName).zip"
+          Compress-Archive -Path $exe.FullName -DestinationPath $zipPath -Force
+          "ZIP_PATH=$zipPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Upload Windows ZIP to release (tag pushes only)
+        if: matrix.platform == 'windows-latest' && startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${{ github.ref_name }}" "$env:ZIP_PATH" --clobber
+
       - name: Upload bundles as artifacts (manual runs only)
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
         uses: actions/upload-artifact@v4
@@ -78,6 +96,4 @@ jobs:
           path: |
             src-tauri/target/release/bundle/deb/*.deb
             src-tauri/target/release/bundle/appimage/*.AppImage
-            src-tauri/target/release/bundle/rpm/*.rpm
-            src-tauri/target/release/bundle/nsis/*-setup.exe
-            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/*.zip

@@ -2,6 +2,7 @@ import { Controls } from '../../systems/Controls';
 import { EnemyManager } from '../../systems/EnemyManager';
 import { InputManager } from '../../systems/InputManager';
 import { ItemManager } from '../../systems/ItemManager';
+import { ItemType } from '../../entities/Item';
 import { MusicManager } from '../../systems/MusicManager';
 import { BulletManager } from '../../systems/BulletManager';
 import { LocalScores, ScoreEntry } from '../../systems/LocalScores';
@@ -738,10 +739,21 @@ export class GameScene {
 
 		const powerBefore = GameState.power;
 		GameState.power = Math.max(0.0, GameState.power - GAME.POWER_LOST_ON_DEATH);
+		const launchPower = (type: ItemType) => {
+			const vx = (Math.random() - 0.5) * (type === 'bigpower' ? 60 : 100);
+			const vy = -((type === 'bigpower' ? 180 : 140) + Math.random() * (type === 'bigpower' ? 60 : 80));
+			this.itemManager.spawnLaunched(deathX, deathY, type, vx, vy);
+		};
 		if (powerBefore >= 1.0) {
-			const vx = (Math.random() - 0.5) * 60;
-			const vy = -(180 + Math.random() * 60);
-			this.itemManager.spawnLaunched(deathX, deathY, 'bigpower', vx, vy);
+			for (let i = 0; i < 4; i++) launchPower('bigpower');
+		} else if (powerBefore > 0) {
+			const amount = powerBefore / 2;
+			const bigs = Math.floor(amount / GAME.POWER_PER_BIG);
+			const minis = Math.floor(
+				(amount - bigs * GAME.POWER_PER_BIG) / GAME.POWER_PER_ITEM
+			);
+			for (let i = 0; i < bigs; i++) launchPower('bigpower');
+			for (let i = 0; i < minis; i++) launchPower('power');
 		}
 
 		this.hud.setLives(this.lives);

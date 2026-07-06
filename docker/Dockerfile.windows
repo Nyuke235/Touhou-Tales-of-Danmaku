@@ -1,0 +1,61 @@
+#   docker build -f docker/Dockerfile.windows --target export --output type=local,dest=./release-win .
+#   -> ./release-win/*.zip
+
+FROM debian:bookworm-slim AS base
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    file \
+    git \
+    ca-certificates \
+    build-essential \
+    pkg-config \
+    clang \
+    llvm \
+    lld \
+    zip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN command -v clang-cl >/dev/null 2>&1 || ln -s "$(command -v clang)" /usr/bin/clang-cl || true; \
+    command -v lld-link >/dev/null 2>&1 || ln -s "$(command -v lld)" /usr/bin/lld-link || true; \
+    for t in llvm-lib llvm-dlltool llvm-ar; do \
+        command -v "$t" >/dev/null 2>&1 || { \
+            v="$(ls /usr/bin/${t}-* 2>/dev/null | sort -V | tail -1)"; \
+            [ -n "$v" ] && ln -s "$v" "/usr/bin/$t" || true; \
+        }; \
+    done
+
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
+ENV PATH="/root/.cargo/bin:${PATH}"
+RUN rustup target add x86_64-pc-windows-msvc
+RUN cargo install --locked cargo-xwin
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+FROM base AS builder
+WORKDIR /app
+
+ENV XWIN_ACCEPT_LICENSE=1
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+RUN npm run tauri build -- \
+    --runner cargo-xwin \
+    --target x86_64-pc-windows-msvc \
+    --no-bundle
+
+RUN mkdir -p /out \
+    && cd /app/src-tauri/target/x86_64-pc-windows-msvc/release \
+    && exe="$(find . -maxdepth 1 -name '*.exe' -printf '%f\n' | head -1)" \
+    && zip -j "/out/${exe%.exe}.zip" "$exe"
+
+FROM scratch AS export
+COPY --from=builder /out /

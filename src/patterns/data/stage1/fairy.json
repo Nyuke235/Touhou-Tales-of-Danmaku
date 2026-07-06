@@ -254,7 +254,7 @@
   },
   "S1_FAIRY_ORB_BURST": {
     "type": "spread",
-    "bullet": "orb",
+    "bullet": "jellybean",
     "color": "yellow",
     "count": 3,
     "spread": 0.5,

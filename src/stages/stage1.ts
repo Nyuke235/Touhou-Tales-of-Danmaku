@@ -15,7 +15,7 @@ const RAW_STAGE_1: SpawnEventData[] = [
 	{ time:  9.4, type: 'fairy', x:  272, y:  50, color: 'blue', path: 'diagonal-right', patterns: [P.S1_FAIRY_EASY, P.S1_FAIRY_NORMAL, P.S1_FAIRY_HARD, P.S1_FAIRY_LUNA] },
 
 	// Wave 2 – spirit + mini-spirit following left
-	{ time: 13.4, type: 'spirit',     x:  -32, y: 50, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 13.4, type: 'spirit',     x:  -32, y: 50, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
 	{ time: 14.0, type: 'minispirit', x:  -32, y: 50, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 14.4, type: 'minispirit', x:  -32, y: 50, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 14.8, type: 'minispirit', x:  -32, y: 50, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
@@ -29,7 +29,7 @@ const RAW_STAGE_1: SpawnEventData[] = [
 	{ time: 18.0, type: 'minispirit', x:  -32, y: 50, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 
 	// Wave 3 – spirit + mini-spirit following right
-	{ time: 20.0, type: 'spirit',     x:  288, y: 50, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 20.0, type: 'spirit',     x:  288, y: 50, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
 	{ time: 20.6, type: 'minispirit', x:  288, y: 50, path: 'passing-right', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 21.0, type: 'minispirit', x:  288, y: 50, path: 'passing-right', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 21.4, type: 'minispirit', x:  288, y: 50, path: 'passing-right', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
@@ -44,7 +44,12 @@ const RAW_STAGE_1: SpawnEventData[] = [
 
 	// Wave 4 – moths
 	{ time: 26.0, type: 'moth', x:  70, y: 310, path: 'flying-top', patterns: [P.S1_MOTH_ORB_EASY, P.S1_MOTH_ORB_NORMAL, P.S1_MOTH_ORB_HARD, P.S1_MOTH_ORB_LUNA, P.S1_MOTH_SIDE_LEFT_1_N, P.S1_MOTH_SIDE_LEFT_1_H, P.S1_MOTH_SIDE_LEFT_1_L, P.S1_MOTH_SIDE_RIGHT_1_N, P.S1_MOTH_SIDE_RIGHT_1_H, P.S1_MOTH_SIDE_RIGHT_1_L, P.S1_MOTH_SIDE_LEFT_2_N, P.S1_MOTH_SIDE_LEFT_2_H, P.S1_MOTH_SIDE_LEFT_2_L, P.S1_MOTH_SIDE_RIGHT_2_N, P.S1_MOTH_SIDE_RIGHT_2_H, P.S1_MOTH_SIDE_RIGHT_2_L] },
-	{ time: 26.0, type: 'moth', x: 186, y: 310, path: 'flying-top', patterns: [P.S1_MOTH_ORB_EASY, P.S1_MOTH_ORB_NORMAL, P.S1_MOTH_ORB_HARD, P.S1_MOTH_ORB_LUNA, P.S1_MOTH_SIDE_LEFT_1_N, P.S1_MOTH_SIDE_LEFT_1_H, P.S1_MOTH_SIDE_LEFT_1_L, P.S1_MOTH_SIDE_RIGHT_1_N, P.S1_MOTH_SIDE_RIGHT_1_H, P.S1_MOTH_SIDE_RIGHT_1_L, P.S1_MOTH_SIDE_LEFT_2_N, P.S1_MOTH_SIDE_LEFT_2_H, P.S1_MOTH_SIDE_LEFT_2_L, P.S1_MOTH_SIDE_RIGHT_2_N, P.S1_MOTH_SIDE_RIGHT_2_H, P.S1_MOTH_SIDE_RIGHT_2_L] },
+	{ time: 26.0, type: 'fairy', x:  -16, y: 30, color: 'blue', path: 'diagonal-left',  patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
+	{ time: 26.0, type: 'fairy', x:  272, y: 30, color: 'red',  path: 'diagonal-right', patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
+	{ time: 26.5, type: 'fairy', x:  -16, y: 45, color: 'red',  path: 'diagonal-left',  patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
+	{ time: 26.5, type: 'fairy', x:  272, y: 45, color: 'blue', path: 'diagonal-right', patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
+	{ time: 27.0, type: 'fairy', x:  -16, y: 60, color: 'blue', path: 'diagonal-left',  patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
+	{ time: 27.0, type: 'fairy', x:  272, y: 60, color: 'red',  path: 'diagonal-right', patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
 
 	// Wave 5 – crossing aerial fairies
 	{ time: 29.4, type: 'fairy', x:  80, y: -16, color: 'blue', path: 'curve-right', patterns: [P.S1_FAIRY_PURPLE_BURST_BRAKE_ENH, P.S1_FAIRY_PURPLE_BURST_BRAKE_L, P.S1_FAIRY_ORB_BURST] },
@@ -73,8 +78,8 @@ const RAW_STAGE_1: SpawnEventData[] = [
 	{ time: 36.0, type: 'fairy', x:  272, y: 55, color: 'blue', path: 'diagonal-right', patterns: [P.S1_AIMED_RICE, P.S1_SPREAD_RICE, P.S1_SPREAD_RICE_2, P.S1_SPREAD_RICE_3] },
 
 	// Wave 7 – symmetric double spirit + mini spirits following
-	{ time: 38.0, type: 'spirit',     x:  -32, y: 50, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
-	{ time: 38.0, type: 'spirit',     x:  288, y: 50, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 38.0, type: 'spirit',     x:  -32, y: 50, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 38.0, type: 'spirit',     x:  288, y: 50, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
 	{ time: 38.5, type: 'minispirit', x:  -32, y: 60, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 38.5, type: 'minispirit', x:  288, y: 60, path: 'passing-right', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 38.9, type: 'minispirit', x:  -32, y: 70, path: 'passing-left', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
@@ -149,8 +154,8 @@ const RAW_STAGE_1: SpawnEventData[] = [
 	{ time: 71.3, type: 'fairy', x: 208, y: -16, color: 'blue', path: 'straight-down', patterns: [P.S1_FAIRY_PURPLE_BURST_BRAKE_ENH, P.S1_FAIRY_PURPLE_BURST_BRAKE_L, P.S1_FAIRY_ORB_BURST] },
 
 	// Wave 14 – 2 crossing spirits + mini-spirit rain 
-	{ time: 72.5, type: 'spirit',     x:  -32, y: 45, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
-	{ time: 72.9, type: 'spirit',     x:  288, y: 65, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_NORMAL_2, P.S1_SPIRIT_CIRCLE_HARD_2, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 72.5, type: 'spirit',     x:  -32, y: 45, variant: 'normal', path: 'passing-left', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
+	{ time: 72.9, type: 'spirit',     x:  288, y: 65, variant: 'normal', path: 'passing-right', patterns: [P.S1_SPIRIT_CIRCLE_NORMAL, P.S1_SPIRIT_CIRCLE_HARD, P.S1_SPIRIT_CIRCLE_LUNA, P.S1_SPIRIT_CIRCLE_LUNA_2, P.S1_SPIRAL_PURPLE_1, P.S1_SPIRAL_PURPLE_2] },
 	{ time: 72.5, type: 'minispirit', x:   38, y: -16, path: 'straight-down', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 72.7, type: 'minispirit', x:  197, y: -16, path: 'straight-down', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },
 	{ time: 72.9, type: 'minispirit', x:   74, y: -16, path: 'straight-down', patterns: [P.S1_ACCEL_NORMAL, P.S1_ACCEL_HARD, P.S1_ACCEL_LUNA] },

@@ -1,6 +1,8 @@
 services:
   client:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
     command: npm start
     ports:
       - "8000:8000"
@@ -9,7 +11,9 @@ services:
       - /app/node_modules
 
   express:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
     command: npm run express
     ports:
       - "9000:9000"

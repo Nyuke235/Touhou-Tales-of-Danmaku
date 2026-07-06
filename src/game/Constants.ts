@@ -32,7 +32,7 @@ export const ITEM = {
 	FALL_SPEED: 40,
 	ATTRACT_SPEED: 300,
 	COLLECT_RADIUS: 15,
-	POC_Y: FIELD.HEIGHT / 4, // collection line
+	POC_Y: FIELD.HEIGHT / 4 + 20, // collection line
 } as const;
 
 export const ENEMY = {
@@ -66,7 +66,7 @@ export const GAME = {
 	BOMB_DAMAGE: 100,
 	BOMB_EFFECT_SIZE: 380,
 	POWER_PER_ITEM: 0.02,
-	POWER_PER_BIG: 1.0,
+	POWER_PER_BIG: 0.2,
 	POWER_LOST_ON_DEATH: 1.0,
 	FREEZE_DURATION: 0.12,
 } as const;

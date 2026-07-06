@@ -39,7 +39,7 @@ export class Moth extends Enemy {
 
 		this.setPatterns(patterns ?? [Patterns.S1_MOTH_ORB_EASY]);
 		this.drops = [
-			{ type: 'power', count: 3 },
+			{ type: 'power', count: 4 },
 			{ type: 'point', count: 4 },
 		];
 	}

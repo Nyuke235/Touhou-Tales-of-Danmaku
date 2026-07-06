@@ -1,3 +1,7 @@
+#   docker build -f docker/Dockerfile.linux --output type=local,dest=./release .
+#   -> ./release/deb/*.deb
+#   -> ./release/appimage/*.AppImage
+
 FROM debian:bookworm-slim AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -47,7 +51,8 @@ COPY . .
 COPY --from=cooker /app/src-tauri/target /app/src-tauri/target
 COPY --from=cooker /root/.cargo /root/.cargo
 
-RUN npm run tauri:build -- --ci
+RUN npm run tauri:build -- --ci --bundles deb,appimage
 
 FROM scratch AS export
-COPY --from=builder /app/src-tauri/target/release/bundle /bundle
+COPY --from=builder /app/src-tauri/target/release/bundle/deb /deb
+COPY --from=builder /app/src-tauri/target/release/bundle/appimage /appimage
